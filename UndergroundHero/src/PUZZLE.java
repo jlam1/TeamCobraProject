@@ -1,12 +1,10 @@
-package Dynamic Model.Entity Model;
-
 public class PUZZLE {
 
 	private String description;
 
 	private int puzzleID;
 
-	private KEY ITEM keyAnswer;
+	private KEYITEM keyAnswer;
 
 	private boolean solved;
 

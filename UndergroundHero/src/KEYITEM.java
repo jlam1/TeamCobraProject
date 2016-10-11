@@ -1,6 +1,4 @@
-package Dynamic Model.Entity Model;
-
-public class KEY ITEM extends ITEM {
+public class KEYITEM extends ITEM {
 
 	private boolean compatible;
 

@@ -1,5 +1,3 @@
-package Dynamic Model.Entity Model;
-
 public class STATUS {
 
 	private String name;

@@ -1,5 +1,3 @@
-package Dynamic Model.Entity Model;
-
 import java.util.ArrayList;
 
 public class INVENTORY {

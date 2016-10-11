@@ -1,5 +1,3 @@
-package Dynamic Model.Entity Model;
-
 public class MONSTER extends STATUS {
 
 	private int monID;
