@@ -1,4 +1,4 @@
-public class DOOR {
+public class Door {
 
 	private int doorID;
 

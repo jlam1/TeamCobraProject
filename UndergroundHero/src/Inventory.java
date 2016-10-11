@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class INVENTORY {
+public class Inventory {
 
 	private ArrayList bag;
 
-	private WEAPON weaponSlot;
+	private Weapon weaponSlot;
 
-	private ARMOR armorSlot;
+	private Armor armorSlot;
 
 	private boolean removed;
 

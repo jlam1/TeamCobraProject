@@ -1,12 +1,12 @@
-public class ROOM {
+public class Room {
 
 	private String description;
 
 	private int roomID;
 
-	private MONSTER roomMonster;
+	private Monster roomMonster;
 
-	private PUZZLE roomPuzzle;
+	private Puzzle roomPuzzle;
 
 	public String viewRoom() {
 		return null;

@@ -1,4 +1,4 @@
-public class STATUS {
+public class Status {
 
 	private String name;
 

@@ -1,6 +1,6 @@
-public class PLAYER extends STATUS {
+public class Player extends Status {
 
-	private INVENTORY bag;
+	private Inventory bag;
 
 	private int playerID;
 

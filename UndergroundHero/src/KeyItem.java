@@ -1,4 +1,4 @@
-public class KEYITEM extends ITEM {
+public class KeyItem extends Item {
 
 	private boolean compatible;
 

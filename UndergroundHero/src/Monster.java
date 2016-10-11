@@ -1,4 +1,4 @@
-public class MONSTER extends STATUS {
+public class Monster extends Status {
 
 	private int monID;
 

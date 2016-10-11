@@ -1,4 +1,4 @@
-public class WEAPON extends ITEM {
+public class Weapon extends Item {
 
 	private int damage;
 

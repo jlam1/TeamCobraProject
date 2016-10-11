@@ -1,4 +1,4 @@
-public class GAME {
+public class Game {
 
 	private String helpCommand;
 

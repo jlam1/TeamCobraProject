@@ -1,4 +1,4 @@
-public class ARMOR extends ITEM {
+public class Armor extends Item {
 
 	private int defense;
 

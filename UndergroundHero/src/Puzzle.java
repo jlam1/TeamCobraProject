@@ -1,10 +1,10 @@
-public class PUZZLE {
+public class Puzzle {
 
 	private String description;
 
 	private int puzzleID;
 
-	private KEYITEM keyAnswer;
+	private KeyItem keyAnswer;
 
 	private boolean solved;
 
