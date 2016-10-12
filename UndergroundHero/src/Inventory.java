@@ -22,9 +22,14 @@ public class Inventory {
 		return false;
 	}
 	
+<<<<<<< HEAD
 	public void removeItem()
 	{
 		
+=======
+	public ArrayList<Item> openInventory(){
+		return bag;
+>>>>>>> 744ab196361ecda6e59d2894fa58243a41056e1a
 	}
 
 }
