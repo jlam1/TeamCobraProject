@@ -18,9 +18,11 @@ import javafx.stage.Stage;
  * Written: Oct 9, 2016
  *
  * 
- * This class –now describe what the class does
+ * This class ï¿½now describe what the class does
  * 
- * Purpose: –Describe the purpose of this class 
+ * Purpose: ï¿½Describe the purpose of this class 
+ * 
+ * This will act as template for our game's interface
  */
 public class GUI extends Application
 {
@@ -40,11 +42,18 @@ public class GUI extends Application
 		
 		Button button1 = new Button("Next Scene");
 		button1.setOnAction(e -> window.setScene(scene2));
+		
+		
 
 		//Layout 1 - children laid out in vertical column
 		VBox layout1 = new VBox(20);
 		layout1.getChildren().addAll(label1, button1);
 		scene1 = new Scene(layout1, 400, 200);
+		
+		//vbox - for player's stat
+		VBox playerStatBox = new VBox(30);
+		Label playerLabel = new Label("Player Stats");
+		playerStatBox.getChildren().add(playerLabel);
 
 		//Button 2
 		Label label2 = new Label("I am warning you. Please Leave Now. "
@@ -59,36 +68,37 @@ public class GUI extends Application
 		layout2.add(label2, 0, 0);
 		layout2.add(button2, 0 ,1);
 		layout2.add(button3, 0, 1);
+		layout2.add(playerStatBox, 1, 0); //column, row
 		scene2 = new Scene(layout2, 400, 100);
 		GridPane.setHalignment(button2, HPos.LEFT);
 		GridPane.setHalignment(button3, HPos.RIGHT);
-		GridPane.setColumnSpan(label2, 1);
+		//GridPane.setColumnSpan(label2, 1);
 
-		/*Stage stage = new Stage();
-		stage.initModality(Modality.APPLICATION_MODAL);
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
 		stage.setTitle("");
-		//Label label3 = new Label("YOUR COMPUTER IS INFECTED WITH A VIRUS! "
-				//+ "\n PLEASE SCAN YOU COMPUTER!"
-				//+ "\n PLEASE TRY TO CLOSE THE OTHER SCREEN BEFORE THIS ONE!");
-		//label3.setTextFill(Color.RED);
+		Label label3 = new Label("YOUR COMPUTER IS INFECTED WITH A VIRUS! "
+				+ "\n PLEASE SCAN YOU COMPUTER!"
+				+ "\n PLEASE TRY TO CLOSE THE OTHER SCREEN BEFORE THIS ONE!");
+		label3.setTextFill(Color.RED);
 		Group root = new Group();
-		//root.getChildren().add(label3);
+		root.getChildren().add(label3);
 		scene3 = new Scene(root, 500, 200, Color.BLACK);
 		stage.setScene(scene3);
-		Group circles = new Group();
-		for (int i = 0; i < 3; i ++)
-		{
-			Circle circle = new Circle(100, Color.web("white", 0.5));
-			circle.set
-		}
 		button3.setOnAction(e -> stage.show());
-		*/
 
 		//Display scene 1 at first
 		window.setScene(scene1);
 		window.show();
 	}
-
+	
+	//depending on room change, changes room description
+	//TODO: create v/hboxs, add children nodes, return scene
+	public Scene(Label roomDescription, Label playerStat){
+		
+	}
+	
+	
 	public static void main(String[] args)
 	{
 		launch(args);
