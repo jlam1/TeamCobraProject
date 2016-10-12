@@ -23,5 +23,9 @@ public class Room {
 	public void viewExits() {
 
 	}
+	
+	public void testGitHub(){
+		System.out.println("blahlbhahellowwolrd");
+	}
 
 }
