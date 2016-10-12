@@ -94,9 +94,9 @@ public class GUI extends Application
 	
 	//depending on room change, changes room description
 	//TODO: create v/hboxs, add children nodes, return scene
-	public Scene(Label roomDescription, Label playerStat){
-		
-	}
+//	public Scene(Label roomDescription, Label playerStat){
+//		
+//	}
 	
 	
 	public static void main(String[] args)
