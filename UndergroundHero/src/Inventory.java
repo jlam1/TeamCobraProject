@@ -21,5 +21,9 @@ public class Inventory {
 	public boolean itemRemoved() {
 		return false;
 	}
+	
+	public ArrayList<Item> openInventory(){
+		return bag;
+	}
 
 }
