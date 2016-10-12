@@ -21,5 +21,10 @@ public class Inventory {
 	public boolean itemRemoved() {
 		return false;
 	}
+	
+	public void removeItem()
+	{
+		
+	}
 
 }
