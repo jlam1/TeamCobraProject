@@ -1,41 +1,66 @@
-public class Game {
+import java.util.ArrayList;
 
-	private String helpCommand;
+public class Game
+{
+	private Game game;
+	private ArrayList<Room> rooms;
+	private Player player;
 
-	private String navigateCommand;
+	private Game(ArrayList<Room> rooms, Player player)
+	{
+		this.rooms = rooms;
+		this.player = player;
+	}
 
-	private boolean gameRun;
-
-	public void newGame() {
+	public void newGame()
+	{
+		ArrayList<Room> rooms = new ArrayList<Room>();
+		player = new Player();
+		setGameRun();
 
 	}
 
-	public void saveGame() {
+	public void saveGame()
+	{
 
 	}
 
-	public void help() {
+	public void help()
+	{
 
 	}
 
-	public void loadGame() {
+	public void loadGame()
+	{
 
 	}
 
-	public void exitGame() {
+	public void exitGame()
+	{
+		System.exit(0);
+	}
+
+	public void checkSaveState()
+	{
 
 	}
 
-	public void checkSaveState() {
+	public ArrayList<Room> getRooms()
+	{
+
+		return game.rooms;
 
 	}
 
-	public void move(int navigateCommand) {
-
-	}
-
-	public boolean setGameRun() {
-		return false;
+	public boolean setGameRun()
+	{
+		if (game == null)
+		{
+			game = new Game(rooms, player);
+			return true;
+		}
+		else
+			return false;
 	}
 
 }
