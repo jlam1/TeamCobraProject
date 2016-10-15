@@ -31,7 +31,7 @@ public class GUI extends Application
 	Scene scene1, scene2, scene3;
 
 	public void start(Stage primaryStage)
-	{
+	{	
 		window = primaryStage;
 
 		//Button 1

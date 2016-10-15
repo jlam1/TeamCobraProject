@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadFiles {
-
-	public static void main(String[] args){
-		
+/*
+ * This class is going to read all text files and put them into an ArrayList.
+ */
+public class ResourceManager {
+	
+	private List<Monster> monsterList;
+	
+	public void writeToMonsterArrayList(){
 		Scanner in = null;
-		List<Monster> monsterList = new ArrayList<Monster>();
+		monsterList = new ArrayList<Monster>();
 	
 		//open file Monster.txt
 		try{
@@ -35,21 +39,27 @@ public class ReadFiles {
 				monsterList.add(newMonster);
 				
 			}
-		} catch (IOException e) {
+		}catch (IOException e){
 			System.out.println("Unable to read file."); 
+		}finally{
+			in.close();
 		}
+	}
+	
+	public List<Monster> getMonsterList() {
+		return monsterList;
+	}	
+		
+		//TODO PUZZLE
+		
+		
+		//TODO ITEMS
+		
+		
+		//TODO ROOMS
+		//CONTRUCTOR => Room(String roomNumber, String roomDescription, String exits, Monster roomMonster, Puzzle roomPuzzle)
+
 		
 
-		//print test
-		for(Monster i : monsterList){
-			System.out.println("NAME: " + i.getName());
-			System.out.println("DESC: " + i.getDescription());
-			System.out.println("HP: " + i.getHp());
-			System.out.println("ATK: " + i.getAtk());
-			System.out.println("DEF: " + i.getDef());
-			System.out.println("SPD: " + i.getSpd());
-		}
-
-	}
 
 }

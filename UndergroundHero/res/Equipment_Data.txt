@@ -1,12 +1,8 @@
-EQUIP_ID_001
 Starter Clothes
 Default Armor. It's normal and worned.
-EQUIP_ID_002
 Starter Weapon
 Default Weapon. It's worned out and chipped.
-EQUIP_ID_003
 Chain Mail
 A lightweight piece of armor that is particularly good at stopping stabbing attacks.
-EQUIP_ID_004
 Prototype Laser Pistol
 A sleek looking pistol, seemingly made out of titanium judging by the color. It has no visible seams or welds and fires a brilliant blue bolt of light.

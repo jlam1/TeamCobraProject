@@ -3,7 +3,13 @@ public class KeyItem extends Item {
 	private boolean compatible;
 
 	public boolean isCompatible() {
-		return false;
+		return compatible;
 	}
 
+	public void setCompatible(boolean compatible) {
+		this.compatible = compatible;
+	}
+
+	
+	
 }
