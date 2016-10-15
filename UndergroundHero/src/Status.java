@@ -1,57 +1,95 @@
 public class Status {
 
-	private String name;
+	protected String name;
 
-	private int health;
+	protected int hp;
 
-	private int damage;
+	protected int atk;
 
-	private int speed;
+	protected int spd;
 
-	private boolean dead;
+	protected boolean dead;
 
-	private int defense;
+	protected int def;
 
-	private boolean attacked;
-
-	public int calculateDamage() {
-		return 0;
-	}
+	protected boolean attacked;
+	
+	protected int id;
+	
+	protected String description;
 
 	public String getName() {
-		return null;
+		return name;
 	}
 
-	public int getHealth() {
-		return 0;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getSpeed() {
-		return 0;
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getAtk() {
+		return atk;
+	}
+
+	public void setAtk(int atk) {
+		this.atk = atk;
+	}
+
+	public int getSpd() {
+		return spd;
+	}
+
+	public void setSpd(int spd) {
+		this.spd = spd;
 	}
 
 	public boolean isDead() {
-		return false;
+		return dead;
 	}
 
-	public int getDefense() {
-		return 0;
+	public void setDead(boolean dead) {
+		this.dead = dead;
 	}
 
-	public int setHP() {
-		return 0;
+	public int getDef() {
+		return def;
 	}
 
-	public int setDefense() {
-		return 0;
-	}
-
-	public int setSpeed() {
-		return 0;
+	public void setDef(int def) {
+		this.def = def;
 	}
 
 	public boolean isAttacked() {
-		return false;
+		return attacked;
 	}
 
+	public void setAttacked(boolean attacked) {
+		this.attacked = attacked;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
+	
 }

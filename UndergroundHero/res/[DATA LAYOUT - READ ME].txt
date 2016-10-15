@@ -1,0 +1,27 @@
+Consumable Data:
+ID
+Name
+Description
+
+----------------------------------
+Equip Data:
+ID
+Name
+Description
+
+----------------------------------
+Monster Data:
+ID
+Name
+Description
+HP
+Attack
+Defense
+Speed
+
+----------------------------------
+Room Data:
+ID
+Floor-Number
+Description of room
+Exits

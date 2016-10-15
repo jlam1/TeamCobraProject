@@ -1,0 +1,9 @@
+CONSUMABLE_ID_001
+Adrenaline Shot
+Heals the user 10 HP.
+CONSUMABLE_ID_002
+Steroid
+Increases max HP by 5, and heals fully.
+CONSUMABLE_ID_003
+Diamond Tipped Cutter
+This item allows the player to cut through ballistic glass.

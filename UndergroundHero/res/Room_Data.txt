@@ -1,0 +1,3 @@
+ROOM_ID_001
+1-1
+You are a Batman-esque superhero who has no superpowers, but is clever and a good fighter. He has infiltrated a super villain's underground lair with the hope of stopping the detonation of an apocalyptic doomsday device. Along the way he will pick up items and gadgets to help him reach the supervillain on the bottom floor and stop his evil scheme.
