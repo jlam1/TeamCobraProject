@@ -4,12 +4,44 @@ public class Door {
 
 	private boolean lockedDoor;
 
-	public void getDoorID() {
-
+	public Door(int doorID, boolean lockedDoor)
+	{
+		this.doorID = doorID;
+		this.lockedDoor = lockedDoor;
 	}
 
-	public boolean doorLocked() {
-		return false;
+	/**
+	 * @return the doorID
+	 */
+	public int getDoorID()
+	{
+		return doorID;
 	}
 
+	/**
+	 * @param doorID the doorID to set
+	 */
+	public void setDoorID(int doorID)
+	{
+		this.doorID = doorID;
+	}
+
+	/**
+	 * @return the lockedDoor
+	 */
+	public boolean isLockedDoor()
+	{
+		return lockedDoor;
+	}
+
+	/**
+	 * @param lockedDoor the lockedDoor to set
+	 */
+	public void setLockedDoor(boolean lockedDoor)
+	{
+		this.lockedDoor = lockedDoor;
+	}
+	
+	
+	
 }
