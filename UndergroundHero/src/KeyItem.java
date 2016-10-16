@@ -1,10 +1,10 @@
 public class KeyItem extends Item {
+	
+	private boolean compatible;
 
 	public KeyItem(String name, String description, String type) {
 		super(name, description, type);
 	}
-
-	private boolean compatible;
 
 	public boolean isCompatible() {
 		return compatible;
@@ -13,7 +13,6 @@ public class KeyItem extends Item {
 	public void setCompatible(boolean compatible) {
 		this.compatible = compatible;
 	}
-
 	
 	
 }

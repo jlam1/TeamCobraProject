@@ -104,11 +104,10 @@ public class ResourceManager {
 			while (in.hasNext() && in != null) {
 				String puzzleName = in.nextLine();
 				String puzzleDescription = in.nextLine();
-				String keyAnswer = in.nextLine();
-				String solved = in.nextLine();
-				String logicAnswer = in.nextLine();
+				String puzzleAnswerDescription = in.nextLine();
+				String puzzleReward = in.nextLine();
 				
-				Puzzle newPuzzle = new Puzzle(puzzleName, puzzleDescription);
+				Puzzle newPuzzle = new Puzzle(puzzleName, puzzleDescription, puzzleAnswerDescription, puzzleReward);
 				puzzleList.add(newPuzzle);
 				
 			}

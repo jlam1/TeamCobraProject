@@ -1,0 +1,36 @@
+A Blood Type
+Blood sucker is a sucker for math and science, for whatever reason he has used his immortality to study and understand the world better. The Puzzler is a smart guy that likes to play with people’s minds and talk in funny ways, but don’t disregard him as he can very well attack using his cane.
+The player will enter a combination of two out of the four possible blood type.
+Defeat Blood Sucker.
+Painting
+The player walks into room 1-9, the player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?
+Mona Lisa
+Power increase which will help to defeat the Puzzler.
+The Animal Statues
+There are four animal statues in rooms 2-3 and 2-4. In 2-4, they are on the South wall and cannot be moved and are, in order from East to West (which will appear to be left to right to the player): Duck, Giraffe, Elephant, Cow. In room 2-3, they are on the North wall, the order is randomized (but cannot be randomized to the puzzle’s solution), and can be moved.
+The statues in 2-3 must be rearranged to match the order of the statues in 2-4, from East to West. However, this order will appear reversed to the player because they are facing the opposite direction.
+The energy force field on the pedestal powers down, and the player can pick up the Speed Boots.
+The Laser Hallway
+There is a hallway that shoots lasers at anyone who tries to pass in room 2-5. If the player tries to pass without the Speed Boots, then they are unable to and take 1 HP of damage.
+If the player has the Speed Boots, then they are able to dodge the lasers and run through the room to make it to the other exit.
+The player is able to move on to room 2-6.
+The Colored Buttons
+In room 2-7 is a monitor with several groups of numbers, each group a different color. The final group of numbers is “2, 1, 3” in black. In room 2-8 are three buttons, red, green, and blue.
+The player is supposed to determine that the numbers in room 2-7 are RGB values. Thus, the last group of numbers is saying Red 2, Green 1, Blue 3. This is the order you must press the buttons in to get the key.
+A key that lets the player open the door to 2-9 and fight the boss of the floor.
+Jump The Chasm
+You need to clear a chasm (in room 3-9) to progress further into the villain’s lair. There appears to be a strange outcropping of rock in the ceiling. If only you could attach some rope to it you could swing across, but be careful, it’s a long way down; and you think you see some spikes... The player may attempt to jump the chasm, but doing so will result in their death. The player must input the command to jump three times before they actually jump. The first two times the game will output text along the lines of the player second guessing themself/losing their nerve at the last second.
+In the semicircular rooms (rooms 3-5 and 3-6) surrounding the lake (room 3-7) the player observes what appears to be a grappling hook in the center of the lake. What isn’t observed is that the giant bull shark is hiding in the depths of the lake. The player will have to enter the lake, fight and kill the shark, and then collect the grappling hook before they can progress.
+Progression to the 3rd floor boss.
+Security Bypass
+You have just defeated the level boss, the giant robotic sentry. You are winded. You gather yourself to push on, but as you come to the door you notice that it is locked with no visible way to open it, and it appears far too thick to break through with anything less than a comically large amount of explosives, or a giant robot ? ironically. Defeated, you angrily hit the door with your fist. You turn to take out your anger on your defeated foe when you notice an odd looking computer chip protruding from the robot’s broken head. “Security Bypass” is printed on the chip. Hoping against hope you press your head against the door and hear the hum of a strong electromagnet. You take the chip and begin your search for a suitable computer terminal.
+Defeat the giant robotic sentry and examine him to find the computer chip. Take the chip to the computer terminal located in room 3-3 and install it. Once installed the player must “hack” into the chip to activate the bypass. The hack is completed by playing a game of Tower of Hanoi. The tower will be four units high start and in the left column, constructed correctly, it must be moved to the right column to be solved.
+Unlock the door to floor 4 and the shortcut connecting rooms 3-1 and 3-10.
+Riddle 1
+You walk into a room  and on the wall towards the exit is a riddle to which the user must enter the answer.
+The Answer is “brain”
+They are able to pass on through the door and allows them access to 4-6.
+Riddle 2
+Another door blocks your way and it needs the correct answer for you to pass through.
+Their name
+Passage through to the next room which lead into the final boss fight.

@@ -9,8 +9,19 @@ public class Puzzle {
 	private boolean solved;
 
 	private String logicAnswer;
+	
+	private String puzzleAnswerDescription;
+	
+	private String puzzleReward;
 
 
+	public Puzzle(String puzzleName, String description, String puzzleAnswerDescription, String puzzleReward){
+		this.puzzleName = puzzleName;
+		this.description = description;
+		this.puzzleAnswerDescription = puzzleAnswerDescription;
+		this.puzzleReward = puzzleReward;
+	}
+	
 	public Puzzle(String puzzleName, String description)
 	{
 		this.puzzleName = puzzleName;
@@ -122,6 +133,14 @@ public class Puzzle {
 	public void setLogicAnswer(String logicAnswer)
 	{
 		this.logicAnswer = logicAnswer;
+	}
+	
+	public String getPuzzleAnswerDescription(){
+		return puzzleAnswerDescription;
+	}
+	
+	public String getPuzzleReward(){
+		return puzzleReward;
 	}
 	
 }

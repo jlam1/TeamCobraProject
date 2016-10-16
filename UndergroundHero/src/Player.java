@@ -1,6 +1,6 @@
 public class Player extends Status {
 
-	private Inventory bag;
+	private Item  bag;
 
 	private int playerID;
 

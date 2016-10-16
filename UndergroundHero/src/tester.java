@@ -6,11 +6,14 @@ public class tester {
 	public static void main(String[] args) {
 		
 		ResourceManager rm = new ResourceManager();
+		Item item = new Item();
 		
 		rm.writeToMonsterList();
 		rm.writeToRoomList();
 		rm.writeToPuzzleList();
 		rm.writeToItemList();
+		
+		item.openInventory(rm.getItemList());
 		
 //		for(Monster i : rm.getMonsterList()){
 //			System.out.println(i.getName());
@@ -28,11 +31,21 @@ public class tester {
 //		}
 		
 		
-		for(Item i : rm.getItemList()){
-			System.out.println(i.getName());
-			System.out.println(i.getDescription());
-			System.out.println(i.getType());
-		}
+//		for(Item i : rm.getItemList()){
+//			System.out.println(i.getName());
+//			System.out.println(i.getDescription());
+//			System.out.println(i.getType());
+//		}
+		
+		
+//		for(Puzzle i : rm.getPuzzleList()){
+//			System.out.println(i.getPuzzleName());
+//			System.out.println(i.getDescription());
+//			System.out.println(i.getPuzzleAnswerDescription());
+//			System.out.println(i.getPuzzleReward());
+//		}
+		
+		
 		
 		
 	}
