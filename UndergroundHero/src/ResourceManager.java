@@ -102,12 +102,14 @@ public class ResourceManager {
 			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
-				String roomNumber = in.nextLine();
-				String roomDescription = in.nextLine();
-				String roomExits = in.nextLine();
+				String puzzleName = in.nextLine();
+				String puzzleDescription = in.nextLine();
+//				String keyAnswer = in.nextLine();
+//				String solved = in.nextLine();
+//				String logicAnswer = in.nextLine();
 				
-				Room newRoom = new Room(roomNumber, roomDescription, roomExits);
-				roomList.add(newRoom);
+				Puzzle newPuzzle = new Puzzle(puzzleName, puzzleDescription);
+				puzzleList.add(newPuzzle);
 				
 			}
 		}catch (IOException e){
@@ -116,6 +118,11 @@ public class ResourceManager {
 			in.close();
 		}
 	}
+	
+	public List<Puzzle> getPuzzleList(){
+		return puzzleList;
+	}
+
 
 
 }
