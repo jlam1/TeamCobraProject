@@ -17,6 +17,22 @@ public class Puzzle {
 		this.description = description;
 		
 	}
+	
+	public Puzzle(String puzzleName, String description, KeyItem keyAnswer)
+	{
+		this.puzzleName = puzzleName;
+		this.description = description;
+		this.keyAnswer = keyAnswer;
+		
+	}
+	
+	public Puzzle(String puzzleName, String description, String logicAnswer)
+	{
+		this.puzzleName = puzzleName;
+		this.description = description;
+		this.logicAnswer = logicAnswer;
+		
+	}
 
 
 	/**
