@@ -11,11 +11,14 @@ public class tester {
 		rm.writeToRoomList();
 		
 		for(Monster i : rm.getMonsterList()){
-			System.out.println(i.getName());
-			System.out.println(i.getHp());
-			System.out.println(i.getDescription());
-			System.out.println(i.getAction().getActionName1());
+//			System.out.println(i.getName());
+//			System.out.println(i.getHp());
+//			System.out.println(i.getDescription());
+//			System.out.println("Skill: " + i.getAction().getActionName1());
+			System.out.println(i.toString());
 		}
+		
+		
 		
 //		System.out.println("\n\n");
 //		

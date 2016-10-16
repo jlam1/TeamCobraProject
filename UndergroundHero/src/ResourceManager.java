@@ -102,6 +102,32 @@ public class ResourceManager {
 			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
+				
+				
+				Puzzle newPuzzle = new Puzzle();
+				puzzleList.add(newRoom);
+				
+			}
+		}catch (IOException e){
+			System.out.println("Unable to read file."); 
+		}finally{
+			in.close();
+		}
+	}
+	
+	public List<Puzzle> getPuzzleList(){
+		return puzzleList;
+	}
+	
+	public void writeToItemList(){
+		Scanner in = null;
+		puzzleList = new ArrayList<Puzzle>();
+
+		try{
+			
+			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
+			
+			while (in.hasNext() && in != null) {
 				String roomNumber = in.nextLine();
 				String roomDescription = in.nextLine();
 				String roomExits = in.nextLine();
@@ -116,6 +142,9 @@ public class ResourceManager {
 			in.close();
 		}
 	}
+	
+	
+	
 
 
 }

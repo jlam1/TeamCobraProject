@@ -27,6 +27,15 @@ public class Monster extends Status {
 		return action;
 	}
 
+	@Override
+	public String toString() {
+		return "Monster [name=" + name + ", hp=" + hp + ", atk=" + atk + ", spd=" + spd
+				+ ", def=" + def + ", id=" + id + ", description="
+				+ description + "]";
+	}
+
+
+
 	public static class Action{
 		
 		private String actionName1;
