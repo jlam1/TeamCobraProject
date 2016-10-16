@@ -1,8 +1,8 @@
 public class Puzzle {
 
-	private String description;
+	private String puzzleName;
 
-	private int puzzleID;
+	private String description;
 
 	private KeyItem keyAnswer;
 
@@ -11,13 +11,27 @@ public class Puzzle {
 	private String logicAnswer;
 
 
-	public Puzzle(String description, int puzzleID, KeyItem keyAnswer, boolean solved, String logicAnswer)
+	public Puzzle(String puzzleName, String description)
 	{
+		this.puzzleName = puzzleName;
 		this.description = description;
-		this.puzzleID = puzzleID;
+		
+	}
+	
+	public Puzzle(String puzzleName, String description, KeyItem keyAnswer)
+	{
+		this.puzzleName = puzzleName;
+		this.description = description;
 		this.keyAnswer = keyAnswer;
-		this.solved = solved;
+		
+	}
+	
+	public Puzzle(String puzzleName, String description, String logicAnswer)
+	{
+		this.puzzleName = puzzleName;
+		this.description = description;
 		this.logicAnswer = logicAnswer;
+		
 	}
 
 
@@ -42,18 +56,18 @@ public class Puzzle {
 	/**
 	 * @return the puzzleID
 	 */
-	public int getPuzzleID()
+	public String getPuzzleName()
 	{
-		return puzzleID;
+		return puzzleName;
 	}
 
 
 	/**
 	 * @param puzzleID the puzzleID to set
 	 */
-	public void setPuzzleID(int puzzleID)
+	public void setPuzzleName(String puzzleName)
 	{
-		this.puzzleID = puzzleID;
+		this.puzzleName = puzzleName;
 	}
 
 

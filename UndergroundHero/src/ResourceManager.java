@@ -102,10 +102,14 @@ public class ResourceManager {
 			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
+				String puzzleName = in.nextLine();
+				String puzzleDescription = in.nextLine();
+				String keyAnswer = in.nextLine();
+				String solved = in.nextLine();
+				String logicAnswer = in.nextLine();
 				
-				
-				Puzzle newPuzzle = new Puzzle();
-				puzzleList.add(newRoom);
+				Puzzle newPuzzle = new Puzzle(puzzleName, puzzleDescription);
+				puzzleList.add(newPuzzle);
 				
 			}
 		}catch (IOException e){
@@ -121,20 +125,19 @@ public class ResourceManager {
 	
 	public void writeToItemList(){
 		Scanner in = null;
-		puzzleList = new ArrayList<Puzzle>();
+		itemList = new ArrayList<Item>();
 
 		try{
 			
-			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
+			in = new Scanner(new BufferedReader(new FileReader("res/Item_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
-				String roomNumber = in.nextLine();
-				String roomDescription = in.nextLine();
-				String roomExits = in.nextLine();
+				String itemName = in.nextLine();
+				String itemDescription = in.nextLine();
+				String itemType = in.nextLine();
 				
-				Room newRoom = new Room(roomNumber, roomDescription, roomExits);
-				roomList.add(newRoom);
-				
+				Item newItem = new Item(itemName, itemDescription, itemType);
+				itemList.add(newItem);
 			}
 		}catch (IOException e){
 			System.out.println("Unable to read file."); 
@@ -143,8 +146,9 @@ public class ResourceManager {
 		}
 	}
 	
-	
-	
+	public List<Item> getItemList(){
+		return itemList;
+	}
 
 
 }

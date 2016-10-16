@@ -1,6 +1,0 @@
-Adrenaline Shot
-Heals the user 10 HP.
-Steroid
-Increases max HP by 5, and heals fully.
-Diamond Tipped Cutter
-This item allows the player to cut through ballistic glass.

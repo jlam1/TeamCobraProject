@@ -1,0 +1,21 @@
+Starter Clothes
+Default Armor. It's normal and worned.
+EQUIP
+Starter Weapon
+Default Weapon. It's worned out and chipped.
+EQUIP
+Chain Mail
+A lightweight piece of armor that is particularly good at stopping stabbing attacks.'
+EQUIP
+Prototype Laser Pistol
+A sleek looking pistol, seemingly made out of titanium judging by the color. It has no visible seams or welds and fires a brilliant blue bolt of light.
+KEY ITEM
+Adrenaline Shot
+Heals the user 10 HP.
+CONSUMABLE
+Steroid
+Increases max HP by 5, and heals fully.
+CONSUMABLE
+Diamond Tipped Cutter
+This item allows the player to cut through ballistic glass.
+KEY ITEM
