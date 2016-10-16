@@ -6,6 +6,16 @@ public class Room {
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
 	
+	Room(){
+		
+	}
+	
+	Room(String roomNumber, String roomDescription, String exits){
+		this.roomNumber = roomNumber;
+		this.roomDescription = roomDescription;
+		this.exits = exits;
+	}
+	
 	Room(String roomNumber, String roomDescription, String exits, Monster roomMonster, Puzzle roomPuzzle){
 		this.roomNumber = roomNumber;
 		this.roomDescription = roomDescription;

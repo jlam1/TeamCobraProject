@@ -1,134 +1,126 @@
 1-1
 This is the first room in the game, upon entering the room, the player sees that it is an office type of room, the light is dimmed to a level that it is still easy to see. There is a “front desk” to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says: “Which are you: A B O AB?”. The door to the next room past the couch and the desk about the middle of the two.
 EAST
-
 1-2
 The second room is an office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list to people the player does not know anything about.
 WEST, EAST
-
 1-3
 The third room is a meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the player upon entering and say “hi” in a very calmed way.
 WEST, EAST
-
 1-4
 This room has several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.
 WEST, SOUTH
-
 1-5
 This room has a desk which looks fancy and it is located on the southeast corner of the room. It is made from dark brown wood and it has a library next to it extending all the way to the north wall and covering the entire north wall. The shelves go from the ceiling to the ground and are filled with books of all kinds, also the shelves have decorations on them, like some wooden figures that resemble African heritage, also an hourglass (sand clock) which by the way has been turned upside down with the time ticking. Theres  world map behind the desk covering most of the south wall. There is one painting next to the door which leads to room 1-6, the painting is of a lady.
 NORTH, WEST, EAST
-
 1-6
 This room consists of a closet and shower like room, it all white and very clean, the floor is white, the light is white, everything is white, except there is bloody handprints everywhere on the northwestern corner of the room, there’s a thick trail of blood going into the room westward. This room also connects to the room 1-3. Keep in mind the doors are thick and not much sound gets through to the other side.
 EAST, WEST, NORTH
-
 1-7
 This room consists of a steel bed, it has a body on top of it. It is inside a body bag, it’s very cold in this room, doesn’t smell like anything. The body could be just a dummy. Same as the previous to this one, everything is white, the lights are dimmed, and somewhat flickery. There are some sharp tools on a tray.
 WEST, EAST
-
 1-8
 There’s a man sitting there on a chair, the Puzzler. Wearing a purple shirt and holding a cane. He is smoking something which filled up the room with smoke. His name is Puzzler, the boss of floor one, he seems to have had a bad day, so who knows what he could do.
 EAST
-
 1-9
 Secret room to the west side of room 1-5. This room has weapons and health the player can pick up. There is a lock to the door once inside it and it works as a safe place in case it is needed. The room has a purple light bulb which makes the room appear very purple.
 WEST
-
 2-1
-
-
+The room connecting floor 1 and 2.
+EAST
 2-2
-
-
+A room with four exits. An adrenaline shot on the ground.
+NORTH, EAST, WEST, SOUTH
 2-3
-
-
+Four statues on the North wall: a Duck, a Giraffe, an Elephant, and a Cow. Their order is randomized (but cannot be randomized to the puzzle’s solution), and they can be moved. A pedestal in the center of the room holding a pair of red boots that are protected by an energy force field.
+SOUTH
 2-4
-
-
+Four statues on the South wall; from East to West, a Duck, a Giraffe, an Elephant, and a Cow. An empty pedestal in the center of the room.
+NORTH
 2-5
-
-
+A hallway that shoots lasers at anyone who tries to pass; if the player tries to exit through the East door without the Speed Boots, they are unable to and take 1 HP of damage.
+WEST, EAST
 2-6
-
-
+A room with four exits. The door to the east is locked tight.
+NORTH, SOUTH, EAST, WEST
 2-7
-
-
+Chain mail on the ground. A monitor on a desk that displays the following: The numbers “255, 0, 255” in magenta. The numbers “0, 255, 255” in cyan. The numbers “255, 255, 0” in yellow. The numbers “2, 1, 3” in white
+SOUTH
 2-8
-
-
+An adrenaline shot on the ground. A key on a pedestal being protected by a force field. A panel in front of the force field with three buttons on it: one red, one blue, one green.
+NORTH
 2-9
-
-
+An empty room with the Hula Hooper.
+WEST
 3-1
-
-
+A hidden shortcut through a crawl space below leading to room 3-10, accessable only once the player has completed the Security Bypass puzzle. A square room with steel plating covering all surfaces. The only objects here are the doors leading to the East and West (and the hidden crawl space).
+WEST, EAST, DOWN
 3-2
-
-
+This room is also covered in steel plating. One of the overhead lights flickers at a frequency that doesn’t actually diminish the amount of light in the room, it just causes an annoyance. The only objects are the doors to the East, South, and West.
+WEST, EAST, SOUTH
 3-3
-
-
+A rectangular room filled with monitors and cabling; a rack of computers sits at the end. The lighting is dimmer than normal and as a slight blueish hue. The electronics put out a lot of heat, so while this room is lined with steel plating like the rooms before it, it has a large exposed ventilation system in the ceiling. There is a case made of ballistic glass on the far wall which contains the Prototype Laser Pistol.
+NORTH, UP
 3-4
-
-
+A slightly rectangular room with a fork at the eastern end. The room’s ceiling grows higher and wider as the room approaches the fork, and the rooms construction transitions from steel plating to exposed cave wall reinforced in places by rebar and I-beams. During this transition the lighting changes from overhead to standing work lights. Toward the fork side of the room, stalactites have begun to form.
+WEST, NORTH, SOUTH
 3-5
-
-
+A moderately wide, short ledge that is semicircular in shape surrounding an underground lake’s northern edge. The room has high ceilings that curve upwards toward the center of the lake (located in room 3-7). The ceiling is covered by medium-large stalactites. The room has exposed cave wall reinforced in places by rebar and I-beams. The room is lit from the ground by upward firing lights angled toward the wall. Room 3-7 is visible from this location, and room 3-6 can be made out.
+WEST, EAST
 3-6
-
-
+A moderately wide, short ledge that is semicircular in shape surrounding an underground lake’s southern edge. The room has high ceilings that curve upwards toward the center of the lake (located in room 3-7). The ceiling is covered by medium-large stalactites. The room has exposed cave wall reinforced in places by rebar and I-beams. The room is lit from the ground by upward firing lights angled toward the wall. Room 3-7 is visible from this location, and room 3-5 can be made out.
+WEST, EAST, NORTH
 3-7
-
-
+The lake is both located deep underground and is deep itself. The water is incredibly clear and clean, and yet very deep in color as well. In what is more or less the center of the lake is an underwater plateau with the grappling hook on it; the plateau is close enough to the surface that the grappling hook is visible from rooms 3-5 and 3-6. Stalactites cover the ceiling and reflect light from rooms 3-5 and 3-6 into this room.
+NORTH, SOUTH
 3-8
-
-
+A rectangular room with a fork at the western end. The room’s ceiling lowers as the room moves away from the fork. The room has exposed cave wall reinforced in places by rebar and I-beams. The room is lit from the ground by upward firing lights angled toward the wall. There is a ventilation duct in the lower part of the ceiling partially obscured by small-medium sized stalactites. There is no door separating this room from room 3-9, it simply continues into the next.
+NORTH, SOUTH
 3-9
-
-
+A massive rectangular room with a wide chasm offset to the eastern side of it. Due to the room’s sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor. Apart from the lighting and the door at the eastern end leading to room 3-10, this room is void of any man made objects. Stalactites of various sizes line the ceiling, and stalagmites the floor. There is a stronger outcropping of rock above the chasm that the grappling hook can attach to. Though barely visible, there are steel spikes at the bottom of the chasm.
+WEST, EAST, UP
 3-10
-
-
+A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room; in front of the door stands the Giant Robotic Sentry This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting. A hidden crawl space is revealed and the blast door unlocked once the player has completed the Security Bypass puzzle.
+WEST, DOWN
 4-1
-
-
+A large octagon room with one exit to the east. The room is colored in a dark blue light with statues of lions adorned at the corner of each of the eight corners of the room. The floor a slick black concrete with a but dead in the center is a sloppily trail of green arrows leading to the door.
+EAST
 4-2
-
-
+The room is dimmed and is a straight hallway. With one door on the east side.
+WEST, EAST
 4-3
-
-
+A dark room with eyes drawn all over the walls, in the center of the room leading towards the exit is a picture of a brain. A Bright green light shines directly into the room directly at he only door. Around it is a very sinisterly written “HaHA” scrawled over the pictures on the wall.
+WEST, EAST
 4-4
-
-
+This room is lit in a bright green light with the single door to the east.  The recurring pattern of a brain is still scrawled along the wall. The door is old and very decrepit looking.
+WEST, EAST
 4-5
-
-
+The room is a large box with a majestic door to the south. A voice box over your head continues to play  a riddle in a loop “ I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?”  The room is a majestic as the door with the sides being decorated with intricately designed patterns.
+WEST, SOUTH
 4-6
-
-
+The room continues to follow its majestically made pattern but it begins to look more sadistics. The paintings on the wall all despite it ornate frames hold pictures of clowns who are either screaming, crying, or looking sinisterly angry.
+NORTH, SOUTH, WEST
 4-7
-
-
+This  room contained all the costumes generally worn during the circuses.  There in the corner sits a clown reading a newspaper who after briefly noticing you shrugs and goes back to reading his paper. Notably the paper  titled “The Clown Times”  headline is on the rising price of clown college.
+WEST, EAST
 4-8
-
-
+This room seems to contain the animals of the circus, however it does not seem that anyone has attempted to cage them. Lions, elephants, monkeys, and more roam the open room. The lions have made their stake in the corner of the room and have amassed a large body count that has become their dinner.
+EAST
 4-9
-
-
+This room is boldly titled the Hall of Mirrors at the very top, and much as the name suggest, the room is filled with mirrors. Mirrors that make you long, mirrors that make you short, there was a just about every type of mirror  in this room.
+NORTH, WEST
 4-10
-
-
+This room contains a wide variety of small cars. Despite being clown cars many of these cars were very expensive looking. A wide variety of clown car muscle cars filled the room.
+WEST, EAST
 4-11
-
-
+The room is dark and narrow leading to the only door to the western section of the wall.
+WEST, EAST
 4-12
-
-
+This leads to torch lit room where in the center is blazing ring of fire. There is one exit on the westward wall and by it, a golden statue of a tiger. The wall has been turned into a mural of people jumping through flaming objects.
+NORTH, WEST, EAST
 4-13
-
-
-
-
+In this room is an immensely large merry- go- round. The ride is at its top speed, whizzing around and shaking rapidly. It looks as if at any moment the ride will come apart smashing into anything around it.
+SOUTH
+4-14
+The last room is a decrepit movie theater. There are no seats and the floor boards are all but destroyed. In the center of the the room is a curtain lavishly colored in the orange and red colors often seen at carnivals. Between the screens is a blank projector screen and there sitting in the center is the evil clown Joe Ker laughing maniacally.
+EAST
