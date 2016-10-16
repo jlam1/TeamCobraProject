@@ -5,6 +5,7 @@ public class Room {
 	private String exits;
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
+	   
 	
 	Room(){
 		
