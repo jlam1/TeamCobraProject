@@ -10,15 +10,20 @@ public class tester {
 		rm.writeToMonsterList();
 		rm.writeToRoomList();
 		
-//		for(Monster i : rm.getMonsterList()){
-//			System.out.println(i.getDescription());
-//		}
-		
-		for(Room i : rm.getRoomList()){
-			System.out.println(i.getRoomNumber());
-			System.out.println(i.getRoomDescription());
-			System.out.println(i.getExits());
+		for(Monster i : rm.getMonsterList()){
+			System.out.println(i.getName());
+			System.out.println(i.getHp());
+			System.out.println(i.getDescription());
+			System.out.println(i.getAction().getActionName1());
 		}
+		
+//		System.out.println("\n\n");
+//		
+//		for(Room i : rm.getRoomList()){
+//			System.out.println(i.getRoomNumber());
+//			System.out.println(i.getRoomDescription());
+//			System.out.println(i.getExits());
+//		}
 		
 		
 		

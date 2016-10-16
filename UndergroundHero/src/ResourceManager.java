@@ -15,9 +15,6 @@ import java.util.Scanner;
 //TODO ITEMS
 
 
-//TODO ROOMS
-//CONTRUCTOR => Room(String roomNumber, String roomDescription, String exits, Monster roomMonster, Puzzle roomPuzzle)
-
 public class ResourceManager {
 	
 	private List<Monster> monsterList;
@@ -40,13 +37,20 @@ public class ResourceManager {
 				String damage = in.nextLine();
 				String defense = in.nextLine();
 				String speed = in.nextLine();
+				String action1 = in.nextLine();
+				String action2 = in.nextLine();
+				String action3 = in.nextLine();
+				String action4 = in.nextLine();
 				
 				int hp = Integer.parseInt(health);
 				int atk = Integer.parseInt(damage);
 				int def = Integer.parseInt(defense);
 				int spd = Integer.parseInt(speed);
 				
-				Monster newMonster = new Monster(name, description, hp, atk, def, spd);
+				
+				Monster.Action skills = new Monster.Action(action1, action2, action3, action4);
+				
+				Monster newMonster = new Monster(name, description, hp, atk, def, spd, skills);
 				monsterList.add(newMonster);
 				
 			}
@@ -87,6 +91,30 @@ public class ResourceManager {
 	
 	public List<Room> getRoomList(){
 		return roomList;
+	}
+	
+	public void writeToPuzzleList(){
+		Scanner in = null;
+		puzzleList = new ArrayList<Puzzle>();
+
+		try{
+			
+			in = new Scanner(new BufferedReader(new FileReader("res/Puzzle_Data.txt")));
+			
+			while (in.hasNext() && in != null) {
+				String roomNumber = in.nextLine();
+				String roomDescription = in.nextLine();
+				String roomExits = in.nextLine();
+				
+				Room newRoom = new Room(roomNumber, roomDescription, roomExits);
+				roomList.add(newRoom);
+				
+			}
+		}catch (IOException e){
+			System.out.println("Unable to read file."); 
+		}finally{
+			in.close();
+		}
 	}
 
 
