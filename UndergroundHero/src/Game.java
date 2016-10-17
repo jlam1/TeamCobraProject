@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class Game
@@ -30,8 +36,36 @@ public class Game
 
 	}
 
-	public void loadGame()
+	public boolean loadGame() throws Exception
 	{
+		if (game != null)
+			throw new Exception();
+		ObjectInputStream input;
+		try
+		{
+			input = new ObjectInputStream(new FileInputStream("UndergroundHero.dat"));
+
+			while (true)
+			{
+				game = (Game) input.readObject();
+			}
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("There is currently no save data. A new game will be created.");
+			return false;
+		}
+		catch (IOException e)
+		{
+
+		}
+		catch (ClassNotFoundException e)
+		{
+
+			System.out.println("Your game data is corrupted. A new game will be created.");
+			return false;
+		}
+		return true;
 
 	}
 
