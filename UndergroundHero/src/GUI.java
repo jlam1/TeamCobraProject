@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.scene.Group;
@@ -29,22 +32,24 @@ public class GUI extends Application
 
 	Stage window;
 	Scene scene1, scene2, scene3;
+	private ResourceManager resourceManager;
+	private List<Room> roomList; 
+	private List<Monster> monsterList;
+	private List<Puzzle> puzzleList; 
+	private List<Item> itemList;
 
 	public void start(Stage primaryStage)
 	{	
+		loadAssets();
+		
 		window = primaryStage;
 
 		//Button 1
-		Label label1 = new Label("Welcome to the first scene! "
-				+ " \n Anything that happens here will "
-				+ "\n be you fault for not listening! "
-				+ "\n Please leave and close the program immediately");
+		Label label1 = new Label(viewRoom(roomList.get(0)));	//example of what viewRoom command might look like
 		
 		Button button1 = new Button("Next Scene");
 		button1.setOnAction(e -> window.setScene(scene2));
 		
-		
-
 		//Layout 1 - children laid out in vertical column
 		VBox layout1 = new VBox(20);
 		layout1.getChildren().addAll(label1, button1);
@@ -102,6 +107,33 @@ public class GUI extends Application
 	public static void main(String[] args)
 	{
 		launch(args);
+	}
+	
+	/*
+	 * Writes all assets from text files to a list.
+	 */
+	public void loadAssets(){
+		resourceManager = new ResourceManager();
+		resourceManager.writeToRoomList();
+		resourceManager.writeToMonsterList();
+		resourceManager.writeToItemList();
+		resourceManager.writeToPuzzleList();
+		
+		roomList 	= resourceManager.getRoomList();
+		monsterList = resourceManager.getMonsterList();
+		puzzleList 	= resourceManager.getPuzzleList();
+		itemList	= resourceManager.getItemList();
+	}
+	
+	/*
+	 * Takes in user input "view room", "look", etc to view a description of a room
+	 */
+	public String viewRoom(Room currentRoom){
+		return "ROOM " + currentRoom.getRoomNumber() + "\n" + currentRoom.getRoomDescription() + "\nEXITS: " + currentRoom.getExits();
+	}
+	
+	public void navigateCommand(String command){
+		//TODO
 	}
 
 }
