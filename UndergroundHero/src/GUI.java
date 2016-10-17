@@ -46,6 +46,7 @@ public class GUI extends Application
 
 		//Button 1
 		Label label1 = new Label(viewRoom(roomList.get(0)));	//example of what viewRoom command might look like
+		label1.setWrapText(true); // wrapped the text to the size of the screen
 		
 		Button button1 = new Button("Next Scene");
 		button1.setOnAction(e -> window.setScene(scene2));
