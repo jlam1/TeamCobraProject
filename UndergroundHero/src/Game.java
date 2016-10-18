@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Game
@@ -26,9 +27,15 @@ public class Game
 
 	}
 
-	public void saveGame()
+	public void saveGame() throws Exception
 	{
-
+		if(game != null)
+			throw new Exception();
+		ObjectOutputStream output;
+		try
+		{
+			output = 
+		}
 	}
 
 	public void help()
