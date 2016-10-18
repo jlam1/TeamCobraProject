@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,17 +33,25 @@ public class Game
 		if(game != null)
 			throw new Exception();
 		ObjectOutputStream output;
-		try
-		{
-			output = 
-		}
+	    
+	    	output = new ObjectOutputStream(new FileOutputStream("UndergroundHero.dat"));
+	    
+	   
+	
+	
+	
 	}
+		
+			
+		
+	
 
 	public void help()
 	{
 
 	}
 
+	@SuppressWarnings("resource")
 	public boolean loadGame() throws Exception
 	{
 		if (game != null)
