@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,18 +25,32 @@ public class Game
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		player = new Player();
 		setGameRun();
-
 	}
 
-	public void saveGame() throws Exception
+	public boolean saveGame() throws Exception
 	{
 		if(game != null)
 			throw new Exception();
 		ObjectOutputStream output;
 		try
 		{
-			output = 
+			output = new ObjectOutputStream(new FileOutputStream("UndergroundHero.dat"));
+			while(true)
+			{
+				System.out.println("A save exist. Save data will over write the old save data");
+				output.writeObject(game);
+			}
 		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("There is currently no save data. A new save data will be created.");
+			return false;
+		}
+		catch(IOException e)
+		{
+			
+		}
+		return true;
 	}
 
 	public void help()
