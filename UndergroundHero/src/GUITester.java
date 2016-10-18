@@ -25,6 +25,7 @@ public class GUITester extends Application{
 	private Scene scene;
 	private BorderPane borderpane;
 	private TextField textParse;
+	private Stage primaryStage;
 	
 	public void start(Stage primaryStage){
 		
@@ -69,23 +70,7 @@ public class GUITester extends Application{
 		roomNumberLabel = new Label(roomList.get(0).getRoomNumber());
 		roomLabel = new Label(roomList.get(0).getRoomDescription());
 		
-		/*
-		 * a test example of what the text parser will look like
-		 * user presses enter key then it checks if the command is valid
-		 */
-		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
-			@Override
-			public void handle(KeyEvent key) {
-				if(key.getCode().equals(KeyCode.ENTER)){
-					if(textParse.getText().equalsIgnoreCase("east")){
-						System.out.println("todo: changing scene");
-						changeScene(roomList.get(1));
-					}else{
-						//do nothing
-					}
-				}
-			}	
-		});	
+		textParseHandling();
 		
 		scene = new Scene(borderpane);
 
@@ -118,10 +103,37 @@ public class GUITester extends Application{
 		launch(args);
 	}
 	
-	public Scene changeScene(Room room){
-		roomNumberLabel = new Label(room.getRoomNumber());
-		roomLabel = new Label(room.getRoomDescription());
-		return scene = new Scene(borderpane);
+	public void changeScene(Room room){
+		roomNumberLabel.setText(room.getRoomNumber());
+		roomLabel.setText(room.getRoomDescription());
+	}
+	
+	/*
+	 * a test example of what the text parser will look like
+	 * user presses enter key then it checks if the command is valid
+	 * 
+	 * TODO: navigation check; navigating to rooms that exists instead of hard coding
+	 */
+	public void textParseHandling(){
+		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
+			@Override
+			public void handle(KeyEvent key) {
+				if(key.getCode().equals(KeyCode.ENTER)){
+					if(textParse.getText().equalsIgnoreCase("east")){
+						System.out.println("todo: changing scene");
+						changeScene(roomList.get(1));
+						textParse.setText("");
+					}else if(textParse.getText().equalsIgnoreCase("help") || (textParse.getText().equalsIgnoreCase("h"))){
+						System.out.println("List of commands are:");
+						System.out.println("Navigation: go north, go south, go east, go west, go up, go down");
+						System.out.println("Room: look, view room");
+						textParse.setText("");
+					}else{
+						textParse.setText("");
+					}
+				}
+			}	
+		});
 	}
 	
 	public void loadList(){

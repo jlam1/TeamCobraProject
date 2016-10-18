@@ -9,7 +9,7 @@ public class Player extends Status {
 
 	@Override
 	public String toString() {
-		return "[HP]: " + hp + "\n[DEF] : " + def + "\n[SPD] : " + spd + "\n[ATK] : " + atk;
+		return "Health:\t [" + hp + "/" + hp + "]\nDefense:\t [" + def + "]\nSpeed:\t [" + spd + "]\nAttack:\t [" + atk + "]";
 	}
 
 }
