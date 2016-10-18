@@ -2,8 +2,8 @@ public class KeyItem extends Item {
 	
 	private boolean compatible;
 
-	public KeyItem(String name, String description, String type) {
-		super(name, description, type);
+	public KeyItem() {
+		super();
 	}
 
 	public boolean isCompatible() {

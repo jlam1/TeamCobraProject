@@ -6,7 +6,6 @@
 
 public class Monster extends Status {
 
-
 	private Action action;
 
 	Monster(){
@@ -33,8 +32,6 @@ public class Monster extends Status {
 				+ ", def=" + def + ", id=" + id + ", description="
 				+ description + "]";
 	}
-
-
 
 	public static class Action{
 		

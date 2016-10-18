@@ -1,3 +1,4 @@
+import java.awt.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,24 +41,29 @@ public class GUI extends Application
 
 	public void start(Stage primaryStage)
 	{	
-		loadAssets();
+		resourceManager = new ResourceManager();
+		resourceManager.loadAssetToList();
+		loadList();
 		
 		window = primaryStage;
+		
+		Command command = new Command();
 
-		//Button 1
-		Label label1 = new Label(viewRoom(roomList.get(0)));	//example of what viewRoom command might look like
+		Label roomLabel = new Label(command.viewRoom(roomList.get(0)));
+		Label playerLabel = new Label("Player Stats");
+		TextField textParseLabel = new TextField();
 		
 		Button button1 = new Button("Next Scene");
 		button1.setOnAction(e -> window.setScene(scene2));
 		
 		//Layout 1 - children laid out in vertical column
 		VBox layout1 = new VBox(20);
-		layout1.getChildren().addAll(label1, button1);
+		layout1.getChildren().addAll(roomLabel, button1);
 		scene1 = new Scene(layout1, 400, 200);
 		
 		//vbox - for player's stat
 		VBox playerStatBox = new VBox(30);
-		Label playerLabel = new Label("Player Stats");
+		
 		playerStatBox.getChildren().add(playerLabel);
 
 		//Button 2
@@ -112,25 +118,14 @@ public class GUI extends Application
 	/*
 	 * Writes all assets from text files to a list.
 	 */
-	public void loadAssets(){
-		resourceManager = new ResourceManager();
-		resourceManager.writeToRoomList();
-		resourceManager.writeToMonsterList();
-		resourceManager.writeToItemList();
-		resourceManager.writeToPuzzleList();
-		
+	public void loadList(){
 		roomList 	= resourceManager.getRoomList();
 		monsterList = resourceManager.getMonsterList();
 		puzzleList 	= resourceManager.getPuzzleList();
 		itemList	= resourceManager.getItemList();
 	}
 	
-	/*
-	 * Takes in user input "view room", "look", etc to view a description of a room
-	 */
-	public String viewRoom(Room currentRoom){
-		return "ROOM " + currentRoom.getRoomNumber() + "\n" + currentRoom.getRoomDescription() + "\nEXITS: " + currentRoom.getExits();
-	}
+
 	
 	public void navigateCommand(String command){
 		//TODO

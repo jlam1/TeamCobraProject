@@ -14,6 +14,9 @@ public class Puzzle {
 	
 	private String puzzleReward;
 
+	public Puzzle(){
+		
+	}
 
 	public Puzzle(String puzzleName, String description, String puzzleAnswerDescription, String puzzleReward){
 		this.puzzleName = puzzleName;

@@ -5,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 /*
- * This class is going to read all text files and put them into an ArrayList.
+ * This class will read text files and load them into a list. Call list by using getter method.
  */
-
-//TODO PUZZLE
-
-
-//TODO ITEMS
-
-
 public class ResourceManager {
 	
 	private List<Monster> monsterList;
@@ -22,7 +16,7 @@ public class ResourceManager {
 	private List<Item> itemList;
 	private List<Puzzle> puzzleList;
 	
-	public void writeToMonsterList(){
+	private void writeToMonsterList(){
 		Scanner in = null;
 		monsterList = new ArrayList<Monster>();
 
@@ -65,7 +59,7 @@ public class ResourceManager {
 		return monsterList;
 	}
 	
-	public void writeToRoomList(){
+	private void writeToRoomList(){
 		Scanner in = null;
 		roomList = new ArrayList<Room>();
 
@@ -93,7 +87,7 @@ public class ResourceManager {
 		return roomList;
 	}
 	
-	public void writeToPuzzleList(){
+	private void writeToPuzzleList(){
 		Scanner in = null;
 		puzzleList = new ArrayList<Puzzle>();
 
@@ -122,7 +116,7 @@ public class ResourceManager {
 		return puzzleList;
 	}
 	
-	public void writeToItemList(){
+	private void writeToItemList(){
 		Scanner in = null;
 		itemList = new ArrayList<Item>();
 
@@ -148,6 +142,11 @@ public class ResourceManager {
 	public List<Item> getItemList(){
 		return itemList;
 	}
-
-
+	
+	public void loadAssetToList(){
+		writeToMonsterList();
+		writeToRoomList();
+		writeToPuzzleList();
+		writeToItemList();
+	}
 }

@@ -1,11 +1,11 @@
 1-1
-This is the first room in the game, upon entering the room, the player sees that it is an office type of room, the light is dimmed to a level that it is still easy to see. There is a “front desk” to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says: “Which are you: A B O AB?”. The door to the next room past the couch and the desk about the middle of the two.
+This is the first room in the game, upon entering the room, the player sees that it is an office type of room, the light is dimmed to a level that it is still easy to see. There is a front desk to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says: Which are you: A B O AB?. The door to the next room past the couch and the desk about the middle of the two.
 EAST
 1-2
 The second room is an office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list to people the player does not know anything about.
 WEST, EAST
 1-3
-The third room is a meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the player upon entering and say “hi” in a very calmed way.
+The third room is a meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the player upon entering and say hi in a very calmed way.
 WEST, EAST
 1-4
 This room has several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.
@@ -44,7 +44,7 @@ WEST, EAST
 A room with four exits. The door to the east is locked tight.
 NORTH, SOUTH, EAST, WEST
 2-7
-Chain mail on the ground. A monitor on a desk that displays the following: The numbers “255, 0, 255” in magenta. The numbers “0, 255, 255” in cyan. The numbers “255, 255, 0” in yellow. The numbers “2, 1, 3” in white
+Chain mail on the ground. A monitor on a desk that displays the following: The numbers 255, 0, 255 in magenta. The numbers 0, 255, 255 in cyan. The numbers 255, 255, 0 in yellow. The numbers 2, 1, 3 in white
 SOUTH
 2-8
 An adrenaline shot on the ground. A key on a pedestal being protected by a force field. A panel in front of the force field with three buttons on it: one red, one blue, one green.
@@ -89,19 +89,19 @@ EAST
 The room is dimmed and is a straight hallway. With one door on the east side.
 WEST, EAST
 4-3
-A dark room with eyes drawn all over the walls, in the center of the room leading towards the exit is a picture of a brain. A Bright green light shines directly into the room directly at he only door. Around it is a very sinisterly written “HaHA” scrawled over the pictures on the wall.
+A dark room with eyes drawn all over the walls, in the center of the room leading towards the exit is a picture of a brain. A Bright green light shines directly into the room directly at he only door. Around it is a very sinisterly written HaHA scrawled over the pictures on the wall.
 WEST, EAST
 4-4
 This room is lit in a bright green light with the single door to the east.  The recurring pattern of a brain is still scrawled along the wall. The door is old and very decrepit looking.
 WEST, EAST
 4-5
-The room is a large box with a majestic door to the south. A voice box over your head continues to play  a riddle in a loop “ I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?”  The room is a majestic as the door with the sides being decorated with intricately designed patterns.
+The room is a large box with a majestic door to the south. A voice box over your head continues to play  a riddle in a loop I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I? The room is a majestic as the door with the sides being decorated with intricately designed patterns.
 WEST, SOUTH
 4-6
 The room continues to follow its majestically made pattern but it begins to look more sadistics. The paintings on the wall all despite it ornate frames hold pictures of clowns who are either screaming, crying, or looking sinisterly angry.
 NORTH, SOUTH, WEST
 4-7
-This  room contained all the costumes generally worn during the circuses.  There in the corner sits a clown reading a newspaper who after briefly noticing you shrugs and goes back to reading his paper. Notably the paper  titled “The Clown Times”  headline is on the rising price of clown college.
+This  room contained all the costumes generally worn during the circuses.  There in the corner sits a clown reading a newspaper who after briefly noticing you shrugs and goes back to reading his paper. Notably the paper titled The Clown Times headline is on the rising price of clown college.
 WEST, EAST
 4-8
 This room seems to contain the animals of the circus, however it does not seem that anyone has attempted to cage them. Lions, elephants, monkeys, and more roam the open room. The lions have made their stake in the corner of the room and have amassed a large body count that has become their dinner.

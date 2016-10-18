@@ -1,23 +1,35 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game
 {
 	private Game game;
-	private ArrayList<Room> rooms;
 	private Player player;
+	private List<Room> rooms;
 
-	private Game(ArrayList<Room> rooms, Player player)
+	private Game(List<Room> rooms, Player player)
 	{
 		this.rooms = rooms;
 		this.player = player;
 	}
 
-	public void newGame()
-	{
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		player = new Player();
-		setGameRun();
+	public Game() {
+		
+	}
 
+	public void newGame(ResourceManager resource)
+	{
+		resource.loadAssetToList();
+		List<Room> roomList = resource.getRoomList();
+		List<Monster> monsterList = resource.getMonsterList();
+		List<Puzzle> puzzleList = resource.getPuzzleList();
+		List<Item> itemList = resource.getItemList();
+		Player player = new Player(50, 1, 1, 2);	//default attributes 
+		Room room = new Room();
+		Monster monster = new Monster();
+		Puzzle puzzle = new Puzzle();
+		Item item = new Item();
+		setGameRun();
 	}
 
 	public void saveGame()
@@ -45,12 +57,12 @@ public class Game
 
 	}
 
-	public ArrayList<Room> getRooms()
-	{
-
-		return game.rooms;
-
-	}
+//	public ArrayList<Room> getRooms()
+//	{
+//
+//		return game.rooms;
+//
+//	}
 
 	public boolean setGameRun()
 	{
