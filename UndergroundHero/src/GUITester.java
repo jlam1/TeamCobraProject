@@ -10,9 +10,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //CLASS IS JUST FOR TESTING, WILL NOT INCLUDE IN FINAL PRODUCT
+
+//		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
 
 public class GUITester extends Application{
 	
