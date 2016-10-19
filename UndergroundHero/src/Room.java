@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class Room {
@@ -7,6 +8,7 @@ public class Room {
 	private String exits;
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
+	private LinkedList<Room> roomLinkedList;
 	
 	Room(){
 		
@@ -24,6 +26,10 @@ public class Room {
 		this.exits = exits;
 		this.roomMonster = roomMonster;
 		this.roomPuzzle = roomPuzzle;
+	}
+	
+	public void connectRooms(List<Room> roomList){
+		
 	}
 	
 //	public Room[][] roomArray(List<Room> roomList){

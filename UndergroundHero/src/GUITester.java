@@ -25,7 +25,6 @@ public class GUITester extends Application{
 	private Scene scene;
 	private BorderPane borderpane;
 	private TextField textParse;
-	private Stage primaryStage;
 	
 	public void start(Stage primaryStage){
 		
@@ -70,10 +69,6 @@ public class GUITester extends Application{
 		roomNumberLabel = new Label(roomList.get(0).getRoomNumber());
 		roomLabel = new Label(roomList.get(0).getRoomDescription());
 		
-		textParseHandling();
-		
-		scene = new Scene(borderpane);
-
 		//set padding and dimensions for nodes
 		roomLabel.setMaxWidth(450);
 		roomLabel.setWrapText(true);
@@ -95,8 +90,11 @@ public class GUITester extends Application{
 		borderpane.setRight(playerStatusVBox);	
 		
 	    //create and set scene
+		scene = new Scene(borderpane);
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
+	    
+	    textParseHandling();
 	}
 	
 	public static void main(String[] args) {
@@ -121,7 +119,7 @@ public class GUITester extends Application{
 				if(key.getCode().equals(KeyCode.ENTER)){
 					if(textParse.getText().equalsIgnoreCase("east")){
 						System.out.println("todo: changing scene");
-						changeScene(roomList.get(1));
+						changeScene(roomList.get(5));
 						textParse.setText("");
 					}else if(textParse.getText().equalsIgnoreCase("help") || (textParse.getText().equalsIgnoreCase("h"))){
 						System.out.println("List of commands are:");
