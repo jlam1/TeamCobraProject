@@ -16,6 +16,7 @@ public class Game
 	private Game game;
 	private Player player;
 	private List<Room> rooms;
+	private List<Item> item;
 
 	private Game(List<Room> rooms, Player player)
 	{
@@ -23,12 +24,13 @@ public class Game
 		this.player = player;
 	}
 
-	public void newGame(ResourceManager resource)
+	public void newGame()
 	{
 		
-		Player player = new Player(50, 1, 1, 2);	//default attributes 
+		Player player = new Player(10, 1, 1, 2);	//default attributes 
 		Room room = new Room();
-		Item item = new Item();
+		Inventory starterClothes = new Inventory(item.get(0), 1);
+		Inventory starterWeapon = new Inventory(item.get(1), 1);
 		setGameRun();
 	}
 
@@ -108,12 +110,17 @@ public class Game
 
 	}
 
-//	public ArrayList<Room> getRooms()
-//	{
-//
-//		return game.rooms;
-//
-//	}
+	public List<Item> getItem()
+	{
+		return game.item;
+	}
+	
+	public List<Room> getRooms()
+	{
+
+		return game.rooms;
+
+	}
 
 	public boolean setGameRun()
 	{
