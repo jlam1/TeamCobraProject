@@ -11,9 +11,47 @@
  * 
  * Purpose: –Describe the purpose of this class 
  */
-public class Inventory extends Item
+public class Inventory
 {
 
+	private Item item;
+	private int count = 1;
+	
+	public Inventory(Item item, int count)
+	{
+		this.item = item;
+		this.count = count;
+	}
+
+	/**
+	 * @return the item
+	 */
+	public Item getItem()
+	{
+		return item;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public int getCount()
+	{
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count)
+	{
+		this.count = count;
+	}
+	
+	public void count()
+	{
+		count++;
+	}
+	
 	
 	
 }
