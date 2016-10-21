@@ -20,6 +20,12 @@ public class Game
 		this.player = player;
 	}
 
+	/**
+	 * Method: newGame()
+	 * 
+	 * When starting a new game, this method will initialize the player status, staring point, and items that the player have.
+	 * 
+	 */
 	public void newGame()
 	{
 		
@@ -29,7 +35,16 @@ public class Game
 		item.add(item.get(1));
 		setGameRun();
 	}
-
+	
+	/**
+	 * Mehtod: saveGame()
+	 * 
+	 * This method will save the game. It will throw an exception when overwriting a existing save 
+	 * file and create a new file if the file does not exist.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean saveGame() throws Exception
 	{
 		if(game != null)
@@ -55,6 +70,14 @@ public class Game
 		}
 		return true;
 	}
+	
+	/**
+	 * Method: help()
+	 * 
+	 * This method return a String to desplay help commands
+	 * 
+	 * @return
+	 */
 
 	public String help()
 	{
@@ -63,6 +86,15 @@ public class Game
 
 	}
 
+	/**
+	 * Method: loadGame()
+	 * 
+	 * This method will load the file. It will throw an exception when the file does 
+	 * not exist and creates a new game. it will throw an exception when the file cannot be loaded.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean loadGame() throws Exception
 	{
 		if (game != null)
@@ -96,6 +128,11 @@ public class Game
 
 	}
 
+	/**
+	 * Method: exitGame();
+	 * 
+	 * Exits the game
+	 */
 	public void exitGame()
 	{
 		System.exit(0);
