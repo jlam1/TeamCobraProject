@@ -1,3 +1,5 @@
+//Delete this class, as well as the test image, in the final product!
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

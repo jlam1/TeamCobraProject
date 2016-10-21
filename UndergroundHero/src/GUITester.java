@@ -12,6 +12,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/*ImageView Related
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;*/
+
 //CLASS IS JUST FOR TESTING, WILL NOT INCLUDE IN FINAL PRODUCT
 
 public class GUITester extends Application{
