@@ -1,24 +1,16 @@
 
-public class Inventory
+public class ConsumableItem extends Item
 {
 
-	private Item item;
 	private int count = 0;
 	
-	public Inventory(Item item, int count)
+	
+	public ConsumableItem( String name, String description, String type, int count)
 	{
-		this.item = item;
+		super();
 		this.count = count;
 	}
-
-	/**
-	 * @return the item
-	 */
-	public Item getItem()
-	{
-		return item;
-	}
-
+	
 	/**
 	 * @return the count
 	 */
@@ -43,6 +35,9 @@ public class Inventory
 	{
 		count--;
 	}
-	
-	
+	@Override
+	public String toString() 
+	{
+		return super.toString()+ "quanity" + count;
+	}
 }
