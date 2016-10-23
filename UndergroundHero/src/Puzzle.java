@@ -1,6 +1,8 @@
 public class Puzzle {
 
 	private String puzzleName;
+	
+	private String puzzleID;
 
 	private String description;
 
@@ -10,7 +12,7 @@ public class Puzzle {
 
 	private String logicAnswer;
 	
-	private String puzzleAnswerDescription;
+	private String puzzleAnswer;
 	
 	private String puzzleReward;
 
@@ -21,7 +23,7 @@ public class Puzzle {
 	public Puzzle(String puzzleName, String description, String puzzleAnswerDescription, String puzzleReward){
 		this.puzzleName = puzzleName;
 		this.description = description;
-		this.puzzleAnswerDescription = puzzleAnswerDescription;
+		this.puzzleAnswer = puzzleAnswerDescription;
 		this.puzzleReward = puzzleReward;
 	}
 	
@@ -68,7 +70,7 @@ public class Puzzle {
 
 
 	/**
-	 * @return the puzzleID
+	 * @return the puzzle Name
 	 */
 	public String getPuzzleName()
 	{
@@ -77,7 +79,7 @@ public class Puzzle {
 
 
 	/**
-	 * @param puzzleID the puzzleID to set
+	 * @param puzzleName set the Puzzle Name
 	 */
 	public void setPuzzleName(String puzzleName)
 	{
@@ -95,7 +97,7 @@ public class Puzzle {
 
 
 	/**
-	 * @param keyAnswer the keyAnswer to set
+	 * @param keyAnswer set the key answer
 	 */
 	public void setKeyAnswer(KeyItem keyAnswer)
 	{
@@ -104,7 +106,7 @@ public class Puzzle {
 
 
 	/**
-	 * @return the solved
+	 * @return solved
 	 */
 	public boolean isSolved()
 	{
@@ -113,7 +115,7 @@ public class Puzzle {
 
 
 	/**
-	 * @param solved the solved to set
+	 * @param solved set the solved variable
 	 */
 	public void setSolved(boolean solved)
 	{
@@ -131,7 +133,7 @@ public class Puzzle {
 
 
 	/**
-	 * @param logicAnswer the logicAnswer to set
+	 * @param logicAnswer set the logic answer
 	 */
 	public void setLogicAnswer(String logicAnswer)
 	{
@@ -139,11 +141,25 @@ public class Puzzle {
 	}
 	
 	public String getPuzzleAnswerDescription(){
-		return puzzleAnswerDescription;
+		return puzzleAnswer;
 	}
 	
 	public String getPuzzleReward(){
 		return puzzleReward;
+	}
+
+	/**
+	 * @return the puzzleID
+	 */
+	public String getPuzzleID() {
+		return puzzleID;
+	}
+
+	/**
+	 * @param puzzleID set the puzzle ID
+	 */
+	public void setPuzzleID(String puzzleID) {
+		this.puzzleID = puzzleID;
 	}
 	
 }

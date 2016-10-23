@@ -24,7 +24,7 @@ public class GUITester extends Application{
 	private List<Monster> monsterList;
 	private List<Puzzle> puzzleList; 
 	private List<Item> itemList;
-	private Label playerLabel, roomNumberLabel, roomLabel;
+	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
 	private Scene scene;
 	private BorderPane borderpane;
 	private TextField textParse;
@@ -43,11 +43,13 @@ public class GUITester extends Application{
 	    primaryStage.setResizable(false);
 		
 		borderpane = new BorderPane();
+		borderpane.setMaxWidth(750);
 		
 		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
 		HBox textParseHBox = new HBox(10);		//box for text parsing
 		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
 		VBox playerStatusVBox = new VBox(10);	//box for character status
+		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
 		
 		//setting border styles
 		dialogueHBox.setStyle		("-fx-border-style: solid inside;" +
@@ -62,19 +64,25 @@ public class GUITester extends Application{
 		roomNumberHBox.setStyle		("-fx-border-style: solid inside;" +
 									 "-fx-border-color: black;" +
 									 "-fx-border-width: 1;" );
-		
+		playerHelpVBox.setStyle		("-fx-border-style: solid inside;" +
+									 "-fx-border-color: black;" +
+									 "-fx-border-width: 1;" );
+
 		//make nodes
 		textParse = new TextField();
 		textParse.setPromptText("Enter a command");
-		textParse.setPrefSize(200, 35);
+		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
 		textParse.setFocusTraversable(false);
 		playerLabel = new Label(player.toString());		//TODO: update changes to character status
 		roomNumberLabel = new Label(roomList.get(0).getRoomNumber());
 		roomLabel = new Label(roomList.get(0).getRoomDescription());
-		
+		helpLabel = new Label("HELP!!");
 		//set padding and dimensions for nodes
 		roomLabel.setMaxWidth(450);
 		roomLabel.setWrapText(true);
+		helpLabel.setPadding(new Insets(15));
+		helpLabel.setMaxWidth(150);
+		helpLabel.setWrapText(true);
 		playerLabel.setPadding(new Insets(15));
 		roomLabel.setPadding(new Insets(15));
 		roomNumberLabel.setPadding(new Insets(10));
@@ -85,12 +93,14 @@ public class GUITester extends Application{
 		textParseHBox.getChildren().add(textParse);
 		roomNumberHBox.getChildren().add(roomNumberLabel);
 		playerStatusVBox.getChildren().add(playerLabel);
+		playerHelpVBox.getChildren().add(helpLabel);
 		
 		//set the layout for all boxes
 		borderpane.setCenter(dialogueHBox);
 		borderpane.setBottom(textParseHBox);
 		borderpane.setTop(roomNumberHBox);
 		borderpane.setRight(playerStatusVBox);	
+		borderpane.setLeft(playerHelpVBox);
 		
 	    //create and set scene
 		scene = new Scene(borderpane);

@@ -40,9 +40,4 @@ public class Item {
 			System.out.println(i.toString());
 		}
 	}
-	
-	public void useItem(){
-		//TODO: will remove item when on use with the exception for equips and key items
-	}
-
 }
