@@ -33,7 +33,7 @@ public class GUITester extends Application{
 		
 		//load assets and objects
 //		Game game = new Game();
-		Player player = new Player(50, 1, 1, 2);	//Player(hp, def, atk, spd)
+		Player player = new Player(10, 1, 1, 2);	//Player(hp, def, atk, spd)
 		resourceManager = new ResourceManager();
 		resourceManager.loadAssetToList();
 		loadList();
