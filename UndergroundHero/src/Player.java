@@ -1,4 +1,4 @@
-public class Player extends Status {
+public class Player extends Character {
 
 	public Player(int hp, int def, int atk, int spd) {
 		this.hp = hp;

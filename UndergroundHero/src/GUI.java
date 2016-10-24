@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 //		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
 
-public class GUITester extends Application{
+public class GUI extends Application{
 	
 	private ResourceManager resourceManager;
 	private List<Room> roomList; 

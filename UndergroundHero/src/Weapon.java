@@ -1,17 +1,16 @@
 public class Weapon extends Item {
 
-	public Weapon(String name, String description, String type) {
-		super(name, description, type);
-	}
-
-	private int damage;
+	private int weaponAttack;
 	
-	public int getDamage(){
-		return this.damage;
+	public Weapon(String name, String description, String type, int weaponAttack) {
+		super(name, description, type);
+		this.weaponAttack = weaponAttack;
 	}
-
-	public void equip() {
-
+	
+	/*
+	 * Returns weapon attack
+	 */
+	public int getWeaponAttack(){
+		return this.weaponAttack;
 	}
-
 }

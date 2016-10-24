@@ -4,10 +4,16 @@ public class ConsumableItem extends Item
 
 	private int count = 0;
 	
-	
-	public ConsumableItem( String name, String description, String type, int count)
+	/**
+	 * 
+	 * @param name
+	 * @param description
+	 * @param type
+	 * @param count
+	 */
+	public ConsumableItem(String name, String description, String type, int count)
 	{
-		super();
+		super(name, description, type);
 		this.count = count;
 	}
 	

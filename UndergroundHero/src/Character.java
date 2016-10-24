@@ -1,22 +1,18 @@
-public class Status {
-
-	protected String name;
-
-	protected int hp;
-
-	protected int atk;
-
-	protected int spd;
-
-	protected boolean dead;
-
-	protected int def;
-
-	protected boolean attacked;
+public abstract class Character implements Properties {
 	
-	protected int id;
+	protected int id, hp, atk, spd, def;
+	protected String name, description;
+	protected boolean dead, attacked;
 	
-	protected String description;
+	@Override
+	public int getID() {
+		return id;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
 
 	public String getName() {
 		return name;
@@ -74,22 +70,8 @@ public class Status {
 		this.attacked = attacked;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	
+	}	
 	
 }

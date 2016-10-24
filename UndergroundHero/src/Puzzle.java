@@ -1,55 +1,55 @@
-public class Puzzle {
+public class Puzzle implements Properties{
 
-	private String puzzleName;
-	
-	private String puzzleID;
-
-	private String description;
-
+	private String name, description, logicAnswer, puzzleAnswer, puzzleReward;
+	private int id;
 	private KeyItem keyAnswer;
-
 	private boolean solved;
 
-	private String logicAnswer;
-	
-	private String puzzleAnswer;
-	
-	private String puzzleReward;
 
 	public Puzzle(){
 		
 	}
 
-	public Puzzle(String puzzleName, String description, String puzzleAnswerDescription, String puzzleReward){
-		this.puzzleName = puzzleName;
+	public Puzzle(String name, String description, String puzzleAnswerDescription, String puzzleReward){
+		this.name = name;
 		this.description = description;
 		this.puzzleAnswer = puzzleAnswerDescription;
 		this.puzzleReward = puzzleReward;
 	}
 	
-	public Puzzle(String puzzleName, String description)
+	public Puzzle(int id, String name, String description)
 	{
-		this.puzzleName = puzzleName;
+		this.id = id;
+		this.name = name;
 		this.description = description;
 		
 	}
 	
-	public Puzzle(String puzzleName, String description, KeyItem keyAnswer)
+	public Puzzle(String name, String description, KeyItem keyAnswer)
 	{
-		this.puzzleName = puzzleName;
+		this.name = name;
 		this.description = description;
 		this.keyAnswer = keyAnswer;
 		
 	}
 	
-	public Puzzle(String puzzleName, String description, String logicAnswer)
+	public Puzzle(String name, String description, String logicAnswer)
 	{
-		this.puzzleName = puzzleName;
+		this.name = name;
 		this.description = description;
 		this.logicAnswer = logicAnswer;
 		
 	}
 
+	@Override
+	public int getID() {
+		return this.id;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
 
 	/**
 	 * @return the description
@@ -68,22 +68,12 @@ public class Puzzle {
 		this.description = description;
 	}
 
-
-	/**
-	 * @return the puzzle Name
-	 */
-	public String getPuzzleName()
-	{
-		return puzzleName;
-	}
-
-
 	/**
 	 * @param puzzleName set the Puzzle Name
 	 */
-	public void setPuzzleName(String puzzleName)
+	public void setName(String name)
 	{
-		this.puzzleName = puzzleName;
+		this.name = name;
 	}
 
 
@@ -146,20 +136,6 @@ public class Puzzle {
 	
 	public String getPuzzleReward(){
 		return puzzleReward;
-	}
-
-	/**
-	 * @return the puzzleID
-	 */
-	public String getPuzzleID() {
-		return puzzleID;
-	}
-
-	/**
-	 * @param puzzleID set the puzzle ID
-	 */
-	public void setPuzzleID(String puzzleID) {
-		this.puzzleID = puzzleID;
 	}
 	
 }

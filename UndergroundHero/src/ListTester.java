@@ -9,7 +9,7 @@ public class ListTester {
 		List<Puzzle> puzzleList = new ArrayList<Puzzle>();
 		puzzleList = test1.getPuzzleList();
 		
-		String puzzleName1 = puzzleList.get(0).getPuzzleName();
+		String puzzleName1 = puzzleList.get(0).getName();
 		String puzzleDescription1 = puzzleList.get(0).getDescription();
 		
 		System.out.println(puzzleName1);
