@@ -141,11 +141,21 @@ public class Game
 		System.exit(0);
 	}
 
+	/**
+	 * Method: getItem()
+	 * 
+	 * @return the items in the game
+	 */
 	public List<Item> getItem()
 	{
 		return game.item;
 	}
 	
+	/**
+	 * Method: getRoom()
+	 * 
+	 * @return the first room in the game
+	 */
 	public List<Room> getRooms()
 	{
 
@@ -153,6 +163,11 @@ public class Game
 
 	}
 
+	/**
+	 * Method: setGameRun()
+	 * 
+	 * @return a boolean to set the game.
+	 */
 	public boolean setGameRun()
 	{
 		if (game == null)

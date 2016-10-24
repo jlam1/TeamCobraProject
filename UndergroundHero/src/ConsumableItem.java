@@ -1,4 +1,10 @@
 
+/**
+ * 
+ * This class contains method and attributes of items that can be consumed
+ * 
+ * Purpose: The purpose is to increase and decrease the amount consumable items.
+ */
 public class ConsumableItem extends Item
 {
 
