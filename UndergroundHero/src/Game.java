@@ -4,12 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game
 {
-	private Game game;
+	private static Game game;
 	private Player player;
 	private List<Room> startingRoom;
 	private ArrayList<Item> item;
@@ -42,41 +43,6 @@ public class Game
 	}
 	
 	/**
-	 * Method: saveGame()
-	 * 
-	 * This method will save the game. It will throw an exception when overwriting a existing save 
-	 * file and create a new file if the file does not exist.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean saveGame() throws Exception
-	{
-		if(game != null)
-			throw new Exception();
-		ObjectOutputStream output;
-		try
-		{
-			output = new ObjectOutputStream(new FileOutputStream("UndergroundHero.dat"));
-			while(true)
-			{
-				System.out.println("A save exist. Save data will over write the old save data");
-				output.writeObject(game);
-			}
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("There is currently no save data. A new save data will be created.");
-			return false;
-		}
-		catch(IOException e)
-		{
-			
-		}
-		return true;
-	}
-	
-	/**
 	 * Method: help()
 	 * 
 	 * This method return a String to display help commands
@@ -87,48 +53,6 @@ public class Game
 	public String help()
 	{
 		return "NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ";
-	}
-
-	/**
-	 * Method: loadGame()
-	 * 
-	 * This method will load the file. It will throw an exception when the file does 
-	 * not exist and creates a new game. it will throw an exception when the file cannot be loaded.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean loadGame() throws Exception
-	{
-		if (game != null)
-			throw new Exception();
-		ObjectInputStream input;
-		try
-		{
-			input = new ObjectInputStream(new FileInputStream("UndergroundHero.dat"));
-
-			while (true)
-			{
-				game = (Game) input.readObject();
-			}
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println("There is currently no save data. A new game will be created.");
-			return false;
-		}
-		catch (IOException e)
-		{
-
-		}
-		catch (ClassNotFoundException e)
-		{
-
-			System.out.println("Your game data is corrupted. A new game will be created.");
-			return false;
-		}
-		return true;
-
 	}
 
 	/**
