@@ -152,11 +152,13 @@ public class ResourceManager {
 			in = new Scanner(new BufferedReader(new FileReader("res/Item_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
+				int itemID = in.nextInt();
+				in.nextLine();
 				String itemName = in.nextLine();
 				String itemDescription = in.nextLine();
 				String itemType = in.nextLine();
 				
-				Item newItem = new Item(itemName, itemDescription, itemType);
+				Item newItem = new Item(itemID, itemName, itemDescription, itemType);
 				itemList.add(newItem);
 			}
 		}catch (IOException e){

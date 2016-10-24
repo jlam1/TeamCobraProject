@@ -32,7 +32,7 @@ public class GUI extends Application{
 	public void start(Stage primaryStage){
 		
 		//load assets and objects
-//		Game game = new Game();
+		Game game = new Game();
 		Player player = new Player(10, 1, 1, 2);	//Player(hp, def, atk, spd)
 		resourceManager = new ResourceManager();
 		resourceManager.loadAssetToList();
@@ -74,9 +74,9 @@ public class GUI extends Application{
 		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
 		textParse.setFocusTraversable(false);
 		playerLabel = new Label(player.toString());		//TODO: update changes to character status
-		roomNumberLabel = new Label(roomList.get(0).getRoomNumber());
-		roomLabel = new Label(roomList.get(0).getRoomDescription());
-		helpLabel = new Label("HELP!!");
+		roomNumberLabel = new Label(roomList.get(0).getName());
+		roomLabel = new Label(roomList.get(0).getDescription());
+		helpLabel = new Label(game.help());
 		//set padding and dimensions for nodes
 		roomLabel.setMaxWidth(450);
 		roomLabel.setWrapText(true);
@@ -115,15 +115,15 @@ public class GUI extends Application{
 	}
 	
 	public void changeScene(Room room){
-		roomNumberLabel.setText(room.getRoomNumber());
-		roomLabel.setText(room.getRoomDescription());
+		roomNumberLabel.setText(room.getName());
+		roomLabel.setText(room.getDescription());
 	}
 	
 	/*
 	 * a test example of what the text parser will look like
 	 * user presses enter key then it checks if the command is valid
 	 * 
-	 * TODO: navigation check; navigating to rooms that exists instead of hard coding
+	 * TODO: check current room's existing exits, if its locked, and if its possible to traverse(check elicitation for each room conditions)
 	 */
 	public void textParseHandling(){
 		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -131,7 +131,7 @@ public class GUI extends Application{
 			public void handle(KeyEvent key) {
 				if(key.getCode().equals(KeyCode.ENTER)){
 					if(textParse.getText().equalsIgnoreCase("east")){
-						System.out.println("todo: changing scene");
+						System.out.println("Room change to: " + roomList.get(5).getName());
 						changeScene(roomList.get(5));
 						textParse.setText("");
 					}else if(textParse.getText().equalsIgnoreCase("help") || (textParse.getText().equalsIgnoreCase("h"))){

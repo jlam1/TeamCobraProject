@@ -4,12 +4,10 @@ public abstract class Character implements Properties {
 	protected String name, description;
 	protected boolean dead, attacked;
 	
-	@Override
 	public int getID() {
 		return id;
 	}
 
-	@Override
 	public String getDescription() {
 		return description;
 	}

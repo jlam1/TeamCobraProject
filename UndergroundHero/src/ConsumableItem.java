@@ -11,9 +11,9 @@ public class ConsumableItem extends Item
 	 * @param type
 	 * @param count
 	 */
-	public ConsumableItem(String name, String description, String type, int count)
+	public ConsumableItem(int id, String name, String description, String type, int count)
 	{
-		super(name, description, type);
+		super(id, name, description, type);
 		this.count = count;
 	}
 	
@@ -41,6 +41,7 @@ public class ConsumableItem extends Item
 	{
 		count--;
 	}
+	
 	@Override
 	public String toString() 
 	{

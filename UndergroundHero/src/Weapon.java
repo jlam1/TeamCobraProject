@@ -2,8 +2,8 @@ public class Weapon extends Item {
 
 	private int weaponAttack;
 	
-	public Weapon(String name, String description, String type, int weaponAttack) {
-		super(name, description, type);
+	public Weapon(int id, String name, String description, String type, int weaponAttack) {
+		super(id, name, description, type);
 		this.weaponAttack = weaponAttack;
 	}
 	

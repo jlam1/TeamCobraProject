@@ -9,8 +9,8 @@ public class KeyItem extends Item {
 	 * @param type
 	 * @param compatible 
 	 */
-	public KeyItem(String name, String description, String type, boolean compatible) {
-		super(name, description, type);
+	public KeyItem(int id, String name, String description, String type, boolean compatible) {
+		super(id, name, description, type);
 		this.compatible = compatible;
 	}
 

@@ -15,7 +15,8 @@ public class Item implements Properties{
 	 * @param description
 	 * @param type
 	 */
-	public Item(String name, String description, String type) {
+	public Item(int id, String name, String description, String type) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.type = type;

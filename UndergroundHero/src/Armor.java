@@ -8,8 +8,8 @@ public class Armor extends Item {
 	 * @param description
 	 * @param type
 	 */
-	public Armor(String name, String description, String type){
-		super(name, description, type);
+	public Armor(int id, String name, String description, String type){
+		super(id, name, description, type);
 	}
 	
 	/**

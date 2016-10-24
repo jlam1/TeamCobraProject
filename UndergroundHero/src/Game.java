@@ -13,8 +13,13 @@ public class Game
 	private Player player;
 	private List<Room> startingRoom;
 	private ArrayList<Item> item;
+	
+	//this is a test constructor
+	public Game(){
+		
+	}
 
-	private Game(List<Room> rooms, Player player)
+	public Game(List<Room> rooms, Player player)
 	{
 		this.startingRoom = rooms;
 		this.player = player;
@@ -30,14 +35,14 @@ public class Game
 	{
 		
 		player = new Player(10, 1, 1, 2);	//default attributes 
-		startingRoom = (List<Room>) new ResourceManager().getRoomList().get(0);
+		startingRoom = (List<Room>) this.getRooms().get(0);
 		item.add(item.get(0));
 		item.add(item.get(1));
 		setGameRun();
 	}
 	
 	/**
-	 * Mehtod: saveGame()
+	 * Method: saveGame()
 	 * 
 	 * This method will save the game. It will throw an exception when overwriting a existing save 
 	 * file and create a new file if the file does not exist.
@@ -74,16 +79,14 @@ public class Game
 	/**
 	 * Method: help()
 	 * 
-	 * This method return a String to desplay help commands
+	 * This method return a String to display help commands
 	 * 
 	 * @return
 	 */
 
 	public String help()
 	{
-		
-		return "Directions: \n North \n South \n East \n West \n Up \n\n ViewRoom: \n Look \n\n Combat: \n Attack \n Defend \n Run [Direction] ";
-
+		return "NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ";
 	}
 
 	/**

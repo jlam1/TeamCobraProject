@@ -1,13 +1,10 @@
-import java.util.LinkedList;
-import java.util.List;
-
 public class Room implements Properties{
 
 	private String name, description, exits;
 	private int id;
+	private boolean locked;
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
-	private LinkedList<Room> roomLinkedList;
 	
 	Room(String name, String description, String exits){
 		this.name = name;
@@ -22,10 +19,6 @@ public class Room implements Properties{
 		this.exits = exits;
 		this.roomMonster = roomMonster;
 		this.roomPuzzle = roomPuzzle;
-	}
-	
-	public void connectRooms(List<Room> roomList){
-		
 	}
 	
 	public String viewRoom(Room currentRoom){
