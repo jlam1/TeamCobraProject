@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Class name: saveLoadData.java
  *
- * This class is a inter face class that implements Serializable.
+ * This class is a class that implements Serializable interface.
  * The class stores the objects values in to binary.
  */
 
