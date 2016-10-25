@@ -145,9 +145,11 @@ public class GUI extends Application
 					}
 					if (textParse.getText().equalsIgnoreCase("save"))
 					{
+						//use the class saveLoadData to save values in to binary file
 						saveLoadData data = new saveLoadData();
-						data.roomNumber = roomNumberLabel.getText();
-						data.roomDescription = roomLabel.getText();
+						data.setRoomNumber(roomNumberLabel.getText());
+						data.setRoomDescription(roomLabel.getText());
+						//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
 						try
 						{
 							ResourceManager.saveGame(data, "UndergroundHero.dat");
@@ -162,11 +164,15 @@ public class GUI extends Application
 
 					if (textParse.getText().equalsIgnoreCase("load"))
 					{
+						//use the class saveLoadData to load values in the binary file
+
 						try
 						{
 							saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
-							roomNumberLabel.setText(data.roomNumber);
-							roomLabel.setText(data.roomDescription);
+							roomNumberLabel.setText(data.getRoomNumber());
+							roomLabel.setText(data.getRoomDescription());
+							//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
+
 						}
 						catch (Exception e)
 						{
