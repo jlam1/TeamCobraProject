@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Room implements Properties{
 
 	private String name, description, exits;
@@ -5,15 +8,20 @@ public class Room implements Properties{
 	private boolean locked;
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
+	private Map<String, Room> exitMap;
+	
+	Room(){
+		
+	}
 	
 	Room(String name, String description, String exits){
 		this.name = name;
 		this.description = description;
 		this.exits = exits;
+		exitMap = new HashMap<String, Room>();
 	}
 	
-	Room(int id, String name, String description, String exits, Monster roomMonster, Puzzle roomPuzzle){
-		this.id = id;
+	Room(String name, String description, String exits, Monster roomMonster, Puzzle roomPuzzle){
 		this.name = name;
 		this.description = description;
 		this.exits = exits;
@@ -32,6 +40,28 @@ public class Room implements Properties{
 	public String viewRoomNumber(Room currentRoom){
 		return "Room: " + currentRoom.getName();
 	}
+	
+	/**
+	 * Puts lists of rooms in a map of <String,Room>
+	 * @param north
+	 * @param east
+	 * @param south
+	 * @param west
+	 */
+    public void setExits(Room north, Room east, Room south, Room west){
+        if(north != null)
+        	exitMap.put("north", north);
+        if(east != null)
+        	exitMap.put("east", east);
+        if(south != null)
+        	exitMap.put("south", south);
+        if(west != null)
+        	exitMap.put("west", west);
+    }
+    
+    public Room nextRoom(String direction){
+        return (Room)exitMap.get(direction);
+    }
 	
 	@Override
 	public int getID() {
@@ -60,10 +90,6 @@ public class Room implements Properties{
 		return exits;
 	}
 
-	public void setExits(String exits) {
-		this.exits = exits;
-	}
-
 	public Monster getRoomMonster() {
 		return roomMonster;
 	}
@@ -79,5 +105,4 @@ public class Room implements Properties{
 	public void setRoomPuzzle(Puzzle roomPuzzle) {
 		this.roomPuzzle = roomPuzzle;
 	}
-	
 }

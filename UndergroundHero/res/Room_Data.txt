@@ -1,6 +1,9 @@
+1-0
+Secret Exit, bad ending.
+(EAST, 1-1, false)
 1-1
 This is the first room in the game, upon entering the room, the player sees that it is an office type of room, the light is dimmed to a level that it is still easy to see. There is a front desk to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says: Which are you: A B O AB?. The door to the next room past the couch and the desk about the middle of the two.
-(EAST, 1-2, false)
+(EAST, 1-2, false), (WEST, 1-0, false)
 1-2
 The second room is an office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list to people the player does not know anything about.
 (WEST, 1-1, false), (EAST, 1-3, false)

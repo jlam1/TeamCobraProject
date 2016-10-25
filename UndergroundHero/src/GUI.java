@@ -24,6 +24,7 @@ public class GUI extends Application{
 	private List<Monster> monsterList;
 	private List<Puzzle> puzzleList; 
 	private List<Item> itemList;
+	private Room currentRoom;
 	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
 	private Scene scene;
 	private BorderPane borderpane;
@@ -33,10 +34,10 @@ public class GUI extends Application{
 		
 		//load assets and objects
 		Game game = new Game();
-		Player player = new Player(10, 1, 1, 2);	//Player(hp, def, atk, spd)
+		Room room = new Room();
+		Player player = new Player(10, 1, 1, 2);
 		resourceManager = new ResourceManager();
-		resourceManager.loadAssetToList();
-		loadList();
+		loadAssest();
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		primaryStage.setTitle("Underground Hero");
@@ -73,10 +74,11 @@ public class GUI extends Application{
 		textParse.setPromptText("Enter a command");
 		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
 		textParse.setFocusTraversable(false);
-		playerLabel = new Label(player.toString());		//TODO: update changes to character status
-		roomNumberLabel = new Label(roomList.get(0).getName());
-		roomLabel = new Label(roomList.get(0).getDescription());
+		playerLabel = new Label(player.toString());
+		roomNumberLabel = new Label(roomList.get(1).getName());
+		roomLabel = new Label(roomList.get(1).getDescription());
 		helpLabel = new Label(game.help());
+		
 		//set padding and dimensions for nodes
 		roomLabel.setMaxWidth(450);
 		roomLabel.setWrapText(true);
@@ -107,6 +109,8 @@ public class GUI extends Application{
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
 	    
+	    currentRoom = room(1);
+	    
 	    textParseHandling();
 	}
 	
@@ -125,21 +129,30 @@ public class GUI extends Application{
 	 * 
 	 * TODO: check current room's existing exits, if its locked, and if its possible to traverse(check elicitation for each room conditions)
 	 */
-	public void textParseHandling(){
+	private void textParseHandling(){
 		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent key) {
 				if(key.getCode().equals(KeyCode.ENTER)){
-					if(textParse.getText().equalsIgnoreCase("east")){
-						System.out.println("Room change to: " + roomList.get(5).getName());
-						changeScene(roomList.get(5));
+					String userInput = textParse.getText();
+					if(validDirectionInput(userInput)){
+						Room nextRoom = currentRoom.nextRoom(userInput);
+						
+						if(nextRoom == null){
+							System.out.println("No exits");
+						}else{
+							currentRoom = nextRoom;
+							changeScene(currentRoom);
+							System.out.println("Room number: " + currentRoom.getName());
+						}
 						textParse.setText("");
-					}else if(textParse.getText().equalsIgnoreCase("help") || (textParse.getText().equalsIgnoreCase("h"))){
-						System.out.println("List of commands are:");
-						System.out.println("Navigation: go north, go south, go east, go west, go up, go down");
-						System.out.println("Room: look, view room");
+						
+					}else if(textParse.getText().equalsIgnoreCase("LOOK")){
+						System.out.println(currentRoom.getName());
 						textParse.setText("");
+						
 					}else{
+						System.out.println("Not a valid command");
 						textParse.setText("");
 					}
 				}
@@ -147,10 +160,84 @@ public class GUI extends Application{
 		});
 	}
 	
-	public void loadList(){
+	private boolean validDirectionInput(String input){
+		if(input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH") || input.equalsIgnoreCase("SOUTH")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	/**
+	 * This method will load all lists and connect all rooms
+	 */
+	public void loadAssest(){
 		roomList 	= resourceManager.getRoomList();
 		monsterList = resourceManager.getMonsterList();
 		puzzleList 	= resourceManager.getPuzzleList();
 		itemList	= resourceManager.getItemList();
+		
+		connectRooms();
+		
+	}
+	
+	private Room room(int index){
+		return roomList.get(index);
+	}
+	
+	/**
+	 * This method sets the exits for all rooms
+	 */
+	private void connectRooms(){
+		//connect floor 1, 10 rooms
+		room(0).setExits(null, room(1), null, null);
+		room(1).setExits(null, room(2), null, room(0));
+		room(2).setExits(null, room(3), null, room(1));
+		room(3).setExits(null, room(4), room(6), room(2));
+		room(4).setExits(null, null, room(5), room(3));
+		room(5).setExits(room(4), room(9), null, room(6));
+		room(6).setExits(room(3), room(5), null, room(7));
+		room(7).setExits(null, room(6), null, room(8));
+		room(8).setExits(null, room(7), null, null);
+		room(9).setExits(null, room(10), null, room(5));
+		
+		//connect floor 2, 9 rooms
+		room(10).setExits(null, room(11), null, room(9));
+		room(11).setExits(room(12), room(14), room(13), room(10));
+		room(12).setExits(null, null, room(11), null);
+		room(13).setExits(room(11), null, null, null);
+		room(14).setExits(null, room(15), null, room(11));
+		room(15).setExits(room(16), room(18), room(17), room(14));
+		room(16).setExits(null, null, room(15), null);
+		room(17).setExits(room(15), null, null, null);
+		room(18).setExits(null, room(19), null, room(15));
+		
+		//connect floor 3, 10 rooms
+		room(19).setExits(null, room(20), room(27), room(18));
+		room(20).setExits(null, room(22), room(21), room(19));
+		room(21).setExits(room(20), null, room(27), null);
+		room(22).setExits(room(23), null, room(24), null);
+		room(23).setExits(null, room(26), room(25), room(22));
+		room(24).setExits(room(25), room(26), null, room(22));
+		room(25).setExits(room(23), null, room(24), null);
+		room(26).setExits(room(23), room(27), room(24), null);
+		room(27).setExits(null, room(28), room(21), null);
+		room(28).setExits(null, room(29), room(19), room(27));
+
+		//connect floor 4, 13 rooms
+		room(29).setExits(null, room(30), null, room(28));
+		room(30).setExits(null, room(31), null, room(29));
+		room(31).setExits(null, room(32), null, room(30));
+		room(32).setExits(null, room(33), null, room(31));
+		room(33).setExits(null, null, room(34), room(32));
+		room(34).setExits(room(33), null, room(37), room(35));
+		room(35).setExits(null, room(34), null, room(36));
+		room(36).setExits(null, room(35), null, null);
+		room(37).setExits(room(34), null, null, room(38));
+		room(38).setExits(null, room(37), null, room(39));
+		room(39).setExits(null, room(38), null, room(40));
+		room(40).setExits(null, room(39), null, room(41));
+		room(41).setExits(null, room(40), null, null);
+		
 	}
 }
