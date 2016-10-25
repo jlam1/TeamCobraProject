@@ -17,57 +17,53 @@ import javafx.stage.Stage;
 
 //		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
 
-public class GUI extends Application{
-	
+public class GUI extends Application
+{
+
 	private ResourceManager resourceManager;
-	private List<Room> roomList; 
+	private List<Room> roomList;
 	private List<Monster> monsterList;
-	private List<Puzzle> puzzleList; 
+	private List<Puzzle> puzzleList;
 	private List<Item> itemList;
 	private Room currentRoom;
 	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
 	private Scene scene;
 	private BorderPane borderpane;
 	private TextField textParse;
-	
-	public void start(Stage primaryStage){
-		
+	private Game game;
+
+	public void start(Stage primaryStage) throws Exception
+	{
+
 		//load assets and objects
 		Game game = new Game();
 		Room room = new Room();
 		Player player = new Player(10, 1, 1, 2);
 		resourceManager = new ResourceManager();
-		loadAssest();
+		loadAsset();
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		primaryStage.setTitle("Underground Hero");
-	    primaryStage.setResizable(false);
-		
+		primaryStage.setResizable(false);
+
 		borderpane = new BorderPane();
 		borderpane.setMaxWidth(750);
-		
+
 		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
 		HBox textParseHBox = new HBox(10);		//box for text parsing
 		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
 		VBox playerStatusVBox = new VBox(10);	//box for character status
 		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
-		
+
 		//setting border styles
-		dialogueHBox.setStyle		("-fx-border-style: solid inside;" +
-								 	 "-fx-border-color: black;" +
-								 	 "-fx-border-width: 1;" );
-		playerStatusVBox.setStyle	("-fx-border-style: solid inside;" +
-									 "-fx-border-color: black;" +
-									 "-fx-border-width: 1;" );
-		textParseHBox.setStyle		("-fx-border-style: solid inside;" +
-									 "-fx-border-color: black;" +
-									 "-fx-border-width: 1;" );
-		roomNumberHBox.setStyle		("-fx-border-style: solid inside;" +
-									 "-fx-border-color: black;" +
-									 "-fx-border-width: 1;" );
-		playerHelpVBox.setStyle		("-fx-border-style: solid inside;" +
-									 "-fx-border-color: black;" +
-									 "-fx-border-width: 1;" );
+		dialogueHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		playerStatusVBox
+				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		textParseHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		roomNumberHBox
+				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		playerHelpVBox
+				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
 
 		//make nodes
 		textParse = new TextField();
@@ -96,15 +92,15 @@ public class GUI extends Application{
 		roomNumberHBox.getChildren().add(roomNumberLabel);
 		playerStatusVBox.getChildren().add(playerLabel);
 		playerHelpVBox.getChildren().add(helpLabel);
-		
+
 		//set the layout for all boxes
 		borderpane.setCenter(dialogueHBox);
 		borderpane.setBottom(textParseHBox);
 		borderpane.setTop(roomNumberHBox);
-		borderpane.setRight(playerStatusVBox);	
+		borderpane.setRight(playerStatusVBox);
 		borderpane.setLeft(playerHelpVBox);
-		
-	    //create and set scene
+
+		//create and set scene
 		scene = new Scene(borderpane);
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
@@ -113,16 +109,18 @@ public class GUI extends Application{
 	    
 	    textParseHandling();
 	}
-	
-	public static void main(String[] args) {
+
+	public static void main(String[] args)
+	{
 		launch(args);
 	}
-	
-	public void changeScene(Room room){
+
+	public void changeScene(Room room)
+	{
 		roomNumberLabel.setText(room.getName());
 		roomLabel.setText(room.getDescription());
 	}
-	
+
 	/*
 	 * a test example of what the text parser will look like
 	 * user presses enter key then it checks if the command is valid
@@ -155,10 +153,53 @@ public class GUI extends Application{
 						System.out.println("Not a valid command");
 						textParse.setText("");
 					}
+					
+					//SAVE AND LOAD
+					
+					if (textParse.getText().equalsIgnoreCase("save"))
+					{
+						//use the class saveLoadData to save values in to binary file
+						saveLoadData data = new saveLoadData();
+						data.setRoomNumber(roomNumberLabel.getText());
+						data.setRoomDescription(roomLabel.getText());
+						//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
+						try
+						{
+							ResourceManager.saveGame(data, "UndergroundHero.dat");
+						}
+						catch (Exception e)
+						{
+							System.out.println("error saving");
+							e.printStackTrace();
+						}
+						textParse.clear();
+					}
+
+					if (textParse.getText().equalsIgnoreCase("load"))
+					{
+						//use the class saveLoadData to load values in the binary file
+
+						try
+						{
+							saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
+							roomNumberLabel.setText(data.getRoomNumber());
+							roomLabel.setText(data.getRoomDescription());
+							//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
+
+						}
+						catch (Exception e)
+						{
+							System.out.println("error loading");
+							e.printStackTrace();
+						}
+
+					}
+					textParse.clear();
 				}
-			}	
+			}
 		});
 	}
+
 	
 	private boolean validDirectionInput(String input){
 		if(input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH") || input.equalsIgnoreCase("SOUTH")){
@@ -171,7 +212,7 @@ public class GUI extends Application{
 	/**
 	 * This method will load all lists and connect all rooms
 	 */
-	public void loadAssest(){
+	public void loadAsset(){
 		roomList 	= resourceManager.getRoomList();
 		monsterList = resourceManager.getMonsterList();
 		puzzleList 	= resourceManager.getPuzzleList();
@@ -238,6 +279,6 @@ public class GUI extends Application{
 		room(39).setExits(null, room(38), null, room(40));
 		room(40).setExits(null, room(39), null, room(41));
 		room(41).setExits(null, room(40), null, null);
-		
+
 	}
 }
