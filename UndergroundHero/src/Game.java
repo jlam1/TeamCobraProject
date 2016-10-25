@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+
 public class Game
 {
 	private static Game game;
@@ -103,4 +105,11 @@ public class Game
 			return false;
 	}
 
+	/**
+	 * Method: runs GUI class
+	 * @param args
+	 */
+	public void play(String[] args){
+		Application.launch(GUI.class, args);
+	}
 }

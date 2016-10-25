@@ -25,6 +25,7 @@ public class GUI extends Application
 	private List<Monster> monsterList;
 	private List<Puzzle> puzzleList;
 	private List<Item> itemList;
+	private Player player;
 	private Room currentRoom;
 	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
 	private Scene scene;
@@ -32,93 +33,44 @@ public class GUI extends Application
 	private TextField textParse;
 	private Game game;
 
-	public void start(Stage primaryStage) throws Exception
-	{
-
-		//load assets and objects
-		Game game = new Game();
-		Room room = new Room();
-		Player player = new Player(10, 1, 1, 2);
-		resourceManager = new ResourceManager();
-		loadAsset();
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		primaryStage.setTitle("Underground Hero");
-		primaryStage.setResizable(false);
-
-		borderpane = new BorderPane();
-		borderpane.setMaxWidth(750);
-
-		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
-		HBox textParseHBox = new HBox(10);		//box for text parsing
-		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
-		VBox playerStatusVBox = new VBox(10);	//box for character status
-		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
-
-		//setting border styles
-		dialogueHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-		playerStatusVBox
-				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-		textParseHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-		roomNumberHBox
-				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-		playerHelpVBox
-				.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-
-		//make nodes
-		textParse = new TextField();
-		textParse.setPromptText("Enter a command");
-		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
-		textParse.setFocusTraversable(false);
-		playerLabel = new Label(player.toString());
-		roomNumberLabel = new Label(roomList.get(1).getName());
-		roomLabel = new Label(roomList.get(1).getDescription());
-		helpLabel = new Label(game.help());
-		
-		//set padding and dimensions for nodes
-		roomLabel.setMaxWidth(450);
-		roomLabel.setWrapText(true);
-		helpLabel.setPadding(new Insets(15));
-		helpLabel.setMaxWidth(150);
-		helpLabel.setWrapText(true);
-		playerLabel.setPadding(new Insets(15));
-		roomLabel.setPadding(new Insets(15));
-		roomNumberLabel.setPadding(new Insets(10));
-		textParse.setPadding(new Insets(5));
-
-		//add label nodes to boxes
-		dialogueHBox.getChildren().add(roomLabel);
-		textParseHBox.getChildren().add(textParse);
-		roomNumberHBox.getChildren().add(roomNumberLabel);
-		playerStatusVBox.getChildren().add(playerLabel);
-		playerHelpVBox.getChildren().add(helpLabel);
-
-		//set the layout for all boxes
-		borderpane.setCenter(dialogueHBox);
-		borderpane.setBottom(textParseHBox);
-		borderpane.setTop(roomNumberHBox);
-		borderpane.setRight(playerStatusVBox);
-		borderpane.setLeft(playerHelpVBox);
-
-		//create and set scene
-		scene = new Scene(borderpane);
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
-	    
-	    currentRoom = room(1);
-	    
-	    textParseHandling();
-	}
-
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
-
-	public void changeScene(Room room)
+	
+	/**
+	 * @method setting the stage
+	 */
+	public void start(Stage primaryStage) throws Exception
 	{
-		roomNumberLabel.setText(room.getName());
-		roomLabel.setText(room.getDescription());
+
+		//load assets and objects
+		game = new Game();
+		player = new Player(10, 1, 3, 2);
+		resourceManager = new ResourceManager();
+		loadAsset();
+
+		primaryStage.setTitle("Underground Hero");
+		primaryStage.setResizable(false);
+
+		//create and set scene
+		scene = new Scene(roomPane());
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
+	    
+	    //set current room to room 1 and start main game logic(textParse)
+	    currentRoom = room(1);
+	    textParseHandling();
+	}
+
+	/**
+	 * @method responsible for changing labels in scene
+	 * @param currentRoom
+	 */
+	public void changeScene(Room currentRoom)
+	{
+		roomNumberLabel.setText(currentRoom.getName());
+		roomLabel.setText(currentRoom.getDescription() + "\n\n" + currentRoom.getExits());
 	}
 
 	/*
@@ -127,37 +79,32 @@ public class GUI extends Application
 	 * 
 	 * TODO: check current room's existing exits, if its locked, and if its possible to traverse(check elicitation for each room conditions)
 	 */
-	private void textParseHandling(){
+	public void textParseHandling(){
 		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent key) {
 				if(key.getCode().equals(KeyCode.ENTER)){
-					String userInput = textParse.getText();
-					if(validDirectionInput(userInput)){
-						Room nextRoom = currentRoom.nextRoom(userInput);
-						
-						if(nextRoom == null){
-							System.out.println("No exits");
-						}else{
-							currentRoom = nextRoom;
-							changeScene(currentRoom);
-							System.out.println("Room number: " + currentRoom.getName());
-						}
-						textParse.setText("");
-						
-					}else if(textParse.getText().equalsIgnoreCase("LOOK")){
-						System.out.println(currentRoom.getName());
-						textParse.setText("");
-						
-					}else{
-						System.out.println("Not a valid command");
-						textParse.setText("");
+					
+					//ROOM, TODO: add logic to monster encounters, puzzle encounters, and items
+//					double spawnChance = (Math.random() * 100);
+					String command = textParse.getText();
+					if(validDirectionInput(command)){
+						roomLogic(command);
+						//TODO: This is where all room, puzzle, monster logic will be in
+					}
+					
+					if(textParse.getText().equalsIgnoreCase("look")){
+						roomLabel.setText(currentRoom.getDescription() + "\n\n" + currentRoom.getExits());
+					}
+
+					if(textParse.getText().equalsIgnoreCase("help")){
+						helpLabel.setText(game.help());
 					}
 					
 					//SAVE AND LOAD
-					
 					if (textParse.getText().equalsIgnoreCase("save"))
 					{
+					
 						//use the class saveLoadData to save values in to binary file
 						saveLoadData data = new saveLoadData();
 						data.setRoomNumber(roomNumberLabel.getText());
@@ -194,13 +141,42 @@ public class GUI extends Application
 						}
 
 					}
+					
+					
 					textParse.clear();
 				}
 			}
 		});
 	}
 
+	/**
+	 * @method Responsible for traversing rooms
+	 */
+	private void roomLogic(String direction){
+		Room nextRoom = currentRoom.nextRoom(direction);
+		
+		if(nextRoom == null){
+			roomLabel.setText("Theres no exit that way, try another direction.");
+		}else if(nextRoom.getLocked() == true){
+			sleep();
+			roomLabel.setText(currentRoom.getDescription() + "\n\n\nDoor is locked.");
+		}else{
+			sleep();
+			currentRoom = nextRoom;
+			changeScene(currentRoom);
+			System.out.println("Room number: " + currentRoom.getName());
+		}
+	}
 	
+	public void battleScene(){
+		//TODO: should contain battle logic when encountering a monster
+	}
+	
+	/**
+	 * @method Method checks for valid input
+	 * @param input
+	 * @return
+	 */
 	private boolean validDirectionInput(String input){
 		if(input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH") || input.equalsIgnoreCase("SOUTH")){
 			return true;
@@ -210,75 +186,200 @@ public class GUI extends Application
 	}
 	
 	/**
-	 * This method will load all lists and connect all rooms
+	 * @method Load all lists, connect all rooms, assign monsters to rooms, assign puzzles to rooms
+	 * TODO: assign items to rooms
+	 * TODO: assign items to monsters
 	 */
-	public void loadAsset(){
+	private void loadAsset(){
 		roomList 	= resourceManager.getRoomList();
 		monsterList = resourceManager.getMonsterList();
 		puzzleList 	= resourceManager.getPuzzleList();
 		itemList	= resourceManager.getItemList();
 		
 		connectRooms();
+		setRoomMonsters();
+		setRoomPuzzles();
 		
 	}
 	
+	/**
+	 * @method Add monsters to rooms
+	 */
+	private void setRoomMonsters(){
+		for(int i = 2; i < roomList.size(); i++){
+			
+			switch(i){
+				case 8: room(i).setRoomMonster(monsterList.get(0));
+					break;
+				
+				case 18: room(i).setRoomMonster(monsterList.get(2));
+					break;
+				
+				case 25: room(i).setRoomMonster(monsterList.get(3));
+					break;
+				
+				case 28: room(i).setRoomMonster(monsterList.get(4));
+					break;
+				
+				case 40: room(i).setRoomMonster(monsterList.get(5));
+					break;
+				
+				case 41: room(i).setRoomMonster(monsterList.get(6));
+					break;
+				
+				default: 
+					room(i).setRoomMonster(monsterList.get(1));
+					room(i).setRoomMonster(monsterList.get(7));
+					break;
+			
+			}
+		}
+	}
+	
+	/**
+	 * @method Add puzzles to rooms
+	 * TODO: NOT DONE
+	 */
+	private void setRoomPuzzles(){
+		for(int i = 1; i < roomList.size(); i++){
+			
+		}
+	}
+	
+	/**
+	 * @method Easier method to get room index
+	 * @param index
+	 * @return
+	 */
 	private Room room(int index){
 		return roomList.get(index);
 	}
 	
 	/**
-	 * This method sets the exits for all rooms
+	 * @method sets exits for all rooms in order of NORTH, EAST, SOUTH, WEST
 	 */
 	private void connectRooms(){
+		//N E S W
+		
 		//connect floor 1, 10 rooms
-		room(0).setExits(null, room(1), null, null);
-		room(1).setExits(null, room(2), null, room(0));
-		room(2).setExits(null, room(3), null, room(1));
-		room(3).setExits(null, room(4), room(6), room(2));
-		room(4).setExits(null, null, room(5), room(3));
-		room(5).setExits(room(4), room(9), null, room(6));
-		room(6).setExits(room(3), room(5), null, room(7));
-		room(7).setExits(null, room(6), null, room(8));
-		room(8).setExits(null, room(7), null, null);
-		room(9).setExits(null, room(10), null, room(5));
+		room(0).setExits(null, room(1), null, null);					//1-0
+		room(1).setExits(null, room(2), null, room(0));					//1-1
+		room(2).setExits(null, room(3), null, room(1));					//1-2
+		room(3).setExits(null, room(4), null, room(2));					//1-3
+		room(4).setExits(null, null, room(5), room(3));					//1-4
+		room(5).setExits(room(4), room(9), null, room(6));				//1-5
+		room(6).setExits(room(3), room(5), null, room(7));				//1-6
+		room(7).setExits(null, room(6), null, room(8));					//1-7
+		room(8).setExits(null, room(7), null, room(10));				//1-8
+		room(9).setExits(null, null, null, room(5));					//1-9
 		
 		//connect floor 2, 9 rooms
-		room(10).setExits(null, room(11), null, room(9));
-		room(11).setExits(room(12), room(14), room(13), room(10));
-		room(12).setExits(null, null, room(11), null);
-		room(13).setExits(room(11), null, null, null);
-		room(14).setExits(null, room(15), null, room(11));
-		room(15).setExits(room(16), room(18), room(17), room(14));
-		room(16).setExits(null, null, room(15), null);
-		room(17).setExits(room(15), null, null, null);
-		room(18).setExits(null, room(19), null, room(15));
-		
+		room(10).setExits(null, room(11), null, room(8));				//2-1
+		room(11).setExits(room(12), room(14), room(13), room(10));		//2-2
+		room(12).setExits(null, null, room(11), null);					//2-3
+		room(13).setExits(room(11), null, null, null);					//2-4
+		room(14).setExits(null, room(15), null, room(11));				//2-5
+		room(15).setExits(room(16), room(18), room(17), room(14));		//2-6
+		room(16).setExits(null, null, room(15), null);					//2-7
+		room(17).setExits(room(15), null, null, null);					//2-8
+		room(18).setExits(null, room(19), null, room(15));				//2-9
+				
 		//connect floor 3, 10 rooms
-		room(19).setExits(null, room(20), room(27), room(18));
-		room(20).setExits(null, room(22), room(21), room(19));
-		room(21).setExits(room(20), null, room(27), null);
-		room(22).setExits(room(23), null, room(24), null);
-		room(23).setExits(null, room(26), room(25), room(22));
-		room(24).setExits(room(25), room(26), null, room(22));
-		room(25).setExits(room(23), null, room(24), null);
-		room(26).setExits(room(23), room(27), room(24), null);
-		room(27).setExits(null, room(28), room(21), null);
-		room(28).setExits(null, room(29), room(19), room(27));
+		room(19).setExits(null, room(20), room(27), room(18));			//3-1
+		room(20).setExits(null, room(22), room(21), room(19));			//3-2
+		room(21).setExits(room(20), null, room(27), null);				//3-3
+		room(22).setExits(room(23), null, room(24), null);				//3-4
+		room(23).setExits(null, room(26), room(25), room(22));			//3-5
+		room(24).setExits(room(25), room(26), null, room(22));			//3-6
+		room(25).setExits(room(23), null, room(24), null);				//3-7
+		room(26).setExits(room(23), room(27), room(24), null);			//3-8
+		room(27).setExits(null, room(28), room(21), room(26));			//3-9
+		room(28).setExits(null, room(29), room(19), room(27));			//3-10
 
 		//connect floor 4, 13 rooms
-		room(29).setExits(null, room(30), null, room(28));
-		room(30).setExits(null, room(31), null, room(29));
-		room(31).setExits(null, room(32), null, room(30));
-		room(32).setExits(null, room(33), null, room(31));
-		room(33).setExits(null, null, room(34), room(32));
-		room(34).setExits(room(33), null, room(37), room(35));
-		room(35).setExits(null, room(34), null, room(36));
-		room(36).setExits(null, room(35), null, null);
-		room(37).setExits(room(34), null, null, room(38));
-		room(38).setExits(null, room(37), null, room(39));
-		room(39).setExits(null, room(38), null, room(40));
-		room(40).setExits(null, room(39), null, room(41));
-		room(41).setExits(null, room(40), null, null);
+		room(29).setExits(null, room(30), null, room(28));				//4-1
+		room(30).setExits(null, room(31), null, room(29));				//4-2
+		room(31).setExits(null, room(32), null, room(30));				//4-3
+		room(32).setExits(null, room(33), null, room(31));				//4-4
+		room(33).setExits(null, null, room(34), room(32));				//4-5
+		room(34).setExits(room(33), null, room(37), room(35));			//4-6
+		room(35).setExits(null, room(34), null, room(36));				//4-7
+		room(36).setExits(null, room(35), null, null);					//4-8
+		room(37).setExits(room(34), null, null, room(38));				//4-9
+		room(38).setExits(null, room(37), null, room(39));				//4-10
+		room(39).setExits(null, room(38), null, room(40));				//4-11
+		room(40).setExits(null, room(39), null, room(41));				//4-12
+		room(41).setExits(null, room(40), null, null);					//4-13
 
+	}
+	
+	/**
+	 * @method creates border pane and fill with boxes and children nodes
+	 * @return
+	 */
+	private BorderPane roomPane(){
+		borderpane = new BorderPane();
+		borderpane.setMaxWidth(750);
+
+		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
+		HBox textParseHBox = new HBox(10);		//box for text parsing
+		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
+		VBox playerStatusVBox = new VBox(10);	//box for character status
+		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
+
+		//setting border styles
+		dialogueHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		playerStatusVBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		textParseHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		roomNumberHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		playerHelpVBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+
+		//make nodes
+		textParse = new TextField();
+		textParse.setPromptText("Enter a command");
+		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
+		textParse.setFocusTraversable(false);
+		playerLabel = new Label(player.toString());
+		roomNumberLabel = new Label(roomList.get(1).getName());
+		roomLabel = new Label(roomList.get(1).getDescription());
+		helpLabel = new Label(game.help());
+		
+		//set padding and dimensions for nodes
+		roomLabel.setMaxWidth(450);
+		roomLabel.setWrapText(true);
+		helpLabel.setPadding(new Insets(15));
+		helpLabel.setMaxWidth(150);
+		helpLabel.setWrapText(true);
+		playerLabel.setPadding(new Insets(15));
+		roomLabel.setPadding(new Insets(15));
+		roomNumberLabel.setPadding(new Insets(10));
+		textParse.setPadding(new Insets(5));
+
+		//add label nodes to boxes
+		dialogueHBox.getChildren().add(roomLabel);
+		textParseHBox.getChildren().add(textParse);
+		roomNumberHBox.getChildren().add(roomNumberLabel);
+		playerStatusVBox.getChildren().add(playerLabel);
+		playerHelpVBox.getChildren().add(helpLabel);
+
+		//set the layout for all boxes
+		borderpane.setCenter(dialogueHBox);
+		borderpane.setBottom(textParseHBox);
+		borderpane.setTop(roomNumberHBox);
+		borderpane.setRight(playerStatusVBox);
+		borderpane.setLeft(playerHelpVBox);
+		
+		return borderpane;
+	}
+	
+	/**
+	 * @method A simple thread sleep method
+	 */
+	private void sleep(){
+		try{
+			Thread.sleep(140);
+		}catch(InterruptedException e){
+			
+		}
 	}
 }

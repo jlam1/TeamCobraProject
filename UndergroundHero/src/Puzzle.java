@@ -42,11 +42,16 @@ public class Puzzle implements Properties{
 	}
 
 	@Override
+	public String toString() {
+		return "Puzzle [name=" + name + ", description=" + description + ", logicAnswer=" + logicAnswer
+				+ ", puzzleAnswer=" + puzzleAnswer + ", puzzleReward=" + puzzleReward + ", id=" + id + ", keyAnswer="
+				+ keyAnswer + ", solved=" + solved + "]";
+	}
+
 	public int getID() {
 		return this.id;
 	}
 
-	@Override
 	public String getName() {
 		return this.name;
 	}

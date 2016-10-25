@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Room implements Properties{
@@ -6,39 +8,26 @@ public class Room implements Properties{
 	private String name, description, exits;
 	private int id;
 	private boolean locked;
-	private Monster roomMonster;
-	private Puzzle roomPuzzle;
 	private Map<String, Room> exitMap;
+	private List<Monster> roomMonster;
+	private Puzzle roomPuzzle;
 	
-	Room(){
-		
-	}
-	
-	Room(String name, String description, String exits){
+	Room(String name, String description, String exits, boolean locked){
 		this.name = name;
 		this.description = description;
 		this.exits = exits;
+		this.locked = locked;
 		exitMap = new HashMap<String, Room>();
+		roomMonster = new ArrayList<Monster>();
+		roomPuzzle = new Puzzle();
 	}
 	
-	Room(String name, String description, String exits, Monster roomMonster, Puzzle roomPuzzle){
-		this.name = name;
-		this.description = description;
-		this.exits = exits;
-		this.roomMonster = roomMonster;
-		this.roomPuzzle = roomPuzzle;
-	}
-	
-	public String viewRoom(Room currentRoom){
-		return currentRoom.getDescription();
-	}
-	
-	public String viewExits(Room currentRoom){
-		return "Exits: " + currentRoom.getExits();
-	}
-	
-	public String viewRoomNumber(Room currentRoom){
-		return "Room: " + currentRoom.getName();
+	/**
+	 * 
+	 * @return Room's exits
+	 */
+	public String getExits(){
+		return "Exits: " + this.exits;
 	}
 	
 	/**
@@ -59,21 +48,47 @@ public class Room implements Properties{
         	exitMap.put("west", west);
     }
     
+    /**
+     * @method Access Map to get value of key direction
+     * @param direction
+     * @return Map's value
+     */
     public Room nextRoom(String direction){
         return (Room)exitMap.get(direction);
-    }
+    }  
+
+	/**
+	 * @method adds a monster object to room
+	 * @param monster
+	 */
+	public void setRoomMonster(Monster monster) {
+		this.roomMonster.add(monster);
+	}
 	
-	@Override
+	/**
+	 * @method adds a puzzle object to room
+	 * @param puzzle
+	 */
+	public void setRoomPuzzle(Puzzle roomPuzzle) {
+		this.roomPuzzle = roomPuzzle;
+	}
+	
+	public List<Monster> getRoomMonster() {
+		return roomMonster;
+	}
+
+	public Puzzle getRoomPuzzle() {
+		return roomPuzzle;
+	}
+
 	public int getID() {
 		return this.id;
 	}
 
-	@Override
 	public String getName() {
 		return this.name;
 	}
 
-	@Override
 	public String getDescription() {
 		return this.description;
 	}
@@ -85,24 +100,13 @@ public class Room implements Properties{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getExits() {
-		return exits;
+	
+	public boolean getLocked(){
+		return this.locked;
 	}
 
-	public Monster getRoomMonster() {
-		return roomMonster;
+	public void setLocked(boolean locked) {
+		this.locked = locked;
 	}
-
-	public void setRoomMonster(Monster roomMonster) {
-		this.roomMonster = roomMonster;
-	}
-
-	public Puzzle getRoomPuzzle() {
-		return roomPuzzle;
-	}
-
-	public void setRoomPuzzle(Puzzle roomPuzzle) {
-		this.roomPuzzle = roomPuzzle;
-	}
+	
 }

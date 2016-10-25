@@ -2,10 +2,6 @@
 public class Monster extends Character {
 
 	private Action action;
-
-	Monster(){
-		
-	}
 	
 	/**
 	 * 
@@ -17,13 +13,14 @@ public class Monster extends Character {
 	 * @param spd
 	 * @param action
 	 */
-	Monster(String name, String description, int hp, int atk, int def, int spd, Action action){
+	Monster(String name, String description, int hp, int atk, int def, int spd, boolean dead, Action action){
 		this.name = name;
 		this.description = description;
 		this.hp = hp;
 		this.atk = atk;
 		this.def = def;
 		this.spd = spd;
+		this.dead = dead;
 		this.action = action;
 	}
 	

@@ -48,6 +48,7 @@ public class ResourceManager {
 				String damage = in.nextLine();
 				String defense = in.nextLine();
 				String speed = in.nextLine();
+				String dead = in.nextLine();
 				String action1 = in.nextLine();
 				String action2 = in.nextLine();
 				String action3 = in.nextLine();
@@ -57,11 +58,17 @@ public class ResourceManager {
 				int atk = Integer.parseInt(damage);
 				int def = Integer.parseInt(defense);
 				int spd = Integer.parseInt(speed);
+				boolean isDead;
+				if(dead.equalsIgnoreCase("false")){
+					isDead = false;
+				}else{
+					isDead = true;
+				}
 				
 				
 				Monster.Action skills = new Monster.Action(action1, action2, action3, action4);
 				
-				Monster newMonster = new Monster(name, description, hp, atk, def, spd, skills);
+				Monster newMonster = new Monster(name, description, hp, atk, def, spd, isDead, skills);
 				monsterList.add(newMonster);
 				
 			}
@@ -94,8 +101,16 @@ public class ResourceManager {
 				String roomNumber = in.nextLine();
 				String roomDescription = in.nextLine();
 				String roomExits = in.nextLine();
+				String locked = in.nextLine();
 				
-				Room newRoom = new Room(roomNumber, roomDescription, roomExits);
+				boolean roomLocked;
+				if(locked.equalsIgnoreCase("true")){
+					roomLocked = true;
+				}else{
+					roomLocked = false;
+				}
+				
+				Room newRoom = new Room(roomNumber, roomDescription, roomExits, roomLocked);
 				roomList.add(newRoom);
 				
 			}
