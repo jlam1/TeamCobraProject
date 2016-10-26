@@ -1,0 +1,49 @@
+import java.util.List;
+
+public class BattleTester{
+	// TODO Create Speed comparison
+	// TODO Create Attack calculation
+	// TODO Create Defend calculation
+	// TODO Create Escape method
+	
+	public static boolean AtkCmd = false;
+	public static boolean DefCmd = false;
+	public static boolean HealCmd = false;
+	
+	public static void main(String[] args) {
+		//Heal Command - Unfinished
+		if (HealCmd == true && ConsumableItem.getCount() > 0){
+			ConsumableItem.useItem();
+			// Print feedback that item has been used
+			HealCmd = false;
+		}
+		
+		else if (HealCmd == true && ConsumableItem.count <= 0){
+			// Print feedback that there is no item to use
+			HealCmd = false;
+		}
+		
+		//
+		
+		
+		
+		
+		
+		ResourceManager resourceManager = new ResourceManager();
+		resourceManager.loadAssetToList();
+		
+		List<Monster> monsterList = resourceManager.getMonsterList();
+		
+		String monsterName = monsterList.get(0).getName();
+		String monsterDesc = monsterList.get(0).getDescription();
+		int monsterHP = monsterList.get(0).getHp();
+		
+		System.out.println(monsterName);
+		System.out.println(monsterDesc);
+		System.out.println(monsterHP);
+		
+		
+		
+		
+	}
+}

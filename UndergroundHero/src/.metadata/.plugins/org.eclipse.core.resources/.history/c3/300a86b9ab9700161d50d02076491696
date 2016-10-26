@@ -1,0 +1,11 @@
+public class BattleTester extends Status {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// TODO Create Speed comparison
+		// TODO Create Attack calculation
+		// TODO Create Defend calculation
+		// TODO Create Escape method
+		// TODO Create Heal method
+	}
+
+}

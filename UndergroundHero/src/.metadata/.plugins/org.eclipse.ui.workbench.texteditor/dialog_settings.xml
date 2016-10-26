@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="getName"/>
 			<item value="getRoomList"/>
 			<item value="roomList"/>
 			<item value="setText"/>
@@ -15,7 +16,6 @@
 			<item value="getRoomNumber"/>
 			<item value="roomLabel"/>
 			<item value="selected"/>
-			<item value="Stage"/>
 		</list>
 		<list key="replacehistory">
 		</list>
