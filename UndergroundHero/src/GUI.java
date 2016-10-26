@@ -203,33 +203,58 @@ public class GUI extends Application
 	}
 	
 	/**
-	 * @method Add monsters to rooms
+	 * @method Add monsters to rooms with the exception of rooms that contains a puzzle(maybe to be change)
+	 * 
 	 */
 	private void setRoomMonsters(){
 		for(int i = 2; i < roomList.size(); i++){
 			
 			switch(i){
-				case 8: room(i).setRoomMonster(monsterList.get(0));
+				case 1:
+					break;
+					
+				case 8: room(i).setRoomMonster(monster(0));
+					break;
+					
+				case 9:
+					break;
+					
+				case 12:
 					break;
 				
-				case 18: room(i).setRoomMonster(monsterList.get(2));
+				case 14:
+					break;
+					
+				case 16:
+					break;
+					
+				case 18: room(i).setRoomMonster(monster(2));
+					break;
+					
+				case 21:
 					break;
 				
-				case 25: room(i).setRoomMonster(monsterList.get(3));
+				case 25: room(i).setRoomMonster(monster(3));
+					break;
+					
+				case 27:
+					break;
+					
+				case 28: room(i).setRoomMonster(monster(4));
 					break;
 				
-				case 28: room(i).setRoomMonster(monsterList.get(4));
+				case 33:
+					break;
+					
+				case 40: room(i).setRoomMonster(monster(5));		//SPECIAL CASE: this room contains both a puzzle and a boss monster
 					break;
 				
-				case 40: room(i).setRoomMonster(monsterList.get(5));
-					break;
-				
-				case 41: room(i).setRoomMonster(monsterList.get(6));
+				case 41: room(i).setRoomMonster(monster(6));
 					break;
 				
 				default: 
-					room(i).setRoomMonster(monsterList.get(1));
-					room(i).setRoomMonster(monsterList.get(7));
+					room(i).setRoomMonster(monster(1));
+//					room(i).setRoomMonster(monster(7));
 					break;
 			
 			}
@@ -238,25 +263,21 @@ public class GUI extends Application
 	
 	/**
 	 * @method Add puzzles to rooms
-	 * TODO: NOT DONE
 	 */
 	private void setRoomPuzzles(){
-		for(int i = 1; i < roomList.size(); i++){
-			
-		}
+		room(1).setRoomPuzzle(puzzle(0));
+		room(9).setRoomPuzzle(puzzle(1));
+		room(12).setRoomPuzzle(puzzle(2));
+		room(14).setRoomPuzzle(puzzle(3));
+		room(16).setRoomPuzzle(puzzle(4));
+		room(27).setRoomPuzzle(puzzle(5));
+		room(21).setRoomPuzzle(puzzle(6));
+		room(33).setRoomPuzzle(puzzle(7));
+		room(40).setRoomPuzzle(puzzle(8));
 	}
 	
 	/**
-	 * @method Easier method to get room index
-	 * @param index
-	 * @return
-	 */
-	private Room room(int index){
-		return roomList.get(index);
-	}
-	
-	/**
-	 * @method sets exits for all rooms in order of NORTH, EAST, SOUTH, WEST
+	 * @method Sets existing exits for all rooms in order of NORTH, EAST, SOUTH, WEST
 	 */
 	private void connectRooms(){
 		//N E S W
@@ -370,6 +391,33 @@ public class GUI extends Application
 		borderpane.setLeft(playerHelpVBox);
 		
 		return borderpane;
+	}
+	
+	/**
+	 * @method Easier method to get room index
+	 * @param index
+	 * @return
+	 */
+	private Room room(int index){
+		return roomList.get(index);
+	}
+	
+	/**
+	 * @method Easier method to get monster index
+	 * @param index
+	 * @return
+	 */
+	private Monster monster(int index){
+		return monsterList.get(index);
+	}
+	
+	/**
+	 * @method Easier method to get puzzle index
+	 * @param index
+	 * @return
+	 */
+	private Puzzle puzzle(int index){
+		return puzzleList.get(index);
 	}
 	
 	/**

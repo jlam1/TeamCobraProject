@@ -1,15 +1,12 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Room implements Properties{
 
 	private String name, description, exits;
-	private int id;
 	private boolean locked;
 	private Map<String, Room> exitMap;
-	private List<Monster> roomMonster;
+	private Monster roomMonster;
 	private Puzzle roomPuzzle;
 	
 	Room(String name, String description, String exits, boolean locked){
@@ -18,7 +15,7 @@ public class Room implements Properties{
 		this.exits = exits;
 		this.locked = locked;
 		exitMap = new HashMap<String, Room>();
-		roomMonster = new ArrayList<Monster>();
+		roomMonster = new Monster();
 		roomPuzzle = new Puzzle();
 	}
 	
@@ -61,8 +58,8 @@ public class Room implements Properties{
 	 * @method adds a monster object to room
 	 * @param monster
 	 */
-	public void setRoomMonster(Monster monster) {
-		this.roomMonster.add(monster);
+	public void setRoomMonster(Monster roomMonster) {
+		this.roomMonster = roomMonster;
 	}
 	
 	/**
@@ -73,16 +70,12 @@ public class Room implements Properties{
 		this.roomPuzzle = roomPuzzle;
 	}
 	
-	public List<Monster> getRoomMonster() {
+	public Monster getRoomMonster() {
 		return roomMonster;
 	}
 
 	public Puzzle getRoomPuzzle() {
 		return roomPuzzle;
-	}
-
-	public int getID() {
-		return this.id;
 	}
 
 	public String getName() {
@@ -107,6 +100,12 @@ public class Room implements Properties{
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

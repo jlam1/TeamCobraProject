@@ -24,17 +24,20 @@ public class Monster extends Character {
 		this.action = action;
 	}
 	
+	Monster(){
+		
+	}
+	
 	public Action getAction(){
 		return action;
 	}
 
 	@Override
 	public String toString() {
-		return "Monster [name=" + name + ", hp=" + hp + ", atk=" + atk + ", spd=" + spd
-				+ ", def=" + def + ", id=" + id + ", description="
-				+ description + "]";
+		return "Name=" + name + "\nDesc= " + description + "\nHp= " + hp + "\nAtk= " + atk + "\nSpd= " + spd + "\nDef= "
+				+ def + "\nisDead= " + dead;
 	}
-
+	
 	static class Action{
 		
 		private String actionName1;
