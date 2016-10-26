@@ -29,7 +29,7 @@ public class BattleTester extends Character{
 		int monsterDef = monsterList.get(RandMon).getDef();
 		int monsterSpd = monsterList.get(RandMon).getSpd();
 		
-
+ 
 		//Heal Command - Unfinished
 		if (HealCmd == true && ConsumableItem.getCount() > 0){
 			ConsumableItem.useItem();
