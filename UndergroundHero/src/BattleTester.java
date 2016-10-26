@@ -33,7 +33,7 @@ public class BattleTester extends Character{
 		//Heal Command - Unfinished
 		if (HealCmd == true && ConsumableItem.getCount() > 0){
 			ConsumableItem.useItem();
-			// Print feedback that item has been used
+			// Print feedback that item has been used.
 			HealCmd = false;
 		}
 		else if (HealCmd == true && ConsumableItem.count <= 0){
