@@ -1,60 +1,28 @@
-import java.util.List;
+public class Room implements Properties{
 
-public class Room {
-
-	private String roomNumber;
-	private String roomDescription;
-	private String exits;
+	private String name, description, exits;
+	private int id;
+	private boolean locked;
 	private Monster roomMonster;
 	private Puzzle roomPuzzle;
 	
-	Room(){
-		
-	}
-	
-	Room(String roomNumber, String roomDescription, String exits){
-		this.roomNumber = roomNumber;
-		this.roomDescription = roomDescription;
+	Room(String name, String description, String exits){
+		this.name = name;
+		this.description = description;
 		this.exits = exits;
 	}
 	
-	Room(String roomNumber, String roomDescription, String exits, Monster roomMonster, Puzzle roomPuzzle){
-		this.roomNumber = roomNumber;
-		this.roomDescription = roomDescription;
+	Room(int id, String name, String description, String exits, Monster roomMonster, Puzzle roomPuzzle){
+		this.id = id;
+		this.name = name;
+		this.description = description;
 		this.exits = exits;
 		this.roomMonster = roomMonster;
 		this.roomPuzzle = roomPuzzle;
 	}
 	
-//	public Room[][] roomArray(List<Room> roomList){
-//		Room room[][] = new Room[4][14];
-//		int roomIndex = 0;
-//		
-//		for(int i = 0; i < roomList.size(); i++){
-//			if(i < 9){
-//				room[0][roomIndex] = roomList.get(i);
-//				roomIndex++;
-//			}else if(i >= 9 && i < 18){
-//				roomIndex = 0;
-//				room[1][roomIndex] = roomList.get(i);
-//				roomIndex++;
-//			}else if(i >= 18 && i < 28){
-//				roomIndex = 0;
-//				room[2][roomIndex] = roomList.get(i);
-//				roomIndex++;
-//			}else if(i >= 28){
-//				roomIndex = 0;
-//				room[3][roomIndex] = roomList.get(i);
-//				roomIndex++;
-//			}else{
-//				
-//			}
-//		}	
-//		return room;
-//	}
-	
 	public String viewRoom(Room currentRoom){
-		return currentRoom.getRoomDescription();
+		return currentRoom.getDescription();
 	}
 	
 	public String viewExits(Room currentRoom){
@@ -62,23 +30,30 @@ public class Room {
 	}
 	
 	public String viewRoomNumber(Room currentRoom){
-		return "Room: " + currentRoom.getRoomNumber();
+		return "Room: " + currentRoom.getName();
+	}
+	
+	@Override
+	public int getID() {
+		return this.id;
 	}
 
-	public String getRoomNumber() {
-		return roomNumber;
+	@Override
+	public String getName() {
+		return this.name;
 	}
 
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	@Override
+	public String getDescription() {
+		return this.description;
 	}
 
-	public String getRoomDescription() {
-		return roomDescription;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setRoomDescription(String roomDescription) {
-		this.roomDescription = roomDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getExits() {
@@ -104,6 +79,5 @@ public class Room {
 	public void setRoomPuzzle(Puzzle roomPuzzle) {
 		this.roomPuzzle = roomPuzzle;
 	}
-	
 	
 }

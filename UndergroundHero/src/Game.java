@@ -1,8 +1,6 @@
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,33 +11,45 @@ public class Game
 {
 	private Game game;
 	private Player player;
-	private List<Room> rooms;
-
-	private Game(List<Room> rooms, Player player)
-	{
-		this.rooms = rooms;
-		this.player = player;
-	}
-
-	public Game() {
+	private List<Room> startingRoom;
+	private ArrayList<Item> item;
+	
+	//this is a test constructor
+	public Game(){
 		
 	}
 
-	public void newGame(ResourceManager resource)
+	public Game(List<Room> rooms, Player player)
 	{
-		resource.loadAssetToList();
-		List<Room> roomList = resource.getRoomList();
-		List<Monster> monsterList = resource.getMonsterList();
-		List<Puzzle> puzzleList = resource.getPuzzleList();
-		List<Item> itemList = resource.getItemList();
-		Player player = new Player(50, 1, 1, 2);	//default attributes 
-		Room room = new Room();
-		Monster monster = new Monster();
-		Puzzle puzzle = new Puzzle();
-		Item item = new Item();
-		setGameRun();
+		this.startingRoom = rooms;
+		this.player = player;
 	}
 
+	/**
+	 * Method: newGame()
+	 * 
+	 * When starting a new game, this method will initialize the player status, staring point, and items that the player have.
+	 * 
+	 */
+	public void newGame()
+	{
+		
+		player = new Player(10, 1, 1, 2);	//default attributes 
+		startingRoom = (List<Room>) this.getRooms().get(0);
+		item.add(item.get(0));
+		item.add(item.get(1));
+		setGameRun();
+	}
+	
+	/**
+	 * Method: saveGame()
+	 * 
+	 * This method will save the game. It will throw an exception when overwriting a existing save 
+	 * file and create a new file if the file does not exist.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean saveGame() throws Exception
 	{
 		if(game != null)
@@ -65,12 +75,29 @@ public class Game
 		}
 		return true;
 	}
+	
+	/**
+	 * Method: help()
+	 * 
+	 * This method return a String to display help commands
+	 * 
+	 * @return
+	 */
 
-	public void help()
+	public String help()
 	{
-
+		return "NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ";
 	}
 
+	/**
+	 * Method: loadGame()
+	 * 
+	 * This method will load the file. It will throw an exception when the file does 
+	 * not exist and creates a new game. it will throw an exception when the file cannot be loaded.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean loadGame() throws Exception
 	{
 		if (game != null)
@@ -104,28 +131,33 @@ public class Game
 
 	}
 
+	/**
+	 * Method: exitGame();
+	 * 
+	 * Exits the game
+	 */
 	public void exitGame()
 	{
 		System.exit(0);
 	}
 
-	public void checkSaveState()
+	public List<Item> getItem()
+	{
+		return game.item;
+	}
+	
+	public List<Room> getRooms()
 	{
 
-	}
+		return game.startingRoom;
 
-//	public ArrayList<Room> getRooms()
-//	{
-//
-//		return game.rooms;
-//
-//	}
+	}
 
 	public boolean setGameRun()
 	{
 		if (game == null)
 		{
-			game = new Game(rooms, player);
+			game = new Game(startingRoom, player);
 			return true;
 		}
 		else

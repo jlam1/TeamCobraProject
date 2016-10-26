@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 /*
  * This class will read text files and load them into a list. Call list by using getter method.
  */
@@ -16,6 +15,16 @@ public class ResourceManager {
 	private List<Item> itemList;
 	private List<Puzzle> puzzleList;
 	
+	/*
+	 * When constructor is called, load all assets
+	 */
+	public ResourceManager(){
+		loadAssetToList();
+	}
+	
+	/*
+	 * Reads file and adds to attributes to a List call monsterList
+	 */
 	private void writeToMonsterList(){
 		Scanner in = null;
 		monsterList = new ArrayList<Monster>();
@@ -55,10 +64,16 @@ public class ResourceManager {
 		}
 	}
 	
+	/*
+	 * Returns monsterList
+	 */
 	public List<Monster> getMonsterList() {
 		return monsterList;
 	}
 	
+	/*
+	 * Reads file and adds to attributes to a List call roomList
+	 */
 	private void writeToRoomList(){
 		Scanner in = null;
 		roomList = new ArrayList<Room>();
@@ -83,10 +98,16 @@ public class ResourceManager {
 		}
 	}
 	
+	/*
+	 * Returns roomList
+	 */
 	public List<Room> getRoomList(){
 		return roomList;
 	}
 	
+	/*
+	 * Reads file and adds to attributes to a List call puzzleList
+	 */
 	private void writeToPuzzleList(){
 		Scanner in = null;
 		puzzleList = new ArrayList<Puzzle>();
@@ -112,10 +133,16 @@ public class ResourceManager {
 		}
 	}
 	
+	/*
+	 * Returns puzzleList
+	 */
 	public List<Puzzle> getPuzzleList(){
 		return puzzleList;
 	}
 	
+	/*
+	 * Reads file and adds to attributes to a List call itemList
+	 */
 	private void writeToItemList(){
 		Scanner in = null;
 		itemList = new ArrayList<Item>();
@@ -125,11 +152,13 @@ public class ResourceManager {
 			in = new Scanner(new BufferedReader(new FileReader("res/Item_Data.txt")));
 			
 			while (in.hasNext() && in != null) {
+				int itemID = in.nextInt();
+				in.nextLine();
 				String itemName = in.nextLine();
 				String itemDescription = in.nextLine();
 				String itemType = in.nextLine();
 				
-				Item newItem = new Item(itemName, itemDescription, itemType);
+				Item newItem = new Item(itemID, itemName, itemDescription, itemType);
 				itemList.add(newItem);
 			}
 		}catch (IOException e){
@@ -139,10 +168,16 @@ public class ResourceManager {
 		}
 	}
 	
+	/*
+	 * Returns itemList
+	 */
 	public List<Item> getItemList(){
 		return itemList;
 	}
 	
+	/*
+	 * A method that calls all writeToList methods
+	 */
 	public void loadAssetToList(){
 		writeToMonsterList();
 		writeToRoomList();

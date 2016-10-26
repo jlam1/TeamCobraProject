@@ -1,10 +1,5 @@
 
-	
-//Monster Stat MAX:
-//HP: 30	ATK: 15		DEF: 15		SPD: 3
-//Each Monster will have 1 to 4 action(skills) they can use along with attack and defend.
-
-public class Monster extends Status {
+public class Monster extends Character {
 
 	private Action action;
 
@@ -12,6 +7,16 @@ public class Monster extends Status {
 		
 	}
 	
+	/**
+	 * 
+	 * @param name
+	 * @param description
+	 * @param hp
+	 * @param atk
+	 * @param def
+	 * @param spd
+	 * @param action
+	 */
 	Monster(String name, String description, int hp, int atk, int def, int spd, Action action){
 		this.name = name;
 		this.description = description;
@@ -33,13 +38,20 @@ public class Monster extends Status {
 				+ description + "]";
 	}
 
-	public static class Action{
+	static class Action{
 		
 		private String actionName1;
 		private String actionName2;
 		private String actionName3;
 		private String actionName4;
 		
+		/**
+		 * 
+		 * @param actionName1
+		 * @param actionName2
+		 * @param actionName3
+		 * @param actionName4
+		 */
 		Action(String actionName1, String actionName2, String actionName3, String actionName4){
 			this.actionName1 = actionName1;
 			this.actionName2 = actionName2;

@@ -1,23 +1,38 @@
 import java.util.List;
 
-public class Item {
+public class Item implements Properties{
 
 	private String name, description, type;
+	private int id;
 
 	public Item(){
 		
 	}
 	
-	public Item(String name, String description, String type) {
+	/**
+	 * 
+	 * @param name
+	 * @param description
+	 * @param type
+	 */
+	public Item(int id, String name, String description, String type) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.type = type;
 	}
 
+	@Override
+	public int getID() {
+		return id;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -35,14 +50,15 @@ public class Item {
 		return "Item [name=" + name + ", description=" + description + ", type=" + type + "]";
 	}
 
+	/**
+	 * 
+	 * @param list
+	 * Method will display a list of items using toString
+	 */
 	public void openInventory(List<Item> list){
 		for(Item i : list){
 			System.out.println(i.toString());
 		}
-	}
-	
-	public void useItem(){
-		//TODO: will remove item when on use with the exception for equips and key items
 	}
 
 }

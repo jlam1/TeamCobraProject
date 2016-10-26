@@ -1,136 +1,156 @@
-import java.awt.TextField;
-import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.scene.Group;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**Class name: GUI.java
- * @author King Lo
- * @version 1.0
- * Course: ITEC 3150 Fall 2016
- * Written: Oct 9, 2016
- *
- * 
- * This class �now describe what the class does
- * 
- * Purpose: �Describe the purpose of this class 
- * 
- * This will act as template for our game's interface
- */
-public class GUI extends Application
-{
+//CLASS IS JUST FOR TESTING, WILL NOT INCLUDE IN FINAL PRODUCT
 
-	Stage window;
-	Scene scene1, scene2, scene3;
+//		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
+
+public class GUI extends Application{
+	
 	private ResourceManager resourceManager;
 	private List<Room> roomList; 
 	private List<Monster> monsterList;
 	private List<Puzzle> puzzleList; 
 	private List<Item> itemList;
-
-	public void start(Stage primaryStage)
-	{	
+	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
+	private Scene scene;
+	private BorderPane borderpane;
+	private TextField textParse;
+	
+	public void start(Stage primaryStage){
+		
+		//load assets and objects
+		Game game = new Game();
+		Player player = new Player(10, 1, 1, 2);	//Player(hp, def, atk, spd)
 		resourceManager = new ResourceManager();
 		resourceManager.loadAssetToList();
 		loadList();
 		
-		window = primaryStage;
-
-		Label roomLabel = new Label(command.viewRoom(roomList.get(0)));
-		Label playerLabel = new Label("Player Stats");
-		TextField textParseLabel = new TextField();
-
-		//Button 1
-		Label label1 = new Label(viewRoom(roomList.get(0)));	//example of what viewRoom command might look like
-		label1.setWrapText(true); // wrapped the text to the size of the screen
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		primaryStage.setTitle("Underground Hero");
+	    primaryStage.setResizable(false);
 		
-		Button button1 = new Button("Next Scene");
-		button1.setOnAction(e -> window.setScene(scene2));
+		borderpane = new BorderPane();
+		borderpane.setMaxWidth(750);
 		
-		//Layout 1 - children laid out in vertical column
-		VBox layout1 = new VBox(20);
-		layout1.getChildren().addAll(roomLabel, button1);
-		scene1 = new Scene(layout1, 400, 200);
+		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
+		HBox textParseHBox = new HBox(10);		//box for text parsing
+		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
+		VBox playerStatusVBox = new VBox(10);	//box for character status
+		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
 		
-		//vbox - for player's stat
-		VBox playerStatBox = new VBox(30);
+		//setting border styles
+		dialogueHBox.setStyle		("-fx-border-style: solid inside;" +
+								 	 "-fx-border-color: black;" +
+								 	 "-fx-border-width: 1;" );
+		playerStatusVBox.setStyle	("-fx-border-style: solid inside;" +
+									 "-fx-border-color: black;" +
+									 "-fx-border-width: 1;" );
+		textParseHBox.setStyle		("-fx-border-style: solid inside;" +
+									 "-fx-border-color: black;" +
+									 "-fx-border-width: 1;" );
+		roomNumberHBox.setStyle		("-fx-border-style: solid inside;" +
+									 "-fx-border-color: black;" +
+									 "-fx-border-width: 1;" );
+		playerHelpVBox.setStyle		("-fx-border-style: solid inside;" +
+									 "-fx-border-color: black;" +
+									 "-fx-border-width: 1;" );
+
+		//make nodes
+		textParse = new TextField();
+		textParse.setPromptText("Enter a command");
+		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
+		textParse.setFocusTraversable(false);
+		playerLabel = new Label(player.toString());		//TODO: update changes to character status
+		roomNumberLabel = new Label(roomList.get(0).getName());
+		roomLabel = new Label(roomList.get(0).getDescription());
+		helpLabel = new Label(game.help());
+		//set padding and dimensions for nodes
+		roomLabel.setMaxWidth(450);
+		roomLabel.setWrapText(true);
+		helpLabel.setPadding(new Insets(15));
+		helpLabel.setMaxWidth(150);
+		helpLabel.setWrapText(true);
+		playerLabel.setPadding(new Insets(15));
+		roomLabel.setPadding(new Insets(15));
+		roomNumberLabel.setPadding(new Insets(10));
+		textParse.setPadding(new Insets(5));
+
+		//add label nodes to boxes
+		dialogueHBox.getChildren().add(roomLabel);
+		textParseHBox.getChildren().add(textParse);
+		roomNumberHBox.getChildren().add(roomNumberLabel);
+		playerStatusVBox.getChildren().add(playerLabel);
+		playerHelpVBox.getChildren().add(helpLabel);
 		
-		playerStatBox.getChildren().add(playerLabel);
-
-		//Button 2
-		Label label2 = new Label("I am warning you. Please Leave Now. "
-				+ "\n Something very bad will hapen on the next scene.");
-		Button button2 = new Button("Go Back Now!");
+		//set the layout for all boxes
+		borderpane.setCenter(dialogueHBox);
+		borderpane.setBottom(textParseHBox);
+		borderpane.setTop(roomNumberHBox);
+		borderpane.setRight(playerStatusVBox);	
+		borderpane.setLeft(playerHelpVBox);
 		
-		button2.setOnAction(e -> window.setScene(scene1));
-		Button button3 = new Button("Next Scene");
-
-		//Layout 2
-		GridPane layout2 = new GridPane();
-		layout2.add(label2, 0, 0);
-		layout2.add(button2, 0 ,1);
-		layout2.add(button3, 0, 1);
-		layout2.add(playerStatBox, 1, 0); //column, row
-		scene2 = new Scene(layout2, 400, 100);
-		GridPane.setHalignment(button2, HPos.LEFT);
-		GridPane.setHalignment(button3, HPos.RIGHT);
-		//GridPane.setColumnSpan(label2, 1);
-
-		Stage stage = new Stage();
-		stage.initModality(Modality.APPLICATION_MODAL); //locks stage
-		stage.setTitle("");
-		Label label3 = new Label("YOUR COMPUTER IS INFECTED WITH A VIRUS! "
-				+ "\n PLEASE SCAN YOU COMPUTER!"
-				+ "\n PLEASE TRY TO CLOSE THE OTHER SCREEN BEFORE THIS ONE!");
-		label3.setTextFill(Color.RED);
-		Group root = new Group();
-		root.getChildren().add(label3);
-		scene3 = new Scene(root, 500, 200, Color.BLACK);
-		stage.setScene(scene3);
-		button3.setOnAction(e -> stage.show());
-
-		//Display scene 1 at first
-		window.setScene(scene1);
-		window.show();
+	    //create and set scene
+		scene = new Scene(borderpane);
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
+	    
+	    textParseHandling();
 	}
 	
-	//depending on room change, changes room description
-	//TODO: create v/hboxs, add children nodes, return scene
-//	public Scene(Label roomDescription, Label playerStat){
-//		
-//	}
-	
-	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		launch(args);
 	}
 	
+	public void changeScene(Room room){
+		roomNumberLabel.setText(room.getName());
+		roomLabel.setText(room.getDescription());
+	}
+	
 	/*
-	 * Writes all assets from text files to a list.
+	 * a test example of what the text parser will look like
+	 * user presses enter key then it checks if the command is valid
+	 * 
+	 * TODO: check current room's existing exits, if its locked, and if its possible to traverse(check elicitation for each room conditions)
 	 */
+	public void textParseHandling(){
+		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
+			@Override
+			public void handle(KeyEvent key) {
+				if(key.getCode().equals(KeyCode.ENTER)){
+					if(textParse.getText().equalsIgnoreCase("east")){
+						System.out.println("Room change to: " + roomList.get(5).getName());
+						changeScene(roomList.get(5));
+						textParse.setText("");
+					}else if(textParse.getText().equalsIgnoreCase("help") || (textParse.getText().equalsIgnoreCase("h"))){
+						System.out.println("List of commands are:");
+						System.out.println("Navigation: go north, go south, go east, go west, go up, go down");
+						System.out.println("Room: look, view room");
+						textParse.setText("");
+					}else{
+						textParse.setText("");
+					}
+				}
+			}	
+		});
+	}
+	
 	public void loadList(){
 		roomList 	= resourceManager.getRoomList();
 		monsterList = resourceManager.getMonsterList();
 		puzzleList 	= resourceManager.getPuzzleList();
 		itemList	= resourceManager.getItemList();
 	}
-	
-
-	
-	public void navigateCommand(String command){
-		//TODO
-	}
-
 }
