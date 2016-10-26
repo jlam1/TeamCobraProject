@@ -2,10 +2,6 @@
 public class Monster extends Character {
 
 	private Action action;
-
-	Monster(){
-		
-	}
 	
 	/**
 	 * 
@@ -17,14 +13,19 @@ public class Monster extends Character {
 	 * @param spd
 	 * @param action
 	 */
-	Monster(String name, String description, int hp, int atk, int def, int spd, Action action){
+	Monster(String name, String description, int hp, int atk, int def, int spd, boolean dead, Action action){
 		this.name = name;
 		this.description = description;
 		this.hp = hp;
 		this.atk = atk;
 		this.def = def;
 		this.spd = spd;
+		this.dead = dead;
 		this.action = action;
+	}
+	
+	Monster(){
+		
 	}
 	
 	public Action getAction(){
@@ -33,11 +34,10 @@ public class Monster extends Character {
 
 	@Override
 	public String toString() {
-		return "Monster [name=" + name + ", hp=" + hp + ", atk=" + atk + ", spd=" + spd
-				+ ", def=" + def + ", id=" + id + ", description="
-				+ description + "]";
+		return "MONSTER\nHealth: [" + hp + "]\nAttack: [" + atk + "]\nSpeed: [" + spd + "]\nDefense: ["
+				+ def + "]";
 	}
-
+	
 	static class Action{
 		
 		private String actionName1;

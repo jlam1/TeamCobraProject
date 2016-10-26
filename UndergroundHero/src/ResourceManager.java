@@ -1,6 +1,14 @@
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -40,6 +48,7 @@ public class ResourceManager {
 				String damage = in.nextLine();
 				String defense = in.nextLine();
 				String speed = in.nextLine();
+				String dead = in.nextLine();
 				String action1 = in.nextLine();
 				String action2 = in.nextLine();
 				String action3 = in.nextLine();
@@ -49,11 +58,17 @@ public class ResourceManager {
 				int atk = Integer.parseInt(damage);
 				int def = Integer.parseInt(defense);
 				int spd = Integer.parseInt(speed);
+				boolean isDead;
+				if(dead.equalsIgnoreCase("false")){
+					isDead = false;
+				}else{
+					isDead = true;
+				}
 				
 				
 				Monster.Action skills = new Monster.Action(action1, action2, action3, action4);
 				
-				Monster newMonster = new Monster(name, description, hp, atk, def, spd, skills);
+				Monster newMonster = new Monster(name, description, hp, atk, def, spd, isDead, skills);
 				monsterList.add(newMonster);
 				
 			}
@@ -86,8 +101,16 @@ public class ResourceManager {
 				String roomNumber = in.nextLine();
 				String roomDescription = in.nextLine();
 				String roomExits = in.nextLine();
+				String locked = in.nextLine();
 				
-				Room newRoom = new Room(roomNumber, roomDescription, roomExits);
+				boolean roomLocked;
+				if(locked.equalsIgnoreCase("true")){
+					roomLocked = true;
+				}else{
+					roomLocked = false;
+				}
+				
+				Room newRoom = new Room(roomNumber, roomDescription, roomExits, roomLocked);
 				roomList.add(newRoom);
 				
 			}
@@ -183,5 +206,39 @@ public class ResourceManager {
 		writeToRoomList();
 		writeToPuzzleList();
 		writeToItemList();
+	}
+	
+	/**
+	 * Method: saveGame()
+	 * 
+	 * This method will save the game. It will throw an exception when overwriting a existing save 
+	 * file and create a new file if the file does not exist.
+	 * 
+	 * @throws Exception
+	 */
+	public static void saveGame(Serializable data, String fileName) throws Exception
+	{
+		try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get(fileName))))
+		{
+			output.writeObject(data);
+		}
+		
+	}
+	
+	/**
+	 * Method: loadGame()
+	 * 
+	 * This method will load the file. It will throw an exception when the file does 
+	 * not exist and creates a new game. it will throw an exception when the file cannot be loaded.
+	 * 
+	 * @return game
+	 * @throws Exception
+	 */
+	public static Object loadGame(String fileName) throws Exception
+	{
+		try(ObjectInputStream input = new ObjectInputStream(Files.newInputStream(Paths.get(fileName))))
+		{
+			return input.readObject();
+		}
 	}
 }

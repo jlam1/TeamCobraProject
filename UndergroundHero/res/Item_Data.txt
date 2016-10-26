@@ -13,7 +13,7 @@ EQUIP
 03
 Prototype Laser Pistol
 A sleek looking pistol, seemingly made out of titanium judging by the color. It has no visible seams or welds and fires a brilliant blue bolt of light.
-KEY ITEM
+EQUIP
 04
 Adrenaline Shot
 Heals the user 10 HP.
@@ -25,4 +25,4 @@ CONSUMABLE
 06
 Diamond Tipped Cutter
 This item allows the player to cut through ballistic glass.
-KEY ITEM
+MISC

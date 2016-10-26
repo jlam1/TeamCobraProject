@@ -5,7 +5,6 @@ public class Puzzle implements Properties{
 	private KeyItem keyAnswer;
 	private boolean solved;
 
-
 	public Puzzle(){
 		
 	}
@@ -42,11 +41,16 @@ public class Puzzle implements Properties{
 	}
 
 	@Override
+	public String toString() {
+		return "Name= " + name + "\nDesc= " + description + "\nLogicAnswer=" + logicAnswer
+				+ "\nPuzzleAnswer= " + puzzleAnswer + "\nPuzzleReward=" + puzzleReward + "\nKeyAnswer= "
+				+ keyAnswer + "\nSolved= " + solved;
+	}
+
 	public int getID() {
 		return this.id;
 	}
 
-	@Override
 	public String getName() {
 		return this.name;
 	}

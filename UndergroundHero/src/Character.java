@@ -1,8 +1,13 @@
 public abstract class Character implements Properties {
 	
-	protected int id, hp, atk, spd, def;
-	protected String name, description;
-	protected boolean dead, attacked;
+	protected int id;
+	protected int hp;
+	protected int atk;
+	protected int spd;
+	protected int def;
+	protected String name;
+	protected String description;
+	protected boolean dead;
 	
 	public int getID() {
 		return id;
@@ -35,6 +40,10 @@ public abstract class Character implements Properties {
 	public void setAtk(int atk) {
 		this.atk = atk;
 	}
+	
+	public void addAtk(int atk){
+		this.atk = this.atk + atk;
+	}
 
 	public int getSpd() {
 		return spd;
@@ -48,8 +57,12 @@ public abstract class Character implements Properties {
 		return dead;
 	}
 
-	public void setDead(boolean dead) {
-		this.dead = dead;
+	public boolean setDead(boolean dead) {
+		return this.dead = dead;
+	}
+	
+	public boolean getDead(){
+		return this.dead;
 	}
 
 	public int getDef() {
@@ -58,14 +71,6 @@ public abstract class Character implements Properties {
 
 	public void setDef(int def) {
 		this.def = def;
-	}
-
-	public boolean isAttacked() {
-		return attacked;
-	}
-
-	public void setAttacked(boolean attacked) {
-		this.attacked = attacked;
 	}
 
 	public void setDescription(String description) {
