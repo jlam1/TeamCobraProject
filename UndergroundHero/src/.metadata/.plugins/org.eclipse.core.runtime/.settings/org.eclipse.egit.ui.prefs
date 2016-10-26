@@ -1,2 +1,2 @@
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>Added testing class for possibility of adding graphics</message>\r\n</messages>
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>BattleTester Class Added (Unfinished, Player class needs errors fixed)</message>\r\n<message>Added ImageView utilities to GUITester class (Commented out)</message>\r\n<message>Added testing class for possibility of adding graphics</message>\r\n</messages>
 eclipse.preferences.version=1

@@ -1,0 +1,23 @@
+import java.util.List;
+
+public class BattleTester extends Status{
+	// TODO Create Speed comparison
+	// TODO Create Attack calculation
+	// TODO Create Defend calculation
+	// TODO Create Escape method
+	// TODO Create Heal method
+		
+	public static void main(String[] args) {
+		ResourceManager resourceManager = new ResourceManager();
+		resourceManager.loadAssetToList();
+		
+		List<Monster> monsterList = resourceManager.getMonsterList();
+		
+		String monsterName = monsterList.get(0).getName();
+		
+		System.out.println(monsterName);
+		
+		
+		
+	}
+}
