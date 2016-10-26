@@ -1,6 +1,6 @@
 public class Player extends Character {
 
-	public Player(int hp, int def, int atk, int spd) {
+	public Player(int hp, int atk, int def, int spd) {
 		this.hp = hp;
 		this.def = def;
 		this.atk = atk;
@@ -9,7 +9,7 @@ public class Player extends Character {
 
 	@Override
 	public String toString() {
-		return "Health:\t [" + hp + "/" + hp + "]\nDefense:\t [" + def + "]\nSpeed:\t [" + spd + "]\nAttack:\t [" + atk + "]";
+		return "PLAYER\nHealth:\t [" + hp + "/" + hp + "]\nDefense:\t [" + def + "]\nSpeed:\t [" + spd + "]\nAttack:\t [" + atk + "]";
 	}
 
 }

@@ -34,8 +34,8 @@ public class Monster extends Character {
 
 	@Override
 	public String toString() {
-		return "Name=" + name + "\nDesc= " + description + "\nHp= " + hp + "\nAtk= " + atk + "\nSpd= " + spd + "\nDef= "
-				+ def + "\nisDead= " + dead;
+		return "MONSTER\nHealth: [" + hp + "]\nAttack: [" + atk + "]\nSpeed: [" + spd + "]\nDefense: ["
+				+ def + "]";
 	}
 	
 	static class Action{

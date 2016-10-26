@@ -10,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //CLASS IS JUST FOR TESTING, WILL NOT INCLUDE IN FINAL PRODUCT
@@ -26,12 +25,16 @@ public class GUI extends Application
 	private List<Puzzle> puzzleList;
 	private List<Item> itemList;
 	private Player player;
+	private Monster monster;
 	private Room currentRoom;
-	private Label playerLabel, roomNumberLabel, roomLabel, helpLabel;
+	private Label playerLabel, roomNumberLabel, roomLabel, leftSideLabel;;
 	private Scene scene;
 	private BorderPane borderpane;
-	private TextField textParse;
+	private TextField textParse, battleParse;
 	private Game game;
+	private HBox textParseHBox, battleParseHBox;
+	private int monsterHP, monsterAtk, monsterSpd, playerHP, playerAtk, playerSpd;
+	private boolean monsterDead, playerDead, flee;
 
 	public static void main(String[] args)
 	{
@@ -46,7 +49,8 @@ public class GUI extends Application
 
 		//load assets and objects
 		game = new Game();
-		player = new Player(10, 1, 3, 2);
+		//hp, atk, def, spd
+		player = new Player(10, 3, 1, 2);
 		resourceManager = new ResourceManager();
 		loadAsset();
 
@@ -73,11 +77,9 @@ public class GUI extends Application
 		roomLabel.setText(currentRoom.getDescription() + "\n\n" + currentRoom.getExits());
 	}
 
-	/*
-	 * a test example of what the text parser will look like
-	 * user presses enter key then it checks if the command is valid
+	/**
+	 * @method methods takes text field input
 	 * 
-	 * TODO: check current room's existing exits, if its locked, and if its possible to traverse(check elicitation for each room conditions)
 	 */
 	public void textParseHandling(){
 		textParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -86,10 +88,8 @@ public class GUI extends Application
 				if(key.getCode().equals(KeyCode.ENTER)){
 					
 					//ROOM, TODO: add logic to monster encounters, puzzle encounters, and items
-//					double spawnChance = (Math.random() * 100);
-					String command = textParse.getText();
-					if(validDirectionInput(command)){
-						roomLogic(command);
+					if(validDirectionInput(textParse.getText())){
+						roomLogic(textParse.getText());
 						//TODO: This is where all room, puzzle, monster logic will be in
 					}
 					
@@ -98,7 +98,7 @@ public class GUI extends Application
 					}
 
 					if(textParse.getText().equalsIgnoreCase("help")){
-						helpLabel.setText(game.help());
+						leftSideLabel.setText(game.help());
 					}
 					
 					//SAVE AND LOAD
@@ -142,7 +142,6 @@ public class GUI extends Application
 
 					}
 					
-					
 					textParse.clear();
 				}
 			}
@@ -163,13 +162,16 @@ public class GUI extends Application
 		}else{
 			sleep();
 			currentRoom = nextRoom;
-			changeScene(currentRoom);
-			System.out.println("Room number: " + currentRoom.getName());
+			
+			if(roomHasMonster(currentRoom) == true){
+				sleep();
+//				battleScene(currentRoom);
+			}else{
+				sleep();
+				changeScene(currentRoom);
+				System.out.println("Room number: " + currentRoom.getName());
+			}		
 		}
-	}
-	
-	public void battleScene(){
-		//TODO: should contain battle logic when encountering a monster
 	}
 	
 	/**
@@ -207,9 +209,12 @@ public class GUI extends Application
 	 * 
 	 */
 	private void setRoomMonsters(){
-		for(int i = 2; i < roomList.size(); i++){
+		for(int i = 0; i < roomList.size(); i++){
 			
 			switch(i){
+				case 0:
+					break;
+					
 				case 1:
 					break;
 					
@@ -343,7 +348,8 @@ public class GUI extends Application
 		borderpane.setMaxWidth(750);
 
 		HBox dialogueHBox = new HBox(10);		//box for main dialogue and description of rooms, items, everything
-		HBox textParseHBox = new HBox(10);		//box for text parsing
+		textParseHBox = new HBox(10);		//box for text parsing
+		battleParseHBox = new HBox(10);
 		HBox roomNumberHBox = new HBox(10);		//box for displaying room floor-number
 		VBox playerStatusVBox = new VBox(10);	//box for character status
 		VBox playerHelpVBox = new VBox(10);	    //box for character help/inventory
@@ -354,34 +360,44 @@ public class GUI extends Application
 		textParseHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
 		roomNumberHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
 		playerHelpVBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
+		battleParseHBox.setStyle("-fx-border-style: solid inside;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
 
 		//make nodes
 		textParse = new TextField();
 		textParse.setPromptText("Enter a command");
 		textParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
 		textParse.setFocusTraversable(false);
+		
+		battleParse = new TextField();
+		battleParse.setPromptText("Enter a battle command");
+		battleParse.setPrefSize(borderpane.getMaxWidth() + 10, 35);
+		battleParse.setFocusTraversable(false);
+		
 		playerLabel = new Label(player.toString());
 		roomNumberLabel = new Label(roomList.get(1).getName());
 		roomLabel = new Label(roomList.get(1).getDescription());
-		helpLabel = new Label(game.help());
+		leftSideLabel = new Label(game.help());
+		battleParse = new TextField("");
 		
 		//set padding and dimensions for nodes
 		roomLabel.setMaxWidth(450);
 		roomLabel.setWrapText(true);
-		helpLabel.setPadding(new Insets(15));
-		helpLabel.setMaxWidth(150);
-		helpLabel.setWrapText(true);
+		leftSideLabel.setPadding(new Insets(15));
+		leftSideLabel.setMaxWidth(150);
+		leftSideLabel.setWrapText(true);
 		playerLabel.setPadding(new Insets(15));
 		roomLabel.setPadding(new Insets(15));
 		roomNumberLabel.setPadding(new Insets(10));
 		textParse.setPadding(new Insets(5));
+		battleParse.setPadding(new Insets(5));
 
 		//add label nodes to boxes
 		dialogueHBox.getChildren().add(roomLabel);
 		textParseHBox.getChildren().add(textParse);
 		roomNumberHBox.getChildren().add(roomNumberLabel);
 		playerStatusVBox.getChildren().add(playerLabel);
-		playerHelpVBox.getChildren().add(helpLabel);
+		playerHelpVBox.getChildren().add(leftSideLabel);
+		battleParseHBox.getChildren().add(battleParse);
 
 		//set the layout for all boxes
 		borderpane.setCenter(dialogueHBox);
@@ -391,6 +407,116 @@ public class GUI extends Application
 		borderpane.setLeft(playerHelpVBox);
 		
 		return borderpane;
+	}
+	
+	/**
+	 * @method Changes current scene and battles a monster based on currentRoom, exits scene when finished
+	 * @param currentRoom
+	 */
+//	private void battleScene(Room currentRoom){
+//		monster = currentRoom.getRoomMonster();
+//		String monsterName = monster.getName();
+//		String monsterDescription = monster.getDescription();
+//		monsterHP = monster.getHp();
+//		monsterAtk = monster.getAtk();
+//		monsterSpd = monster.getSpd();
+//		playerHP = player.getHp();
+//		playerAtk = player.getAtk();
+//		playerSpd = player.getSpd();
+//		monsterDead = monster.setDead(false);
+//		playerDead = player.getDead();
+//		flee = false;
+//		
+//		textParse.clear();
+//		borderpane.setBottom(battleParseHBox);
+//		roomNumberLabel.setText("Fighting: " + monsterName);
+//		roomLabel.setText(monsterDescription);
+//		leftSideLabel.setText(monster.toString());
+//			
+//		battleParse.setOnKeyPressed(new EventHandler<KeyEvent>(){
+//			@Override
+//			public void handle(KeyEvent key) {
+//				if(key.getCode().equals(KeyCode.ENTER)){
+//					
+//					if(monsterDead == false || playerDead == false || flee == false){
+//						if(battleParse.getText().equals("1")){	//ATTACK
+//							try{
+//								Thread.sleep(200);
+//								monsterHP -= playerAtk;
+//								playerHP -= monsterAtk;
+//								
+//								monster.setHp(monsterHP);
+//								player.setHp(playerHP);
+//								
+//								roomLabel.setText("You attacked " + monsterName + " for " + playerAtk + " damage!"
+//										+ "\n\n" + monsterName + " is going to attack!"
+//										+ "\n\n" + monsterName + " attacks you for " + monsterAtk + " damage!");
+//								
+//								System.out.println("Monster HP: " + monsterHP);
+//								System.out.println("Player HP: " + playerHP);
+//								
+//								if(monsterHP <= 0){
+//									monster.setDead(true);
+//									System.out.println("MONSTER DEAD");
+//								}
+//								
+//								if(playerHP <= 0){
+//									player.setDead(true);
+//									System.out.println("PLAYER DEAD");
+//								}
+//								
+//							}catch(InterruptedException e){
+//								e.printStackTrace();
+//							}
+//							
+////							battleParse.clear();
+//						}
+//						if(battleParse.getText().equals("2")){	//DEFEND
+//							
+//						}
+//						if(battleParse.getText().equals("3")){	//USE ITEM
+//							
+//						}
+//						if(battleParse.getText().equals("4")){	//FLEE
+//							if(playerSpd > monsterSpd){
+//								flee = true;
+//							}else{
+//								flee = false;
+//							}
+//						}
+//						
+//						battleParse.clear();
+//						//update changes to GUI
+//						leftSideLabel.setText(monster.toString());
+//						playerLabel.setText(player.toString());
+//						
+//					}
+//					
+//						borderpane.setBottom(textParseHBox);
+//						roomNumberLabel.setText(currentRoom.getName());
+//						roomLabel.setText(currentRoom.getDescription());
+//						leftSideLabel.setText(game.help());
+//						battleParse.clear();
+//
+//				}
+//			}
+//		});	
+//	}
+		
+	/**
+	 * @method checks if room has monster, then sets spawn rate
+	 * @param currentRoom
+	 * @return
+	 */
+	private boolean roomHasMonster(Room currentRoom){
+		String monsterName = currentRoom.getRoomMonster().getName();
+		double spawnChance = (Math.random() * 100);
+		
+		if(monsterName != null && spawnChance > 50){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	/**
@@ -430,4 +556,5 @@ public class GUI extends Application
 			
 		}
 	}
+	
 }

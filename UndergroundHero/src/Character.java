@@ -36,6 +36,10 @@ public abstract class Character implements Properties {
 	public void setAtk(int atk) {
 		this.atk = atk;
 	}
+	
+	public void addAtk(int atk){
+		this.atk = this.atk + atk;
+	}
 
 	public int getSpd() {
 		return spd;
@@ -49,8 +53,12 @@ public abstract class Character implements Properties {
 		return dead;
 	}
 
-	public void setDead(boolean dead) {
-		this.dead = dead;
+	public boolean setDead(boolean dead) {
+		return this.dead = dead;
+	}
+	
+	public boolean getDead(){
+		return this.dead;
 	}
 
 	public int getDef() {

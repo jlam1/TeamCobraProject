@@ -1,6 +1,9 @@
 import java.util.List;
 
 public class Tester1 {
+	
+	static int monsterHP, playerHP, monsterAtk, playerAtk;
+	static boolean monsterDead, playerDead;
 
 	public static void main(String[] args) {
 		
@@ -34,12 +37,64 @@ public class Tester1 {
 		puzzleList.get(0).setSolved(false);
 		System.out.println(puzzleList.get(0).isSolved());
 		
-		roomList.get(2).setRoomPuzzle(puzzleList.get(0));
-		roomList.get(2).setRoomMonster(monsterList.get(0));
+		System.out.println();
 		
-		System.out.println(roomList.get(2).getRoomPuzzle().getName());
+		roomList.get(2).setRoomPuzzle(puzzleList.get(8));
+		roomList.get(2).setRoomMonster(monsterList.get(1));
+		
+		System.out.println("Puzzle name: " + roomList.get(2).getRoomPuzzle().getName());
+		System.out.println();
+		
 		System.out.println(roomList.get(2).getRoomMonster());
 		
+		System.out.println();
+		System.out.println(roomList.get(2).getRoomMonster().getName());
+		System.out.println(roomList.get(2).getRoomMonster().getDescription());
+		System.out.println(roomList.get(2).getRoomMonster().getHp());
+		boolean isDead = roomList.get(2).getRoomMonster().setDead(false);
+		System.out.println("dead: " + isDead);
+		boolean isNotDead = roomList.get(2).getRoomMonster().setDead(true);
+		System.out.println("dead: " + isNotDead);
 		
+		System.out.println();
+		
+		Player player = new Player(10, 1, 3, 2);
+		
+		Monster monster = roomList.get(2).getRoomMonster();
+		String monsterName = monster.getName();
+		String monsterDescription = monster.getDescription();
+		monsterHP = monster.getHp();
+		monsterAtk = monster.getAtk();
+		playerHP = player.getHp();
+		playerAtk = player.getAtk();
+		monsterDead = monster.setDead(false);
+		playerDead = player.getDead();
+		boolean flee = false;
+		
+		System.out.println(monsterName);
+		battle(player, monster);
+		
+		
+		
+		
+		
+		
+	}
+	
+	static void battle(Player player, Monster monster){
+		monsterHP -= playerAtk;
+		playerHP -= monsterAtk;
+		
+		System.out.println(monsterHP);
+		System.out.println(playerHP);
+		
+		if(monsterHP <= 0){
+			monsterDead = true;
+			System.out.println("MONSTER DEAD");
+		}
+		if(playerHP <= 0){
+			playerDead = true;
+			System.out.println("PLAYER DEAD");
+		}
 	}
 }
