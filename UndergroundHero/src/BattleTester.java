@@ -3,20 +3,17 @@ import java.util.Random;
 
 public class BattleTester extends Character{
 	static Player player;
-	// TODO Create Speed comparison
-	// TODO Create Attack calculation
-	// TODO Create Defend calculation
-	// TODO Create Escape method
 	
 	public static boolean AtkCmd = false;
 	public static boolean DefCmd = false;
 	public static boolean HealCmd = false;
+	public static boolean EscCmd = false;
 	public static boolean PlayerTurn = true;
 	static Random Generator = new Random(); 
 	static int RandMon = Generator.nextInt(7)+ 1; //Randomly selects a monster from Monster_Data
+	static Random Generator2 = new Random();
+	static int RandAttack = Generator2.nextInt(3) + 1; //Randomly selects the monster's attack
 
-
-	
 	public static void main(String[] args) {
 		player = new Player(10,1,3,2);
 		ResourceManager resourceManager = new ResourceManager();
@@ -27,8 +24,7 @@ public class BattleTester extends Character{
 		int monsterHP = monsterList.get(RandMon).getHp();
 		int monsterAtk = monsterList.get(RandMon).getAtk();
 		int monsterDef = monsterList.get(RandMon).getDef();
-		int monsterSpd = monsterList.get(RandMon).getSpd();
-		
+		int monsterSpd = monsterList.get(RandMon).getSpd();		
  
 		//Heal Command - Unfinished
 		if (HealCmd == true && ConsumableItem.getCount() > 0){
@@ -59,12 +55,29 @@ public class BattleTester extends Character{
 			}
 		}
 		
-		//Defend Command - Unfinished
+		//Defend Command - UNFINISHED
 		if (DefCmd == true){
 			player.def = player.def * 2;
 			//Monster attack
 			player.def = player.def / 2;
 			DefCmd = false;
+		}
+		
+		//Escape Command - UNFINISHED
+		if (EscCmd == true){
+			// Text will say "Which direction?"
+				// if (Player runs in direction with no exit){
+					// "Can't run in that direction!"; Given another chance to act; EscCmd = false;}
+				// else if (Player runs in direction with exit and isn't being blocked && player.spd >= monsterSpd){
+					// Escape successfully into room; EscCmd = false;}
+				// else if (Player runs in direction with exit and isn't being blocked && player.spd < monsterSpd){
+					// 50% chance of escape
+						// if (Successful) {
+							// Escape successfully into room; EscCmd = false;}
+						// if (Failure) {
+							// EscCmd = false; Enemy attack;}
+				// else if (Player runs in direction with exit but is blocked{
+					// "The enemy blocks your escape!"; Given another chance to act; EscCmd = false;}
 		}
 		
 				
