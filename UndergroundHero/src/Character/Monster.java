@@ -20,7 +20,6 @@ public class Monster extends Character {
 	 */
 	
 	protected boolean isBoss;
-	private Item loot;
 	
 	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, String description){
 		super(hp, atk, spd, def);
@@ -44,18 +43,6 @@ public class Monster extends Character {
 	
 	public void setIsBoss(boolean isBoss) {
 		this.isBoss = isBoss;
-	}
-
-	public Item getLoot() {
-		return loot;
-	}
-
-	public void setLoot(Item itemLoot) {
-		this.loot = itemLoot;
-	}
-
-	public boolean isBoss() {
-		return boss;
 	}
 	
 	public void setBoss(boolean boss) {
