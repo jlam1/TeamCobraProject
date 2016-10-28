@@ -6,16 +6,9 @@ public abstract class Character implements Properties {
 	
 	protected int id, hp, atk, spd, def;
 	protected String name, description;
-<<<<<<< HEAD
+
 	protected boolean isDead;
-=======
-	protected boolean dead;
-<<<<<<< HEAD
-=======
->>>>>>> 9eae5d48af3d56d29a6beee13229a526215d04fe
-	
-	
->>>>>>> 7b579141f7e7bb636c3c0eb633b99929fa72242b
+
 	
 	public Character(int hp, int atk, int spd, int def) {
 		this.hp = hp;
@@ -24,10 +17,6 @@ public abstract class Character implements Properties {
 		this.def = def;
 		this.isDead = false;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 7b579141f7e7bb636c3c0eb633b99929fa72242b
 
 	public int getId() {
 		return id;

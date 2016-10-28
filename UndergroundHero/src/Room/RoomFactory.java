@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import Character.Monster;
 import Character.MonsterController;
-import Character.MonsterFactory;
 import Generator.ItemGenerator;
+import Generator.MonsterGenerator;
 import Generator.PuzzleGenerator;
 import Generator.RoomGenerator;
 import Item.*;
@@ -39,7 +39,7 @@ public class RoomFactory {
 	public RoomFactory() {
 		roomList = new RoomGenerator().getRoomList();
 		itemList = new ItemGenerator().getItemList();
-		monsterFactoryList = new MonsterFactory().getMonsterList();
+		monsterFactoryList = new MonsterGenerator().getMonsterList();
 		puzzleList = new PuzzleGenerator().getPuzzleList();
 	}
 
