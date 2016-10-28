@@ -8,8 +8,8 @@ public abstract class Character implements Properties {
 	protected int id, hp, atk, spd, def;
 	protected String name, description;
 	protected boolean dead;
-	protected boolean boss;
-	private Item loot;
+	
+	
 	
 	public Character(int hp, int atk, int spd, int def) {
 		this.hp = hp;
@@ -19,21 +19,6 @@ public abstract class Character implements Properties {
 		this.dead = false;
 	}
 	
-	public Item getLoot() {
-		return loot;
-	}
-
-	public void setLoot(Item itemLoot) {
-		this.loot = itemLoot;
-	}
-
-	public boolean isBoss() {
-		return boss;
-	}
-	
-	public void setBoss(boolean boss) {
-		this.boss = boss;
-	}
 
 	public int getId() {
 		return id;
