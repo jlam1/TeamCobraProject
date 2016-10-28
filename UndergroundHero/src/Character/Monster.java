@@ -4,6 +4,9 @@ import Item.Item;
 
 public class Monster extends Character {
 
+	protected boolean boss;
+	private Item loot;
+	
 	/**
 	 * 
 	 * @param name
@@ -44,6 +47,22 @@ public class Monster extends Character {
 		this.isBoss = isBoss;
 	}
 
+	public Item getLoot() {
+		return loot;
+	}
+
+	public void setLoot(Item itemLoot) {
+		this.loot = itemLoot;
+	}
+
+	public boolean isBoss() {
+		return boss;
+	}
+	
+	public void setBoss(boolean boss) {
+		this.boss = boss;
+	}
+	
 	@Override
 	public String toString() {
 		return "MONSTER\nHealth: [" + hp + "]\nAttack: [" + atk + "]\nSpeed: [" + spd + "]\nDefense: ["
