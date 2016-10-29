@@ -14,7 +14,7 @@ import Room.RoomFactory;
 
 public class SaveLoadTester
 {
-	private static int roomArrayNumber;
+	private static int roomID;
 
 	public static void main(String[] args)
 	{
@@ -49,34 +49,34 @@ public class SaveLoadTester
 				{
 					currentRoom = rooms.get(2);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 2;
+					roomID = currentRoom.getId();
 				}
 
 				else if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("west"))
 				{
 					currentRoom = rooms.get(0);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 0;
+					roomID = currentRoom.getId();
 				}
 				
 				else if (currentRoom == rooms.get(0) && text.equalsIgnoreCase("east"))
 				{
 					currentRoom = rooms.get(1);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 1;
+					roomID = currentRoom.getId();
 				}
 				
 				else if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("east"))
 				{
 					currentRoom = rooms.get(2);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 2;
+					roomID = currentRoom.getId();
 				}
 				else if (currentRoom == rooms.get(2) && text.equalsIgnoreCase("west"))
 				{
 					currentRoom = rooms.get(1);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 1;
+					roomID = currentRoom.getId();
 				}
 				else
 					System.out.println("You bumped into the wall.You lost 1 HP");
@@ -104,7 +104,7 @@ public class SaveLoadTester
 
 				//use the class saveLoadData to save values in to binary file
 				saveLoadData data = new saveLoadData();
-				data.setRoomArrayNumber(roomArrayNumber);
+				data.setRoomArrayNumber(roomID);
 				//data.setRoom(currentRoom);
 				//data.setRoomDescription(roomLabel.getText());
 				//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
