@@ -1,45 +1,44 @@
 package Tester;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import Character.Monster;
-import Character.MonsterController;
-import Character.Player;
-import Generator.*;
-import Item.*;
-import Puzzle.*;
 import Room.*;
 
 public class Tester2 {
 	
 	static Room currentRoom;
 	static Scanner in;
+	static List<Room> rf;
 
 	public static void main(String[] args) {
 		
-//		RoomController rc = new RoomController();
-//		PuzzleController pc = new PuzzleController();
-//		RoomFactory rf = new RoomFactory();
-//		ItemController ic = new ItemController();
-//		MonsterController mc = new MonsterController();
-		
-		List<Room> rf = new RoomFactory().getRoomFactoryList();
-		List<Room> r = new RoomGenerator().getRoomList();
-		
+		rf = new RoomFactory().getRoomFactoryList();
+
 		in = new Scanner(System.in);
 		
-		currentRoom = rf.get(41);
+		String input = in.nextLine();
 		
-		System.out.println(currentRoom.getId());
+		play(input);
 		
+		for(Room i : rf){
+			System.out.println(i.getId());
+			if(i.isLocked() == true)
+				System.out.println(i.isLocked());
+			if(i.getRoomPuzzle() != null)
+				System.out.println(i.getRoomPuzzle().getName());
+			if(i.getRoomMonster() != null)
+				System.out.println(i.getRoomMonster().getName());
+			if(i.getRoomItem() != null)
+				System.out.println(i.getRoomItem().getName());
+			System.out.println();
+		}
 		
 	}
 	
-	static void roomLoop(){
+	static void play(String input){
 		boolean gameRun = true;
-		String input;
+		
+		currentRoom = rf.get(1);
 		
 		while(gameRun){
 			System.out.print(">");
@@ -51,6 +50,10 @@ public class Tester2 {
 			}
 			else if(input.equalsIgnoreCase("LOOK")){
 				System.out.println(currentRoom.getName());
+				System.out.println(currentRoom.getDescription());
+				System.out.println(currentRoom.getExits());
+			}
+			else if(input.equalsIgnoreCase("EXITS")){
 				System.out.println(currentRoom.getExits());
 			}
 			else if(input.equalsIgnoreCase("QUIT")){
@@ -82,10 +85,12 @@ public class Tester2 {
 	}
 	
 	static boolean validDirectionInput(String input){
+		
 		if(input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH") || input.equalsIgnoreCase("SOUTH")){
 			return true;
 		}else{
 			return false;
 		}
 	}
+	
 }

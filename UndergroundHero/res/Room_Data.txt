@@ -57,7 +57,7 @@ false
 2-5
 A hallway that shoots lasers at anyone who tries to pass; if the player tries to exit through the East door without the Speed Boots, they are unable to and take 1 HP of damage.
 WEST, EAST
-false
+true
 2-6
 A room with four exits. The door to the east is locked tight.
 NORTH, SOUTH, WEST ,EAST

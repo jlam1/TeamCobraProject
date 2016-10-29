@@ -48,7 +48,7 @@ public abstract class Room implements Properties{
 	public void setExitMap(Map<String, Room> exitMap) {
 		this.exitMap = exitMap;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

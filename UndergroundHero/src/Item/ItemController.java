@@ -22,7 +22,7 @@ public class ItemController {
 	 * @param name
 	 * @return KeyItem
 	 */
-	public KeyItem keyItem(String name) {
+	public KeyItem key(String name) {
 		Item item;
 		KeyItem keyItem = null;
 		for(int i = 0; i < itemList.size(); i++){
@@ -43,7 +43,7 @@ public class ItemController {
 	 * @param name
 	 * @return Item
 	 */
-	public Item miscItem(String name) {
+	public Item item(String name) {
 		Item item;
 		Item miscItem = null;
 		
