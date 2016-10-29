@@ -12,8 +12,9 @@ import Game.saveLoadData;
 import Room.Room;
 import Room.RoomFactory;
 
-public class Tester5
+public class SaveLoadTester
 {
+	private static int roomArrayNumber;
 
 	public static void main(String[] args)
 	{
@@ -26,7 +27,6 @@ public class Tester5
 		//Game game;
 		Room currentRoom;
 		Room startingRoom;
-		int roomArrayNumber = 0;
 
 		/*for(Room i : rooms)
 		{
@@ -36,6 +36,7 @@ public class Tester5
 			System.out.println();
 		}*/
 		startingRoom = rooms.get(1);
+		currentRoom = startingRoom;
 		System.out.println(startingRoom.getName() + "\n" + startingRoom.getDescription());
 
 		while (true)
@@ -43,7 +44,6 @@ public class Tester5
 			Scanner scanner = new Scanner(System.in);
 			String text = scanner.nextLine();
 			System.out.println(scanner);
-			currentRoom = startingRoom;
 
 				if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("east"))
 				{
@@ -70,7 +70,7 @@ public class Tester5
 				{
 					currentRoom = rooms.get(2);
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomArrayNumber = 1;
+					roomArrayNumber = 2;
 				}
 				else if (currentRoom == rooms.get(2) && text.equalsIgnoreCase("west"))
 				{
@@ -90,7 +90,7 @@ public class Tester5
 				//use the class saveLoadData to save values in to binary file
 				saveLoadData data = new saveLoadData();
 				data.setRoomArrayNumber(roomArrayNumber);
-				data.setRoom(currentRoom);
+				//data.setRoom(currentRoom);
 				//data.setRoomDescription(roomLabel.getText());
 				//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
 				try
@@ -113,8 +113,12 @@ public class Tester5
 				try
 				{
 					saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
-					data.setRoomArrayNumber(roomArrayNumber);
-					data.setRoom(currentRoom);
+					currentRoom = rooms.get(data.getRoomArrayNumber());
+					System.out.println("Load Sucessful");
+					System.out.println();
+					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
+					
+					//data.setRoom(currentRoom);
 					//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
 
 				}
