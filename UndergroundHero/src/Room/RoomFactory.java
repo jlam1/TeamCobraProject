@@ -2,15 +2,10 @@ package Room;
 
 import java.util.ArrayList;
 
-import Character.Monster;
-import Character.MonsterController;
-import Generator.ItemGenerator;
-import Generator.MonsterGenerator;
-import Generator.PuzzleGenerator;
 import Generator.RoomGenerator;
-import Item.*;
-import Puzzle.Puzzle;
-import Puzzle.PuzzleController;
+import SearchController.ItemFinder;
+import SearchController.MonsterFinder;
+import SearchController.PuzzleFinder;
 
 /**
  * 
@@ -35,7 +30,7 @@ public class RoomFactory {
 	 * @method Sets monster in each room
 	 */
 	private void generateRoomMonster() {
-		MonsterController m = new MonsterController();
+		MonsterFinder m = new MonsterFinder();
 		
 		Room room;
 		int roomID;
@@ -90,7 +85,7 @@ public class RoomFactory {
 	 * @method Sets puzzles in each room
 	 */
 	private void generateRoomPuzzle() {
-		PuzzleController p = new PuzzleController();
+		PuzzleFinder p = new PuzzleFinder();
 		
 		Room room;
 		int roomID;
@@ -148,7 +143,7 @@ public class RoomFactory {
 	 * @method Sets item in each room
 	 */
 	private void generateRoomItem() {
-		ItemController ic = new ItemController();
+		ItemFinder ic = new ItemFinder();
 		roomList = new ArrayList<Room>();
 		
 		Room room;

@@ -1,24 +1,15 @@
 package Character;
 
 import Item.Item;
-
+/**
+ * This class is responsible for monster attributes and behavior.
+ * @author John
+ */
 public class Monster extends Character {
-
-	/**
-	 * 
-	 * @param name
-	 * @param hp
-	 * @param atk
-	 * @param def
-	 * @param spd
-	 * @param dead
-	 * @param isBoss
-	 * @param description
-	 */
 	
-	protected boolean isBoss;
+	private boolean isBoss;
 	private Item loot;
-	
+
 	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, Item loot, String description){
 		super(hp, atk, spd, def);
 		this.id = id;
@@ -43,8 +34,6 @@ public class Monster extends Character {
 	public void setIsBoss(boolean isBoss) {
 		this.isBoss = isBoss;
 	}
-
-
 	
 	@Override
 	public String toString() {

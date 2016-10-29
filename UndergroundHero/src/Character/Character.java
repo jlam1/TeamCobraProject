@@ -2,6 +2,11 @@ package Character;
 
 import Game.Properties;
 
+/**
+ * 
+ * This is an abstract class for character entities that shares a common behavior and attribute.
+ * @author John
+ */
 public abstract class Character implements Properties {
 	
 	protected int id, hp, atk, spd, def;

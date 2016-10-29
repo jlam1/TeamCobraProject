@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import Room.*;
 
-public class Tester2 {
+public class RoomTester {
 	
 	static Room currentRoom;
 	static Scanner in;

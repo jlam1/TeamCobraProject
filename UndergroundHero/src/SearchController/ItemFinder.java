@@ -1,19 +1,23 @@
-package Item;
-
+package SearchController;
+/**
+ * This class is responsible for searching Item objects by name
+ */
 import java.util.ArrayList;
 
 import Generator.ItemGenerator;
+import Item.Item;
+import Item.KeyItem;
 
 /**
  * This class is responsible for searching item attributes.
  * @author John
  *
  */
-public class ItemController {
+public class ItemFinder {
 	
 	private ArrayList<Item> itemList;
 	
-	public ItemController(){
+	public ItemFinder(){
 		itemList = new ItemGenerator().getItemList();
 	}
 

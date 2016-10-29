@@ -2,8 +2,8 @@ package Generator;
 
 import java.util.ArrayList;
 
-import Item.ItemController;
 import Puzzle.*;
+import SearchController.ItemFinder;
 
 /**
  * This class is reponsible for generating Puzzle objects
@@ -19,7 +19,7 @@ public class PuzzleGenerator {
 	 */
 	private void generatePuzzleList() {
 		
-		ItemController ic = new ItemController();
+		ItemFinder ic = new ItemFinder();
 		puzzleList = new ArrayList<Puzzle>();
 		
 		Puzzle puzzle = new PuzzleRiddle(0, "A Blood Type", 0, "ANSWER_PLACEHOLDER", "Blood sucker is a sucker for math and science, for whatever reason he has used his immortality to study and understand the world better. The Puzzler is a smart guy that likes to play with people’s minds and talk in funny ways, but don’t disregard him as he can very well attack using his cane.");

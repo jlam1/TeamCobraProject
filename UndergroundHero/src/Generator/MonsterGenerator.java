@@ -3,8 +3,7 @@ package Generator;
 import java.util.ArrayList;
 
 import Character.Monster;
-import Item.Item;
-import Item.ItemController;
+import SearchController.ItemFinder;
 
 /**
  * This class is responsible for generating Monster objects
@@ -20,7 +19,7 @@ public class MonsterGenerator {
 	 */
 	private void generateMonsterList(){
 		
-		ItemController ic = new ItemController();
+		ItemFinder ic = new ItemFinder();
 		monsterList = new ArrayList<Monster>();
 		
 		Monster mon00 = new Monster(0, "Puzzler", 				4, 4, 4, 1, true, null,						"A man with a purple suit and question marks all over this suit, a hat and cane.");
