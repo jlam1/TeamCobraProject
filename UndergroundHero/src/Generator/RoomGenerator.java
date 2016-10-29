@@ -33,6 +33,7 @@ public class RoomGenerator {
 	private void generateRoom(){
 		Scanner in = null;
 		roomList = new ArrayList<Room>();
+		int count = 0;
 
 		try{
 			
@@ -51,9 +52,11 @@ public class RoomGenerator {
 					roomLocked = false;
 				}
 				
-				Room newRoom = new RoomBasic(roomNumber, roomDescription, roomExits, roomLocked);
+				int id = count;
+				Room newRoom = new RoomBasic(id, roomNumber, roomDescription, roomExits, roomLocked);
 				roomList.add(newRoom);
 				
+				count++;
 			}
 		}catch (IOException e){
 			System.out.println("Unable to read file."); 

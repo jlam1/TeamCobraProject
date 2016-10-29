@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import Character.Monster;
 import Character.MonsterController;
-import Character.MonsterFactory;
 import Character.Player;
 import Generator.*;
 import Item.*;
@@ -16,29 +15,29 @@ import Room.*;
 public class Tester2 {
 	
 	static Room currentRoom;
+	static Scanner in;
 
 	public static void main(String[] args) {
 		
-		RoomController rc = new RoomController();
-		PuzzleController pc = new PuzzleController();
-		RoomFactory rf = new RoomFactory();
-		ItemController ic = new ItemController();
-		MonsterController mc = new MonsterController();
+//		RoomController rc = new RoomController();
+//		PuzzleController pc = new PuzzleController();
+//		RoomFactory rf = new RoomFactory();
+//		ItemController ic = new ItemController();
+//		MonsterController mc = new MonsterController();
+		
+		List<Room> rf = new RoomFactory().getRoomFactoryList();
+		List<Room> r = new RoomGenerator().getRoomList();
+		
+		in = new Scanner(System.in);
+		
+		currentRoom = rf.get(41);
+		
+		System.out.println(currentRoom.getId());
 		
 		
-		
-		List<Room> rfList = new RoomFactory().getRoomFactoryList();
-//		
-//		for(Room i : rfList){
-//			System.out.println(i.getName());
-//			System.out.println(i.getRoomPuzzle());
-//		}
-		
-		Scanner in = new Scanner(System.in);
-		
-		currentRoom = rfList.get(1);
-		rc.connectRooms();
-		
+	}
+	
+	static void roomLoop(){
 		boolean gameRun = true;
 		String input;
 		
@@ -62,9 +61,6 @@ public class Tester2 {
 			}
 			
 		}
-		
-		
-
 	}
 	
 	static void roomLogic(String direction){

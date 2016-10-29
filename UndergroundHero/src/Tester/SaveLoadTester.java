@@ -84,6 +84,21 @@ public class SaveLoadTester
 
 			//System.out.println(rooms.get(8).getDescription());
 
+				
+			if(text.equalsIgnoreCase("look"))
+			{
+				//views currentroom description
+				System.out.println("Room: [" + currentRoom.getName() + "]");
+				System.out.println(currentRoom.getDescription());
+			}
+				
+			if(text.equalsIgnoreCase("exits"))
+			{
+				//views currentroom exits
+				System.out.println("Room: [" + currentRoom.getName() + "]");
+				System.out.println(currentRoom.getExits());
+			}
+			
 			if (text.equalsIgnoreCase("save"))
 			{
 

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import Character.Monster;
-import Character.MonsterFactory;
 import Character.Player;
+import Generator.MonsterGenerator;
 import Item.ConsumableItem;
 
 public class BattleTester{
@@ -23,7 +23,7 @@ public class BattleTester{
 
 	public static void main(String[] args) {
 		player = new Player(10,1,3,2);	
-		List<Monster> monsterList = new MonsterFactory().getMonsterList();
+		List<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		String monsterName = monsterList.get(RandMon).getName();
 		String monsterDesc = monsterList.get(RandMon).getDescription();
 		int monsterHP = monsterList.get(RandMon).getHp();

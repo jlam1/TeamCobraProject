@@ -164,7 +164,6 @@ public class GUI extends Application
 		if(nextRoom == null){
 			roomLabel.setText("Theres no exit that way, try another direction.");
 		}else if(nextRoom.isLocked() == true){
-			sleep();
 			roomLabel.setText(currentRoom.getDescription() + "\n\n\nDoor is locked.");
 		}else{
 			currentRoom = nextRoom;
@@ -548,17 +547,6 @@ public class GUI extends Application
 	 */
 	private Puzzle puzzle(int index){
 		return puzzleList.get(index);
-	}
-	
-	/**
-	 * @method A simple thread sleep method
-	 */
-	private void sleep(){
-		try{
-			Thread.sleep(140);
-		}catch(InterruptedException e){
-			
-		}
 	}
 	
 }
