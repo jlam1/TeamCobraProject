@@ -1,7 +1,11 @@
 package Game;
 import java.util.ArrayList;
+import java.util.Map;
 
+import Character.Monster;
+import Character.Player;
 import Item.Item;
+import Room.Room;
 
 /**
  * Class name: saveLoadData.java
@@ -15,70 +19,37 @@ public class saveLoadData implements java.io.Serializable
 {
 
 	private static final long serialVersionUID = 1L;
-	
-	//will add more once game comes near completion
-	private int hp;
-	private int attack;
-	private int speed;
-	private int def;
-	private String roomNumber;
-	private String roomDescription;
+	private Player player;
+	private Monster monster;
 	private ArrayList<Item> item;
+	private int roomArrayNumber;
 	/**
-	 * @return the hp
+	 * @return the player
 	 */
-	public int getHp()
+	public Player getPlayer()
 	{
-		return hp;
+		return player;
 	}
 	/**
-	 * @param hp the hp to set
+	 * @param player the player to set
 	 */
-	public void setHp(int hp)
+	public void setPlayer(Player player)
 	{
-		this.hp = hp;
+		this.player = player;
 	}
 	/**
-	 * @return the attack
+	 * @return the monster
 	 */
-	public int getAttack()
+	public Monster getMonster()
 	{
-		return attack;
+		return monster;
 	}
 	/**
-	 * @param attack the attack to set
+	 * @param monster the monster to set
 	 */
-	public void setAttack(int attack)
+	public void setMonster(Monster monster)
 	{
-		this.attack = attack;
-	}
-	/**
-	 * @return the speed
-	 */
-	public int getSpeed()
-	{
-		return speed;
-	}
-	/**
-	 * @param speed the speed to set
-	 */
-	public void setSpeed(int speed)
-	{
-		this.speed = speed;
-	}
-	/**
-	 * @return the def
-	 */
-	public int getDef()
-	{
-		return def;
-	}
-	/**
-	 * @param def the def to set
-	 */
-	public void setDef(int def)
-	{
-		this.def = def;
+		this.monster = monster;
 	}
 	/**
 	 * @return the item
@@ -95,32 +66,22 @@ public class saveLoadData implements java.io.Serializable
 		this.item = item;
 	}
 	/**
-	 * @return the roomNumber
+	 * @return the roomArrayNumber
 	 */
-	public String getRoomNumber()
+	public int getRoomArrayNumber()
 	{
-		return roomNumber;
+		return roomArrayNumber;
 	}
 	/**
-	 * @param roomNumber the roomNumber to set
+	 * @param roomArrayNumber the roomArrayNumber to set
 	 */
-	public void setRoomNumber(String roomNumber)
+	public void setRoomArrayNumber(int roomArrayNumber)
 	{
-		this.roomNumber = roomNumber;
-	}
-	/**
-	 * @return the roomDescription
-	 */
-	public String getRoomDescription()
-	{
-		return roomDescription;
-	}
-	/**
-	 * @param roomDescription the roomDescription to set
-	 */
-	public void setRoomDescription(String roomDescription)
-	{
-		this.roomDescription = roomDescription;
+		this.roomArrayNumber = roomArrayNumber;
 	}
 	
+
+	//will add more once game comes near completion
+	
 }
+	
