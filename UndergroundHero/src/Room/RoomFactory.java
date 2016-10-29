@@ -30,7 +30,7 @@ public class RoomFactory {
 	 * @method Sets monster in each room
 	 */
 	private void generateRoomMonster() {
-		MonsterFinder m = new MonsterFinder();
+		MonsterFinder search = new MonsterFinder();
 		
 		Room room;
 		int roomID;
@@ -41,35 +41,35 @@ public class RoomFactory {
 			roomID = room.getId();
 			
 			if(roomID == 8){
-				room.setRoomMonster(m.monster("Puzzler"));
+				room.setRoomMonster(search.monster("Puzzler"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 18){
-				room.setRoomMonster(m.monster("Pogo"));
+				room.setRoomMonster(search.monster("Pogo"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 25){
-				room.setRoomMonster(m.monster("Giant Bull Shark"));
+				room.setRoomMonster(search.monster("Giant Bull Shark"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 28){
-				room.setRoomMonster(m.monster("Giant Robotic Sentry"));
+				room.setRoomMonster(search.monster("Giant Robotic Sentry"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 40){
-				room.setRoomMonster(m.monster("Quinn Har"));
+				room.setRoomMonster(search.monster("Quinn Har"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 41){
-				room.setRoomMonster(m.monster("Joe Ker"));
+				room.setRoomMonster(search.monster("Joe Ker"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID >= 10 && roomID <= 17){					//rooms 10 - 17 only
-				room.setRoomMonster(m.monster("Hula Hooper"));		
+				room.setRoomMonster(search.monster("Hula Hooper"));		
 				roomFactoryList.add(room);
 			}
 			else if(roomID >= 21 && roomID <= 41 && roomID != 38 && roomID != 40){
-				room.setRoomMonster(m.monster("Wild Hyena"));		//rooms 21 - 41 (except 38 and 40)
+				room.setRoomMonster(search.monster("Wild Hyena"));		//rooms 21 - 41 (except 38 and 40)
 				roomFactoryList.add(room);
 			}
 			else{
@@ -85,7 +85,7 @@ public class RoomFactory {
 	 * @method Sets puzzles in each room
 	 */
 	private void generateRoomPuzzle() {
-		PuzzleFinder p = new PuzzleFinder();
+		PuzzleFinder search = new PuzzleFinder();
 		
 		Room room;
 		int roomID;
@@ -96,39 +96,39 @@ public class RoomFactory {
 			roomID = room.getId();
 			
 			if(roomID == 8){
-				room.setRoomPuzzle(p.puzzle("A Blood Type"));
+				room.setRoomPuzzle(search.puzzle("A Blood Type"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 9){
-				room.setRoomPuzzle(p.puzzle("Painting"));
+				room.setRoomPuzzle(search.puzzle("Painting"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 12){
-				room.setRoomPuzzle(p.puzzle("The Animal Statues"));
+				room.setRoomPuzzle(search.puzzle("The Animal Statues"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 14){
-				room.setRoomPuzzle(p.puzzle("The Laser Hallway"));
+				room.setRoomPuzzle(search.puzzle("The Laser Hallway"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 16){
-				room.setRoomPuzzle(p.puzzle("The Colored Buttons"));
+				room.setRoomPuzzle(search.puzzle("The Colored Buttons"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 21){
-				room.setRoomPuzzle(p.puzzle("Security Bypass"));
+				room.setRoomPuzzle(search.puzzle("Security Bypass"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 27){
-				room.setRoomPuzzle(p.puzzle("Jump The Chasm"));
+				room.setRoomPuzzle(search.puzzle("Jump The Chasm"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 33){
-				room.setRoomPuzzle(p.puzzle("Riddle 1"));
+				room.setRoomPuzzle(search.puzzle("Riddle 1"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 40){
-				room.setRoomPuzzle(p.puzzle("Riddle 2"));
+				room.setRoomPuzzle(search.puzzle("Riddle 2"));
 				roomFactoryList.add(room);
 			}
 			else{
@@ -143,7 +143,7 @@ public class RoomFactory {
 	 * @method Sets item in each room
 	 */
 	private void generateRoomItem() {
-		ItemFinder ic = new ItemFinder();
+		ItemFinder search = new ItemFinder();
 		roomList = new ArrayList<Room>();
 		
 		Room room;
@@ -155,11 +155,11 @@ public class RoomFactory {
 			roomID = room.getId();
 			
 			if(roomID == 16){
-				room.setRoomItem(ic.item("Chain Mail"));
+				room.setRoomItem(search.item("Chain Mail"));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 11 || roomID == 17){
-				room.setRoomItem(ic.item("Adrenaline Shot"));
+				room.setRoomItem(search.item("Adrenaline Shot"));
 				roomFactoryList.add(room);
 			}
 			else{

@@ -7,7 +7,7 @@ import SearchController.ItemFinder;
 
 /**
  * This class is responsible for generating Monster objects
- * @author John
+ * @author John, Matt
  *
  */
 public class MonsterGenerator {

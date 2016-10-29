@@ -2,7 +2,11 @@ package Item;
 import java.util.List;
 
 import Game.Properties;
-
+/**
+ * This abstract class is responsible for providing common attributes and behaviors for each item object type.
+ * @author John
+ *
+ */
 public abstract class Item implements Properties{
 
 	private int id;
@@ -34,38 +38,6 @@ public abstract class Item implements Properties{
 
 	public String getType() {
 		return type;
-	}
-
-	public int getWeaponAtk() {
-		return weaponAtk;
-	}
-
-	public void setWeaponAtk(int weaponAtk) {
-		this.weaponAtk = weaponAtk;
-	}
-
-	public int getArmorDef() {
-		return armorDef;
-	}
-
-	public void setArmorDef(int armorDef) {
-		this.armorDef = armorDef;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-	
-	public void countItem() {
-		this.count++;
-	}
-	
-	public void useItem() {
-		this.count--;
 	}
 
 	@Override

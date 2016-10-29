@@ -8,11 +8,11 @@ public class RoomTester {
 	
 	static Room currentRoom;
 	static Scanner in;
-	static List<Room> rf;
+	static List<Room> factoryList;
 
 	public static void main(String[] args) {
 		
-		rf = new RoomFactory().getRoomFactoryList();
+		factoryList = new RoomFactory().getRoomFactoryList();
 
 		in = new Scanner(System.in);
 		
@@ -20,7 +20,7 @@ public class RoomTester {
 		
 		play(input);
 		
-		for(Room i : rf){
+		for(Room i : factoryList){
 			System.out.println(i.getId());
 			if(i.isLocked() == true)
 				System.out.println(i.isLocked());
@@ -38,7 +38,7 @@ public class RoomTester {
 	static void play(String input){
 		boolean gameRun = true;
 		
-		currentRoom = rf.get(1);
+		currentRoom = factoryList.get(1);
 		
 		while(gameRun){
 			System.out.print(">");

@@ -3,8 +3,8 @@ package Item;
 /**
  * 
  * This class contains method and attributes of items that can be consumed
- * 
  * Purpose: The purpose is to increase and decrease the amount consumable items.
+ * @author King, John
  */
 public class ConsumableItem extends Item
 {
@@ -15,6 +15,19 @@ public class ConsumableItem extends Item
 		super(id, name, type, description);
 		this.count = count;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+//	public void useItem(ConsumableItem item) {
+//		if(item.getCount() > 0)
+//			this.count--;
+//	}
 	
 	@Override
 	public String toString() 

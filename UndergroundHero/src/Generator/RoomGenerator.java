@@ -28,7 +28,7 @@ public class RoomGenerator {
 	}
 	
 	/**
-	 * @method Reads in a text file, creates Room object and adds them to an ArrayList
+	 * @method Reads in a text file located in res folder and creates Room object and adds them to an ArrayList
 	 */
 	private void generateRoom(){
 		Scanner in = null;
