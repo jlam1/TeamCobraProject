@@ -1,110 +1,85 @@
 package Tester;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import org.omg.CORBA.Current;
-
-import Character.Player;
-import Game.Game;
 import Game.ResourceManager;
 import Game.saveLoadData;
-import Room.Room;
-import Room.RoomFactory;
+import Room.*;
 
 public class SaveLoadTester
 {
-	private static int roomID;
+
+	static Room currentRoom;
+	static Scanner in;
+	static List<Room> factoryList;
 
 	public static void main(String[] args)
 	{
 
-		RoomFactory factory = new RoomFactory();
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		rooms = factory.getRoomFactoryList();
-		//Player player;
-		//Room room;
-		//Game game;
-		Room currentRoom;
-		Room startingRoom;
+		factoryList = new RoomFactory().getRoomFactoryList();
 
-		/*for(Room i : rooms)
+		in = new Scanner(System.in);
+		String input = in.nextLine();
+
+		
+		play(input);
+
+		for (Room i : factoryList)
 		{
-			System.out.println(i.getName());
-			System.out.println(i.getDescription());
-			System.out.println(i.getRoomPuzzle());
+			System.out.println(i.getId());
+			if (i.isLocked() == true)
+				System.out.println(i.isLocked());
+			if (i.getRoomPuzzle() != null)
+				System.out.println(i.getRoomPuzzle().getName());
+			if (i.getRoomMonster() != null)
+				System.out.println(i.getRoomMonster().getName());
+			if (i.getRoomItem() != null)
+				System.out.println(i.getRoomItem().getName());
 			System.out.println();
-		}*/
-		startingRoom = rooms.get(1);
-		currentRoom = startingRoom;
-		System.out.println(startingRoom.getName() + "\n" + startingRoom.getDescription());
+		}
 
-		while (true)
+	}
+
+	static void play(String input)
+	{
+		boolean gameRun = true;
+		currentRoom = factoryList.get(1);
+		System.out.println(currentRoom.getName());
+		System.out.println(currentRoom.getDescription());
+		System.out.println(currentRoom.getExits());
+		while (gameRun)
 		{
-			Scanner scanner = new Scanner(System.in);
-			String text = scanner.nextLine();
-			System.out.println(scanner);
+			System.out.print(">");
 
-				if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("east"))
-				{
-					currentRoom = rooms.get(2);
-					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomID = currentRoom.getId();
-				}
+			input = in.nextLine();
 
-				else if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("west"))
-				{
-					currentRoom = rooms.get(0);
-					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomID = currentRoom.getId();
-				}
-				
-				else if (currentRoom == rooms.get(0) && text.equalsIgnoreCase("east"))
-				{
-					currentRoom = rooms.get(1);
-					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomID = currentRoom.getId();
-				}
-				
-				else if (currentRoom == rooms.get(1) && text.equalsIgnoreCase("east"))
-				{
-					currentRoom = rooms.get(2);
-					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomID = currentRoom.getId();
-				}
-				else if (currentRoom == rooms.get(2) && text.equalsIgnoreCase("west"))
-				{
-					currentRoom = rooms.get(1);
-					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					roomID = currentRoom.getId();
-				}
-				else
-					System.out.println("You bumped into the wall.You lost 1 HP");
-			
-
-			//System.out.println(rooms.get(8).getDescription());
-
-				
-			if(text.equalsIgnoreCase("look"))
+			if (validDirectionInput(input))
 			{
-				//views currentroom description
-				System.out.println("Room: [" + currentRoom.getName() + "]");
-				System.out.println(currentRoom.getDescription());
+				roomLogic(input);
 			}
-				
-			if(text.equalsIgnoreCase("exits"))
+			else if (input.equalsIgnoreCase("LOOK"))
 			{
-				//views currentroom exits
-				System.out.println("Room: [" + currentRoom.getName() + "]");
+				System.out.println(currentRoom.getName());
+				System.out.println(currentRoom.getDescription());
 				System.out.println(currentRoom.getExits());
 			}
-			
-			if (text.equalsIgnoreCase("save"))
+			else if (input.equalsIgnoreCase("EXITS"))
+			{
+				System.out.println(currentRoom.getExits());
+			}
+			else if (input.equalsIgnoreCase("QUIT"))
+			{
+				gameRun = false;
+			}
+			//TODO: need to save player stats, items the player is carrying, booleans of monsters and puzzles
+			else if (input.equalsIgnoreCase("save"))
 			{
 
 				//use the class saveLoadData to save values in to binary file
 				saveLoadData data = new saveLoadData();
-				data.setRoomArrayNumber(roomID);
+				data.setRoomArrayNumber(currentRoom.getId());
+				System.out.println(currentRoom.getId());
 				//data.setRoom(currentRoom);
 				//data.setRoomDescription(roomLabel.getText());
 				//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
@@ -121,18 +96,17 @@ public class SaveLoadTester
 				}
 			}
 
-			if (text.equalsIgnoreCase("load"))
+			else if (input.equalsIgnoreCase("load"))
 			{
 				//use the class saveLoadData to load values in the binary file
-
 				try
 				{
 					saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
-					currentRoom = rooms.get(data.getRoomArrayNumber());
+					currentRoom = factoryList.get(data.getRoomArrayNumber());
 					System.out.println("Load Sucessful");
 					System.out.println();
 					System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-					
+
 					//data.setRoom(currentRoom);
 					//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
 
@@ -142,9 +116,53 @@ public class SaveLoadTester
 					System.out.println("error loading");
 					e.printStackTrace();
 				}
-
 			}
 
+			else if(input.equalsIgnoreCase("help"))
+			{
+				System.out.println("NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ");
+			}
+			else
+			{
+				System.out.println("Invalid Input");
+			}
+
+		}
+	}
+
+	static void roomLogic(String direction)
+	{
+		Room nextRoom = currentRoom.nextRoom(direction);
+
+		if (nextRoom == null)
+		{
+			System.out.println("Theres no exit that way, try another direction.");
+		}
+		else if (nextRoom.isLocked() == true)
+		{
+			System.out.println(currentRoom.getDescription() + "\n\n\nDoor is locked.");
+		}
+		else
+		{
+
+			currentRoom = nextRoom;
+			System.out.println("Room number: " + currentRoom.getName());
+			System.out.println(currentRoom.getDescription());
+
+		}
+	}
+
+	static boolean validDirectionInput(String input)
+	{
+
+		if (input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH")
+				|| input.equalsIgnoreCase("SOUTH"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }
