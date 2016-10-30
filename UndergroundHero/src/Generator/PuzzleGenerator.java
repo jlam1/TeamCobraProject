@@ -28,7 +28,7 @@ public class PuzzleGenerator {
 		puzzle = new PuzzleRiddle		(1, "Painting", 0, "MONA LISA", "The player walks into room 1-9, the player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?");
 		puzzleList.add(puzzle);
 
-		puzzle = new PuzzleRiddle		(2, "The Animal Statues", 0, "1234", "There are four animal statues in rooms 2-3 and 2-4. In 2-4, they are on the South wall and cannot be moved and are, in order from East to West (which will appear to be left to right to the player): Duck, Giraffe, Elephant, Cow. In room 2-3, they are on the North wall, the order is randomized (but cannot be randomized to the puzzle’s solution), and can be moved.");
+		puzzle = new PuzzleRiddle		(2, "The Animal Statues", 0, "4213", "There are four animal statues in rooms 2-3 and 2-4. In 2-4, they are on the South wall and cannot be moved and are, in order from East to West (which will appear to be left to right to the player): Duck, Giraffe, Elephant, Cow. In room 2-3, they are on the North wall, the order is randomized (but cannot be randomized to the puzzle’s solution), and can be moved.");
 		puzzleList.add(puzzle);
 		
 		puzzle = new PuzzleKey			(3, "The Laser Hallway", 1, ic.key("Speed Boots"), "There is a hallway that shoots lasers at anyone who tries to pass in room 2-5. If the player tries to pass without the Speed Boots, then they are unable to and take 1 HP of damage.");

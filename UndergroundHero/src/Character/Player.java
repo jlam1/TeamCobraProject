@@ -21,7 +21,11 @@ public class Player extends Character {
 		inventory = new ArrayList<Item>();
 		equipment = new ArrayList<Item>();
 	}
-
+	
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+	
 	/**
 	 * @method Player command that prints out a list of Item objects in console.
 	 */

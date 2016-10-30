@@ -6,7 +6,7 @@ import Character.Monster;
 import Generator.MonsterGenerator;
 
 /**
- * This class will be responsible searching monster objects by name
+ * This class will be responsible searching monster objects by name and returns monster objects.
  * @author John
  *
  */

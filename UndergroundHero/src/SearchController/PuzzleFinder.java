@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Generator.PuzzleGenerator;
 import Puzzle.Puzzle;
 /**
- * This class is responsible for searching puzzle objects by name
+ * This class is responsible for searching puzzle objects by name.
  * @author John
  *
  */

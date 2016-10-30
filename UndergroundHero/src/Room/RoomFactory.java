@@ -64,16 +64,16 @@ public class RoomFactory {
 				room.setRoomMonster(search.monster("Joe Ker"));
 				roomFactoryList.add(room);
 			}
-			else if(roomID >= 10 && roomID <= 17){					//rooms 10 - 17 only
+			else if(roomID >= 10 && roomID <= 17){
 				room.setRoomMonster(search.monster("Hula Hooper"));		
 				roomFactoryList.add(room);
 			}
 			else if(roomID >= 21 && roomID <= 41 && roomID != 38 && roomID != 40){
-				room.setRoomMonster(search.monster("Wild Hyena"));		//rooms 21 - 41 (except 38 and 40)
+				room.setRoomMonster(search.monster("Wild Hyena"));
 				roomFactoryList.add(room);
 			}
 			else{
-				room.setRoomPuzzle(null);							//as of now, floors 1 and 3 are empty
+				room.setRoomPuzzle(null);
 				roomFactoryList.add(room);
 			}
 		}

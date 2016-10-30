@@ -9,7 +9,7 @@ import Item.Item;
 import Item.KeyItem;
 
 /**
- * This class is responsible for searching item attributes.
+ * This class is responsible for searching item object by String and returns that item object.
  * @author John
  *
  */
