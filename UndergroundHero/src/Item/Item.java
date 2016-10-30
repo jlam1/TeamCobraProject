@@ -1,13 +1,15 @@
 package Item;
 
+import java.io.Serializable;
+
 import Game.Properties;
 /**
  * This abstract class is responsible for providing common attributes and behaviors for each item object type.
  * @author John
  *
  */
-public abstract class Item implements Properties{
-
+public abstract class Item implements Properties, Serializable{
+	private static final long serialVersionUID = -3361235989041007891L;
 	private int id;
 	private String name, type, description;
 	

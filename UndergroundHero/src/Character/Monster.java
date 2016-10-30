@@ -1,12 +1,14 @@
 package Character;
 
+import java.io.Serializable;
+
 import Item.Item;
 /**
  * This class is responsible for monster attributes and behavior.
  * @author John
  */
-public class Monster extends Character {
-	
+public class Monster extends Character implements Serializable{
+	private static final long serialVersionUID = -8132473599872303086L;
 	private boolean isBoss;
 	private Item loot;
 	private String description;

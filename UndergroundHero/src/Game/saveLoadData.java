@@ -1,4 +1,5 @@
 package Game;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,15 @@ import Room.Room;
  */
 
 
-public class saveLoadData implements java.io.Serializable
+public class saveLoadData implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
 	private Player player;
+	private int atk;
+	private int def;
+	private int speed;
+	private int hp;
 	private Monster monster;
 	private List<Item> item;
 	private List<Item> equipment;
@@ -40,6 +45,62 @@ public class saveLoadData implements java.io.Serializable
 	public void setPlayer(Player player)
 	{
 		this.player = player;
+	}
+	/**
+	 * @return the atk
+	 */
+	public int getAtk()
+	{
+		return atk;
+	}
+	/**
+	 * @param atk the atk to set
+	 */
+	public void setAtk(int atk)
+	{
+		this.atk = atk;
+	}
+	/**
+	 * @return the def
+	 */
+	public int getDef()
+	{
+		return def;
+	}
+	/**
+	 * @param def the def to set
+	 */
+	public void setDef(int def)
+	{
+		this.def = def;
+	}
+	/**
+	 * @return the speed
+	 */
+	public int getSpeed()
+	{
+		return speed;
+	}
+	/**
+	 * @param speed the speed to set
+	 */
+	public void setSpeed(int speed)
+	{
+		this.speed = speed;
+	}
+	/**
+	 * @return the hp
+	 */
+	public int getHp()
+	{
+		return hp;
+	}
+	/**
+	 * @param hp the hp to set
+	 */
+	public void setHp(int hp)
+	{
+		this.hp = hp;
 	}
 	/**
 	 * @return the monster
@@ -63,11 +124,11 @@ public class saveLoadData implements java.io.Serializable
 		return item;
 	}
 	/**
-	 * @param itemList the item to set
+	 * @param item the item to set
 	 */
-	public void setItem(List<Item> itemList)
+	public void setItem(List<Item> item)
 	{
-		this.item = itemList;
+		this.item = item;
 	}
 	/**
 	 * @return the equipment
@@ -77,11 +138,11 @@ public class saveLoadData implements java.io.Serializable
 		return equipment;
 	}
 	/**
-	 * @param equipmentList the equipment to set
+	 * @param equipment the equipment to set
 	 */
-	public void setEquipment(List<Item> equipmentList)
+	public void setEquipment(List<Item> equipment)
 	{
-		this.equipment = equipmentList;
+		this.equipment = equipment;
 	}
 	/**
 	 * @return the itemArray

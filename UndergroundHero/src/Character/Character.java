@@ -1,5 +1,7 @@
 package Character;
 
+import java.io.Serializable;
+
 import Game.Properties;
 
 /**
@@ -7,8 +9,12 @@ import Game.Properties;
  * This is an abstract class for character entities that shares a common behavior and attribute.
  * @author John, Kyle
  */
-public abstract class Character implements Properties {
+public abstract class Character implements Properties, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5150844314095683846L;
 	protected int id, hp, atk, spd, def;
 	protected String name;
 	protected boolean isDead;

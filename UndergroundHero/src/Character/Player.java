@@ -1,5 +1,6 @@
 package Character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Item.Armor;
@@ -11,8 +12,11 @@ import Item.Weapon;
  * @author John
  *
  */
-public class Player extends Character {
-	
+public class Player extends Character implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8154838844933306541L;
 	private ArrayList<Item> inventory;
 	private ArrayList<Item> equipment;
 

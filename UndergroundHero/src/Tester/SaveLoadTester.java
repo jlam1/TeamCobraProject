@@ -1,5 +1,6 @@
 package Tester;
 
+import java.io.InvalidClassException;
 import java.nio.file.NoSuchFileException;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -16,8 +17,12 @@ import Room.*;
 public class SaveLoadTester {
 	
 	static Room currentRoom;
+	static Item inventory;
+	static Item equipment;
 	static List<Room> factoryList;
 	static List<Item> itemList;
+	static List<Item> inventoryList;
+	static List<Item> equipmentList;
 	static Player player;
 	static Scanner input;
 	static int bagIndex;
@@ -94,7 +99,7 @@ public class SaveLoadTester {
 				{
 					load();
 				}
-				catch (NoSuchFileException e)
+				catch (NoSuchFileException | InvalidClassException e)
 				{
 					System.out.println("There is currently no save file.");
 					e.printStackTrace();
@@ -155,6 +160,16 @@ public class SaveLoadTester {
 			System.out.print(">>");
 			bagIndex = input.nextInt();
 			player.equip(bagIndex);
+			//equipment = itemList.get(bagIndex);
+			
+			/*try{
+			equipmentList.add(equipment);
+			System.out.println(equipmentList);
+			}
+			catch(NullPointerException npe)
+			{
+				System.out.println("Error equiping");
+			}*/
 			input.nextLine();
 		}
 		catch(InputMismatchException e){
@@ -167,20 +182,24 @@ public class SaveLoadTester {
 		saveLoadData data = new saveLoadData();
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
-		//Sdata.setPlayer(player);
+		data.setPlayer(player);
+		/*data.setAtk(player.getAtk());
+		data.setDef(player.getDef());
+		data.setHp(player.getHp());
+		data.setSpeed(player.getSpd());*/
+		
 		/*for(Item e : equipmentList)
 		{
 			equipmentList.add(e);
-		}
-		data.setEquipment(equipmentList);
-		System.out.println(equipmentList);*/
+		}*/
+		//data.setEquipment(equipmentList);
+		//System.out.println(equipmentList);
 		
 		/*for(Item i : itemList)
 		{
 			itemList.add(i);
 		}
-			data.setItem(itemList);
-*/
+			data.setItem(itemList);*/
 		//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
 		try
 		{
@@ -196,7 +215,7 @@ public class SaveLoadTester {
 
 	}
 	
-	static void load() throws NoSuchFileException{
+	static void load() throws NoSuchFileException, InvalidClassException{
 		//use the class saveLoadData to load values in the binary file
 		try
 		{
@@ -205,10 +224,14 @@ public class SaveLoadTester {
 			System.out.println("Load Sucessful");
 			System.out.println();
 			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-			data.getEquipment();
-			data.getItem();
-
-			//data.setRoom(currentRoom);
+			data.getPlayer();
+			/*data.getAtk();
+			data.getDef();
+			data.getHp();
+			data.getSpeed();
+			data.getItemArray();
+			data.getEquipmentArray();*/
+			
 			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
 
 		}
