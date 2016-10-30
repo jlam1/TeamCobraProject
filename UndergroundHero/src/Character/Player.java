@@ -39,7 +39,7 @@ public class Player extends Character {
 	}
 
 	/**
-	 * Player command that adds item to ArrayList<Item> inventory
+	 * @method Player command that adds item to ArrayList<Item> inventory
 	 * @param item
 	 */
 	public void pickUp(Item item) {
@@ -48,7 +48,8 @@ public class Player extends Character {
 	}
 	
 	/**
-	 * Player command that can only initiate when item type is a Consumable.
+	 * @method Player command that can only initiate when item type is a Consumable.
+	 * @throws IndexOutOfBoundsException whenever Item<ConsumableItem> is called outside of List<Item> inventory's size index.
 	 * @param index
 	 */
 	public void useItem(int index) {
@@ -58,7 +59,7 @@ public class Player extends Character {
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
 			}
 			else{
-				System.out.println("[" + this.inventory.get(index).getName() + "] is not an EQUIPPABLE item.\n");
+				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
 			}
 		}
 		catch(IndexOutOfBoundsException e){
@@ -66,6 +67,11 @@ public class Player extends Character {
 		}
 	}
 	
+	/**
+	 * @method Player command that can only initiate when item type is either a Weapon or Armor. After initiating, set and increase/decrease player's attack or defense.
+	 * @throws IndexOutOfBoundsException whenever Item<Weapon> or Item<Armor> is called outside of List<Item> inventory's size index.
+	 * @param index
+	 */
 	public void equip(int index){
 		try{
 			if(this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")){
@@ -73,7 +79,7 @@ public class Player extends Character {
 				this.inventory.remove(index);
 				this.setAtk(this.atk + weapon.getWeaponAtk());
 				
-				System.out.println("You equipped [" + this.inventory.get(index).getName() + "].");
+				System.out.println("You equipped [" + weapon.getName() + "].");
 				System.out.println("Your attack has increased by [" + weapon.getWeaponAtk() + "].\n");
 			}
 			else if(this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")){
@@ -81,11 +87,11 @@ public class Player extends Character {
 				this.inventory.remove(index);
 				this.setDef(this.atk + armor.getArmorDef());
 				
-				System.out.println("You equipped [" + this.inventory.get(index).getName() + "].");
+				System.out.println("You equipped [" + armor.getName() + "].");
 				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
 			}
 			else{
-				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
+				System.out.println("[" + this.inventory.get(index).getName() + "] is not an EQUIPPABLE item.\n");
 			}
 		}
 		catch(IndexOutOfBoundsException e){
