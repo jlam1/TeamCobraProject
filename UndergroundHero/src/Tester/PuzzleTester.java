@@ -16,7 +16,7 @@ public class PuzzleTester {
 		PuzzleLogic p = new PuzzleLogic();
 		boolean gameRun = true;
 		
-		Room currentRoom = rooms.get(14);
+		Room currentRoom = rooms.get(12);
 		
 		Scanner input = new Scanner(System.in);
 		String command;

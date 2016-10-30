@@ -3,6 +3,8 @@ package LogicController;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import Character.Player;
 import Item.Item;
 import Item.KeyItem;
@@ -14,7 +16,7 @@ import Room.*;
  * @author John
  *
  */
-public class PuzzleLogic {
+public class PuzzleLogicBackUp {
 	
 //	private ArrayList<Room> roomList;
 //	
@@ -56,7 +58,7 @@ public class PuzzleLogic {
 			//check user's choice (Y/N)
 			if(userInput.equalsIgnoreCase("Y")) {
 				System.out.println("Initiating puzzle...\n");
-				String puzzleDesc = puzzle.getDescription();
+				String puzzleDesc = wrapText(puzzle.getDescription());
 				KeyItem puzzleKeyItem = puzzle.getKeyItem();
 				String riddleAnswer = puzzle.getRiddleAnswer();
 				
@@ -170,9 +172,9 @@ public class PuzzleLogic {
 		return puzzleSolved;
 	}
 
-//	private String wrapText(String longDescription){
-//		String shortDesc = WordUtils.wrap(longDescription, 50);
-//		return shortDesc;
-//	}
+	private String wrapText(String longDescription){
+		String shortDesc = WordUtils.wrap(longDescription, 50);
+		return shortDesc;
+	}
 
 }
