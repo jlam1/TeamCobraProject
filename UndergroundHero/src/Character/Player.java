@@ -24,18 +24,25 @@ public class Player extends Character {
 	 * @method Player command that prints out a list of Item objects in console.
 	 */
 	public void openInventory() {
-		int bagID = 0;
-		
-		System.out.println("----------------------------------");
-		System.out.println("[[[ INVENTORY BAG ]]]");
-		
-		for(Item i : this.inventory){
-			System.out.println(bagID + ". " + i.getName());
-			bagID++;
+		try {
+			int bagID = 0;
+			
+			System.out.println("----------------------------------");
+			System.out.println("[[[ INVENTORY BAG ]]]");
+			
+			for(Item i : this.inventory){
+				System.out.println(bagID + ". " + i.getName());
+				bagID++;
+			}
+			
+			System.out.println("----------------------------------");
+			System.out.println("\n");
+		} catch(NullPointerException e) {
+			System.out.println("You bag is empty.");
+		} finally {
+			System.out.println("Try a different command.");
 		}
-		
-		System.out.println("----------------------------------");
-		System.out.println("\n");
+			
 	}
 
 	/**

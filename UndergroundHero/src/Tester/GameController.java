@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import Character.Player;
+import Game.ResourceManager;
+import Game.saveLoadData;
 import Room.*;
 
 public class GameController {
@@ -66,8 +68,17 @@ public class GameController {
 			else if(command.equalsIgnoreCase("INFO")) {
 				System.out.println(player.toString());
 			}
+			else if (command.equalsIgnoreCase("SAVE")){
+				save();
+			}
+			else if (command.equalsIgnoreCase("LOAD")) {
+				load();
+			}
 			else if(command.equalsIgnoreCase("QUIT")){
 				gameRun = false;
+			}
+			else if(command.equalsIgnoreCase("HELP")) {
+				System.out.println("NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ");
 			}
 			else{
 				System.out.println("Invalid Input");
@@ -91,6 +102,49 @@ public class GameController {
 			System.out.println("Room number: " + currentRoom.getName());
 			System.out.println(currentRoom.getDescription());
 			
+		}
+	}
+	
+	static void save(){
+		//use the class saveLoadData to save values in to binary file
+		saveLoadData data = new saveLoadData();
+		data.setRoomArrayNumber(currentRoom.getId());
+		System.out.println(currentRoom.getId());
+		//data.setRoom(currentRoom);
+		//data.setRoomDescription(roomLabel.getText());
+		//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
+		try
+		{
+			ResourceManager.saveGame(data, "UndergroundHero.dat");
+	
+			System.out.println("Save Sucessful");
+		}
+		catch (Exception e)
+		{
+			System.out.println("error saving");
+			e.printStackTrace();
+		}
+
+	}
+	
+	static void load(){
+		//use the class saveLoadData to load values in the binary file
+		try
+		{
+			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
+			currentRoom = factoryList.get(data.getRoomArrayNumber());
+			System.out.println("Load Sucessful");
+			System.out.println();
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
+
+			//data.setRoom(currentRoom);
+			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
+
+		}
+		catch (Exception e)
+		{
+			System.out.println("error loading");
+			e.printStackTrace();
 		}
 	}
 	
