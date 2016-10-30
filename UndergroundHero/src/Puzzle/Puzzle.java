@@ -1,10 +1,16 @@
 package Puzzle;
 
+import java.io.Serializable;
+
 import Game.Properties;
 import Item.*;
 
-public abstract class Puzzle implements Properties{
+public abstract class Puzzle implements Properties, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1045004670933137084L;
 	protected String name, description, riddleAnswer;
 	protected int id, type;
 	protected boolean solved;
