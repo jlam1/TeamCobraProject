@@ -3,14 +3,15 @@ package Tester;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import org.apache.commons.lang3.text.WordUtils;
 
 import Character.Player;
-import Game.Game;
 import Game.ResourceManager;
 import Game.saveLoadData;
 import Generator.ItemGenerator;
 import Item.Item;
-import Room.*;
+import Room.Room;
+import Room.RoomFactory;
 
 public class GameController {
 	
@@ -20,6 +21,9 @@ public class GameController {
 	static Player player;
 	static Scanner input;
 	static int bagIndex;
+	static String roomDescription;
+	static Room lockedRoom;
+	static List<Room> lockedRoomList;
 
 	public static void main(String[] args) {
 		
@@ -43,21 +47,26 @@ public class GameController {
 		String command;
 		boolean gameRun = true;
 		currentRoom = factoryList.get(1);
+		roomDescription = wrapText(currentRoom.getDescription());
 
 		System.out.println("Welcome to Underground Hero");
 		
 		while(gameRun){
 			System.out.print(">>");
 			command = input.nextLine();
+			System.out.println("--");
+			
 			
 			if(validCommandInput(command)){
 				roomLogic(command);
 			}
 			
 			else if(command.equalsIgnoreCase("LOOK")){
-				System.out.println(currentRoom.getName());
-				System.out.println(currentRoom.getDescription());
-				System.out.println(currentRoom.getExits());
+				System.out.println("-------------------------------------------------------");
+				System.out.println("[" + currentRoom.getName() + "]");
+				System.out.println(roomDescription);
+				System.out.println("[" + currentRoom.getExits() + "]");
+				System.out.println("-------------------------------------------------------");
 			}
 			
 			else if(command.equalsIgnoreCase("EXITS")){
@@ -100,6 +109,18 @@ public class GameController {
 				System.out.println("NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ");
 			}
 			
+			//testing lock logic
+			else if(command.equalsIgnoreCase("UNLOCK")){
+//				System.out.println(currentRoom.getRoomMonster().getName());
+//				System.out.println(currentRoom.getRoomPuzzle().getName());
+//				currentRoom.getRoomMonster().setIsDead(true);
+//				currentRoom.getRoomPuzzle().setSolved(true);
+				
+				System.out.println("Locked: " + lockedRoom.isLocked());
+				lockedRoom.setLocked(false);
+				System.out.println("Locked: " + lockedRoom.isLocked());
+			}
+			
 			else{
 				System.out.println("Invalid Input");
 			}
@@ -114,13 +135,19 @@ public class GameController {
 			System.out.println("Theres no exit that way, try another direction.");
 		}
 		else if(nextRoom.isLocked() == true){
-			System.out.println(currentRoom.getDescription() + "\n\n\nDoor is locked.");
+			lockedRoom = nextRoom;
+			System.out.println("[" + nextRoom.getName() + "] door is locked.");
+			System.out.println("Try a different route.");
 		}
 		else{
 			
 			currentRoom = nextRoom;
-			System.out.println("Room number: " + currentRoom.getName());
-			System.out.println(currentRoom.getDescription());
+			roomDescription = wrapText(currentRoom.getDescription());
+			System.out.println("-------------------------------------------------------");
+			System.out.println("[" + currentRoom.getName() + "]");
+			System.out.println(roomDescription);
+			System.out.println("[" + currentRoom.getExits() + "]");
+			System.out.println("-------------------------------------------------------");
 			
 		}
 	}
@@ -183,7 +210,7 @@ public class GameController {
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
+			System.out.println(currentRoom.getName() + "\n" + wrapText(currentRoom.getDescription()));
 
 			//data.setRoom(currentRoom);
 			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
@@ -203,6 +230,11 @@ public class GameController {
 		}else{
 			return false;
 		}
+	}
+	
+	static String wrapText(String longDescription){
+		String shortDesc = WordUtils.wrap(longDescription, 50);
+		return shortDesc;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class Player extends Character {
 	 * @method Player command that prints out a list of Item objects in console.
 	 */
 	public void openInventory() {
-		try{
+		if(!this.inventory.isEmpty()){
 			int bagID = 0;
 			
 			System.out.println("----------------------------------");
@@ -39,12 +39,10 @@ public class Player extends Character {
 			
 			System.out.println("----------------------------------");
 			System.out.println("\n");
-
 		}
-		catch(NullPointerException e){
+		else{
 			System.out.println("Your inventory is empty.");
 		}
-			
 	}
 	
 	/**
