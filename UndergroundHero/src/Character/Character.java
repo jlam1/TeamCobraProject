@@ -5,22 +5,53 @@ import Game.Properties;
 /**
  * 
  * This is an abstract class for character entities that shares a common behavior and attribute.
- * @author John
+ * @author John, Kyle
  */
 public abstract class Character implements Properties {
 	
 	protected int id, hp, atk, spd, def;
-	protected String name, description;
-
+	protected String name;
 	protected boolean isDead;
 
-	
 	public Character(int hp, int atk, int spd, int def) {
 		this.hp = hp;
 		this.atk = atk;
 		this.spd = spd;
 		this.def = def;
 		this.isDead = false;
+	}
+	
+	/**
+	 * @method Main attack logic, calculates damage output to character object.
+	 * @param character
+	 */
+	public void attack(Character character){
+		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (Before Attacked)");
+		character.setHp(character.getHp() - this.atk);
+		System.out.println(character.getName() + " has been hit for [" + this.atk + "] damage!");
+		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (After Attacked)\n");
+	}
+	
+	/**
+	 * @method Main defend logic, calculates damage taken after defense calculation.
+	 * @param character
+	 */
+	public void defend(Character character){
+		
+	}
+	
+	/**
+	 * @method Compare speed and set true if higher.
+	 * @param character
+	 * @return boolean
+	 */
+	public boolean flee(Character character){
+		if(this.spd > character.getSpd()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public int getId() {
@@ -65,14 +96,6 @@ public abstract class Character implements Properties {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	
 	public boolean getIsDead() {

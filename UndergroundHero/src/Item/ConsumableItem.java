@@ -23,12 +23,7 @@ public class ConsumableItem extends Item
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
-//	public void useItem(ConsumableItem item) {
-//		if(item.getCount() > 0)
-//			this.count--;
-//	}
-	
+
 	@Override
 	public String toString() 
 	{

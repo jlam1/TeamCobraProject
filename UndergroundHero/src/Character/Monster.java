@@ -9,6 +9,7 @@ public class Monster extends Character {
 	
 	private boolean isBoss;
 	private Item loot;
+	private String description;
 
 	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, Item loot, String description){
 		super(hp, atk, spd, def);
@@ -17,6 +18,14 @@ public class Monster extends Character {
 		this.description = description;
 		this.isBoss = isBoss;
 		this.loot = loot;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public Item getLoot() {

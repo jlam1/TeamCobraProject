@@ -1,5 +1,4 @@
 package Item;
-import java.util.List;
 
 import Game.Properties;
 /**
@@ -11,7 +10,6 @@ public abstract class Item implements Properties{
 
 	private int id;
 	private String name, type, description;
-	protected int weaponAtk, armorDef, count;
 	
 	public Item(int id, String name, String type, String description) {
 		this.id = id;
@@ -44,18 +42,5 @@ public abstract class Item implements Properties{
 	public String toString() {
 		return "Item [name=" + name + ", description=" + description + ", type=" + type + "]";
 	}
-
-	/**
-	 * 
-	 * @param list
-	 * Method will display a list of items using toString
-	 */
-	public void openInventory(List<Item> list){
-		for(Item i : list){
-			System.out.println(i.toString());
-		}
-	}
-	
-	
 
 }

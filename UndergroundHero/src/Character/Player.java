@@ -2,8 +2,9 @@ package Character;
 
 import java.util.ArrayList;
 
-import Item.ConsumableItem;
+import Item.Armor;
 import Item.Item;
+import Item.Weapon;
 
 /**
  * This class is responsible for player attributes and behavior regarding with status and inventory bag (ArrayList<Item>).
@@ -18,33 +19,89 @@ public class Player extends Character {
 		super(hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
 	}
-	
-	@Override
-	public String toString() {
-		return "PLAYER\nHealth:\t [" + hp + "/" + hp + "]\nDefense:\t [" + def + "]\nSpeed:\t [" + spd + "]\nAttack:\t [" + atk + "]";
-	}
 
+	/**
+	 * @method Player command that prints out a list of Item objects in console.
+	 */
 	public void openInventory() {
 		int bagID = 0;
 		
+		System.out.println("----------------------------------");
 		System.out.println("[[[ INVENTORY BAG ]]]");
+		
 		for(Item i : this.inventory){
 			System.out.println(bagID + ". " + i.getName());
 			bagID++;
 		}
+		
+		System.out.println("----------------------------------");
+		System.out.println("\n");
 	}
 
-	public void addToInventory(Item item) {
+	/**
+	 * Player command that adds item to ArrayList<Item> inventory
+	 * @param item
+	 */
+	public void pickUp(Item item) {
+		System.out.println("[" + item.getName() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
 	}
 	
-	public void useItem(ConsumableItem item) {
-		int itemCount = item.getCount();
-		
-		if(item.getCount() > 0)
-			item.setCount(itemCount--);
+	/**
+	 * Player command that can only initiate when item type is a Consumable.
+	 * @param index
+	 */
+	public void useItem(int index) {
+		try{
+			if(this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")){
+				this.inventory.remove(index);
+				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
+			}
+			else{
+				System.out.println("[" + this.inventory.get(index).getName() + "] is not an EQUIPPABLE item.\n");
+			}
+		}
+		catch(IndexOutOfBoundsException e){
+			System.out.println("Item does not exist in inventory, try again.\n");
+		}
 	}
 	
+	public void equip(int index){
+		try{
+			if(this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")){
+				Weapon weapon = (Weapon) this.inventory.get(index);
+				this.inventory.remove(index);
+				this.setAtk(this.atk + weapon.getWeaponAtk());
+				
+				System.out.println("You equipped [" + this.inventory.get(index).getName() + "].");
+				System.out.println("Your attack has increased by [" + weapon.getWeaponAtk() + "].\n");
+			}
+			else if(this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")){
+				Armor armor = (Armor) this.inventory.get(index);
+				this.inventory.remove(index);
+				this.setDef(this.atk + armor.getArmorDef());
+				
+				System.out.println("You equipped [" + this.inventory.get(index).getName() + "].");
+				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
+			}
+			else{
+				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
+			}
+		}
+		catch(IndexOutOfBoundsException e){
+			System.out.println("Equipment does not exist in inventory, try again.\n");
+		}
+	}
 	
+	@Override
+	public String toString() {
+		return "PLAYER\nHP:\t [" + this.hp + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";
+	}
+
+	@Override
+	public String getDescription() {
+		String heroDescription = "Some random description about the Hero of the game.";
+		return heroDescription;
+	}
 
 }
