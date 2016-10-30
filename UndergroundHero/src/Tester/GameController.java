@@ -3,7 +3,7 @@ package Tester;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import org.apache.commons.lang3.text.WordUtils;
+//import org.apache.commons.lang3.text.WordUtils;
 
 import Character.Player;
 import Game.ResourceManager;
@@ -47,7 +47,7 @@ public class GameController {
 		String command;
 		boolean gameRun = true;
 		currentRoom = factoryList.get(1);
-		roomDescription = wrapText(currentRoom.getDescription());
+		roomDescription = currentRoom.getDescription();
 
 		System.out.println("Welcome to Underground Hero");
 		
@@ -142,7 +142,7 @@ public class GameController {
 		else{
 			
 			currentRoom = nextRoom;
-			roomDescription = wrapText(currentRoom.getDescription());
+			roomDescription = currentRoom.getDescription();
 			System.out.println("-------------------------------------------------------");
 			System.out.println("[" + currentRoom.getName() + "]");
 			System.out.println(roomDescription);
@@ -210,7 +210,7 @@ public class GameController {
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + wrapText(currentRoom.getDescription()));
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());		//wrapText(currentRoom.getDescription()
 
 			//data.setRoom(currentRoom);
 			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
@@ -232,24 +232,9 @@ public class GameController {
 		}
 	}
 	
-	static String wrapText(String longDescription){
-		String shortDesc = WordUtils.wrap(longDescription, 50);
-		return shortDesc;
-	}
-	
-	
-	
-//	for(Room i : factoryList){
-//	System.out.println(i.getId());
-//	if(i.isLocked() == true)
-//		System.out.println(i.isLocked());
-//	if(i.getRoomPuzzle() != null)
-//		System.out.println(i.getRoomPuzzle().getName());
-//	if(i.getRoomMonster() != null)
-//		System.out.println(i.getRoomMonster().getName());
-//	if(i.getRoomItem() != null)
-//		System.out.println(i.getRoomItem().getName());
-//	System.out.println();
-//}
+//	static String wrapText(String longDescription){
+//		String shortDesc = WordUtils.wrap(longDescription, 50);
+//		return shortDesc;
+//	}
 	
 }

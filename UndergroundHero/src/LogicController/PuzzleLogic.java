@@ -16,12 +16,6 @@ import Room.*;
  */
 public class PuzzleLogic {
 	
-//	private ArrayList<Room> roomList;
-//	
-//	public PuzzleLogic() {
-//		roomList = new RoomFactory().getRoomFactoryList();
-//	}
-	
 	/**
 	 * @method This method will check if puzzle exists in the current room.
 	 * If empty, return null.
