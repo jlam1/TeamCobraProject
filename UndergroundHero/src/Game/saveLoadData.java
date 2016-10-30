@@ -1,5 +1,6 @@
 package Game;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import Character.Monster;
@@ -21,7 +22,10 @@ public class saveLoadData implements java.io.Serializable
 	private static final long serialVersionUID = 1L;
 	private Player player;
 	private Monster monster;
-	private ArrayList<Item> item;
+	private List<Item> item;
+	private List<Item> equipment;
+	private int itemArray;
+	private int equipmentArray;
 	private int roomArrayNumber;
 	/**
 	 * @return the player
@@ -54,16 +58,58 @@ public class saveLoadData implements java.io.Serializable
 	/**
 	 * @return the item
 	 */
-	public ArrayList<Item> getItem()
+	public List<Item> getItem()
 	{
 		return item;
 	}
 	/**
-	 * @param item the item to set
+	 * @param itemList the item to set
 	 */
-	public void setItem(ArrayList<Item> item)
+	public void setItem(List<Item> itemList)
 	{
-		this.item = item;
+		this.item = itemList;
+	}
+	/**
+	 * @return the equipment
+	 */
+	public List<Item> getEquipment()
+	{
+		return equipment;
+	}
+	/**
+	 * @param equipmentList the equipment to set
+	 */
+	public void setEquipment(List<Item> equipmentList)
+	{
+		this.equipment = equipmentList;
+	}
+	/**
+	 * @return the itemArray
+	 */
+	public int getItemArray()
+	{
+		return itemArray;
+	}
+	/**
+	 * @param itemArray the itemArray to set
+	 */
+	public void setItemArray(int itemArray)
+	{
+		this.itemArray = itemArray;
+	}
+	/**
+	 * @return the equipmentArray
+	 */
+	public int getEquipmentArray()
+	{
+		return equipmentArray;
+	}
+	/**
+	 * @param equipmentArray the equipmentArray to set
+	 */
+	public void setEquipmentArray(int equipmentArray)
+	{
+		this.equipmentArray = equipmentArray;
 	}
 	/**
 	 * @return the roomArrayNumber
@@ -79,7 +125,6 @@ public class saveLoadData implements java.io.Serializable
 	{
 		this.roomArrayNumber = roomArrayNumber;
 	}
-	
 
 	//will add more once game comes near completion
 	
