@@ -14,17 +14,19 @@ import Item.Weapon;
 public class Player extends Character {
 	
 	private ArrayList<Item> inventory;
+	private ArrayList<Item> equipment;
 
 	public Player(int hp, int atk, int spd, int def) {
 		super(hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
+		equipment = new ArrayList<Item>();
 	}
 
 	/**
 	 * @method Player command that prints out a list of Item objects in console.
 	 */
 	public void openInventory() {
-		try {
+		try{
 			int bagID = 0;
 			
 			System.out.println("----------------------------------");
@@ -37,12 +39,36 @@ public class Player extends Character {
 			
 			System.out.println("----------------------------------");
 			System.out.println("\n");
-		} catch(NullPointerException e) {
-			System.out.println("You bag is empty.");
-		} finally {
-			System.out.println("Try a different command.");
+
+		}
+		catch(NullPointerException e){
+			System.out.println("Your inventory is empty.");
 		}
 			
+	}
+	
+	/**
+	 * @method Player command that prints out a list of Item<Armor> and Item<Weapon> objects in console.
+	 */
+	public void viewEquipment(){
+		try{
+			int bagID = 0;
+			
+			System.out.println("----------------------------------");
+			System.out.println("[[[ EQUIPMENT ]]]");
+			
+			for(Item i : this.equipment){
+				System.out.println(bagID + ". " + i.getName());
+				bagID++;
+			}
+			
+			System.out.println("----------------------------------");
+			System.out.println("\n");
+
+		}
+		catch(NullPointerException e){
+			System.out.println("You are not equipped.");
+		}
 	}
 
 	/**
@@ -81,25 +107,32 @@ public class Player extends Character {
 	 */
 	public void equip(int index){
 		try{
+			
 			if(this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")){
 				Weapon weapon = (Weapon) this.inventory.get(index);
 				this.inventory.remove(index);
+				this.equipment.add(weapon);
 				this.setAtk(this.atk + weapon.getWeaponAtk());
 				
 				System.out.println("You equipped [" + weapon.getName() + "].");
 				System.out.println("Your attack has increased by [" + weapon.getWeaponAtk() + "].\n");
 			}
+			
 			else if(this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")){
 				Armor armor = (Armor) this.inventory.get(index);
+				this.equipment.add(armor);
 				this.inventory.remove(index);
 				this.setDef(this.atk + armor.getArmorDef());
 				
 				System.out.println("You equipped [" + armor.getName() + "].");
 				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
 			}
+			
 			else{
 				System.out.println("[" + this.inventory.get(index).getName() + "] is not an EQUIPPABLE item.\n");
+				System.out.println("Try again.");
 			}
+			
 		}
 		catch(IndexOutOfBoundsException e){
 			System.out.println("Equipment does not exist in inventory, try again.\n");

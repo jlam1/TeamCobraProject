@@ -1,23 +1,39 @@
 package Tester;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import Character.Player;
+import Game.Game;
 import Game.ResourceManager;
 import Game.saveLoadData;
+import Generator.ItemGenerator;
+import Item.Item;
 import Room.*;
 
 public class GameController {
 	
 	static Room currentRoom;
 	static List<Room> factoryList;
+	static List<Item> itemList;
 	static Player player;
 	static Scanner input;
+	static int bagIndex;
 
 	public static void main(String[] args) {
 		
+		player = new Player(10, 3, 2, 3);
+		
 		factoryList = new RoomFactory().getRoomFactoryList();
+		itemList = new ItemGenerator().getItemList();
+		
+		//add default items to player
+		player.pickUp(itemList.get(10));
+		player.pickUp(itemList.get(0));
+		player.pickUp(itemList.get(2));
+		
+//		Game game = new Game(new RoomFactory().getRoomFactoryList(), new Player(10, 1, 2, 1));
 		play();
 		
 	}
@@ -26,9 +42,8 @@ public class GameController {
 		input = new Scanner(System.in);
 		String command;
 		boolean gameRun = true;
-		int bagIndex;
 		currentRoom = factoryList.get(1);
-		
+
 		System.out.println("Welcome to Underground Hero");
 		
 		while(gameRun){
@@ -38,48 +53,53 @@ public class GameController {
 			if(validCommandInput(command)){
 				roomLogic(command);
 			}
+			
 			else if(command.equalsIgnoreCase("LOOK")){
 				System.out.println(currentRoom.getName());
 				System.out.println(currentRoom.getDescription());
 				System.out.println(currentRoom.getExits());
 			}
+			
 			else if(command.equalsIgnoreCase("EXITS")){
 				System.out.println(currentRoom.getExits());
 			}
+			
 			else if(command.equalsIgnoreCase("BAG")) {
 				player.openInventory();
 			}
+			
 			else if(command.equalsIgnoreCase("EQUIP")) {
-				System.out.println("What item do you want to equip? (Choose a number)");
-				player.openInventory();
-				System.out.print(">>");
-				bagIndex = input.nextInt();
-				player.equip(bagIndex);
-				input.nextLine();
+				equip();
 			}
+			
+			else if(command.equalsIgnoreCase("VIEW")) {
+				player.viewEquipment();
+			}
+			
 			else if(command.equalsIgnoreCase("USE")) {
-				System.out.println("Which item do you want to use? (Choose a number)");
-				player.openInventory();
-				System.out.print(">>");
-				bagIndex = input.nextInt();
-				player.useItem(bagIndex);
-				input.nextLine();
+				useItem();
 			}
+			
 			else if(command.equalsIgnoreCase("INFO")) {
 				System.out.println(player.toString());
 			}
+			
 			else if (command.equalsIgnoreCase("SAVE")){
 				save();
 			}
+			
 			else if (command.equalsIgnoreCase("LOAD")) {
 				load();
 			}
+			
 			else if(command.equalsIgnoreCase("QUIT")){
 				gameRun = false;
 			}
+			
 			else if(command.equalsIgnoreCase("HELP")) {
 				System.out.println("NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ");
 			}
+			
 			else{
 				System.out.println("Invalid Input");
 			}
@@ -102,6 +122,34 @@ public class GameController {
 			System.out.println("Room number: " + currentRoom.getName());
 			System.out.println(currentRoom.getDescription());
 			
+		}
+	}
+	
+	static void useItem(){
+		try {
+			player.openInventory();
+			System.out.println("Which item do you want to use? (Choose a number)");
+			System.out.print(">>");
+			bagIndex = input.nextInt();
+			player.useItem(bagIndex);
+			input.nextLine();
+		}
+		catch(InputMismatchException e){
+			System.out.println("Wrong use item command.\n");
+		}
+	}
+	
+	static void equip(){
+		try {
+			player.openInventory();
+			System.out.println("What item do you want to equip? (Choose a number)");
+			System.out.print(">>");
+			bagIndex = input.nextInt();
+			player.equip(bagIndex);
+			input.nextLine();
+		}
+		catch(InputMismatchException e){
+			System.out.println("Wrong equip command.\n");
 		}
 	}
 	

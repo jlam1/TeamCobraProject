@@ -23,6 +23,7 @@ public class InventoryTester {
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(1));
 		player.pickUp(itemList.get(9));
+		player.pickUp(itemList.get(10));
 		player.pickUp(healingItem);
 		player.pickUp(healingItem);
 		
