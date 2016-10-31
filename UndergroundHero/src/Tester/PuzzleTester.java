@@ -16,7 +16,7 @@ public class PuzzleTester {
 		PuzzleLogic p = new PuzzleLogic();
 		boolean gameRun = true;
 		
-		Room currentRoom = rooms.get(12);
+		Room currentRoom = rooms.get(9);
 		
 		Scanner input = new Scanner(System.in);
 		String command;
@@ -26,12 +26,12 @@ public class PuzzleTester {
 		command = input.nextLine();
 
 		if(command.equalsIgnoreCase("Y")) {
-			p.initiatePuzzle(currentRoom, player);
+			p.initiatePuzzle(currentRoom, player, input);
 		}
 		else if(command.equalsIgnoreCase("N")) {
 			System.out.println("No");
 		}
-		else{
+		else {
 			System.out.println("Wrong command input.");
 		}
 		

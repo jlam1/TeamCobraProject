@@ -7,7 +7,7 @@ import Game.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
 
-public abstract class Room implements Properties{
+public abstract class Room implements Properties, Comparable<Room>{
 
 	protected String name, description, exits;
 	protected boolean locked;
@@ -47,6 +47,15 @@ public abstract class Room implements Properties{
     
 	public void setExitMap(Map<String, Room> exitMap) {
 		this.exitMap = exitMap;
+	}
+	
+	/**
+	 * @method Sorting arrays by ascending order of room IDs
+	 */
+	@Override
+	public int compareTo(Room room) {
+		int roomID = room.getId();
+		return this.id - roomID;
 	}
 	
 	public int getId() {

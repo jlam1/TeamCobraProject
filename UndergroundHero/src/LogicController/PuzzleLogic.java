@@ -27,13 +27,13 @@ public class PuzzleLogic {
 	 * @param player
 	 * @return true when puzzle solved, else return false
 	 */
-	public boolean initiatePuzzle(Room currentRoom, Player player) {
+	public boolean initiatePuzzle(Room currentRoom, Player player, Scanner input) {
 		
 		boolean puzzleLoop, riddleLoop, puzzleSolved;
 		Puzzle puzzle = currentRoom.getRoomPuzzle();	
 		ArrayList<Item> playerInventory = player.getInventory();
 
-		Scanner input = new Scanner(System.in);
+//		Scanner input = new Scanner(System.in);
 		String userInput;
 		
 		puzzleSolved = false;
@@ -74,6 +74,7 @@ public class PuzzleLogic {
 							if(playerInventory.contains(puzzleKeyItem)) {
 								puzzle.setSolved(true);
 								System.out.println(puzzle.getName() + " has been solved!");
+								puzzleSolved = true;
 								puzzleLoop = false;
 							}
 							
@@ -105,6 +106,7 @@ public class PuzzleLogic {
 								else if(riddleAnswer.equalsIgnoreCase(userInput)) {
 									puzzle.setSolved(true);
 									System.out.println(puzzle.getName() + " has been solved!\n");
+									puzzleSolved = true;
 									riddleLoop = false;
 									puzzleLoop = false;
 								}
@@ -143,9 +145,13 @@ public class PuzzleLogic {
 						puzzleLoop = false;
 					}
 					
+					else if(userInput.equalsIgnoreCase("HELP")) {
+						System.out.println("Commands are: [VIEW PUZZLE] and [LEAVE].\n");
+					}
+					
 					//user input invalid
 					else {
-						System.out.println("Invalid command for puzzle.");
+						System.out.println("Invalid command for puzzle.\n");
 					}
 					
 				}

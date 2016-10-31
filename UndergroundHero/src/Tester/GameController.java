@@ -10,6 +10,7 @@ import Game.ResourceManager;
 import Game.saveLoadData;
 import Generator.ItemGenerator;
 import Item.Item;
+import LogicController.PuzzleLogic;
 import Room.Room;
 import Room.RoomFactory;
 
@@ -24,6 +25,7 @@ public class GameController {
 	static String roomDescription;
 	static Room lockedRoom;
 	static List<Room> lockedRoomList;
+	static PuzzleLogic puzzleLogic;
 
 	public static void main(String[] args) {
 		
@@ -31,6 +33,7 @@ public class GameController {
 		
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
+		puzzleLogic = new PuzzleLogic();
 		
 		//add default items to player
 		player.pickUp(itemList.get(10));
@@ -110,19 +113,14 @@ public class GameController {
 			}
 			
 			//testing lock logic
-			else if(command.equalsIgnoreCase("UNLOCK")){
-//				System.out.println(currentRoom.getRoomMonster().getName());
-//				System.out.println(currentRoom.getRoomPuzzle().getName());
-//				currentRoom.getRoomMonster().setIsDead(true);
-//				currentRoom.getRoomPuzzle().setSolved(true);
-				
+			else if(command.equalsIgnoreCase("UNLOCK")){				
 				System.out.println("Locked: " + lockedRoom.isLocked());
 				lockedRoom.setLocked(false);
 				System.out.println("Locked: " + lockedRoom.isLocked());
 			}
 			
 			else{
-				System.out.println("Invalid Input");
+				System.out.println("Invalid Command");
 			}
 			
 		}
@@ -134,13 +132,14 @@ public class GameController {
 		if(nextRoom == null){
 			System.out.println("Theres no exit that way, try another direction.");
 		}
+		
 		else if(nextRoom.isLocked() == true){
 			lockedRoom = nextRoom;
 			System.out.println("[" + nextRoom.getName() + "] door is locked.");
 			System.out.println("Try a different route.");
 		}
+		
 		else{
-			
 			currentRoom = nextRoom;
 			roomDescription = currentRoom.getDescription();
 			System.out.println("-------------------------------------------------------");
@@ -148,6 +147,23 @@ public class GameController {
 			System.out.println(roomDescription);
 			System.out.println("[" + currentRoom.getExits() + "]");
 			System.out.println("-------------------------------------------------------");
+			
+//			if(nextRoom.getRoomMonster() != null) {
+//				
+//				//TODO: Fight monster
+//				
+//				if(nextRoom.getRoomPuzzle() != null) {
+//					puzzleLogic.initiatePuzzle(nextRoom, player, input);
+//				}
+//			}
+			
+			if(nextRoom.getRoomPuzzle() != null) {
+				puzzleLogic.initiatePuzzle(currentRoom, player, input);
+			}
+			
+			else{
+				//do nothing
+			}
 			
 		}
 	}

@@ -1,6 +1,10 @@
 package Room;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import Generator.RoomGenerator;
 import SearchController.ItemFinder;
@@ -19,7 +23,7 @@ import SearchController.PuzzleFinder;
 public class RoomFactory {
 	
 	//new ArrayList to put new objects into
-	private ArrayList<Room> roomFactoryList = new ArrayList<Room>();;
+	private ArrayList<Room> roomFactoryList = new ArrayList<Room>();
 	private ArrayList<Room> roomList;
 	
 	public RoomFactory() {
@@ -73,7 +77,7 @@ public class RoomFactory {
 				roomFactoryList.add(room);
 			}
 			else{
-				room.setRoomPuzzle(null);
+				room.setRoomMonster(null);
 				roomFactoryList.add(room);
 			}
 		}
@@ -86,7 +90,7 @@ public class RoomFactory {
 	 */
 	private void generateRoomPuzzle() {
 		PuzzleFinder search = new PuzzleFinder();
-		
+				
 		Room room;
 		int roomID;
 		
@@ -95,7 +99,7 @@ public class RoomFactory {
 			room = roomList.get(i);
 			roomID = room.getId();
 			
-			if(roomID == 8){
+			if(roomID == 4){
 				room.setRoomPuzzle(search.puzzle("A Blood Type"));
 				roomFactoryList.add(room);
 			}
@@ -136,7 +140,6 @@ public class RoomFactory {
 				roomFactoryList.add(room);
 			}
 		}
-		
 	}
 	
 	/**
@@ -144,7 +147,6 @@ public class RoomFactory {
 	 */
 	private void generateRoomItem() {
 		ItemFinder search = new ItemFinder();
-		roomList = new ArrayList<Room>();
 		
 		Room room;
 		int roomID;
@@ -163,7 +165,7 @@ public class RoomFactory {
 				roomFactoryList.add(room);
 			}
 			else{
-				room.setRoomPuzzle(null);
+				room.setRoomItem(null);
 				roomFactoryList.add(room);
 			}
 		}
@@ -234,14 +236,19 @@ public class RoomFactory {
 		generateRoomPuzzle();
 		generateRoomMonster();
 		generateRoomItem();
+		connectRooms();
 	}
 
 	/**
+	 * @method Returns an ordered list of connect, generated rooms.
 	 * @return roomFactoryList<Room>
 	 */
 	public ArrayList<Room> getRoomFactoryList() {
-		connectRooms();
-		return roomFactoryList;
+		generateAllRooms();
+		Set<Room> factoryList = new HashSet<Room>(roomFactoryList);
+		ArrayList<Room> newFactoryList = new ArrayList<Room>(factoryList);
+		Collections.sort(newFactoryList);
+		return newFactoryList;
 	}
 	
 	/**
@@ -250,9 +257,7 @@ public class RoomFactory {
 	 * @return Room
 	 */
 	private Room room(int index){
-		generateAllRooms();
 		return roomFactoryList.get(index);
 	}
-
 	
 }

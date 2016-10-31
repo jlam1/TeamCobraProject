@@ -28,10 +28,10 @@ public class MonsterGenerator {
 		Monster mon01 = new Monster(1, "Pogo",					12, 6, 1, 3, true, null,					"A man on a pogo stick. The pogo stick has machine guns attached to it.");
 		monsterList.add(mon01);
 		
-		Monster mon02 = new Monster(2, "Giant Bull Shark",		12, 7, 0, 3, true, ic.key("Grappling Hook"),"What every good super villain needs; a giant bull shark that lives in the lake that their underground lair obviously has. His name is Snappy.");
+		Monster mon02 = new Monster(2, "Giant Bull Shark",		12, 7, 0, 3, true, ic.key("Grappling Hook"),"A giant bull shark that lives in the lake in the underground lair. His name is Snappy and he wields a [GRAPPLING HOOK].");
 		monsterList.add(mon02);
 		
-		Monster mon03 = new Monster(3, "Giant Robotic Sentry",	15, 4, 5, 1, true, ic.key("Computer Chip"),	"A giant robotic sentry guarding the entrance to the final floor. The sentry is a slow moving bipedal robot with lots of armor plating (looks something like a cross between Ultron and the Destroyer from Thor, but talle  r and with a thinner torso). The sentry is armed with a gatling laser, sonic emitters, and a blade that is stored in his forearm when not in use.");
+		Monster mon03 = new Monster(3, "Giant Robotic Sentry",	15, 4, 5, 1, true, ic.key("Computer Chip"),	"A giant robotic sentry guarding the entrance to the final floor. The sentry is a slow moving bipedal robot with lots of armor plating. The sentry is armed with a gatling laser, sonic emitters, and a blade that is stored in his forearm when not in use. There seems to be a [COMPUTER CHIP] on his forehead");
 		monsterList.add(mon03);
 		
 		Monster mon04 = new Monster(4, "Quinn Har",				30, 9, 4, 2, true, null,					"A female clown with a red and black color scheme. She uses a large mallet.");

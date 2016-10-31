@@ -6,7 +6,7 @@ import Character.Monster;
 import Character.Player;
 import Generator.MonsterGenerator;
 
-public class PlayerTest {
+public class PlayerAttackTest {
 	
 	public static void main(String[] args) {
 		
