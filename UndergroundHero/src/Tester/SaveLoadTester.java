@@ -1,31 +1,31 @@
 package Tester;
 
-import java.io.InvalidClassException;
-import java.nio.file.NoSuchFileException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+//import org.apache.commons.lang3.text.WordUtils;
 
 import Character.Player;
-import Game.Game;
 import Game.ResourceManager;
 import Game.saveLoadData;
 import Generator.ItemGenerator;
 import Item.Item;
-import Room.*;
+import LogicController.PuzzleLogic;
+import Room.Room;
+import Room.RoomFactory;
 
 public class SaveLoadTester {
 	
 	static Room currentRoom;
-	static Item inventory;
-	static Item equipment;
 	static List<Room> factoryList;
 	static List<Item> itemList;
-	static List<Item> inventoryList;
-	static List<Item> equipmentList;
 	static Player player;
 	static Scanner input;
 	static int bagIndex;
+	static String roomDescription;
+	static Room lockedRoom;
+	static List<Room> lockedRoomList;
+	static PuzzleLogic puzzleLogic;
 
 	public static void main(String[] args) {
 		
@@ -33,6 +33,7 @@ public class SaveLoadTester {
 		
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
+		puzzleLogic = new PuzzleLogic();
 		
 		//add default items to player
 		player.pickUp(itemList.get(10));
@@ -49,21 +50,26 @@ public class SaveLoadTester {
 		String command;
 		boolean gameRun = true;
 		currentRoom = factoryList.get(1);
+		roomDescription = currentRoom.getDescription();
 
 		System.out.println("Welcome to Underground Hero");
 		
 		while(gameRun){
 			System.out.print(">>");
 			command = input.nextLine();
+			System.out.println("--");
+			
 			
 			if(validCommandInput(command)){
 				roomLogic(command);
 			}
 			
 			else if(command.equalsIgnoreCase("LOOK")){
-				System.out.println(currentRoom.getName());
-				System.out.println(currentRoom.getDescription());
-				System.out.println(currentRoom.getExits());
+				System.out.println("-------------------------------------------------------");
+				System.out.println("[" + currentRoom.getName() + "]");
+				System.out.println(roomDescription);
+				System.out.println("[" + currentRoom.getExits() + "]");
+				System.out.println("-------------------------------------------------------");
 			}
 			
 			else if(command.equalsIgnoreCase("EXITS")){
@@ -95,15 +101,7 @@ public class SaveLoadTester {
 			}
 			
 			else if (command.equalsIgnoreCase("LOAD")) {
-				try
-				{
-					load();
-				}
-				catch (NoSuchFileException | InvalidClassException e)
-				{
-					System.out.println("There is currently no save file.");
-					e.printStackTrace();
-				}
+				load();
 			}
 			
 			else if(command.equalsIgnoreCase("QUIT")){
@@ -114,8 +112,15 @@ public class SaveLoadTester {
 				System.out.println("NAVIGATION: \nNorth \nSouth \nEast \nWest \n\nROOM: \nLook \n\nCombat: \nAttack \nDefend \nRun [Direction] ");
 			}
 			
+			//testing lock logic
+			else if(command.equalsIgnoreCase("UNLOCK")){				
+				System.out.println("Locked: " + lockedRoom.isLocked());
+				lockedRoom.setLocked(false);
+				System.out.println("Locked: " + lockedRoom.isLocked());
+			}
+			
 			else{
-				System.out.println("Invalid Input");
+				System.out.println("Invalid Command");
 			}
 			
 		}
@@ -127,14 +132,38 @@ public class SaveLoadTester {
 		if(nextRoom == null){
 			System.out.println("Theres no exit that way, try another direction.");
 		}
+		
 		else if(nextRoom.isLocked() == true){
-			System.out.println(currentRoom.getDescription() + "\n\n\nDoor is locked.");
+			lockedRoom = nextRoom;
+			System.out.println("[" + nextRoom.getName() + "] door is locked.");
+			System.out.println("Try a different route.");
 		}
+		
 		else{
-			
 			currentRoom = nextRoom;
-			System.out.println("Room number: " + currentRoom.getName());
-			System.out.println(currentRoom.getDescription());
+			roomDescription = currentRoom.getDescription();
+			System.out.println("-------------------------------------------------------");
+			System.out.println("[" + currentRoom.getName() + "]");
+			System.out.println(roomDescription);
+			System.out.println("[" + currentRoom.getExits() + "]");
+			System.out.println("-------------------------------------------------------");
+			
+//			if(nextRoom.getRoomMonster() != null) {
+//				
+//				//TODO: Fight monster
+//				
+//				if(nextRoom.getRoomPuzzle() != null) {
+//					puzzleLogic.initiatePuzzle(nextRoom, player, input);
+//				}
+//			}
+			
+			if(nextRoom.getRoomPuzzle() != null) {
+				puzzleLogic.initiatePuzzle(currentRoom, player, input);
+			}
+			
+			else{
+				//do nothing
+			}
 			
 		}
 	}
@@ -160,16 +189,6 @@ public class SaveLoadTester {
 			System.out.print(">>");
 			bagIndex = input.nextInt();
 			player.equip(bagIndex);
-			//equipment = itemList.get(bagIndex);
-			
-			/*try{
-			equipmentList.add(equipment);
-			System.out.println(equipmentList);
-			}
-			catch(NullPointerException npe)
-			{
-				System.out.println("Error equiping");
-			}*/
 			input.nextLine();
 		}
 		catch(InputMismatchException e){
@@ -183,23 +202,9 @@ public class SaveLoadTester {
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
-		/*data.setAtk(player.getAtk());
-		data.setDef(player.getDef());
-		data.setHp(player.getHp());
-		data.setSpeed(player.getSpd());*/
-		
-		/*for(Item e : equipmentList)
-		{
-			equipmentList.add(e);
-		}*/
-		//data.setEquipment(equipmentList);
-		//System.out.println(equipmentList);
-		
-		/*for(Item i : itemList)
-		{
-			itemList.add(i);
-		}
-			data.setItem(itemList);*/
+		//data.setPuzzle(puzzleLogic);
+		//data.setRoom(currentRoom);
+		//data.setRoomDescription(roomLabel.getText());
 		//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
 		try
 		{
@@ -215,23 +220,19 @@ public class SaveLoadTester {
 
 	}
 	
-	static void load() throws NoSuchFileException, InvalidClassException{
+	static void load(){
 		//use the class saveLoadData to load values in the binary file
 		try
 		{
 			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
+			player = data.getPlayer();
+			//puzzleLogic = data.getPuzzle();
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
-			data.getPlayer();
-			/*data.getAtk();
-			data.getDef();
-			data.getHp();
-			data.getSpeed();
-			data.getItemArray();
-			data.getEquipmentArray();*/
-			
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());		//wrapText(currentRoom.getDescription()
+
+			//data.setRoom(currentRoom);
 			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
 
 		}
@@ -251,19 +252,9 @@ public class SaveLoadTester {
 		}
 	}
 	
-	
-	
-//	for(Room i : factoryList){
-//	System.out.println(i.getId());
-//	if(i.isLocked() == true)
-//		System.out.println(i.isLocked());
-//	if(i.getRoomPuzzle() != null)
-//		System.out.println(i.getRoomPuzzle().getName());
-//	if(i.getRoomMonster() != null)
-//		System.out.println(i.getRoomMonster().getName());
-//	if(i.getRoomItem() != null)
-//		System.out.println(i.getRoomItem().getName());
-//	System.out.println();
-//}
+//	static String wrapText(String longDescription){
+//		String shortDesc = WordUtils.wrap(longDescription, 50);
+//		return shortDesc;
+//	}
 	
 }

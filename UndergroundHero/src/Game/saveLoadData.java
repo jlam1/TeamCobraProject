@@ -7,6 +7,8 @@ import java.util.Map;
 import Character.Monster;
 import Character.Player;
 import Item.Item;
+import LogicController.PuzzleLogic;
+import Puzzle.Puzzle;
 import Room.Room;
 
 /**
@@ -22,15 +24,8 @@ public class saveLoadData implements Serializable
 
 	private static final long serialVersionUID = 1L;
 	private Player player;
-	private int atk;
-	private int def;
-	private int speed;
-	private int hp;
+	private PuzzleLogic puzzle;
 	private Monster monster;
-	private List<Item> item;
-	private List<Item> equipment;
-	private int itemArray;
-	private int equipmentArray;
 	private int roomArrayNumber;
 	/**
 	 * @return the player
@@ -47,60 +42,18 @@ public class saveLoadData implements Serializable
 		this.player = player;
 	}
 	/**
-	 * @return the atk
+	 * @return the puzzle
 	 */
-	public int getAtk()
+	public PuzzleLogic getPuzzle()
 	{
-		return atk;
+		return puzzle;
 	}
 	/**
-	 * @param atk the atk to set
+	 * @param puzzle 
 	 */
-	public void setAtk(int atk)
+	public void setPuzzle(PuzzleLogic puzzle)
 	{
-		this.atk = atk;
-	}
-	/**
-	 * @return the def
-	 */
-	public int getDef()
-	{
-		return def;
-	}
-	/**
-	 * @param def the def to set
-	 */
-	public void setDef(int def)
-	{
-		this.def = def;
-	}
-	/**
-	 * @return the speed
-	 */
-	public int getSpeed()
-	{
-		return speed;
-	}
-	/**
-	 * @param speed the speed to set
-	 */
-	public void setSpeed(int speed)
-	{
-		this.speed = speed;
-	}
-	/**
-	 * @return the hp
-	 */
-	public int getHp()
-	{
-		return hp;
-	}
-	/**
-	 * @param hp the hp to set
-	 */
-	public void setHp(int hp)
-	{
-		this.hp = hp;
+		this.puzzle = puzzle;
 	}
 	/**
 	 * @return the monster
@@ -115,62 +68,6 @@ public class saveLoadData implements Serializable
 	public void setMonster(Monster monster)
 	{
 		this.monster = monster;
-	}
-	/**
-	 * @return the item
-	 */
-	public List<Item> getItem()
-	{
-		return item;
-	}
-	/**
-	 * @param item the item to set
-	 */
-	public void setItem(List<Item> item)
-	{
-		this.item = item;
-	}
-	/**
-	 * @return the equipment
-	 */
-	public List<Item> getEquipment()
-	{
-		return equipment;
-	}
-	/**
-	 * @param equipment the equipment to set
-	 */
-	public void setEquipment(List<Item> equipment)
-	{
-		this.equipment = equipment;
-	}
-	/**
-	 * @return the itemArray
-	 */
-	public int getItemArray()
-	{
-		return itemArray;
-	}
-	/**
-	 * @param itemArray the itemArray to set
-	 */
-	public void setItemArray(int itemArray)
-	{
-		this.itemArray = itemArray;
-	}
-	/**
-	 * @return the equipmentArray
-	 */
-	public int getEquipmentArray()
-	{
-		return equipmentArray;
-	}
-	/**
-	 * @param equipmentArray the equipmentArray to set
-	 */
-	public void setEquipmentArray(int equipmentArray)
-	{
-		this.equipmentArray = equipmentArray;
 	}
 	/**
 	 * @return the roomArrayNumber
