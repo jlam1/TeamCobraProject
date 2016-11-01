@@ -1,5 +1,6 @@
 package Room;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,8 +21,12 @@ import SearchController.PuzzleFinder;
  * @author John
  *
  */
-public class RoomFactory {
+public class RoomFactory implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7894271087328509321L;
 	//new ArrayList to put new objects into
 	private ArrayList<Room> roomFactoryList = new ArrayList<Room>();
 	private ArrayList<Room> roomList;

@@ -1,5 +1,6 @@
 package LogicController;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -15,8 +16,12 @@ import Room.*;
  * @author John
  *
  */
-public class PuzzleLogic {
+public class PuzzleLogic implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3089189101952541374L;
 	private boolean puzzleLoop, riddleLoop, puzzleSolved, puzzleRun;
 	private Puzzle puzzle;
 	private ArrayList<Item> playerInventory;
@@ -89,6 +94,8 @@ public class PuzzleLogic {
 							if(puzzle.getType() == 0) {
 								runRiddlePuzzle(userInput, riddleAnswer);
 							}
+							else
+							{}
 							
 						}
 							
@@ -184,6 +191,8 @@ public class PuzzleLogic {
 				puzzleSolved = true;
 				riddleLoop = false;
 				puzzleLoop = false;
+				puzzleRun = false;
+
 			}
 			
 			//if riddle answer is incorrect

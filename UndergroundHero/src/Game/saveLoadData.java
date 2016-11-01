@@ -27,6 +27,7 @@ public class saveLoadData implements Serializable
 	private PuzzleLogic puzzle;
 	private Monster monster;
 	private int roomArrayNumber;
+	private List<Room> factoryList;
 	/**
 	 * @return the player
 	 */
@@ -82,6 +83,20 @@ public class saveLoadData implements Serializable
 	public void setRoomArrayNumber(int roomArrayNumber)
 	{
 		this.roomArrayNumber = roomArrayNumber;
+	}
+	/**
+	 * @return the factoryList
+	 */
+	public List<Room> getFactoryList()
+	{
+		return factoryList;
+	}
+	/**
+	 * @param factoryList the factoryList to set
+	 */
+	public void setFactoryList(List<Room> factoryList)
+	{
+		this.factoryList = factoryList;
 	}
 
 	//will add more once game comes near completion
