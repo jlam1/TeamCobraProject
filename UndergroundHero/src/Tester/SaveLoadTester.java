@@ -158,7 +158,7 @@ public class SaveLoadTester {
 //			}
 			
 			if(nextRoom.getRoomPuzzle() != null) {
-				puzzleLogic.initiatePuzzle(currentRoom, player, input);
+				puzzleLogic.initiatePuzzle(currentRoom, player);
 			}
 			
 			else{

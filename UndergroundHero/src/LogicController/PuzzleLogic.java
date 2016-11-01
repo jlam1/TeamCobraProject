@@ -218,7 +218,7 @@ public class PuzzleLogic {
 		    }
 		}
 		catch(InterruptedException e) {
-			System.out.println("InterruptedException");
+			System.out.println("InterruptedException: print()");
 		}
 
 	}
