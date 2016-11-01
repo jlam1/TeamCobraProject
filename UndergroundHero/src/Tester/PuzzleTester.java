@@ -9,7 +9,7 @@ import Room.*;
 
 public class PuzzleTester {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		List<Room> rooms = new RoomFactory().getRoomFactoryList();
 		Player player = new Player(10, 1, 2, 2);
@@ -26,7 +26,7 @@ public class PuzzleTester {
 		command = input.nextLine();
 
 		if(command.equalsIgnoreCase("Y")) {
-			p.initiatePuzzle(currentRoom, player, input);
+			p.initiatePuzzle(currentRoom, player);
 		}
 		else if(command.equalsIgnoreCase("N")) {
 			System.out.println("No");
