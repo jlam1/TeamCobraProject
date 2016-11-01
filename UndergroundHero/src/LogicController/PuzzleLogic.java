@@ -49,15 +49,17 @@ public class PuzzleLogic {
 		//check if puzzle is null AND if puzzle is NOT solved
 		if(puzzle != null && puzzle.isSolved() == false) {
 			
+			print("There is a puzzle in this room...\n", 40);
+			print("Do you want to initiate puzzle? (Y/N)\n", 40);
+			
 			do {
-				print("There is a puzzle in this room...\n", 40);
-				print("Do you want to initiate puzzle? (Y/N)\n", 40);
 				System.out.print(">>");
 				userInput = input.nextLine();
 				
 				//check user's choice (Y/N)
 				if(userInput.equalsIgnoreCase("Y")) {
-					print("Initiating puzzle...\n", 40);
+					print("Initiating puzzle", 40);
+					print("...\n", 300);
 					String puzzleDesc = puzzle.getDescription();
 					KeyItem puzzleKeyItem = puzzle.getKeyItem();
 					String riddleAnswer = puzzle.getRiddleAnswer();
@@ -66,7 +68,8 @@ public class PuzzleLogic {
 					
 					while(puzzleLoop) {
 						System.out.println("-------------------------------------------------");
-						System.out.println("The puzzle commands are:\n[VIEW] to view the puzzle description\n[LEAVE] to leave puzzle and return to room");
+						System.out.println("The puzzle commands are:");
+						System.out.println("[VIEW] to view the puzzle description\n[LEAVE] to leave puzzle and return to room");
 						System.out.println("-------------------------------------------------");
 						System.out.print(">>");
 						userInput = input.nextLine();
