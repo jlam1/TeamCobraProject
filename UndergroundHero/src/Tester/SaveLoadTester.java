@@ -36,9 +36,9 @@ public class SaveLoadTester {
 		puzzleLogic = new PuzzleLogic();
 		
 		//add default items to player
-		player.pickUp(itemList.get(10));
-		player.pickUp(itemList.get(0));
-		player.pickUp(itemList.get(2));
+		player.startingItem(itemList.get(10));
+		player.startingItem(itemList.get(0));
+		player.startingItem(itemList.get(2));
 		
 //		Game game = new Game(new RoomFactory().getRoomFactoryList(), new Player(10, 1, 2, 1));
 		play();

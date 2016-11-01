@@ -77,6 +77,11 @@ public class Player extends Character implements Serializable{
 		}
 	}
 
+	public void startingItem(Item item)
+	{
+		this.inventory.add(item);
+	}
+	
 	/**
 	 * @method Player command that adds item to ArrayList<Item> inventory
 	 * @param item
