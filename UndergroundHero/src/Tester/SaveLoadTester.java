@@ -156,9 +156,16 @@ public class SaveLoadTester {
 //					puzzleLogic.initiatePuzzle(nextRoom, player, input);
 //				}
 //			}
-			
-			if(nextRoom.getRoomPuzzle() != null) {
-				puzzleLogic.initiatePuzzle(currentRoom, player);
+			if(nextRoom.getRoomPuzzle() != null)
+				{
+				//
+				if(factoryList.get(currentRoom.getId()).getRoomPuzzle().isSolved() == false)
+				{
+					puzzleLogic.initiatePuzzle(currentRoom, player);
+				}
+				//factoryList.get(currentRoom.getId()).getRoomPuzzle().setSolved(true);
+
+				//System.out.println(	"Testing -----------"+			factoryList.get(currentRoom.getId()).getRoomPuzzle());
 			}
 			
 			else{
@@ -202,6 +209,7 @@ public class SaveLoadTester {
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
+		data.setFactoryList(factoryList);
 		//data.setPuzzle(puzzleLogic);
 		//data.setRoom(currentRoom);
 		//data.setRoomDescription(roomLabel.getText());
@@ -227,11 +235,12 @@ public class SaveLoadTester {
 			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			player = data.getPlayer();
+			factoryList = data.getFactoryList();
 			//puzzleLogic = data.getPuzzle();
 			System.out.println("Load Sucessful");
 			System.out.println();
 			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());		//wrapText(currentRoom.getDescription()
-
+			
 			//data.setRoom(currentRoom);
 			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
 

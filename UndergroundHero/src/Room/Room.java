@@ -1,4 +1,5 @@
 package Room;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,8 +8,12 @@ import Game.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
 
-public abstract class Room implements Properties, Comparable<Room>{
+public abstract class Room implements Properties, Comparable<Room>, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1722849142865991875L;
 	protected String name, description, exits;
 	protected boolean locked;
 	protected int id;
