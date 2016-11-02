@@ -20,8 +20,8 @@ public class Player extends Character implements Serializable{
 	private ArrayList<Item> inventory;
 	private ArrayList<Item> equipment;
 
-	public Player(int hp, int atk, int spd, int def) {
-		super(hp, atk, spd, def);
+	public Player(int maxHP, int atk, int spd, int def) {
+		super(maxHP, atk, spd, def);
 		inventory = new ArrayList<Item>();
 		equipment = new ArrayList<Item>();
 	}
@@ -77,6 +77,11 @@ public class Player extends Character implements Serializable{
 		}
 	}
 
+	public void startingItem(Item item)
+	{
+		this.inventory.add(item);
+	}
+	
 	/**
 	 * @method Player command that adds item to ArrayList<Item> inventory
 	 * @param item
@@ -94,6 +99,13 @@ public class Player extends Character implements Serializable{
 	public void useItem(int index) {
 		try{
 			if(this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")){
+				if(this.inventory.get(index).getId() == 4) {
+					this.hp += 10;
+				}
+				if(this.inventory.get(index).getId() == 5) {
+					this.setHp(this.maxHP + 5);
+					this.hp = this.maxHP;
+				}
 				this.inventory.remove(index);
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
 			}
