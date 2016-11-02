@@ -2,9 +2,10 @@ package Tester;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import Character.Monster;
-import Character.MonsterFactory;
+import Generator.MonsterGenerator;
 import Character.Player;
 import Item.ConsumableItem;
 
@@ -22,14 +23,127 @@ public class BattleTester{
 	static int RandAttack = Generator2.nextInt(3) + 1; //Randomly selects the monster's attack
 
 	public static void main(String[] args) {
-		player = new Player(10,1,3,2);	
-		List<Monster> monsterList = new MonsterFactory().getMonsterList();
+		Scanner in = new Scanner(System.in);
+		Random rand = new Random();
+		player = new Player(10,1,3,2);	//HP, ATK, DEF, SPD
+		int potionHeal = 30;
+		int potionDropRate = 50; //Percent
+		List<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		String monsterName = monsterList.get(RandMon).getName();
 		String monsterDesc = monsterList.get(RandMon).getDescription();
 		int monsterHP = monsterList.get(RandMon).getHp();
 		int monsterAtk = monsterList.get(RandMon).getAtk();
 		int monsterDef = monsterList.get(RandMon).getDef();
-		int monsterSpd = monsterList.get(RandMon).getSpd();		
+		int monsterSpd = monsterList.get(RandMon).getSpd();	
+		
+		boolean running = true;
+		GAME:
+		while (running){
+			System.out.println("-----------------------------------");
+		
+			//			# Skeleton has Appeared #
+			System.out.println("\t# " + monsterName + " has appeared! #\n");
+			
+			while(monsterHP > 0)
+			{
+				System.out.println("\tYour HP: " + player.hp);
+				System.out.println("\t" + monsterName + "'s HP " + monsterHP);
+				System.out.println("\n\tWhat would you like to do next?");
+				System.out.println("\t1. Attack");
+				System.out.println("\t2. Drink Potion");
+				System.out.println("\t3. Run");
+				int dmgDealth = player.atk - monsterDef;
+				int dmgTaken  = monsterAtk - player.def;
+				String input = in.nextLine();
+				if(input.equals("1"))
+				{
+					
+					
+					monsterHP -= dmgDealth;
+					player.hp -= dmgTaken;
+					
+					System.out.println("\t> You strike the " + monsterName + " for " + dmgDealth + " damage");
+					System.out.println("\t> You recived " + dmgTaken + " damage(s) from " + monsterName + "!");
+					
+					if(player.hp < 1)
+					{
+						System.out.println("\t> Your HP have reached 0.");
+						break;
+					}
+				}
+				else if (input.equals("2"))
+				{
+					if(ConsumableItem.count > 0)
+					{
+						if(player.hp >= 100)
+						{
+							player.hp = 100;
+							System.out.println("Unable to use potion. Your HP is full.");
+						}
+						else
+						{
+							player.hp += potionHeal;
+							ConsumableItem.count--;
+
+							System.out.println("\t> You have drinked a potion healing " + potionHeal + " HP."
+											+ "\n\t> You now have " + player.hp + "HP."
+											+ "\n\t> You have " + ConsumableItem.count + " health potion(s) left.\n");
+						System.out.println("\t> You recived " + dmgTaken + " damage(s) from " + monsterName + "!");
+						}
+
+					}
+					else
+					{
+						System.out.println("You have no more health potion");
+					}
+				}
+				else if (input.equals("3"))
+				{
+					System.out.println("\t> You have ran from " + monsterName + "!");
+					continue GAME;
+				}
+				else
+				{
+					System.out.println("\tInvalid Command");
+				}
+			}
+				
+			if(player.hp < 1)
+			{
+				System.out.println("You died!");
+				break;
+			}
+			System.out.println("-----------------------------------");
+			System.out.println(" # " + monsterName + " was defeated! #");
+			System.out.println(" # You have " + player.hp + "HP left. #");
+			if(rand.nextInt(100) < potionDropRate)
+			{
+				ConsumableItem.count++;
+				System.out.println(" # The " + monsterName + " dropped a health potion. #");
+				System.out.println(" # You currently have " + ConsumableItem.count++ + " potion(s). #");
+			}
+			System.out.println("-----------------------------------");
+			System.out.println("What would you like to do next?");
+			System.out.println("  1. Continue.");
+			System.out.println("  2. Retreat.");
+			
+			String input = in.nextLine();
+			
+			while(!input.equals("1") && !input.equals("2"))
+			{
+				System.out.println("Invalid Command");
+				input = in.nextLine();
+			}
+			
+			if(input.equals("1"))
+			{
+				System.out.println("You continue on your adventure!");
+			}
+			else if (input.equals("2"))
+			{
+				System.out.println("You have exited the dungeon, sucessfully from you adventures.");
+				break;
+			}
  
 //		//Heal Command - Unfinished
 //		if (HealCmd == true && ConsumableItem.getCount() > 0){
@@ -93,5 +207,6 @@ public class BattleTester{
 		
 		
 		
+	}
 	}
 }

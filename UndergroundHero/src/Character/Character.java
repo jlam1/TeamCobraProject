@@ -1,15 +1,27 @@
 package Character;
 
 import Game.Properties;
-import Item.Item;
 
 public abstract class Character implements Properties {
 	
-	protected int id, hp, atk, spd, def;
+	protected int id;
+	public int hp;
+	public int atk;
+	protected int spd;
+	public int def;
 	protected String name, description;
+//<<<<<<< HEAD
+	protected boolean isDead;
+//=======
 	protected boolean dead;
 //<<<<<<< HEAD
+//<<<<<<< HEAD
 //=======
+//=======
+//<<<<<<< HEAD
+//=======
+//>>>>>>> 9eae5d48af3d56d29a6beee13229a526215d04fe
+//>>>>>>> branch 'master' of https://github.com/jlam1/TeamCobraProject.git
 	
 	
 //>>>>>>> 7b579141f7e7bb636c3c0eb633b99929fa72242b
@@ -19,7 +31,7 @@ public abstract class Character implements Properties {
 		this.atk = atk;
 		this.spd = spd;
 		this.def = def;
-		this.dead = false;
+		this.isDead = false;
 	}
 //<<<<<<< HEAD
 //=======
@@ -78,12 +90,12 @@ public abstract class Character implements Properties {
 		this.description = description;
 	}
 	
-	public boolean isDead() {
-		return dead;
+	public boolean getIsDead() {
+		return isDead;
 	}
 	
-	public void setDead(boolean dead) {
-		this.dead = dead;
+	public void setIsDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 	
 }

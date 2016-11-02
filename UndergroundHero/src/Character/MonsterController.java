@@ -2,12 +2,14 @@ package Character;
 
 import java.util.ArrayList;
 
+import Generator.MonsterGenerator;
+
 public class MonsterController {
 
 	private ArrayList<Monster> monsterList;
 	
 	public MonsterController(){
-		monsterList = new MonsterFactory().getMonsterList();
+		monsterList = new MonsterGenerator().getMonsterList();
 	}
 	
 	/**

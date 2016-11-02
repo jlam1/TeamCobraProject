@@ -21,12 +21,13 @@ public class Monster extends Character {
 	
 	protected boolean isBoss;
 	
-	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, String description){
+	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, Item loot, String description){
 		super(hp, atk, spd, def);
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.isBoss = isBoss;
+		this.loot = loot;
 	}
 	
 	public Item getLoot() {

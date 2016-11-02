@@ -9,7 +9,7 @@ package Item;
 public class ConsumableItem extends Item
 {
 
-	private int count;
+	public static int count;
 	
 	public ConsumableItem(int id, String name, String type, int count, String description) {
 		super(id, name, type, description);
