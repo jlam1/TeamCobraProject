@@ -11,23 +11,24 @@ import Game.Properties;
  */
 public abstract class Character implements Properties, Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5150844314095683846L;
-	protected int id, hp, atk, spd, def;
-	protected String name;
+	protected int id;
+	public int hp;
+	public int atk;
+	protected int spd;
+	public int def;
+	protected String name, description;
 	protected boolean isDead;
 	protected int maxHP;
-
+	protected boolean dead;
+	
 	public Character(int maxHP, int atk, int spd, int def) {
 		this.hp = maxHP;
+		this.maxHP = maxHP;
 		this.atk = atk;
 		this.spd = spd;
 		this.def = def;
 		this.isDead = false;
 	}
-	
 	/**
 	 * @method Main attack logic, calculates damage output to character object.
 	 * @param character

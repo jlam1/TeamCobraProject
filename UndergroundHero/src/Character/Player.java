@@ -20,8 +20,8 @@ public class Player extends Character implements Serializable{
 	private ArrayList<Item> inventory;
 	private ArrayList<Item> equipment;
 
-	public Player(int hp, int atk, int spd, int def) {
-		super(hp, atk, spd, def);
+	public Player(int maxHP, int atk, int spd, int def) {
+		super(maxHP, atk, spd, def);
 		inventory = new ArrayList<Item>();
 		equipment = new ArrayList<Item>();
 	}
