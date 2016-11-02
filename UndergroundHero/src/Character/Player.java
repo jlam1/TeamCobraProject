@@ -99,6 +99,13 @@ public class Player extends Character implements Serializable{
 	public void useItem(int index) {
 		try{
 			if(this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")){
+				if(this.inventory.get(index).getId() == 4) {
+					this.hp += 10;
+				}
+				if(this.inventory.get(index).getId() == 5) {
+					this.setHp(this.maxHP + 5);
+					this.hp = this.maxHP;
+				}
 				this.inventory.remove(index);
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
 			}

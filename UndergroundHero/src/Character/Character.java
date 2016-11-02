@@ -18,9 +18,10 @@ public abstract class Character implements Properties, Serializable {
 	protected int id, hp, atk, spd, def;
 	protected String name;
 	protected boolean isDead;
+	protected int maxHP;
 
-	public Character(int hp, int atk, int spd, int def) {
-		this.hp = hp;
+	public Character(int maxHP, int atk, int spd, int def) {
+		this.hp = maxHP;
 		this.atk = atk;
 		this.spd = spd;
 		this.def = def;
@@ -44,6 +45,11 @@ public abstract class Character implements Properties, Serializable {
 	 */
 	public void defend(Character character){
 		
+	}
+	
+	public int getMaxHP() {
+		int maxHP = this.maxHP;
+		return maxHP;
 	}
 	
 	/**

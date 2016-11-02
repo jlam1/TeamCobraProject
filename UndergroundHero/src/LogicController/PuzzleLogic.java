@@ -13,7 +13,7 @@ import Room.*;
 /**
  * This class is responsible for dealing with all puzzle logic.
  * This checks if the player inside the current room contains a puzzle, if so check the puzzle type and display information of puzzle to player.
- * @author John
+ * @author John, King
  *
  */
 public class PuzzleLogic implements Serializable{

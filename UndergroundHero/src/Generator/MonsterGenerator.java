@@ -19,6 +19,8 @@ public class MonsterGenerator {
 	 */
 	private void generateMonsterList(){
 		
+		//int hp, int atk, int def, int spd
+		
 		ItemFinder ic = new ItemFinder();
 		monsterList = new ArrayList<Monster>();
 		
@@ -43,7 +45,7 @@ public class MonsterGenerator {
 		Monster mon06 = new Monster(6, "Hula Hooper",			6, 3, 0, 1, false, null,					"A man using a hula hoop. There are knives strapped to the hula hoop to make it deadly.");
 		monsterList.add(mon06);
 		
-		Monster mon07 = new Monster(7, "Wild Hyena",			12, 7, 0, 3, false, null,   				"A starving wild hyena that lives in the dark corners of that underground lair. It’ll eating anything, including you.");
+		Monster mon07 = new Monster(7, "Wild Hyena",			12, 7, 0, 3, false, null,   				"A starving wild hyena that lives in the dark corners of that underground lair. Itï¿½ll eating anything, including you.");
 		monsterList.add(mon07);
 		
 	}
