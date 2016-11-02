@@ -1,34 +1,22 @@
 package Game;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import Character.Player;
+import Generator.ItemGenerator;
 import Item.Item;
 import Room.Room;
-import javafx.application.Application;
+import Room.RoomFactory;
+
 
 public class Game
 {
-	private static Game game;
 	private Player player;
-	private List<Room> startingRoom;
-	private ArrayList<Item> item;
-	
-	//this is a test constructor
-	public Game(){
-		
-	}
+	private ArrayList<Room> factoryList;
+	private Room room;
 
-	public Game(List<Room> rooms, Player player)
+	public Game(ArrayList<Room> rooms, Player player)
 	{
-		this.startingRoom = rooms;
+		factoryList = new RoomFactory().getRoomFactoryList();
 		this.player = player;
 	}
 
@@ -40,12 +28,11 @@ public class Game
 	 */
 	public void newGame()
 	{
-		
-		player = new Player(10, 1, 1, 2);	//default attributes 
-		startingRoom = (List<Room>) this.getRooms().get(0);
-		item.add(item.get(0));
-		item.add(item.get(1));
-		setGameRun();
+		ArrayList<Item> itemList = new ItemGenerator().getItemList();
+		player = new Player(10, 1, 2, 1);
+		player.pickUp(itemList.get(0));
+		player.pickUp(itemList.get(2));
+		room = factoryList.get(1);		
 	}
 	
 	/**
@@ -71,49 +58,4 @@ public class Game
 		System.exit(0);
 	}
 
-	/**
-	 * Method: getItem()
-	 * 
-	 * @return the items in the game
-	 */
-	public List<Item> getItem()
-	{
-		return game.item;
-	}
-	
-	/**
-	 * Method: getRoom()
-	 * 
-	 * @return the first room in the game
-	 */
-	public List<Room> getRooms()
-	{
-
-		return game.startingRoom;
-
-	}
-
-	/**
-	 * Method: setGameRun()
-	 * 
-	 * @return a boolean to set the game.
-	 */
-	public boolean setGameRun()
-	{
-		if (game == null)
-		{
-			game = new Game(startingRoom, player);
-			return true;
-		}
-		else
-			return false;
-	}
-
-	/**
-	 * Method: runs GUI class
-	 * @param args
-	 */
-	public void play(String[] args){
-		Application.launch(GUI.class, args);
-	}
 }

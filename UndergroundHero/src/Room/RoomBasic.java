@@ -2,8 +2,13 @@ package Room;
 
 public class RoomBasic extends Room{
 
-	public RoomBasic(String name, String description, String exits, boolean locked) {
-		super(name, description, exits, locked);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8165444880281583428L;
+
+	public RoomBasic(int id, String name, String description, String exits, boolean locked) {
+		super(id, name, description, exits, locked);
 	}
 	
 }

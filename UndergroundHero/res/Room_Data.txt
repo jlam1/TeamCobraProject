@@ -1,63 +1,63 @@
 1-0
-Secret Exit, bad ending.
+You left the underground lair and ultimately lead to the destruction of all humanity! (Secret Bad Ending)
 EAST
 false
 1-1
-This is the first room in the game, upon entering the room, the player sees that it is an office type of room, the light is dimmed to a level that it is still easy to see. There is a front desk to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says: Which are you: A B O AB?. The door to the next room past the couch and the desk about the middle of the two.
+An office room, the light is dimmed to a level that it is still easy to see. There is a front desk to the left with a tall artificial plan and a brown leather couch across to the right. There is no trace of people in the office space. The front desk has a monitor that seems to be on, also there is a steamy coffee on the desk. Some papers scattered around the desk along with some pens. A painting of a red boat on the sea hangs above the couch, and a poster next to the front desk which says blood type AB. The door to the next room past the couch and the desk about the middle of the two.
 EAST
 false
 1-2
-The second room is an office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list to people the player does not know anything about.
+An office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list.
 WEST, EAST
 false
 1-3
-The third room is a meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the player upon entering and say hi in a very calmed way.
+A meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the you upon entering and says "Howdy" in a very calmed way, creepy...
 WEST, EAST
 false
 1-4
-This room has several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.
+A room with several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.
 SOUTH, WEST
 false
 1-5
-This room has a desk which looks fancy and it is located on the south east corner of the room. It is made from dark brown wood and it has a library next to it extending all the way to the north wall and covering the entire north wall. The shelves go from the ceiling to the ground and are filled with books of all kinds, also the shelves have decorations on them, like some wooden figures that resemble African heritage, also an hourglass (sand clock) which by the way has been turned upside down with the time ticking. There's world map behind the desk covering most of the south wall. There is one painting next to the door which leads to room 1-6, the painting is of a lady.
+A room containing a desk which looks fancy and it is located on the south east corner of the room. It is made from dark brown wood and it has a library next to it extending all the way to the north wall and covering the entire north wall. The shelves go from the ceiling to the ground and are filled with books of all kinds, also the shelves have decorations on them, like some wooden figures that resemble African heritage, also an hourglass which by the way has been turned upside down with the time ticking. There is a [MONA LISA] painting on the wall.
 NORTH, WEST, EAST
 false
 1-6
-This room consists of a closet and shower like room, it all white and very clean, the floor is white, the light is white, everything is white, except there is bloody hand prints everywhere on the northwestern corner of the room, there's a thick trail of blood going into the room westward. This room also connects to the room 1-3. Keep in mind the doors are thick and not much sound gets through to the other side.
+A room with a closet and a clean shower room, the floor is white, the light is white, everything is white, except there is bloody hand prints everywhere on the northwestern corner of the room, there's a thick trail of blood going into the room westward. Keep in mind the doors are thick and not much sound gets through to the other side.
 NORTH, WEST, EAST
 false
 1-7
-This room consists of a steel bed, it has a body on top of it. It is inside a body bag, it's very cold in this room, doesn't smell like anything. The body could be just a dummy. Same as the previous to this one, everything is white, the lights are dimmed, and somewhat flickery. There are some sharp tools on a tray.
+A room consisting of a steel bed, it has a body on top of it. It is inside a body bag, it's very cold in this room, doesn't smell like anything. The body could be just a dummy. Same as the previous to this one, everything is white, the lights are dimmed, and somewhat flickery. There are some sharp tools on a tray.
 WEST, EAST
 false
 1-8
-There's a man sitting there on a chair, the Puzzler. Wearing a purple shirt and holding a cane. He is smoking something which filled up the room with smoke. His name is Puzzler, the boss of floor one, he seems to have had a bad day, so who knows what he could do.
+There's a man sitting there on a chair. Wearing a purple shirt and holding a cane. He is smoking something which filled up the room with smoke.
 WEST, EAST
 false
 1-9
-Secret room to the west side of room 1-5. This room has weapons and health the player can pick up. There is a lock to the door once inside it and it works as a safe place in case it is needed. The room has a purple light bulb which makes the room appear very purple.
+A secret room! There is a lock to the door once inside it and it works as a safe place in case it is needed. The room has a purple light bulb which makes the room appear very purple.
 WEST
 false
 2-1
-The room connecting floor 1 and 2.
-EAST
+A small and narrow corridor that links the two exits together.
+WEST, EAST
 true
 2-2
-A room with four exits. An adrenaline shot on the ground.
+A standard room with four exits. An [ADRENALINE SHOT] on the ground.
 NORTH, SOUTH, WEST, EAST
 false
 2-3
-Four statues on the North wall: a Duck, a Giraffe, an Elephant, and a Cow. Their order is randomized (but cannot be randomized to the puzzle's solution), and they can be moved. A pedestal in the center of the room holding a pair of red boots that are protected by an energy force field.
+Four statues in order on the north wall from left to right: Duck, Giraffe, Elephant, and Cow. A pedestal in the center of the room holding a pair of speed boots that are protected by an energy force field.
 SOUTH
 false
 2-4
-Four statues on the South wall; from East to West, a Duck, a Giraffe, an Elephant, and a Cow. An empty pedestal in the center of the room.
+Four statues on the South wall from left to right: Cow, Giraffe, Duck, and Elephant. Behind each statue is a number behind each: Duck has 1, Giraffe has 2, Elephant has 3, and Cow has 4. Maybe the ordering of each statue and numbers is important?
 NORTH
 false
 2-5
-A hallway that shoots lasers at anyone who tries to pass; if the player tries to exit through the East door without the Speed Boots, they are unable to and take 1 HP of damage.
+A hallway that shoots lasers at anyone who tries to pass, it seems like I'll need to be fast enough to dodge the lasers.
 WEST, EAST
-false
+true
 2-6
 A room with four exits. The door to the east is locked tight.
 NORTH, SOUTH, WEST ,EAST

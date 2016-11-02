@@ -1,13 +1,17 @@
 package Item;
-import java.util.List;
+
+import java.io.Serializable;
 
 import Game.Properties;
-
-public abstract class Item implements Properties{
-
+/**
+ * This abstract class is responsible for providing common attributes and behaviors for each item object type.
+ * @author John
+ *
+ */
+public abstract class Item implements Properties, Serializable{
+	private static final long serialVersionUID = -3361235989041007891L;
 	private int id;
 	private String name, type, description;
-	protected int weaponAtk, armorDef, count;
 	
 	public Item(int id, String name, String type, String description) {
 		this.id = id;
@@ -36,54 +40,9 @@ public abstract class Item implements Properties{
 		return type;
 	}
 
-	public int getWeaponAtk() {
-		return weaponAtk;
-	}
-
-	public void setWeaponAtk(int weaponAtk) {
-		this.weaponAtk = weaponAtk;
-	}
-
-	public int getArmorDef() {
-		return armorDef;
-	}
-
-	public void setArmorDef(int armorDef) {
-		this.armorDef = armorDef;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-	
-	public void countItem() {
-		this.count++;
-	}
-	
-	public void useItem() {
-		this.count--;
-	}
-
 	@Override
 	public String toString() {
 		return "Item [name=" + name + ", description=" + description + ", type=" + type + "]";
 	}
-
-	/**
-	 * 
-	 * @param list
-	 * Method will display a list of items using toString
-	 */
-	public void openInventory(List<Item> list){
-		for(Item i : list){
-			System.out.println(i.toString());
-		}
-	}
-	
-	
 
 }

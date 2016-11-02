@@ -1,14 +1,20 @@
-package Character;
+package SearchController;
 
 import java.util.ArrayList;
 
+import Character.Monster;
 import Generator.MonsterGenerator;
 
-public class MonsterController {
+/**
+ * This class will be responsible searching monster objects by name and returns monster objects.
+ * @author John
+ *
+ */
+public class MonsterFinder {
 
 	private ArrayList<Monster> monsterList;
 	
-	public MonsterController(){
+	public MonsterFinder(){
 		monsterList = new MonsterGenerator().getMonsterList();
 	}
 	

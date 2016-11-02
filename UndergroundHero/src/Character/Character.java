@@ -1,8 +1,15 @@
 package Character;
 
+import java.io.Serializable;
+
 import Game.Properties;
 
-public abstract class Character implements Properties {
+/**
+ * 
+ * This is an abstract class for character entities that shares a common behavior and attribute.
+ * @author John, Kyle
+ */
+public abstract class Character implements Properties, Serializable {
 	
 	protected int id;
 	public int hp;
@@ -10,22 +17,8 @@ public abstract class Character implements Properties {
 	protected int spd;
 	public int def;
 	protected String name, description;
-//<<<<<<< HEAD
 	protected boolean isDead;
-//=======
 	protected boolean dead;
-//<<<<<<< HEAD
-//<<<<<<< HEAD
-//=======
-//=======
-//<<<<<<< HEAD
-//=======
-//>>>>>>> 9eae5d48af3d56d29a6beee13229a526215d04fe
-//>>>>>>> branch 'master' of https://github.com/jlam1/TeamCobraProject.git
-	
-	
-//>>>>>>> 7b579141f7e7bb636c3c0eb633b99929fa72242b
-	
 	public Character(int hp, int atk, int spd, int def) {
 		this.hp = hp;
 		this.atk = atk;
@@ -33,10 +26,38 @@ public abstract class Character implements Properties {
 		this.def = def;
 		this.isDead = false;
 	}
-//<<<<<<< HEAD
-//=======
+	/**
+	 * @method Main attack logic, calculates damage output to character object.
+	 * @param character
+	 */
+	public void attack(Character character){
+		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (Before Attacked)");
+		character.setHp(character.getHp() - this.atk);
+		System.out.println(character.getName() + " has been hit for [" + this.atk + "] damage!");
+		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (After Attacked)\n");
+	}
 	
-//>>>>>>> 7b579141f7e7bb636c3c0eb633b99929fa72242b
+	/**
+	 * @method Main defend logic, calculates damage taken after defense calculation.
+	 * @param character
+	 */
+	public void defend(Character character){
+		
+	}
+	
+	/**
+	 * @method Compare speed and set true if higher.
+	 * @param character
+	 * @return boolean
+	 */
+	public boolean flee(Character character){
+		if(this.spd > character.getSpd()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	public int getId() {
 		return id;
@@ -80,14 +101,6 @@ public abstract class Character implements Properties {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	
 	public boolean getIsDead() {

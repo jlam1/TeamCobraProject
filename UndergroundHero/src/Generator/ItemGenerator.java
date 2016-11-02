@@ -54,6 +54,9 @@ public class ItemGenerator {
 		item = new KeyItem			(9, "Computer Chip",			"KEY", "Use to access computer terminal in Room 3-3.");
 		itemList.add(item);
 		
+		item = new KeyItem			(10, "Hero's Journal",			"KEY", "The Hero's Journal, nothing special.");
+		itemList.add(item);
+		
 	}
 
 	/**

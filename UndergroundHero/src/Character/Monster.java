@@ -1,10 +1,15 @@
 package Character;
 
+import java.io.Serializable;
+
 import Item.Item;
-
-public class Monster extends Character {
-
-	protected boolean boss;
+/**
+ * This class is responsible for monster attributes and behavior.
+ * @author John
+ */
+public class Monster extends Character implements Serializable{
+	private static final long serialVersionUID = -8132473599872303086L;
+	private boolean isBoss;
 	private Item loot;
 	
 	/**
@@ -18,9 +23,11 @@ public class Monster extends Character {
 	 * @param isBoss
 	 * @param description
 	 */
+
 	
-	protected boolean isBoss;
-	
+	private String description;
+	private boolean boss;
+
 	public Monster(int id, String name, int hp, int atk, int def, int spd, boolean isBoss, Item loot, String description){
 		super(hp, atk, spd, def);
 		this.id = id;
@@ -28,6 +35,14 @@ public class Monster extends Character {
 		this.description = description;
 		this.isBoss = isBoss;
 		this.loot = loot;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public Item getLoot() {

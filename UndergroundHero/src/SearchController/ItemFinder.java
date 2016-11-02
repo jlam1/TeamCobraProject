@@ -1,19 +1,23 @@
-package Item;
-
+package SearchController;
+/**
+ * This class is responsible for searching Item objects by name
+ */
 import java.util.ArrayList;
 
 import Generator.ItemGenerator;
+import Item.Item;
+import Item.KeyItem;
 
 /**
- * This class is responsible for searching item attributes.
+ * This class is responsible for searching item object by String and returns that item object.
  * @author John
  *
  */
-public class ItemController {
+public class ItemFinder {
 	
 	private ArrayList<Item> itemList;
 	
-	public ItemController(){
+	public ItemFinder(){
 		itemList = new ItemGenerator().getItemList();
 	}
 
@@ -22,7 +26,7 @@ public class ItemController {
 	 * @param name
 	 * @return KeyItem
 	 */
-	public KeyItem keyItem(String name) {
+	public KeyItem key(String name) {
 		Item item;
 		KeyItem keyItem = null;
 		for(int i = 0; i < itemList.size(); i++){
@@ -43,7 +47,7 @@ public class ItemController {
 	 * @param name
 	 * @return Item
 	 */
-	public Item miscItem(String name) {
+	public Item item(String name) {
 		Item item;
 		Item miscItem = null;
 		

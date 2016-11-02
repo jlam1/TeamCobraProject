@@ -1,15 +1,19 @@
-package Puzzle;
+package SearchController;
 
 import java.util.ArrayList;
 
 import Generator.PuzzleGenerator;
-import Item.Item;
-
-public class PuzzleController {
+import Puzzle.Puzzle;
+/**
+ * This class is responsible for searching puzzle objects by name.
+ * @author John
+ *
+ */
+public class PuzzleFinder {
 	
 	private ArrayList<Puzzle> puzzleList;
 	
-	public PuzzleController(){
+	public PuzzleFinder(){
 		puzzleList = new PuzzleGenerator().getPuzzleList();
 	}
 	

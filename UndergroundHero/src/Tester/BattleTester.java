@@ -7,6 +7,7 @@ import java.util.Scanner;
 import Character.Monster;
 import Generator.MonsterGenerator;
 import Character.Player;
+import Generator.MonsterGenerator;
 import Item.ConsumableItem;
 
 public class BattleTester{
@@ -28,6 +29,7 @@ public class BattleTester{
 		player = new Player(10,1,3,2);	//HP, ATK, DEF, SPD
 		int potionHeal = 30;
 		int potionDropRate = 50; //Percent
+		player = new Player(10,1,3,2);	
 		List<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		String monsterName = monsterList.get(RandMon).getName();
 		String monsterDesc = monsterList.get(RandMon).getDescription();

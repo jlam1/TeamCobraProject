@@ -1,4 +1,5 @@
 package Room;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,8 +8,12 @@ import Game.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
 
-public abstract class Room implements Properties{
+public abstract class Room implements Properties, Comparable<Room>, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1722849142865991875L;
 	protected String name, description, exits;
 	protected boolean locked;
 	protected int id;
@@ -17,7 +22,8 @@ public abstract class Room implements Properties{
 	protected Puzzle roomPuzzle;
 	private Map<String, Room> exitMap;
 	
-	public Room(String name, String description, String exits, boolean locked){
+	public Room(int id, String name, String description, String exits, boolean locked){
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.exits = exits;
@@ -46,6 +52,19 @@ public abstract class Room implements Properties{
     
 	public void setExitMap(Map<String, Room> exitMap) {
 		this.exitMap = exitMap;
+	}
+	
+	/**
+	 * @method Sorting arrays by ascending order of room IDs
+	 */
+	@Override
+	public int compareTo(Room room) {
+		int roomID = room.getId();
+		return this.id - roomID;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public void setId(int id) {
@@ -94,10 +113,6 @@ public abstract class Room implements Properties{
 
 	public String getName() {
 		return name;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 }
