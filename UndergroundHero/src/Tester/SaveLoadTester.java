@@ -16,16 +16,16 @@ import Room.RoomFactory;
 
 public class SaveLoadTester {
 	
-	static Room currentRoom;
+	static Room currentRoom, lockedRoom;
 	static List<Room> factoryList;
 	static List<Item> itemList;
 	static Player player;
 	static Scanner input;
 	static int bagIndex;
 	static String roomDescription;
-	static Room lockedRoom;
 	static List<Room> lockedRoomList;
 	static PuzzleLogic puzzleLogic;
+	static boolean lock;
 
 	public static void main(String[] args) {
 		
@@ -113,10 +113,28 @@ public class SaveLoadTester {
 			}
 			
 			//testing lock logic
-			else if(command.equalsIgnoreCase("UNLOCK")){				
+			else if (command.equalsIgnoreCase("UNLOCK"))
+			{
 				System.out.println("Locked: " + lockedRoom.isLocked());
 				lockedRoom.setLocked(false);
+				//nextRoom.setLocked(false);
+				
 				System.out.println("Locked: " + lockedRoom.isLocked());
+				//System.out.println("NextLocked: " + nextRoom.isLocked());
+				
+				factoryList.get(lockedRoom.getId()).setLocked(false);
+				System.out.print(factoryList.get(lockedRoom.getId()).getId() + " "
+						+ factoryList.get(lockedRoom.getId()).isLocked());
+				
+				if (lockedRoom.isLocked() == false)
+				{
+					currentRoom = lockedRoom;
+					//factoryList.get(currentRoom.getId()).setLocked(false);
+					System.out.println();
+					System.out.println("[" + currentRoom.getName() + "]");
+					System.out.println(roomDescription);
+					System.out.println("[" + currentRoom.getExits() + "]");
+				}
 			}
 			
 			else{
@@ -128,12 +146,13 @@ public class SaveLoadTester {
 	
 	static void roomLogic(String direction){
 		Room nextRoom = currentRoom.nextRoom(direction);
-		
+		lock = nextRoom.isLocked();
 		if(nextRoom == null){
 			System.out.println("Theres no exit that way, try another direction.");
 		}
 		
-		else if(nextRoom.isLocked() == true){
+		else if (lock == factoryList.get(nextRoom.getId()).isLocked() && lock )
+		{
 			lockedRoom = nextRoom;
 			System.out.println("[" + nextRoom.getName() + "] door is locked.");
 			System.out.println("Try a different route.");
@@ -236,6 +255,7 @@ public class SaveLoadTester {
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();
+			lock = true;
 			//puzzleLogic = data.getPuzzle();
 			System.out.println("Load Sucessful");
 			System.out.println();
