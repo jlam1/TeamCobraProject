@@ -13,7 +13,6 @@ public class Monster extends Character implements Serializable{
 	private boolean isBoss;
 	private Item loot;
 	private String description;
-	private boolean boss;
 
 	/**
 	 * 
@@ -58,10 +57,6 @@ public class Monster extends Character implements Serializable{
 	
 	public void setIsBoss(boolean isBoss) {
 		this.isBoss = isBoss;
-	}
-	
-	public void setBoss(boolean boss) {
-		this.boss = boss;
 	}
 	
 	@Override

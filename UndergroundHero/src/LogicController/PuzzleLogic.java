@@ -92,7 +92,9 @@ public class PuzzleLogic implements Serializable{
 								runRiddlePuzzle(userInput, riddleAnswer);
 							}
 							else
-							{}
+							{
+								
+							}
 							
 						}
 							

@@ -147,6 +147,7 @@ public class SaveLoadTester {
 	static void roomLogic(String direction){
 		Room nextRoom = currentRoom.nextRoom(direction);
 		lock = nextRoom.isLocked();
+		
 		if(nextRoom == null){
 			System.out.println("Theres no exit that way, try another direction.");
 		}
