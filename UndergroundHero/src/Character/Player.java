@@ -9,7 +9,7 @@ import Item.Weapon;
 
 /**
  * This class is responsible for player attributes and behavior regarding with status and inventory bag (ArrayList<Item>).
- * @author John
+ * @author John, Matt
  *
  */
 public class Player extends Character implements Serializable{

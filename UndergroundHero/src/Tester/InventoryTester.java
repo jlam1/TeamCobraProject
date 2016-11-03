@@ -1,5 +1,6 @@
 package Tester;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,12 +55,17 @@ public class InventoryTester {
 				in.nextLine();
 			}
 			else if(command.equalsIgnoreCase("use")) {
-				System.out.println("Which item do you want to use? (Choose a number)");
-				player.openInventory();
-				System.out.print(">>");
-				bagIndex = in.nextInt();
-				player.useItem(bagIndex);
-				in.nextLine();
+				try{
+					System.out.println("Which item do you want to use? (Choose a number)");
+					player.openInventory();
+					System.out.print(">>");
+					bagIndex = in.nextInt();
+					player.useItem(bagIndex);
+					in.nextLine();
+				}
+				catch(InputMismatchException e) {
+					
+				}
 			}
 			else if(command.equalsIgnoreCase("info")) {
 				System.out.println(player.toString());

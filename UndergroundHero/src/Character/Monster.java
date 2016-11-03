@@ -8,26 +8,25 @@ import Item.Item;
  * @author John
  */
 public class Monster extends Character implements Serializable{
+	
 	private static final long serialVersionUID = -8132473599872303086L;
 	private boolean isBoss;
 	private Item loot;
-	
-	/**
-	 * 
-	 * @param name
-	 * @param hp
-	 * @param atk
-	 * @param def
-	 * @param spd
-	 * @param dead
-	 * @param isBoss
-	 * @param description
-	 */
-
-	
 	private String description;
 	private boolean boss;
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param maxHP
+	 * @param atk
+	 * @param def
+	 * @param spd
+	 * @param isBoss
+	 * @param loot
+	 * @param description
+	 */
 	public Monster(int id, String name, int maxHP, int atk, int def, int spd, boolean isBoss, Item loot, String description){
 		super(maxHP, atk, spd, def);
 		this.id = id;

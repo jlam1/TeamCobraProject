@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import Game.Properties;
 import Item.*;
-
+/**
+ * This class is responsible for puzzle attributes and behaviors.
+ * @author John
+ *
+ */
 public abstract class Puzzle implements Properties, Serializable{
 
 	/**

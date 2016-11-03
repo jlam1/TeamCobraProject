@@ -1,7 +1,5 @@
 package SearchController;
-/**
- * This class is responsible for searching Item objects by name
- */
+
 import java.util.ArrayList;
 
 import Generator.ItemGenerator;

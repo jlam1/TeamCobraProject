@@ -7,7 +7,7 @@ import Game.Properties;
 /**
  * 
  * This is an abstract class for character entities that shares a common behavior and attribute.
- * @author John, Kyle
+ * @author John, Kyle, Matt
  */
 public abstract class Character implements Properties, Serializable {
 	

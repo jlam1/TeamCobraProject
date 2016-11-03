@@ -16,6 +16,7 @@ import Room.Room;
  *
  * This class is a class that implements Serializable interface.
  * The class stores the objects values in to binary.
+ * @author King
  */
 
 

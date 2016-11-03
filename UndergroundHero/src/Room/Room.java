@@ -7,12 +7,13 @@ import Character.Monster;
 import Game.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
-
+/**
+ * This class is responsible for instantializing room attributes and behaviors.
+ * @author John
+ *
+ */
 public abstract class Room implements Properties, Comparable<Room>, Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1722849142865991875L;
 	protected String name, description, exits;
 	protected boolean locked;
@@ -35,6 +36,13 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 		return "Exits: " + this.exits;
 	}
 	
+	/**
+	 * @method Sets each possible room exits to a map.
+	 * @param north
+	 * @param east
+	 * @param south
+	 * @param west
+	 */
     public void setExits(Room north, Room east, Room south, Room west){
         if(north != null)
         	exitMap.put("north", north);
@@ -46,14 +54,15 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
         	exitMap.put("west", west);
     }
     
+    /**
+     * @method Calls from map a string direction exit.
+     * @param direction
+     * @return Room
+     */
     public Room nextRoom(String direction){
         return (Room)exitMap.get(direction);
     }  
-    
-	public void setExitMap(Map<String, Room> exitMap) {
-		this.exitMap = exitMap;
-	}
-	
+
 	/**
 	 * @method Sorting arrays by ascending order of room IDs
 	 */
@@ -61,6 +70,10 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	public int compareTo(Room room) {
 		int roomID = room.getId();
 		return this.id - roomID;
+	}
+	
+	public void setExitMap(Map<String, Room> exitMap) {
+		this.exitMap = exitMap;
 	}
 	
 	public int getId() {

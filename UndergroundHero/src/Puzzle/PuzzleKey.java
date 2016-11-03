@@ -1,7 +1,11 @@
 package Puzzle;
 
 import Item.*;
-
+/**
+ * Class is responisble for puzzle type PuzzleKey objects.
+ * @author John
+ *
+ */
 public class PuzzleKey extends Puzzle{
 
 	/**

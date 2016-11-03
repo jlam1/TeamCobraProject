@@ -6,8 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
-/*
+/**
  * This class will read text files and load them into a list. Call list by using getter method.
+ * @author King
+ *
  */
 public class ResourceManager {
 	

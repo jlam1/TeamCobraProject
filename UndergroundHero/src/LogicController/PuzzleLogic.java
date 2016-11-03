@@ -17,10 +17,7 @@ import Room.*;
  *
  */
 public class PuzzleLogic implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3089189101952541374L;
 	private boolean puzzleLoop, riddleLoop, puzzleSolved, puzzleRun;
 	private Puzzle puzzle;
@@ -54,8 +51,8 @@ public class PuzzleLogic implements Serializable{
 		//check if puzzle is null AND if puzzle is NOT solved
 		if(puzzle != null && puzzle.isSolved() == false) {
 			
-			print("There is a puzzle in this room...\n", 40);
-			print("Do you want to initiate puzzle? (Y/N)\n", 40);
+			System.out.println("There is a puzzle in this room...");
+			System.out.println("Do you want to initiate puzzle? (Y/N)");
 			
 			do {
 				System.out.print(">>");
@@ -63,8 +60,8 @@ public class PuzzleLogic implements Serializable{
 				
 				//check user's choice (Y/N)
 				if(userInput.equalsIgnoreCase("Y")) {
-					print("Initiating puzzle", 40);
-					print("...\n", 300);
+					System.out.println("Initiating puzzle");
+//					print("...\n", 300);
 					String puzzleDesc = puzzle.getDescription();
 					KeyItem puzzleKeyItem = puzzle.getKeyItem();
 					String riddleAnswer = puzzle.getRiddleAnswer();
@@ -222,18 +219,18 @@ public class PuzzleLogic implements Serializable{
 
 	}
 	
-	public void print(String string, long delay) {
-		try {
-		    for (char ch : string.toCharArray()) {
-		        System.out.print(ch);
-		        TimeUnit.MILLISECONDS.sleep(delay);
-		    }
-		}
-		catch(InterruptedException e) {
-			System.out.println("InterruptedException: print()");
-		}
-
-	}
+//	public void print(String string, long delay) {
+//		try {
+//		    for (char ch : string.toCharArray()) {
+//		        System.out.print(ch);
+//		        TimeUnit.MILLISECONDS.sleep(delay);
+//		    }
+//		}
+//		catch(InterruptedException e) {
+//			System.out.println("InterruptedException: print()");
+//		}
+//
+//	}
 
 //	private String wrapText(String longDescription){
 //		String shortDesc = WordUtils.wrap(longDescription, 50);

@@ -1,10 +1,11 @@
 package Room;
-
+/**
+ * Class extends room and creates room objects with no monsters or puzzles.
+ * @author John
+ *
+ */
 public class RoomBasic extends Room{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8165444880281583428L;
 
 	public RoomBasic(int id, String name, String description, String exits, boolean locked) {
