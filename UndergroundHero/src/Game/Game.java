@@ -45,6 +45,10 @@ public class Game {
 	 */
 	private void createNewGame() {
 		gameRun = true;
+		factoryList = new RoomFactory().getRoomFactoryList();
+		itemList = new ItemGenerator().getItemList();
+		puzzleLogic = new PuzzleLogic();
+		battleLogic = new BattleLogic();
 		player = new Player(10, 10, 1, 3, 2);
 		player.setName("HERO");
 		player.startingItem(itemList.get(0));
@@ -52,12 +56,18 @@ public class Game {
 		player.startingItem(itemList.get(10));
 		player.startingItem(itemList.get(4));
 		currentRoom = factoryList.get(1);
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("[" + currentRoom.getName() + "]");
+		System.out.println(currentRoom.getDescription());
+		System.out.println("[" + currentRoom.getExits() + "]");
+		System.out.println("-------------------------------------------------------");
 	}
 	
 	public void menuScreen() {
 		
 		Scanner input = new Scanner(System.in);
-		
+		displayIntro();
 		System.out.println("To play, please enter: ");
 		System.out.println("1. Start New Game");
 		System.out.println("2. Load Saved Game");
@@ -94,8 +104,6 @@ public class Game {
 	private void play() {
 		String userInput;
 		input = new Scanner(System.in);
-		
-		displayIntro();
 		
 		while(gameRun) {
 			System.out.print(">>");
