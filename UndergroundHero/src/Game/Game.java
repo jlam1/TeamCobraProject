@@ -43,7 +43,7 @@ public class Game {
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
-	public void createNewGame() {
+	private void createNewGame() {
 		gameRun = true;
 		player = new Player(10, 10, 1, 3, 2);
 		player.setName("HERO");
@@ -54,10 +54,44 @@ public class Game {
 		currentRoom = factoryList.get(1);
 	}
 	
+	public void menuScreen() {
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("To play, please enter: ");
+		System.out.println("1. Start New Game");
+		System.out.println("2. Load Saved Game");
+		System.out.println("3. Exit Game");
+		System.out.println("");
+		int userInput = input.nextInt();
+		System.out.print(">>");
+		
+		try {
+			if(userInput == 1) {
+				System.out.println("Starting a new game...");
+				createNewGame();
+				play();
+			}
+			if(userInput == 2) {
+				System.out.println("Loading a saved state...");
+				play();
+				load();
+			}
+			if(userInput == 3) {
+				System.out.println("Exiting game...");
+				System.exit(0);
+			}
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Invalid Input, please try again.");
+		}
+		
+	}
+	
 	/**
 	 * @method Main method for initiating game
 	 */
-	public void play() {
+	private void play() {
 		String userInput;
 		input = new Scanner(System.in);
 		
@@ -118,13 +152,17 @@ public class Game {
 					gameRun = false;
 				}
 				
+				else {
+//					checkRoomMonsterLocks(nextRoom.getRoomMonster());
+				}
+				
 				checkRoomMonsterLocks(nextRoom.getRoomMonster());
 				
-				System.out.println("Returning to room...");
-				System.out.println("-------------------------------------------------------");
-				System.out.println("[" + currentRoom.getName() + "]");
-				System.out.println("[" + currentRoom.getExits() + "]");
-				System.out.println("-------------------------------------------------------");
+//				System.out.println("Returning to room...");
+//				System.out.println("-------------------------------------------------------");
+//				System.out.println("[" + currentRoom.getName() + "]");
+//				System.out.println("[" + currentRoom.getExits() + "]");
+//				System.out.println("-------------------------------------------------------");
 				
 			}
 			
@@ -244,8 +282,7 @@ public class Game {
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
-		// TODO: need to save the player stats, save already solve puzzle, save
-		// items in bag, save room boolean, and save already defeated monsters
+		
 		try {
 			ResourceManager.saveGame(data, "UndergroundHero.dat");
 
@@ -256,7 +293,7 @@ public class Game {
 		}
 
 	}
-	
+
 	private void load() {
 		// use the class saveLoadData to load values in the binary file
 		try {
@@ -266,12 +303,7 @@ public class Game {
 			factoryList = data.getFactoryList();
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription()); // wrapText(currentRoom.getDescription()
-
-			// data.setRoom(currentRoom);
-			// TODO: need to load the player stats, load already solve puzzle,
-			// load items in bag, load room boolean and load already defeated
-			// monsters
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
 
 		} catch (Exception e) {
 			System.out.println("error loading");
@@ -377,7 +409,8 @@ public class Game {
 		System.out.println("ROOM:		[LOOK]");
 		System.out.println("INVENTORY:	[BAG], [EQUIP], [INFO], [USE]");
 		System.out.println("PUZZLE:		[VIEW], [LEAVE]");
-		System.out.println("BATTLE:		[1. ATTACK], [2. DEFEND], [3. FLEE], [4. USE ITEM]\n");
+		System.out.println("BATTLE:		[1. ATTACK], [2. DEFEND], [3. FLEE], [4. USE ITEM]");
+		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
 		System.out.println("Type [HELP] for more information.");
 		System.out.println("-------------------------------------------------------");
 	}

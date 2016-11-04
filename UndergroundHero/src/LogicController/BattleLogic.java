@@ -92,7 +92,8 @@ public class BattleLogic {
 			
 		}
 		
-		System.out.println("Current HP: " + player.getHp());
+		if(player.isDead())
+			System.out.println("Returning to menu screen...");
 		
 	}
 	
