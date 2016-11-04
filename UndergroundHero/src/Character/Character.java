@@ -11,6 +11,10 @@ import Game.Properties;
  */
 public abstract class Character implements Properties, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5789756218470902984L;
 	protected int id, maxhp, hp, atk, spd, def;
 	protected String name, description;
 	protected boolean dead;
