@@ -11,21 +11,45 @@ import Item.*;
  */
 public abstract class Puzzle implements Properties, Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1045004670933137084L;
-	protected String name, description, riddleAnswer;
+	protected String name, description;
 	protected int id, type;
 	protected boolean solved;
+	protected Item itemReward;
+	protected String riddleAnswer;
 	protected KeyItem keyItem;
 	
-	public Puzzle(int id, String name, int type, String description) {
+	public Puzzle(int id, String name, int type, Item itemReward, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.type = type;
+		this.itemReward = itemReward;
 		this.solved = false;
+	}
+	
+	public Item getItemReward() {
+		return itemReward;
+	}
+
+	public void setItemReward(Item itemReward) {
+		this.itemReward = itemReward;
+	}
+
+	public KeyItem getKeyItem() {
+		return keyItem;
+	}
+
+	public void setKeyItem(KeyItem keyItem) {
+		this.keyItem = keyItem;
+	}
+	
+	public String getRiddleAnswer() {
+		return riddleAnswer;
+	}
+
+	public void setRiddleAnswer(String riddleAnswer) {
+		this.riddleAnswer = riddleAnswer;
 	}
 
 	public String getName() {
@@ -38,14 +62,6 @@ public abstract class Puzzle implements Properties, Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getRiddleAnswer() {
-		return riddleAnswer;
-	}
-
-	public void setRiddleAnswer(String riddleAnswer) {
-		this.riddleAnswer = riddleAnswer;
 	}
 
 	public int getId() {
@@ -62,10 +78,6 @@ public abstract class Puzzle implements Properties, Serializable{
 
 	public void setSolved(boolean solved) {
 		this.solved = solved;
-	}
-
-	public KeyItem getKeyItem() {
-		return keyItem;
 	}
 
 	@Override

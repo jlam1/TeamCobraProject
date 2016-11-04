@@ -85,7 +85,7 @@ public class Player extends Character implements Serializable{
 	 * @param item
 	 */
 	public void pickUp(Item item) {
-		System.out.println("[" + item.getName() + "]" + " has been added to your [INVENTORY].\n");
+		System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
 	}
 	
@@ -177,12 +177,12 @@ public class Player extends Character implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "PLAYER\nHP:\t [" + this.hp + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";
+		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";
 	}
 
 	@Override
 	public String getDescription() {
-		String heroDescription = "Some random description about the Hero of the game.";
+		String heroDescription = "";
 		return heroDescription;
 	}
 

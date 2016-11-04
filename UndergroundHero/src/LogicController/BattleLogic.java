@@ -32,11 +32,6 @@ public class BattleLogic {
 	public void initiateBattle(Player player, Monster monster) {
 		
 		playerInventory = player.getInventory();
-		
-		player.pickUp(itemList.get(4));
-		player.pickUp(itemList.get(4));
-		player.pickUp(itemList.get(5));
-
 		battleRun = true;
 		
 		System.out.println("---------------------------------------------\n");
@@ -53,6 +48,7 @@ public class BattleLogic {
 			System.out.println("\t3. Defend");
 			System.out.println("\t4. Run");
 			System.out.println("\t5. View Inventory");
+			System.out.println("\t6. Type [KILL] to defeat monster");
 
 			
 			System.out.print(">>");
@@ -81,6 +77,11 @@ public class BattleLogic {
 				
 				if(userInput.equals("5")) {		//view inventory
 					player.openInventory();
+				}
+				
+				if(userInput.equalsIgnoreCase("KILL")) {		//ADMIN 
+					monster.setDead(true);
+					battleRun = false;
 				}
 				
 			}

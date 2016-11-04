@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 //import org.apache.commons.lang3.text.WordUtils;
 
+import Character.Monster;
 import Character.Player;
 import Generator.ItemGenerator;
 import Item.Item;
 import LogicController.BattleLogic;
 import LogicController.PuzzleLogic;
+import Puzzle.Puzzle;
 import Room.Room;
 import Room.RoomFactory;
 /**
@@ -53,7 +55,7 @@ public class Game {
 	}
 	
 	/**
-	 * @method Main method for initiating game logic
+	 * @method Main method for initiating game
 	 */
 	public void play() {
 		String userInput;
@@ -96,17 +98,40 @@ public class Game {
 			//check if roomMonster exists and if not dead
 			if(nextRoom.getRoomMonster() != null && nextRoom.getRoomMonster().isDead() == false) {
 				
-				battleLogic.initiateBattle(player, nextRoom.getRoomMonster());
+				//if boss, spawnrate is 100%
+				if(nextRoom.getRoomMonster().isBoss()) {
+					battleLogic.initiateBattle(player, nextRoom.getRoomMonster());
+				}
+				
+				//if common monster, spawn rate is 30%
+				else {
+					double chance = (Math.random()*100);
+					final double SPAWN_RATE = 30.0;
+					
+					if(chance < SPAWN_RATE) {
+						battleLogic.initiateBattle(player, nextRoom.getRoomMonster());
+					}
+				}
+				
 				
 				if(player.getHp() <= 0) {
 					gameRun = false;
 				}
 				
+				checkRoomMonsterLocks(nextRoom.getRoomMonster());
+				
 				System.out.println("Returning to room...");
+				System.out.println("-------------------------------------------------------");
+				System.out.println("[" + currentRoom.getName() + "]");
+				System.out.println("[" + currentRoom.getExits() + "]");
+				System.out.println("-------------------------------------------------------");
+				
 			}
 			
-			if(nextRoom.getRoomPuzzle() != null)
+			if(nextRoom.getRoomPuzzle() != null) {
 				puzzleLogic.initiatePuzzle(currentRoom, player);
+				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
+			}
 			
 		}
 	}
@@ -264,6 +289,62 @@ public class Game {
 		if(input.equalsIgnoreCase("EAST") || input.equalsIgnoreCase("WEST") || input.equalsIgnoreCase("NORTH") || input.equalsIgnoreCase("SOUTH"))
 			return true;
 			return false;
+	}
+	
+	/**
+	 * @method Opens room lock depending on monster's death.
+	 * @param monster
+	 */
+	private void checkRoomMonsterLocks(Monster monster) {
+		
+		if(monster.isDead() == true) {
+			
+			switch(monster.getId()) {
+			
+				case 0: factoryList.get(10).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(10).getName() + "] is now unlocked!");
+					break;
+				case 1: factoryList.get(19).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(19).getName() + "] is now unlocked!");
+					break;
+				case 4: factoryList.get(41).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
+					break;
+				default:
+					break;
+					
+			}
+		}
+	}
+	
+	/**
+	 * @method Opens room lock depending on puzzle solved.
+	 * @param puzzle
+	 */
+	private void checkRoomPuzzleLocks(Puzzle puzzle) {
+		
+		if(puzzle.isSolved() == true) {
+			
+			switch(puzzle.getId()) {
+				case 3: factoryList.get(14).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
+					break;
+				case 5: factoryList.get(28).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
+					break;
+				case 6: factoryList.get(29).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(29).getName() + " is now unlocked!");
+					break;
+				case 7: factoryList.get(34).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
+					break;
+				case 8: factoryList.get(41).setLocked(false);
+						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
+					break;
+				default:
+					break;
+			}
+		}
 	}
 	
 	/**

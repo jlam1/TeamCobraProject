@@ -85,11 +85,27 @@ public class PuzzleLogic implements Serializable{
 							//check puzzle type PuzzleKey
 							if(puzzle.getType() == 1) {
 								runKeyPuzzle(puzzleKeyItem);
+								//check if puzzle is solved
+								if(puzzleSolved == true) {
+									//check if puzzle has reward item
+									if(puzzle.getItemReward() != null) {
+										System.out.println("Your reward is: [" + puzzle.getItemReward().getName().toUpperCase() + "]");
+										player.pickUp(puzzle.getItemReward());
+									}
+								}
 							}
 							
 							//check puzzle type PuzzleRiddle
 							if(puzzle.getType() == 0) {
 								runRiddlePuzzle(userInput, riddleAnswer);
+								//check if puzzle is solved
+								if(puzzleSolved == true) {
+									//check if puzzle has reward item
+									if(puzzle.getItemReward() != null) {
+										System.out.println("Your reward is: [" + puzzle.getItemReward().getName().toUpperCase() + "]");
+										player.pickUp(puzzle.getItemReward());
+									}
+								}
 							}
 							
 							else {
@@ -155,6 +171,7 @@ public class PuzzleLogic implements Serializable{
 				System.out.println("You are returning back room...\n");
 				System.out.println("-------------------------------------------------");
 				puzzleLoop = false;
+				puzzleRun = false;
 			}
 	}
 	
@@ -219,7 +236,7 @@ public class PuzzleLogic implements Serializable{
 		}
 
 	}
-	
+
 //	public void print(String string, long delay) {
 //		try {
 //		    for (char ch : string.toCharArray()) {
