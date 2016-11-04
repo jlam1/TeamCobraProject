@@ -107,13 +107,7 @@ public class Game {
 				parseCommand(userInput);
 			}
 			
-			System.out.println("What do you want to do?");
-			System.out.print(">>");
-			userInput = input.nextLine();
-			
-			if(userInput.equalsIgnoreCase("EXIT")) {
-				menuScreen = false;
-			}
+			menuScreen();
 			
 		} while(menuScreen);
 
