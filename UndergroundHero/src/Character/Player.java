@@ -164,17 +164,6 @@ public class Player extends Character implements Serializable{
 		}
 	}
 	
-	/**
-	 * @method Calculates damage output after defending.
-	 * @param monster
-	 */
-	public void defend(Monster monster) {
-		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
-		int damageDealt = Math.abs(this.def - monster.getAtk());
-		this.setHp(this.getHp() - damageDealt);
-		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + this.getName().toUpperCase() + "] for " + damageDealt + " damage!");
-	}
-	
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";

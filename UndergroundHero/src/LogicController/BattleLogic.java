@@ -66,7 +66,7 @@ public class BattleLogic {
 				} 
 				
 				if (userInput.equals("3")) {	//defend
-					player.defend(monster);
+					defend(player, monster);
 					System.out.println();
 				} 
 				
@@ -180,6 +180,15 @@ public class BattleLogic {
 			System.out.println(" # " + monster.getName().toUpperCase() + " was defeated! #");
 			dropLoot(player, monster);
 		}
+	}
+	
+	private void defend(Player player, Monster monster) {
+		System.out.println("[" + player.getName().toUpperCase() + "] defends!");
+		int damageDealt = Math.abs(player.getDef() - monster.getAtk());
+		player.setHp(player.getHp() - damageDealt);
+		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + player.getName().toUpperCase() + "] for " + damageDealt + " damage!");
+		
+		checkDead(player, monster);
 	}
 	
 	/**
