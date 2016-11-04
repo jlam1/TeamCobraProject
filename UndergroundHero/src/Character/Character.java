@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 
- * This is an abstract super class for character entities which share a common
+ * This is an abstract super class for character entities which share common
  * behaviors and attributes.
  * 
  * @author John, Kyle, Matt

@@ -3,7 +3,7 @@ package Generator;
 import java.util.ArrayList;
 
 import Item.Armor;
-import Item.ConsumableItem;
+import Item.Consumables;
 import Item.Item;
 import Item.KeyItem;
 import Item.Weapon;
@@ -36,10 +36,10 @@ public class ItemGenerator {
 		item = new Weapon			(3, "Prototype Laser Pistol", 	"WEAPON", 3, "A sleek looking pistol, seemingly made out of titanium judging by the color. It has no visible seams or welds and fires a brilliant blue bolt of light.");
 		itemList.add(item);
 		
-		item = new ConsumableItem	(4, "Adrenaline Shot",			"CONSUMABLE", 0, "Heals the user 10 HP.");
+		item = new Consumables	(4, "Adrenaline Shot",			"CONSUMABLE", 0, "Heals the user 10 HP.");
 		itemList.add(item);
 		
-		item = new ConsumableItem	(5, "Steroid",					"CONSUMABLE", 0, "Increases max HP by 5, and heals fully.");
+		item = new Consumables	(5, "Steroid",					"CONSUMABLE", 0, "Increases max HP by 5, and heals fully.");
 		itemList.add(item);
 		
 		item = new KeyItem			(6, "Diamond Tipped Cutter",	"KEY", "This item allows the player to cut through ballistic glass.");
