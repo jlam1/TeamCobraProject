@@ -2,7 +2,7 @@ package Puzzle;
 
 import java.io.Serializable;
 
-import Game.Properties;
+import Character.Properties;
 import Item.*;
 /**
  * This class is responsible for puzzle attributes and behaviors.

@@ -2,7 +2,7 @@ package Item;
 
 import java.io.Serializable;
 
-import Game.Properties;
+import Character.Properties;
 /**
  * This abstract class is responsible for providing common attributes and behaviors for each item object type.
  * @author John

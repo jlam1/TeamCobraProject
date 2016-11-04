@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Character.Monster;
-import Game.Properties;
+import Character.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
 /**
