@@ -184,6 +184,7 @@ public class Player extends Character implements Serializable{
 		}
 	}
 	
+
 	/**
 	 * The following method calculates the damage taken from a monster attack.
 	 * @param monster The only parameter for defend() method.
@@ -199,7 +200,7 @@ public class Player extends Character implements Serializable{
 	/**
 	 * The following method overrides the toString method for Object to create a custom Player toString.
 	 */
-	
+
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";
