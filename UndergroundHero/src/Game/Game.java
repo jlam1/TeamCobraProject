@@ -74,8 +74,9 @@ public class Game {
 			}
 			if(userInput == 2) {
 				System.out.println("Loading a saved state...");
-				play();
+				createNewGame();
 				load();
+				play();
 			}
 			if(userInput == 3) {
 				System.out.println("Exiting game...");
@@ -97,11 +98,25 @@ public class Game {
 		
 		displayIntro();
 		
-		while(gameRun) {
+		boolean menuScreen = true;
+		
+		do {
+			while(gameRun) {
+				System.out.print(">>");
+				userInput = input.nextLine();
+				parseCommand(userInput);
+			}
+			
+			System.out.println("What do you want to do?");
 			System.out.print(">>");
 			userInput = input.nextLine();
-			parseCommand(userInput);
-		}
+			
+			if(userInput.equalsIgnoreCase("EXIT")) {
+				menuScreen = false;
+			}
+			
+		} while(menuScreen);
+
 	}
 	
 	/**
