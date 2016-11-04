@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 //import org.apache.commons.lang3.text.WordUtils;
+import java.util.concurrent.TimeUnit;
 
 import Character.Monster;
 import Character.Player;
@@ -58,30 +59,35 @@ public class Game {
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("To play, please enter: ");
+		System.out.println("");
+		System.out.println("------------------------# MENU #-----------------------");
 		System.out.println("1. Start New Game");
 		System.out.println("2. Load Saved Game");
 		System.out.println("3. Exit Game");
+		System.out.println("-------------------------------------------------------");
 		System.out.println("");
-		int userInput = input.nextInt();
-		System.out.print(">>");
+		print(">>", 100);
+		String userInput = input.nextLine();
 		
 		try {
-			if(userInput == 1) {
-				System.out.println("Starting a new game...");
-				createNewGame();
-				play();
-			}
-			if(userInput == 2) {
-				System.out.println("Loading a saved state...");
-				createNewGame();
-				load();
-				play();
-			}
-			if(userInput == 3) {
-				System.out.println("Exiting game...");
-				System.exit(0);
-			}
+				if(userInput.equals("1")) {
+					System.out.println("Starting a new game...");
+					createNewGame();
+					play();
+				}
+				if(userInput.equals("2")) {
+					System.out.println("Loading a saved state...");
+					createNewGame();
+					load();
+					play();
+				}
+				if(userInput.equals("3")) {
+					System.out.println("Exiting game...");
+					System.exit(0);
+				}
+				else {
+					System.out.println("Invalid Input.");
+				}
 		}
 		catch(InputMismatchException e) {
 			System.out.println("Invalid Input, please try again.");
@@ -420,6 +426,7 @@ public class Game {
 		System.out.println("PUZZLE:		[VIEW], [LEAVE]");
 		System.out.println("BATTLE:		[1. ATTACK], [2. DEFEND], [3. FLEE], [4. USE ITEM]");
 		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
+		System.out.println("To exit the game, type [QUIT]");
 		System.out.println("Type [HELP] for more information.");
 		System.out.println("-------------------------------------------------------");
 	}
@@ -432,6 +439,37 @@ public class Game {
 		System.out.println("Welcome to Underground Hero");
 		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
 		viewCommands();
+	}
+	
+//	public void print(String string, long delay) {
+//		try {
+//		    for (char ch : string.toCharArray()) {
+//		        System.out.print(ch);
+//		        TimeUnit.MILLISECONDS.sleep(delay);
+//		    }
+//		}
+//		catch(InterruptedException e) {
+//			System.out.println("InterruptedException: print()");
+//		}
+//	
+//	}
+	
+	public void print(String string, long delay) {
+		try {
+			boolean run = true;
+			while(run) {
+				System.out.print(string);
+				TimeUnit.MILLISECONDS.sleep(delay);
+				for(int i = 0; i < string.length(); i++) {
+					System.out.print("\b");
+				}
+			}
+		    
+		}
+		catch(InterruptedException e) {
+			System.out.println("InterruptedException: print()");
+		}
+	
 	}
 	
 //	private String wrapText(String longDescription){
