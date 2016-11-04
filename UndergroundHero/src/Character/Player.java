@@ -8,7 +8,7 @@ import Item.Item;
 import Item.Weapon;
 
 /**
- * This class is responsible for player attributes and behavior regarding with status and inventory bag (ArrayList<Item>).
+ * This class is responsible for player attributes and behaviors regarding battle status and inventory usage.
  * @author John, Matt
  *
  */
@@ -18,6 +18,14 @@ public class Player extends Character implements Serializable{
 	private ArrayList<Item> inventory;
 	private ArrayList<Item> equipment;
 
+	/**
+	 * The following is the constructor method for Player objects.
+	 * @param maxhp From parent.
+	 * @param hp From parent.
+	 * @param atk From parent.
+	 * @param spd From parent.
+	 * @param def From parent.
+	 */
 	public Player(int maxhp, int hp, int atk, int spd, int def) {
 		super(maxhp, hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
@@ -29,7 +37,8 @@ public class Player extends Character implements Serializable{
 	}
 	
 	/**
-	 * @method Player command that prints out a list of Item objects in console.
+	 * The following method is a player command which prints out a list of non-equipment Item objects to console.
+	 * @return Void
 	 */
 	public void openInventory() {
 		if(!this.inventory.isEmpty()){
@@ -52,10 +61,13 @@ public class Player extends Character implements Serializable{
 	}
 	
 	/**
-	 * @method Player command that prints out a list of Item<Armor> and Item<Weapon> objects in console.
+	 * The following method is a player command which prints a list of 
+	 * equipment, <Armor> and <Weapon>, Item objects to console.
+	 * @return Void
 	 */
+	
 	public void viewEquipment(){
-		try{
+		if(!this.equipment.isEmpty()){
 			int bagID = 0;
 			
 			System.out.println("----------------------------------");
@@ -68,10 +80,9 @@ public class Player extends Character implements Serializable{
 			
 			System.out.println("----------------------------------");
 			System.out.println("\n");
-
 		}
-		catch(NullPointerException e){
-			System.out.println("You are not equipped.");
+		else{
+			System.out.println("Your equipment is empty.");
 		}
 	}
 
@@ -81,19 +92,24 @@ public class Player extends Character implements Serializable{
 	}
 	
 	/**
-	 * @method Player command that adds item to ArrayList<Item> inventory
-	 * @param item
+	 * The following method is a player command which adds items to ArrayList<Item> inventory.
+	 * @param item The only parameter for the pickUp() method.
+	 * @return Void
 	 */
+	
 	public void pickUp(Item item) {
 		System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
 	}
 	
 	/**
-	 * @method Player command that can only initiate when item type is a Consumable.
-	 * @throws IndexOutOfBoundsException whenever Item<ConsumableItem> is called outside of List<Item> inventory's size index.
-	 * @param index
+	 * The following method is a player command which can only initiate when Item "type" is a Consumable.
+	 * After initiating, this method will apply the "used Item"'s abilities and then remove the
+	 * Item from its respective list. 
+	 * @exception IndexOutOfBoundsException caught whenever Item<ConsumableItem> is called outside of List<Item> inventory's size index.
+	 * @param index - The only parameter for useItem() method.
 	 */
+	
 	public void useItem(int index) {
 		try{
 			if(this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")){
@@ -103,15 +119,14 @@ public class Player extends Character implements Serializable{
 						this.setHp(this.getMaxhp());
 					}
 					else {
-						this.setHp(this.getHp() + 10);
+						this.setHp(healing);
 					}
 					System.out.println("You healed for 10 HP!");
 				}
 				if(this.inventory.get(index).getId() == 5) {
 					this.setMaxhp(this.maxhp + 5);
 					this.setHp(this.getMaxhp());
-					System.out.println("Your max hp is increased by 5!");
-					System.out.println("You healed to max!");
+					System.out.println("You are fully healed, and your max hp is increased by 5!");
 				}
 				this.inventory.remove(index);
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
@@ -126,10 +141,15 @@ public class Player extends Character implements Serializable{
 	}
 	
 	/**
-	 * @method Player command that can only initiate when item type is either a Weapon or Armor. After initiating, set and increase/decrease player's attack or defense.
-	 * @throws IndexOutOfBoundsException whenever Item<Weapon> or Item<Armor> is called outside of List<Item> inventory's size index.
-	 * @param index
+	 * The following method is a player command which can only initiate when 
+	 * item type is either a Weapon or Armor. 
+	 * After initiating, this method will adjust the player's attack or defense according to Item type,
+	 * as well as move the Item from inventory list to equipment list.
+	 * @exception IndexOutOfBoundsException caught whenever Item<Weapon> or Item<Armor> is called 
+	 * outside of List<Item> inventory's size index.
+	 * @param index The only parameter for equip() method.
 	 */
+	
 	public void equip(int index){
 		try{
 			
@@ -165,9 +185,10 @@ public class Player extends Character implements Serializable{
 	}
 	
 	/**
-	 * @method Calculates damage output after defending.
-	 * @param monster
+	 * The following method calculates the damage taken from a monster attack.
+	 * @param monster The only parameter for defend() method.
 	 */
+	
 	public void defend(Monster monster) {
 		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
 		int damageDealt = Math.abs(this.def - monster.getAtk());
@@ -175,10 +196,15 @@ public class Player extends Character implements Serializable{
 		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + this.getName().toUpperCase() + "] for " + damageDealt + " damage!");
 	}
 	
+	/**
+	 * The following method overrides the toString method for Object to create a custom Player toString.
+	 */
+	
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t [" + this.spd + "]\nATK:\t [" + this.atk + "]\n";
 	}
+
 
 	@Override
 	public String getDescription() {
