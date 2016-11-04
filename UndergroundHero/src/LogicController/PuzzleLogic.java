@@ -91,8 +91,8 @@ public class PuzzleLogic implements Serializable{
 							if(puzzle.getType() == 0) {
 								runRiddlePuzzle(userInput, riddleAnswer);
 							}
-							else
-							{
+							
+							else {
 								
 							}
 							
@@ -110,9 +110,8 @@ public class PuzzleLogic implements Serializable{
 							System.out.println("-------------------------------------------------");
 						}
 						
-						//user input invalid
 						else {
-							System.out.println("Invalid command input.\n");
+							
 						}
 						
 					}

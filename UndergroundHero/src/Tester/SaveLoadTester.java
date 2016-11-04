@@ -29,7 +29,7 @@ public class SaveLoadTester {
 
 	public static void main(String[] args) {
 		
-		player = new Player(10, 3, 2, 3);
+		player = new Player(10, 10, 3, 2, 3);
 		
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();

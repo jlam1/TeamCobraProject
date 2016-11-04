@@ -11,60 +11,34 @@ import Game.Properties;
  */
 public abstract class Character implements Properties, Serializable {
 	
-	protected int id;
-	public int hp;
-	public int atk;
-	protected int spd;
-	public int def;
+	protected int id, maxhp, hp, atk, spd, def;
 	protected String name, description;
-	protected boolean isDead;
-	protected int maxHP;
 	protected boolean dead;
 	
-	public Character(int maxHP, int atk, int spd, int def) {
-		this.hp = maxHP;
-		this.maxHP = maxHP;
+	public Character(int maxhp, int hp, int atk, int spd, int def) {
+		this.maxhp = maxhp;
+		this.hp = hp;
 		this.atk = atk;
 		this.spd = spd;
 		this.def = def;
-		this.isDead = false;
+		this.dead = false;
 	}
+	
 	/**
 	 * @method Main attack logic, calculates damage output to character object.
-	 * @param character
+	 * @param Character
 	 */
 	public void attack(Character character){
-		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (Before Attacked)");
-		character.setHp(character.getHp() - this.atk);
-		System.out.println(character.getName() + " has been hit for [" + this.atk + "] damage!");
-		System.out.println(character.getName() + " HP: [" + character.getHp() + "]" + " (After Attacked)\n");
+		character.setHp(character.getHp() - this.getAtk());
+		System.out.println("[" + this.getName().toUpperCase() + "] strikes [" + character.getName().toUpperCase() + "] for " + this.getAtk() + " damage!");
 	}
-	
-	/**
-	 * @method Main defend logic, calculates damage taken after defense calculation.
-	 * @param character
-	 */
-	public void defend(Character character){
-		
+
+	public int getMaxhp() {
+		return maxhp;
 	}
-	
-	public int getMaxHP() {
-		int maxHP = this.maxHP;
-		return maxHP;
-	}
-	
-	/**
-	 * @method Compare speed and set true if higher.
-	 * @param character
-	 * @return boolean
-	 */
-	public boolean flee(Character character){
-		if(this.spd > character.getSpd()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+
+	public void setMaxhp(int maxhp) {
+		this.maxhp = maxhp;
 	}
 
 	public int getId() {
@@ -110,13 +84,15 @@ public abstract class Character implements Properties, Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public boolean getIsDead() {
-		return isDead;
+
+	public boolean isDead() {
+		return dead;
+	}
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
 	}
 	
-	public void setIsDead(boolean isDead) {
-		this.isDead = isDead;
-	}
+	
 	
 }

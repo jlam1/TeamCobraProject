@@ -8,6 +8,7 @@ import java.util.Scanner;
 import Character.Player;
 import Generator.ItemGenerator;
 import Item.Item;
+import LogicController.BattleLogic;
 import LogicController.PuzzleLogic;
 import Room.Room;
 import Room.RoomFactory;
@@ -22,6 +23,7 @@ public class Game {
 	private Room currentRoom, lockedRoom;
 	private Player player;
 	private PuzzleLogic puzzleLogic;
+	private BattleLogic battleLogic;
 	private Scanner input;
 	private int bagIndex;
 	private boolean gameRun;
@@ -33,6 +35,7 @@ public class Game {
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
 		puzzleLogic = new PuzzleLogic();
+		battleLogic = new BattleLogic();
 	}
 	
 	/**
@@ -40,10 +43,12 @@ public class Game {
 	 */
 	public void createNewGame() {
 		gameRun = true;
-		player = new Player(10, 3, 2, 3);
+		player = new Player(10, 10, 1, 3, 2);
+		player.setName("HERO");
 		player.startingItem(itemList.get(0));
 		player.startingItem(itemList.get(2));
 		player.startingItem(itemList.get(10));
+		player.startingItem(itemList.get(4));
 		currentRoom = factoryList.get(1);
 	}
 	
@@ -88,22 +93,20 @@ public class Game {
 			System.out.println("[" + currentRoom.getExits() + "]");
 			System.out.println("-------------------------------------------------------");
 			
-//			if(nextRoom.getRoomMonster() != null) {
-//				
-//				//TODO: Fight monster
-//				
-//				if(nextRoom.getRoomPuzzle() != null) {
-//					puzzleLogic.initiatePuzzle(nextRoom, player);
-//				}
-//			}
+			//check if roomMonster exists and if not dead
+			if(nextRoom.getRoomMonster() != null && nextRoom.getRoomMonster().isDead() == false) {
+				
+				battleLogic.initiateBattle(player, nextRoom.getRoomMonster());
+				
+				if(player.getHp() <= 0) {
+					gameRun = false;
+				}
+				
+				System.out.println("Returning to room...");
+			}
 			
-			if(nextRoom.getRoomPuzzle() != null) {
+			if(nextRoom.getRoomPuzzle() != null)
 				puzzleLogic.initiatePuzzle(currentRoom, player);
-			}
-			
-			else{
-				//do nothing
-			}
 			
 		}
 	}
@@ -305,7 +308,7 @@ public class Game {
 	private void displayIntro() {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Welcome to Underground Hero");
-		//Display intro sequence, etc
+		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
 		viewCommands();
 	}
 	

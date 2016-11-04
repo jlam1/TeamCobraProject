@@ -28,10 +28,10 @@ public class BattleTester {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		Random rand = new Random();
-		player = new Player(10, 1, 3, 2); // HP, ATK, DEF, SPD
+		player = new Player(10, 10, 1, 3, 2); // HP, ATK, DEF, SPD
 		int potionHeal = 30;
 		int potionDropRate = 50; // Percent
-		player = new Player(10, 1, 3, 5);
+		player = new Player(10, 10, 1, 3, 5);
 		List<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		String monsterName = monsterList.get(RandMon).getName();
 		String monsterDesc = monsterList.get(RandMon).getDescription();
@@ -48,46 +48,46 @@ public class BattleTester {
 			System.out.println("\t# " + monsterName + " has appeared! #\n");
 
 			while (monsterHP > 0) {
-				System.out.println("\tYour HP: " + player.hp);
+				System.out.println("\tYour HP: " + player.getHp());
 				System.out.println("\t" + monsterName + "'s HP " + monsterHP);
 				System.out.println("\n\tWhat would you like to do next?");
 				System.out.println("\t1. Attack");
 				System.out.println("\t2. Drink Potion");
 				System.out.println("\t3. Run");
 				int dmgDealth;
-				if (player.atk < monsterDef) {
+				if (player.getAtk() < monsterDef) {
 					dmgDealth = 0;
 				} else {
-					dmgDealth = player.atk - monsterDef;
+					dmgDealth = player.getAtk() - monsterDef;
 				}
-				System.out.println("\nplayer atk = " + player.atk);
+				System.out.println("\nplayer atk = " + player.getAtk());
 				System.out.println("monster def = " + monsterDef);
 				System.out.println("damage dealt = " + dmgDealth);
 				int dmgTaken;
-				if (monsterAtk < player.def) {
+				if (monsterAtk < player.getDef()) {
 					dmgTaken = 0;
 				} else {
-					dmgTaken = monsterAtk - player.def;
+					dmgTaken = monsterAtk - player.getDef();
 				}
 				System.out.println("\nmonster atk = " + monsterAtk);
-				System.out.println("player def = " + player.def);
+				System.out.println("player def = " + player.getDef());
 				System.out.println("damage taken = " + dmgTaken);
 				String input = in.nextLine();
 				if (input.equals("1")) {
 
 					monsterHP -= dmgDealth;
-					player.hp -= dmgTaken;
+					player.setHp(player.getHp() - dmgTaken);
 
 					System.out.println("\t> You strike the " + monsterName + " for " + dmgDealth + " damage");
 					System.out.println("\t> You recived " + dmgTaken + " damage(s) from " + monsterName + "!");
 
-					if (player.hp < 1) {
+					if (player.getHp() < 1) {
 						System.out.println("\t> Your HP have reached 0.");
 						break;
 					}
 				} else if (input.equals("2")) {
 					if (ConsumableItem.count > 0) {
-						if (player.hp >= 100) {
+						if (player.getHp() >= 100) {
 							player.hp = 100;
 							System.out.println("Unable to use potion. Your HP is full.");
 						} else {

@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import Generator.RoomGenerator;
-import SearchController.ItemFinder;
-import SearchController.MonsterFinder;
-import SearchController.PuzzleFinder;
+import Generator.*;
+import Character.Monster;
+import Item.Item;
+import Puzzle.Puzzle;
 
 /**
  * 
@@ -39,7 +38,7 @@ public class RoomFactory implements Serializable {
 	 * @method Sets monster in each room
 	 */
 	private void generateRoomMonster() {
-		MonsterFinder search = new MonsterFinder();
+		ArrayList<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		
 		Room room;
 		int roomID;
@@ -50,35 +49,35 @@ public class RoomFactory implements Serializable {
 			roomID = room.getId();
 			
 			if(roomID == 8){
-				room.setRoomMonster(search.monster("Puzzler"));
+				room.setRoomMonster(monsterList.get(0));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 18){
-				room.setRoomMonster(search.monster("Pogo"));
+				room.setRoomMonster(monsterList.get(1));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 25){
-				room.setRoomMonster(search.monster("Giant Bull Shark"));
+				room.setRoomMonster(monsterList.get(2));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 28){
-				room.setRoomMonster(search.monster("Giant Robotic Sentry"));
+				room.setRoomMonster(monsterList.get(3));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 40){
-				room.setRoomMonster(search.monster("Quinn Har"));
+				room.setRoomMonster(monsterList.get(4));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 41){
-				room.setRoomMonster(search.monster("Joe Ker"));
+				room.setRoomMonster(monsterList.get(5));
 				roomFactoryList.add(room);
 			}
 			else if(roomID >= 10 && roomID <= 17){
-				room.setRoomMonster(search.monster("Hula Hooper"));		
+				room.setRoomMonster(monsterList.get(6));		
 				roomFactoryList.add(room);
 			}
 			else if(roomID >= 21 && roomID <= 41 && roomID != 38 && roomID != 40){
-				room.setRoomMonster(search.monster("Wild Hyena"));
+				room.setRoomMonster(monsterList.get(7));
 				roomFactoryList.add(room);
 			}
 			else{
@@ -94,7 +93,7 @@ public class RoomFactory implements Serializable {
 	 * @method Sets puzzles in each room
 	 */
 	private void generateRoomPuzzle() {
-		PuzzleFinder search = new PuzzleFinder();
+		ArrayList<Puzzle> puzzleList = new PuzzleGenerator().getPuzzleList();
 				
 		Room room;
 		int roomID;
@@ -105,39 +104,39 @@ public class RoomFactory implements Serializable {
 			roomID = room.getId();
 			
 			if(roomID == 4){
-				room.setRoomPuzzle(search.puzzle("A Blood Type"));
+				room.setRoomPuzzle(puzzleList.get(0));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 9){
-				room.setRoomPuzzle(search.puzzle("Painting"));
+				room.setRoomPuzzle(puzzleList.get(1));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 12){
-				room.setRoomPuzzle(search.puzzle("The Animal Statues"));
+				room.setRoomPuzzle(puzzleList.get(2));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 14){
-				room.setRoomPuzzle(search.puzzle("The Laser Hallway"));
+				room.setRoomPuzzle(puzzleList.get(3));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 16){
-				room.setRoomPuzzle(search.puzzle("The Colored Buttons"));
+				room.setRoomPuzzle(puzzleList.get(4));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 21){
-				room.setRoomPuzzle(search.puzzle("Security Bypass"));
+				room.setRoomPuzzle(puzzleList.get(6));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 27){
-				room.setRoomPuzzle(search.puzzle("Jump The Chasm"));
+				room.setRoomPuzzle(puzzleList.get(5));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 33){
-				room.setRoomPuzzle(search.puzzle("Riddle 1"));
+				room.setRoomPuzzle(puzzleList.get(7));
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 40){
-				room.setRoomPuzzle(search.puzzle("Riddle 2"));
+				room.setRoomPuzzle(puzzleList.get(8));
 				roomFactoryList.add(room);
 			}
 			else{
@@ -151,7 +150,7 @@ public class RoomFactory implements Serializable {
 	 * @method Sets item in each room
 	 */
 	private void generateRoomItem() {
-		ItemFinder search = new ItemFinder();
+		ArrayList<Item> itemList = new ItemGenerator().getItemList();
 		
 		Room room;
 		int roomID;
@@ -162,11 +161,11 @@ public class RoomFactory implements Serializable {
 			roomID = room.getId();
 			
 			if(roomID == 16){
-				room.setRoomItem(search.item("Chain Mail"));
+				room.setRoomItem(itemList.get(1));		//chain mail
 				roomFactoryList.add(room);
 			}
 			else if(roomID == 11 || roomID == 17){
-				room.setRoomItem(search.item("Adrenaline Shot"));
+				room.setRoomItem(itemList.get(4));		//adrenaline shot
 				roomFactoryList.add(room);
 			}
 			else{

@@ -26,8 +26,8 @@ public class Monster extends Character implements Serializable{
 	 * @param loot
 	 * @param description
 	 */
-	public Monster(int id, String name, int maxHP, int atk, int def, int spd, boolean isBoss, Item loot, String description){
-		super(maxHP, atk, spd, def);
+	public Monster(int id, String name, int maxhp, int hp, int atk, int def, int spd, boolean isBoss, Item loot, String description){
+		super(maxhp, hp, atk, spd, def);
 		this.id = id;
 		this.name = name;
 		this.description = description;

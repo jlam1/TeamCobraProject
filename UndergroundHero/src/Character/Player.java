@@ -18,8 +18,8 @@ public class Player extends Character implements Serializable{
 	private ArrayList<Item> inventory;
 	private ArrayList<Item> equipment;
 
-	public Player(int maxHP, int atk, int spd, int def) {
-		super(maxHP, atk, spd, def);
+	public Player(int maxhp, int hp, int atk, int spd, int def) {
+		super(maxhp, hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
 		equipment = new ArrayList<Item>();
 	}
@@ -39,7 +39,7 @@ public class Player extends Character implements Serializable{
 			System.out.println("[[[ INVENTORY BAG ]]]");
 			
 			for(Item i : this.inventory){
-				System.out.println(bagID + ". " + i.getName());
+				System.out.println(bagID + ". [" + i.getName().toUpperCase() + "]");
 				bagID++;
 			}
 			
@@ -98,11 +98,20 @@ public class Player extends Character implements Serializable{
 		try{
 			if(this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")){
 				if(this.inventory.get(index).getId() == 4) {
-					this.hp += 10;
+					int healing = this.getHp() + 10;
+					if(healing > this.getMaxhp()) {
+						this.setHp(this.getMaxhp());
+					}
+					else {
+						this.setHp(this.getHp() + 10);
+					}
+					System.out.println("You healed for 10 HP!");
 				}
 				if(this.inventory.get(index).getId() == 5) {
-					this.setHp(this.maxHP + 5);
-					this.hp = this.maxHP;
+					this.setMaxhp(this.maxhp + 5);
+					this.setHp(this.getMaxhp());
+					System.out.println("Your max hp is increased by 5!");
+					System.out.println("You healed to max!");
 				}
 				this.inventory.remove(index);
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
@@ -112,7 +121,7 @@ public class Player extends Character implements Serializable{
 			}
 		}
 		catch(IndexOutOfBoundsException e){
-			System.out.println("Item does not exist in inventory, try again.\n");
+			
 		}
 	}
 	
@@ -128,17 +137,17 @@ public class Player extends Character implements Serializable{
 				Weapon weapon = (Weapon) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(weapon);
-				this.setAtk(this.atk + weapon.getWeaponAtk());
+				this.setAtk(this.getAtk() + weapon.getWeaponAtk());
 				
 				System.out.println("You equipped [" + weapon.getName() + "].");
 				System.out.println("Your attack has increased by [" + weapon.getWeaponAtk() + "].\n");
 			}
 			
-			else if(this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")){
+			if(this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")){
 				Armor armor = (Armor) this.inventory.get(index);
-				this.equipment.add(armor);
 				this.inventory.remove(index);
-				this.setDef(this.atk + armor.getArmorDef());
+				this.equipment.add(armor);
+				this.setDef(this.getDef() + armor.getArmorDef());
 				
 				System.out.println("You equipped [" + armor.getName() + "].");
 				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
@@ -153,6 +162,17 @@ public class Player extends Character implements Serializable{
 		catch(IndexOutOfBoundsException e){
 			System.out.println("Equipment does not exist in inventory, try again.\n");
 		}
+	}
+	
+	/**
+	 * @method Calculates damage output after defending.
+	 * @param monster
+	 */
+	public void defend(Monster monster) {
+		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
+		int damageDealt = Math.abs(this.def - monster.getAtk());
+		this.setHp(this.getHp() - damageDealt);
+		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + this.getName().toUpperCase() + "] for " + damageDealt + " damage!");
 	}
 	
 	@Override
