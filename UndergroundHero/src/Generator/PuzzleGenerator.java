@@ -26,7 +26,7 @@ public class PuzzleGenerator {
 		Puzzle puzzle = new PuzzleRiddle(0, "A Blood Type", 0, null, "AB", "What is your blood type?");
 		puzzleList.add(puzzle);
 		
-		puzzle = new PuzzleRiddle		(1, "Painting", 0, null, "MONA LISA", "The player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?");
+		puzzle = new PuzzleRiddle		(1, "Painting", 0, key("Diamond Tipped Cutter"), "MONA LISA", "The player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?");
 		puzzleList.add(puzzle);
 
 		puzzle = new PuzzleRiddle		(2, "The Animal Statues", 0, key("Speed Boots"), "4213", "There are four animal statues here, what is the number ordering of these statues?");

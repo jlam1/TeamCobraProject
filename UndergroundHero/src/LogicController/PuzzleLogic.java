@@ -54,7 +54,7 @@ public class PuzzleLogic implements Serializable{
 			System.out.println("There is a puzzle in this room...");
 			System.out.println("Do you want to initiate puzzle? (Y/N)");
 			
-			do {
+			while(puzzleRun) {
 				System.out.print(">>");
 				userInput = input.nextLine();
 				
@@ -118,6 +118,7 @@ public class PuzzleLogic implements Serializable{
 						else if(userInput.equalsIgnoreCase("LEAVE")) {
 							System.out.println("Left puzzle. Returning to room...\n");
 							puzzleLoop = false;
+							puzzleRun = false;
 						}
 						
 						else if(userInput.equalsIgnoreCase("HELP")) {
@@ -140,10 +141,10 @@ public class PuzzleLogic implements Serializable{
 				}
 				
 				else {
-					System.out.println("Invalid input. Try again.");
+//					System.out.println("ELSE: Invalid input. Try again.");
 				}
 
-			} while(puzzleRun);
+			}
 		}	
 		
 		return puzzleSolved;
@@ -168,7 +169,7 @@ public class PuzzleLogic implements Serializable{
 			else {
 				System.out.println("-------------------------------------------------");
 				System.out.println("You do not have the key item: " + puzzleKeyItem.getName() + " to solve this puzzle.");
-				System.out.println("You are returning back room...\n");
+				System.out.println("You are returning back room...");
 				System.out.println("-------------------------------------------------");
 				puzzleLoop = false;
 				puzzleRun = false;
