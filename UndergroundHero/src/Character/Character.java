@@ -32,7 +32,6 @@ public abstract class Character implements Properties, Serializable {
 	 * @param def
 	 *            This is the fifth parameter to to Character constructor.
 	 */
-
 	public Character(int maxhp, int hp, int atk, int spd, int def) {
 		this.maxhp = maxhp;
 		this.hp = hp;
@@ -44,14 +43,13 @@ public abstract class Character implements Properties, Serializable {
 
 	/**
 	 * The following method is the main attack logic. This calculates damage
-	 * output to character object.
+	 * output to character object, and prints a string providing information for
+	 * the attack.
 	 * 
 	 * @param Character
 	 *            This is the only parameter for the attack method.
-	 * @return Void This method prints a string providing information for the
-	 *         attack.
+	 * @return Void
 	 */
-
 	public void attack(Character character) {
 		character.setHp(character.getHp() - this.getAtk());
 		System.out.println("[" + this.getName().toUpperCase() + "] strikes [" + character.getName().toUpperCase()

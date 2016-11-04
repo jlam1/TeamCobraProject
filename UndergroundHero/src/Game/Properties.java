@@ -6,7 +6,6 @@ package Game;
  * @author
  *
  */
-
 public interface Properties {
 
 	int getId();

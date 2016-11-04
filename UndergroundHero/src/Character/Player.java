@@ -75,7 +75,6 @@ public class Player extends Character implements Serializable {
 	 * 
 	 * @return Void
 	 */
-
 	public void viewEquipment() {
 		if (!this.equipment.isEmpty()) {
 			int bagID = 0;
@@ -107,7 +106,6 @@ public class Player extends Character implements Serializable {
 	 *            The only parameter for the pickUp() method.
 	 * @return Void
 	 */
-
 	public void pickUp(Item item) {
 		System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
@@ -125,7 +123,6 @@ public class Player extends Character implements Serializable {
 	 * @param index
 	 *            - The only parameter for useItem() method.
 	 */
-
 	public void useItem(int index) {
 		try {
 			if (this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")) {
@@ -165,7 +162,6 @@ public class Player extends Character implements Serializable {
 	 * @param index
 	 *            The only parameter for equip() method.
 	 */
-
 	public void equip(int index) {
 		try {
 
@@ -205,7 +201,6 @@ public class Player extends Character implements Serializable {
 	 * @param monster
 	 *            The only parameter for defend() method.
 	 */
-
 	public void defend(Monster monster) {
 		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
 		int damageDealt = Math.abs(this.def - monster.getAtk());
@@ -218,7 +213,6 @@ public class Player extends Character implements Serializable {
 	 * The following method overrides the toString method for Object to create a
 	 * custom Player toString.
 	 */
-
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t ["
