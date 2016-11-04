@@ -1,4 +1,4 @@
-package Game;
+package Character;
 
 /**
  * This interface enforces a few getter methods for things with properties.

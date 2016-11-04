@@ -2,8 +2,6 @@ package Character;
 
 import java.io.Serializable;
 
-import Game.Properties;
-
 /**
  * 
  * This is an abstract super class for character entities which share a common
