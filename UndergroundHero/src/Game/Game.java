@@ -61,12 +61,12 @@ public class Game {
 		
 		System.out.println("");
 		System.out.println("------------------------# MENU #-----------------------");
-		System.out.println("1. Start New Game");
-		System.out.println("2. Load Saved Game");
-		System.out.println("3. Exit Game");
+		System.out.println("                   1. Start New Game                   ");
+		System.out.println("                   2. Load Saved Game                  ");
+		System.out.println("                   3. Exit Game                        ");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("");
-		print(">>", 100);
+		System.out.print(">>");
 		String userInput = input.nextLine();
 		
 		try {
@@ -102,11 +102,13 @@ public class Game {
 		String userInput;
 		input = new Scanner(System.in);
 		
-		displayIntro();
-		
 		boolean menuScreen = true;
 		
 		do {
+			
+			displayIntro();
+			viewCommands();
+			
 			while(gameRun) {
 				System.out.print(">>");
 				userInput = input.nextLine();
@@ -438,7 +440,6 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Welcome to Underground Hero");
 		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
-		viewCommands();
 	}
 	
 //	public void print(String string, long delay) {
