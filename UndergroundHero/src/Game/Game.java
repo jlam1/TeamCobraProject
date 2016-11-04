@@ -238,43 +238,36 @@ public class Game {
 	}
 	
 	private void save() {
-		//use the class saveLoadData to save values in to binary file
+		// use the class saveLoadData to save values in to binary file
 		saveLoadData data = new saveLoadData();
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
-		//data.setRoom(currentRoom);
-		//data.setRoomDescription(roomLabel.getText());
-		//TODO: need to save the player stats, save already solve puzzle, save items in bag, save room boolean, and save already defeated monsters
-		try
-		{
+		data.setPlayer(player);
+		data.setFactoryList(factoryList);
+		
+		try {
 			ResourceManager.saveGame(data, "UndergroundHero.dat");
-	
+
 			System.out.println("Save Sucessful");
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println("error saving");
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	private void load() {
-		//use the class saveLoadData to load values in the binary file
-		try
-		{
+		// use the class saveLoadData to load values in the binary file
+		try {
 			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
+			player = data.getPlayer();
+			factoryList = data.getFactoryList();
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());		//wrapText(currentRoom.getDescription()
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
 
-			//data.setRoom(currentRoom);
-			//TODO: need to load the player stats, load already solve puzzle, load items in bag, load room boolean and load already defeated monsters
-
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println("error loading");
 			e.printStackTrace();
 		}

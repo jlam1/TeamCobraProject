@@ -33,8 +33,7 @@ public class SaveLoadTester {
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
-		// TODO: need to save the player stats, save already solve puzzle, save
-		// items in bag, save room boolean, and save already defeated monsters
+		
 		try {
 			ResourceManager.saveGame(data, "UndergroundHero.dat");
 
@@ -55,12 +54,7 @@ public class SaveLoadTester {
 			factoryList = data.getFactoryList();
 			System.out.println("Load Sucessful");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription()); // wrapText(currentRoom.getDescription()
-
-			// data.setRoom(currentRoom);
-			// TODO: need to load the player stats, load already solve puzzle,
-			// load items in bag, load room boolean and load already defeated
-			// monsters
+			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
 
 		} catch (Exception e) {
 			System.out.println("error loading");
@@ -77,8 +71,16 @@ public class SaveLoadTester {
 
 		else if (factoryList.get(nextRoom.getId()).isLocked() == true) {
 			lockedRoom = nextRoom;
+			if(nextRoom.getRoomPuzzle() != null && factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved() == false)
+			{
+			//	if()
+				puzzleLogic.initiatePuzzle(lockedRoom, player);
+			}
+			else
+			{
 			System.out.println("[" + nextRoom.getName() + "] door is locked.");
 			System.out.println("Try a different route.");
+			}
 		}
 
 		else {
