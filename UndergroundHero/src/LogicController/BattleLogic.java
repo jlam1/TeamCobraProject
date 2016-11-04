@@ -81,6 +81,7 @@ public class BattleLogic {
 				
 				if(userInput.equalsIgnoreCase("KILL")) {		//ADMIN 
 					monster.setDead(true);
+					monster.setHp(-1);
 					battleRun = false;
 				}
 				

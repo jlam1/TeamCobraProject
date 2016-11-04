@@ -46,7 +46,7 @@ public class Game {
 	 */
 	private void createNewGame() {
 		gameRun = true;
-		player = new Player(10, 10, 1, 3, 2);
+		player = new Player(1000, 1000, 100, 30, 20);
 		player.setName("HERO");
 		player.startingItem(itemList.get(0));
 		player.startingItem(itemList.get(2));

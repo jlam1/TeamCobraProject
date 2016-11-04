@@ -23,7 +23,7 @@ public class PuzzleGenerator {
 		
 		puzzleList = new ArrayList<Puzzle>();
 		
-		Puzzle puzzle = new PuzzleRiddle(0, "A Blood Type", 0, null, "AB", "What is your blood type?");
+		Puzzle puzzle = new PuzzleRiddle(0, "A Blood Type", 0, itemList.get(5), "AB", "What is your blood type?");
 		puzzleList.add(puzzle);
 		
 		puzzle = new PuzzleRiddle		(1, "Painting", 0, key("Diamond Tipped Cutter"), "MONA LISA", "The player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?");
@@ -44,10 +44,10 @@ public class PuzzleGenerator {
 		puzzle = new PuzzleKey			(6, "Security Bypass", 1, null, key("Computer Chip"), "A computer terminal stands in your way, it looks like I need to insert some kind of [COMPUTER CHIP] for it activate.");
 		puzzleList.add(puzzle);
 		
-		puzzle = new PuzzleRiddle		(7, "Riddle 1", 0, null, "BRAIN", "I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?");
+		puzzle = new PuzzleRiddle		(7, "Riddle 1", 0, itemList.get(4), "BRAIN", "I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?");
 		puzzleList.add(puzzle);
 		
-		puzzle = new PuzzleRiddle		(8, "Riddle 2", 0, null, "TOMMORROW",  "What is always on its way here, but never arrives?");
+		puzzle = new PuzzleRiddle		(8, "Riddle 2", 0, itemList.get(4), "TOMMORROW",  "What is always on its way here, but never arrives?");
 		puzzleList.add(puzzle);
 		
 	}

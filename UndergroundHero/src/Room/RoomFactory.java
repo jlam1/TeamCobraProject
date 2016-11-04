@@ -48,34 +48,42 @@ public class RoomFactory implements Serializable {
 			room = roomList.get(i);
 			roomID = room.getId();
 			
+			//puzzler add to room 1-9
 			if(roomID == 8){
 				room.setRoomMonster(monsterList.get(0));
 				roomFactoryList.add(room);
 			}
+			//pogo add to room 2-9
 			else if(roomID == 18){
 				room.setRoomMonster(monsterList.get(1));
 				roomFactoryList.add(room);
 			}
+			//giant bull shark add to room 3-7
 			else if(roomID == 25){
 				room.setRoomMonster(monsterList.get(2));
 				roomFactoryList.add(room);
 			}
+			//sentry robot add to room 3-10
 			else if(roomID == 28){
 				room.setRoomMonster(monsterList.get(3));
 				roomFactoryList.add(room);
 			}
+			//quinn har add to room 4-12
 			else if(roomID == 40){
 				room.setRoomMonster(monsterList.get(4));
 				roomFactoryList.add(room);
 			}
+			//joe ker add to room 4-13
 			else if(roomID == 41){
 				room.setRoomMonster(monsterList.get(5));
 				roomFactoryList.add(room);
 			}
+			//floor 2 add all hula hooper
 			else if(roomID >= 10 && roomID <= 17){
 				room.setRoomMonster(monsterList.get(6));		
 				roomFactoryList.add(room);
 			}
+			//floor 3 and 4 add wild hyena
 			else if(roomID >= 21 && roomID <= 41 && roomID != 38 && roomID != 40){
 				room.setRoomMonster(monsterList.get(7));
 				roomFactoryList.add(room);
@@ -103,38 +111,47 @@ public class RoomFactory implements Serializable {
 			room = roomList.get(i);
 			roomID = room.getId();
 			
+			//room 1-4 add blood puzzle
 			if(roomID == 4){
 				room.setRoomPuzzle(puzzleList.get(0));
 				roomFactoryList.add(room);
 			}
+			//room 1-9 add painting puzzle
 			else if(roomID == 9){
 				room.setRoomPuzzle(puzzleList.get(1));
 				roomFactoryList.add(room);
 			}
+			//room 2-3 add statues puzzle
 			else if(roomID == 12){
 				room.setRoomPuzzle(puzzleList.get(2));
 				roomFactoryList.add(room);
 			}
+			//room 2-2 add laser puzzle
 			else if(roomID == 11){
 				room.setRoomPuzzle(puzzleList.get(3));
 				roomFactoryList.add(room);
 			}
+			//room 2-7 add colored button puzzle
 			else if(roomID == 16){
 				room.setRoomPuzzle(puzzleList.get(4));
 				roomFactoryList.add(room);
 			}
+			//room 3-3 add security bypass puzzle
 			else if(roomID == 21){
 				room.setRoomPuzzle(puzzleList.get(6));
 				roomFactoryList.add(room);
 			}
+			//room 3-9 add jump the chasm puzzle
 			else if(roomID == 27){
 				room.setRoomPuzzle(puzzleList.get(5));
 				roomFactoryList.add(room);
 			}
+			//room 4-5 add riddle 1 puzzle
 			else if(roomID == 33){
 				room.setRoomPuzzle(puzzleList.get(7));
 				roomFactoryList.add(room);
 			}
+			//room 4-10 add riddle 2 puzzle
 			else if(roomID == 40){
 				room.setRoomPuzzle(puzzleList.get(8));
 				roomFactoryList.add(room);
