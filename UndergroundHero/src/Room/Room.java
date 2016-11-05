@@ -16,7 +16,7 @@ import Puzzle.Puzzle;
  * @author John
  *
  */
-public abstract class Room implements Properties, Comparable<Room>, Serializable {
+public class Room implements Properties, Comparable<Room>, Serializable {
 
 	private static final long serialVersionUID = -1722849142865991875L;
 	protected String name, description, exits;
@@ -28,7 +28,7 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	private Map<String, Room> exitMap;
 
 	/**
-	 * The following method is the constructor for Room objects.
+	 * The following method is the constructor for basic Room objects.
 	 * 
 	 * @param id
 	 * @param name
@@ -43,6 +43,69 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 		this.exits = exits;
 		this.locked = locked;
 		exitMap = new HashMap<String, Room>();
+	}
+
+	/**
+	 * The following method is the specific constructor for Item type Room
+	 * objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomItem
+	 *            Specific to Item type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Item roomItem) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomItem = roomItem;
+		;
+	}
+
+	/**
+	 * The following method is the specific constructor for Monster type
+	 * Room objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomMonster
+	 *            Specific to Monster type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Monster roomMonster) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomMonster = roomMonster;
+	}
+	
+	/**
+	 * The following method is the constructor for Puzzle type Room objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomPuzzle
+	 *            Specific to Puzzle type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Puzzle roomPuzzle) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomPuzzle = roomPuzzle;
 	}
 
 	public String getExits() {
