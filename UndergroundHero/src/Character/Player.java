@@ -8,6 +8,7 @@ import Item.Item;
 import Item.Weapon;
 
 /**
+ * 
  * This class is responsible for player attributes and behaviors including
  * battle status and inventory usage.
  * 
@@ -21,7 +22,8 @@ public class Player extends Character implements Serializable {
 	private ArrayList<Item> equipment;
 
 	/**
-	 * The following is the constructor method for Player objects.
+	 * The following is the constructor method for Player type Character
+	 * objects.
 	 * 
 	 * @param maxhp
 	 *            From parent.
@@ -103,7 +105,6 @@ public class Player extends Character implements Serializable {
 	 * ArrayList<Item> inventory.
 	 * 
 	 * @param item
-	 *            The only parameter for the pickUp() method.
 	 * @return Void
 	 */
 	public void pickUp(Item item) {
@@ -121,7 +122,6 @@ public class Player extends Character implements Serializable {
 	 *                caught whenever Item<ConsumableItem> is called outside of
 	 *                List<Item> inventory's size index.
 	 * @param index
-	 *            - The only parameter for useItem() method.
 	 */
 	public void useItem(int index) {
 		try {
@@ -160,7 +160,6 @@ public class Player extends Character implements Serializable {
 	 *                caught whenever Item<Weapon> or Item<Armor> is called
 	 *                outside of List<Item> inventory's size index.
 	 * @param index
-	 *            The only parameter for equip() method.
 	 */
 	public void equip(int index) {
 		try {
@@ -199,7 +198,6 @@ public class Player extends Character implements Serializable {
 	 * The following method calculates the damage taken from a monster attack.
 	 * 
 	 * @param monster
-	 *            The only parameter for defend() method.
 	 */
 	public void defend(Monster monster) {
 		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
@@ -211,7 +209,7 @@ public class Player extends Character implements Serializable {
 
 	/**
 	 * The following method overrides the toString method for Object to create a
-	 * custom Player toString.
+	 * custom Player toString().
 	 */
 	@Override
 	public String toString() {

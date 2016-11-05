@@ -20,15 +20,10 @@ public abstract class Character implements Properties, Serializable {
 	 * The following is the constructor for Character objects.
 	 * 
 	 * @param maxHp
-	 *            This is the first parameter to to Character constructor.
 	 * @param hp
-	 *            This is the second parameter to to Character constructor.
 	 * @param atk
-	 *            This is the third parameter to to Character constructor.
 	 * @param spd
-	 *            This is the fourth parameter to to Character constructor.
 	 * @param def
-	 *            This is the fifth parameter to to Character constructor.
 	 */
 	public Character(int maxhp, int hp, int atk, int spd, int def) {
 		this.maxhp = maxhp;
@@ -45,7 +40,6 @@ public abstract class Character implements Properties, Serializable {
 	 * the attack.
 	 * 
 	 * @param Character
-	 *            This is the only parameter for the attack method.
 	 * @return Void
 	 */
 	public void attack(Character character) {

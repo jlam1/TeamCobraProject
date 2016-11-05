@@ -5,6 +5,7 @@ import java.io.Serializable;
 import Item.Item;
 
 /**
+ * 
  * This class is responsible for monster attributes and behaviors.
  * 
  * @author John
@@ -17,6 +18,9 @@ public class Monster extends Character implements Serializable {
 	private String description;
 
 	/**
+	 * The following is the constructor method for Monster type Character
+	 * objects.
+	 * 
 	 * @param id
 	 *            Specific to Monster.
 	 * @param name

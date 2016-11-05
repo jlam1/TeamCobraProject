@@ -31,15 +31,10 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	 * The following method is the constructor for Room objects.
 	 * 
 	 * @param id
-	 *            This is the first parameter to to Room constructor.
 	 * @param name
-	 *            This is the second parameter to to Room constructor.
 	 * @param description
-	 *            This is the third parameter to to Room constructor.
 	 * @param exits
-	 *            This is the fourth parameter to to Room constructor.
 	 * @param locked
-	 *            This is the fifth parameter to to Room constructor.
 	 */
 	public Room(int id, String name, String description, String exits, boolean locked) {
 		this.id = id;
@@ -59,13 +54,9 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	 * possible room exit in the exitMap map.
 	 * 
 	 * @param north
-	 *            This is the first parameter to setExits method.
 	 * @param east
-	 *            This is the second parameter to setExits method.
 	 * @param south
-	 *            This is the third parameter to setExits method.
 	 * @param west
-	 *            This is the fourth parameter to setExits method.
 	 */
 	public void setExits(Room north, Room east, Room south, Room west) {
 		if (north != null)
@@ -83,7 +74,6 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	 * parameter.
 	 * 
 	 * @param direction
-	 *            The only parameter for getNextRoom() method.
 	 * @return Room: The room that is set to the direction indicated by
 	 *         parameter.
 	 */

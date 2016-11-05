@@ -20,13 +20,9 @@ public abstract class Item implements Properties, Serializable {
 	 * The following is the constructor method for Item objects.
 	 * 
 	 * @param id
-	 *            This is the first parameter to to Item constructor.
 	 * @param name
-	 *            This is the second parameter to to Item constructor.
 	 * @param type
-	 *            This is the third parameter to to Item constructor.
 	 * @param description
-	 *            This is the fourth parameter to to Item constructor.
 	 */
 	public Item(int id, String name, String type, String description) {
 		this.id = id;
