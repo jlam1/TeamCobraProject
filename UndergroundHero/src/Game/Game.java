@@ -34,7 +34,8 @@ public class Game {
 	/**
 	 * @method Load all assets to game object
 	 */
-	public Game() {
+	public Game() 
+	{
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
 		puzzleLogic = new PuzzleLogic();
@@ -53,10 +54,21 @@ public class Game {
 		player.startingItem(itemList.get(10));
 		player.startingItem(itemList.get(4));
 		currentRoom = factoryList.get(1);
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println("[" + currentRoom.getName() + "]");
+		System.out.println(currentRoom.getDescription());
+		System.out.println("[" + currentRoom.getExits() + "]");
+		System.out.println("-------------------------------------------------------");
 	}
 	
 	public void menuScreen() {
-		
+		displayIntro();
+		viewCommands();
+		viewHelp();
+		boolean start = true;
+		while(start)
+		{
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("");
@@ -72,17 +84,21 @@ public class Game {
 		try {
 				if(userInput.equals("1")) {
 					System.out.println("Starting a new game...");
+					start = false;
+					
 					createNewGame();
 					play();
 				}
 				if(userInput.equals("2")) {
 					System.out.println("Loading a saved state...");
-					createNewGame();
+					gameRun = true;
+					start = false;
 					load();
 					play();
 				}
 				if(userInput.equals("3")) {
 					System.out.println("Exiting game...");
+					start = false;
 					System.exit(0);
 				}
 				else {
@@ -92,7 +108,7 @@ public class Game {
 		catch(InputMismatchException e) {
 			System.out.println("Invalid Input, please try again.");
 		}
-		
+		}
 	}
 	
 	/**
@@ -105,9 +121,6 @@ public class Game {
 		boolean menuScreen = true;
 		
 		do {
-			
-			displayIntro();
-			viewCommands();
 			
 			while(gameRun) {
 				System.out.print(">>");
@@ -349,7 +362,7 @@ public class Game {
 			
 			switch(monster.getId()) {
 			
-				case 0: factoryList.get(10).setLocked(false);
+				case 0: factoryList.get(10).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(10).getName() + "] is now unlocked!");
 					break;
 				case 1: factoryList.get(19).setLocked(false);
@@ -374,19 +387,19 @@ public class Game {
 		if(puzzle.isSolved() == true) {
 			
 			switch(puzzle.getId()) {
-				case 3: factoryList.get(14).setLocked(false);
+				case 3: factoryList.get(14).setLocked(false); factoryList.get(14).getRoomPuzzle().setSolved(true);
 						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
 					break;
-				case 5: factoryList.get(28).setLocked(false);
+				case 5: factoryList.get(28).setLocked(false); factoryList.get(28).getRoomPuzzle().setSolved(true);
 						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
 					break;
-				case 6: factoryList.get(29).setLocked(false);
+				case 6: factoryList.get(29).setLocked(false); factoryList.get(29).getRoomPuzzle().setSolved(true);
 						System.out.println("Room: [" + factoryList.get(29).getName() + " is now unlocked!");
 					break;
-				case 7: factoryList.get(34).setLocked(false);
+				case 7: factoryList.get(34).setLocked(false); factoryList.get(34).getRoomPuzzle().setSolved(true);
 						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
 					break;
-				case 8: factoryList.get(41).setLocked(false);
+				case 8: factoryList.get(41).setLocked(false); factoryList.get(41).getRoomPuzzle().setSolved(true);
 						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
 					break;
 				default:
