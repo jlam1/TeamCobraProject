@@ -20,7 +20,7 @@ public class Puzzle implements Properties, Serializable {
 	protected boolean solved;
 	protected Item itemReward;
 	protected String riddleAnswer;
-	protected KeyItem keyItem;
+	protected Item keyItem;
 
 	/**
 	 * The following is the constructor method for regular Puzzle objects.
@@ -74,7 +74,7 @@ public class Puzzle implements Properties, Serializable {
 	 *            Specific to PuzzleKey type Puzzle objects.
 	 * @param description
 	 */
-	public Puzzle(int id, String name, int type, Item itemReward, KeyItem keyItem, String description) {
+	public Puzzle(int id, String name, int type, Item itemReward, Item keyItem, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -92,11 +92,11 @@ public class Puzzle implements Properties, Serializable {
 		this.itemReward = itemReward;
 	}
 
-	public KeyItem getKeyItem() {
+	public Item getKeyItem() {
 		return keyItem;
 	}
 
-	public void setKeyItem(KeyItem keyItem) {
+	public void setKeyItem(Item keyItem) {
 		this.keyItem = keyItem;
 	}
 

@@ -2,10 +2,7 @@ package Character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import Item.Armor;
 import Item.Item;
-import Item.Weapon;
 
 /**
  * 
@@ -165,7 +162,7 @@ public class Player extends Character implements Serializable {
 		try {
 
 			if (this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")) {
-				Weapon weapon = (Weapon) this.inventory.get(index);
+				Item weapon = (Item) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(weapon);
 				this.setAtk(this.getAtk() + weapon.getWeaponAtk());
@@ -175,7 +172,7 @@ public class Player extends Character implements Serializable {
 			}
 
 			if (this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")) {
-				Armor armor = (Armor) this.inventory.get(index);
+				Item armor = (Item) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(armor);
 				this.setDef(this.getDef() + armor.getArmorDef());

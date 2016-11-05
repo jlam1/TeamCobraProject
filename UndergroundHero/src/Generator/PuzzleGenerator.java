@@ -3,7 +3,6 @@ package Generator;
 import java.util.ArrayList;
 
 import Item.Item;
-import Item.KeyItem;
 import Puzzle.*;
 
 /**
@@ -75,16 +74,16 @@ public class PuzzleGenerator {
 	 * @param name
 	 * @return KeyItem
 	 */
-	public KeyItem key(String name) {
+	public Item key(String name) {
 		Item item;
-		KeyItem keyItem = null;
+		Item keyItem = null;
 		for (int i = 0; i < itemList.size(); i++) {
 
 			item = itemList.get(i);
 			String itemName = item.getName();
 
 			if (itemName.equalsIgnoreCase(name)) {
-				keyItem = (KeyItem) item;
+				keyItem = (Item) item;
 				break;
 			}
 		}
