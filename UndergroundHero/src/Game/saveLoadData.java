@@ -99,7 +99,6 @@ public class saveLoadData implements Serializable
 	{
 		this.factoryList = factoryList;
 	}
-
 	//will add more once game comes near completion
 	
 }
