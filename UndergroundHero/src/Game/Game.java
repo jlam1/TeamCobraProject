@@ -35,16 +35,18 @@ public class Game {
 	 * @return 
 	 * @method Load all assets to game object
 	 */
-	
+	public Game ()
+	{
+		factoryList = new RoomFactory().getRoomFactoryList();
+		itemList = new ItemGenerator().getItemList();
+		puzzleLogic = new PuzzleLogic();
+		battleLogic = new BattleLogic();
+	}
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
 	private void createNewGame() {
 		gameRun = true;
-		factoryList = new RoomFactory().getRoomFactoryList();
-		itemList = new ItemGenerator().getItemList();
-		puzzleLogic = new PuzzleLogic();
-		battleLogic = new BattleLogic();
 		player = new Player(10, 10, 1, 3, 2);
 		player.setName("HERO");
 		player.startingItem(itemList.get(0));
@@ -59,7 +61,7 @@ public class Game {
 		System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
 	}
-
+	
 	public void menuScreen() {
 		displayIntro();
 		viewCommands();
@@ -249,8 +251,10 @@ public class Game {
 				//testing purposes
 			case "UNLOCK":
 					System.out.println("Locked: " + lockedRoom.isLocked());
+					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
 					lockedRoom.setLocked(false);
 					System.out.println("Locked: " + lockedRoom.isLocked());
+					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
 				break;
 				
 			default:

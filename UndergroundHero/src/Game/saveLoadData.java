@@ -26,7 +26,6 @@ public class saveLoadData implements Serializable
 	private static final long serialVersionUID = 1L;
 	private Player player;
 	private PuzzleLogic puzzle;
-	private Monster monster;
 	private int roomArrayNumber;
 	private List<Room> factoryList;
 	/**
@@ -57,20 +56,7 @@ public class saveLoadData implements Serializable
 	{
 		this.puzzle = puzzle;
 	}
-	/**
-	 * @return the monster
-	 */
-	public Monster getMonster()
-	{
-		return monster;
-	}
-	/**
-	 * @param monster the monster to set
-	 */
-	public void setMonster(Monster monster)
-	{
-		this.monster = monster;
-	}
+
 	/**
 	 * @return the roomArrayNumber
 	 */
