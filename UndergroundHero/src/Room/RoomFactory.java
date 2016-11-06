@@ -152,7 +152,7 @@ public class RoomFactory implements Serializable {
 				roomFactoryList.add(room);
 			}
 			//room 4-10 add riddle 2 puzzle
-			else if(roomID == 40){
+			else if(roomID == 38){
 				room.setRoomPuzzle(puzzleList.get(8));
 				roomFactoryList.add(room);
 			}
