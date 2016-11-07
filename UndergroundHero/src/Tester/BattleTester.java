@@ -28,10 +28,9 @@ public class BattleTester {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		Random rand = new Random();
-		player = new Player(10, 10, 1, 3, 2); // HP, ATK, DEF, SPD
+		player = new Player(10, 10, 1, 2, 3); // HP, ATK, SPD, DEF
 		int potionHeal = 30;
 		int potionDropRate = 50; // Percent
-		player = new Player(10, 10, 1, 3, 5);
 		List<Monster> monsterList = new MonsterGenerator().getMonsterList();
 		String monsterName = monsterList.get(RandMon).getName();
 		String monsterDesc = monsterList.get(RandMon).getDescription();
@@ -54,15 +53,15 @@ public class BattleTester {
 				System.out.println("\t1. Attack");
 				System.out.println("\t2. Drink Potion");
 				System.out.println("\t3. Run");
-				int dmgDealth;
+				int dmgDealt;
 				if (player.getAtk() < monsterDef) {
-					dmgDealth = 0;
+					dmgDealt = 0;
 				} else {
-					dmgDealth = player.getAtk() - monsterDef;
+					dmgDealt = player.getAtk() - monsterDef;
 				}
 				System.out.println("\nplayer atk = " + player.getAtk());
 				System.out.println("monster def = " + monsterDef);
-				System.out.println("damage dealt = " + dmgDealth);
+				System.out.println("damage dealt = " + dmgDealt);
 				int dmgTaken;
 				if (monsterAtk < player.getDef()) {
 					dmgTaken = 0;
@@ -75,10 +74,10 @@ public class BattleTester {
 				String input = in.nextLine();
 				if (input.equals("1")) {
 
-					monsterHP -= dmgDealth;
+					monsterHP -= dmgDealt;
 					player.setHp(player.getHp() - dmgTaken);
 
-					System.out.println("\t> You strike the " + monsterName + " for " + dmgDealth + " damage");
+					System.out.println("\t> You strike the " + monsterName + " for " + dmgDealt + " damage");
 					System.out.println("\t> You recived " + dmgTaken + " damage(s) from " + monsterName + "!");
 
 					if (player.getHp() < 1) {
@@ -201,12 +200,6 @@ public class BattleTester {
 				// "The enemy blocks your escape!"; Given another chance to act;
 				// EscCmd = false;}
 			}
-
-			System.out.println(monsterName + ": " + monsterDesc + " HP: " + monsterHP + " Atk: " + monsterAtk + " Def: "
-					+ monsterDef + " Spd: " + monsterSpd);
-			System.out.println(player.getHp() + " " + player.getAtk() + " " + player.getDef() + " " + player.getSpd());
-			System.out.println(RandMon);
-
 		}
 	}
 }
