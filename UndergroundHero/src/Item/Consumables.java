@@ -11,7 +11,7 @@ package Item;
  */
 public class Consumables extends Item {
 
-	public int count;
+	public static int count;
 
 	/**
 	 * The following method is the constructor for ConsumableItem type Item

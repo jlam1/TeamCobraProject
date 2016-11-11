@@ -1,5 +1,6 @@
 package Game;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -30,18 +31,17 @@ public class Game {
 	private Scanner input;
 	private int bagIndex;
 	private boolean gameRun;
-	
 	/**
+	 * @return 
 	 * @method Load all assets to game object
 	 */
-	public Game() 
+	public Game ()
 	{
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
 		puzzleLogic = new PuzzleLogic();
 		battleLogic = new BattleLogic();
 	}
-	
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
@@ -145,7 +145,7 @@ public class Game {
 			System.out.println("Theres no exit that way, try another direction.");
 		}
 		
-		else if(nextRoom.isLocked() == true){
+		else if(factoryList.get(nextRoom.getId()).isLocked() == true){
 			lockedRoom = nextRoom;
 			System.out.println("[" + nextRoom.getName() + "] door is locked.");
 			System.out.println("Try a different route.");
@@ -196,7 +196,7 @@ public class Game {
 				
 			}
 			
-			if(nextRoom.getRoomPuzzle() != null) {
+			if(nextRoom.getRoomPuzzle() != null && factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved() == false) {
 				puzzleLogic.initiatePuzzle(currentRoom, player);
 				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
 			}
@@ -247,11 +247,14 @@ public class Game {
 				break;
 			case "LOAD": load();
 				break;
-				
+			
+				//testing purposes
 			case "UNLOCK":
 					System.out.println("Locked: " + lockedRoom.isLocked());
+					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
 					lockedRoom.setLocked(false);
 					System.out.println("Locked: " + lockedRoom.isLocked());
+					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
 				break;
 				
 			default:
@@ -312,7 +315,6 @@ public class Game {
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
-		
 		try {
 			ResourceManager.saveGame(data, "UndergroundHero.dat");
 
@@ -387,19 +389,19 @@ public class Game {
 		if(puzzle.isSolved() == true) {
 			
 			switch(puzzle.getId()) {
-				case 3: factoryList.get(14).setLocked(false); factoryList.get(14).getRoomPuzzle().setSolved(true);
+				case 3: factoryList.get(14).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
 					break;
-				case 5: factoryList.get(28).setLocked(false); factoryList.get(28).getRoomPuzzle().setSolved(true);
+				case 5: factoryList.get(28).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
 					break;
-				case 6: factoryList.get(29).setLocked(false); factoryList.get(29).getRoomPuzzle().setSolved(true);
+				case 6: factoryList.get(29).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(29).getName() + " is now unlocked!");
 					break;
-				case 7: factoryList.get(34).setLocked(false); factoryList.get(34).getRoomPuzzle().setSolved(true);
+				case 7: factoryList.get(34).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
 					break;
-				case 8: factoryList.get(41).setLocked(false); factoryList.get(41).getRoomPuzzle().setSolved(true);
+				case 8: factoryList.get(41).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
 					break;
 				default:
