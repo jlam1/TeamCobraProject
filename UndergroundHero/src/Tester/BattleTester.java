@@ -8,7 +8,7 @@ import Character.Monster;
 import Generator.MonsterGenerator;
 import Character.Player;
 import Generator.MonsterGenerator;
-import Item.ConsumableItem;
+import Item.Consumables;
 
 public class BattleTester {
 	static Player player;
@@ -86,17 +86,17 @@ public class BattleTester {
 						break;
 					}
 				} else if (input.equals("2")) {
-					if (ConsumableItem.count > 0) {
+					if (Consumables.count > 0) {
 						if (player.getHp() >= 100) {
 							player.hp = 100;
 							System.out.println("Unable to use potion. Your HP is full.");
 						} else {
 							player.hp += potionHeal;
-							ConsumableItem.count--;
+							Consumables.count--;
 
 							System.out.println("\t> You drank a potion, healing " + potionHeal + " HP."
 									+ "\n\t> You now have " + player.hp + "HP." + "\n\t> You have "
-									+ ConsumableItem.count + " health potion(s) left.\n");
+									+ Consumables.count + " health potion(s) left.\n");
 							System.out.println("\t> You recived " + dmgTaken + " damage(s) from " + monsterName + "!");
 						}
 
@@ -119,9 +119,9 @@ public class BattleTester {
 			System.out.println(" # " + monsterName + " was defeated! #");
 			System.out.println(" # You have " + player.hp + "HP left. #");
 			if (rand.nextInt(100) < potionDropRate) {
-				ConsumableItem.count++;
+				Consumables.count++;
 				System.out.println(" # The " + monsterName + " dropped a health potion. #");
-				System.out.println(" # You currently have " + ConsumableItem.count++ + " potion(s). #");
+				System.out.println(" # You currently have " + Consumables.count++ + " potion(s). #");
 			}
 			System.out.println("-----------------------------------");
 			System.out.println("What would you like to do next?");

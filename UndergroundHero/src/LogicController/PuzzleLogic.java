@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 import Character.Player;
 import Item.Item;
-import Item.KeyItem;
 import Puzzle.Puzzle;
 import Room.*;
 /**
@@ -63,7 +62,7 @@ public class PuzzleLogic implements Serializable{
 					System.out.println("Initiating puzzle");
 //					print("...\n", 300);
 					String puzzleDesc = puzzle.getDescription();
-					KeyItem puzzleKeyItem = puzzle.getKeyItem();
+					Item puzzleKeyItem = puzzle.getKeyItem();
 					String riddleAnswer = puzzle.getRiddleAnswer();
 					
 					puzzleLoop = true;
@@ -154,7 +153,7 @@ public class PuzzleLogic implements Serializable{
 	 * @method Checks for player's inventory for compatible key item with PuzzleKey key item.
 	 * @param puzzleKeyItem
 	 */
-	private void runKeyPuzzle(KeyItem puzzleKeyItem) {
+	private void runKeyPuzzle(Item puzzleKeyItem) {
 			
 			//if player has puzzle key in inventory, the key puzzle is solved and exits loop
 			if(playerInventory.contains(puzzleKeyItem)) {

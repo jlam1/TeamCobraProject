@@ -63,7 +63,7 @@ public class SaveLoadTester {
 	}
 
 	static void roomLogic(String direction) {
-		Room nextRoom = currentRoom.nextRoom(direction);
+		Room nextRoom = currentRoom.getNextRoom(direction);
 
 		if (nextRoom == null) {
 			System.out.println("Theres no exit that way, try another direction.");

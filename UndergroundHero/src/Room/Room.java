@@ -1,4 +1,5 @@
 package Room;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,12 +8,15 @@ import Character.Monster;
 import Character.Properties;
 import Item.Item;
 import Puzzle.Puzzle;
+
 /**
- * This class is responsible for instantializing room attributes and behaviors.
+ * This class is responsible for instantiating room objects. Contains attributes
+ * and behaviors for Room objects.
+ * 
  * @author John
  *
  */
-public abstract class Room implements Properties, Comparable<Room>, Serializable{
+public class Room implements Properties, Comparable<Room>, Serializable {
 
 	private static final long serialVersionUID = -1722849142865991875L;
 	protected String name, description, exits;
@@ -22,8 +26,17 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 	protected Monster roomMonster;
 	protected Puzzle roomPuzzle;
 	private Map<String, Room> exitMap;
-	
-	public Room(int id, String name, String description, String exits, boolean locked){
+
+	/**
+	 * The following method is the constructor for basic Room objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -32,36 +45,104 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 		exitMap = new HashMap<String, Room>();
 	}
 
-	public String getExits(){
-		return "Exits: " + this.exits;
+	/**
+	 * The following method is the specific constructor for Item type Room
+	 * objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomItem
+	 *            Specific to Item type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Item roomItem) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomItem = roomItem;
+		;
+	}
+
+	/**
+	 * The following method is the specific constructor for Monster type
+	 * Room objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomMonster
+	 *            Specific to Monster type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Monster roomMonster) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomMonster = roomMonster;
 	}
 	
 	/**
-	 * @method Sets each possible room exits to a map.
+	 * The following method is the constructor for Puzzle type Room objects.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param exits
+	 * @param locked
+	 * @param roomPuzzle
+	 *            Specific to Puzzle type Room objects.
+	 */
+	public Room(int id, String name, String description, String exits, boolean locked, Puzzle roomPuzzle) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.exits = exits;
+		this.locked = locked;
+		this.roomPuzzle = roomPuzzle;
+	}
+
+	public String getExits() {
+		return "Exits: " + this.exits;
+	}
+
+	/**
+	 * The following method maps a string for each cardinal direction to every
+	 * possible room exit in the exitMap map.
+	 * 
 	 * @param north
 	 * @param east
 	 * @param south
 	 * @param west
 	 */
-    public void setExits(Room north, Room east, Room south, Room west){
-        if(north != null)
-        	exitMap.put("north", north);
-        if(east != null)
-        	exitMap.put("east", east);
-        if(south != null)
-        	exitMap.put("south", south);
-        if(west != null)
-        	exitMap.put("west", west);
-    }
-    
-    /**
-     * @method Calls from map a string direction exit.
-     * @param direction
-     * @return Room
-     */
-    public Room nextRoom(String direction){
-        return (Room)exitMap.get(direction);
-    }  
+	public void setExits(Room north, Room east, Room south, Room west) {
+		if (north != null)
+			exitMap.put("north", north);
+		if (east != null)
+			exitMap.put("east", east);
+		if (south != null)
+			exitMap.put("south", south);
+		if (west != null)
+			exitMap.put("west", west);
+	}
+
+	/**
+	 * The following method gets the room that is in the direction indicated by
+	 * parameter.
+	 * 
+	 * @param direction
+	 * @return Room: The room that is set to the direction indicated by
+	 *         parameter.
+	 */
+	public Room getNextRoom(String direction) {
+		return (Room) exitMap.get(direction);
+	}
 
 	/**
 	 * @method Sorting arrays by ascending order of room IDs
@@ -71,15 +152,15 @@ public abstract class Room implements Properties, Comparable<Room>, Serializable
 		int roomID = room.getId();
 		return this.id - roomID;
 	}
-	
+
 	public void setExitMap(Map<String, Room> exitMap) {
 		this.exitMap = exitMap;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}

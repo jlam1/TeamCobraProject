@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Room.Room;
-import Room.RoomBasic;
+//import Room.RoomBasic;
 
 /**
  * This class is responsible for generating Room objects
@@ -53,7 +53,7 @@ public class RoomGenerator {
 				}
 				
 				int id = count;
-				Room newRoom = new RoomBasic(id, roomNumber, roomDescription, roomExits, roomLocked);
+				Room newRoom = new Room(id, roomNumber, roomDescription, roomExits, roomLocked);
 				roomList.add(newRoom);
 				
 				count++;
