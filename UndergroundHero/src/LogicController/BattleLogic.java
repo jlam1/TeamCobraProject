@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.applet.*; // For audio
+
+import sun.audio.*;
+
+import java.io.*;
+
+import javax.sound.sampled.*;
+import javax.swing.*;
 
 import Character.*;
 import Item.*;
@@ -14,7 +22,6 @@ import Generator.ItemGenerator;
  *
  */
 public class BattleLogic {
-	
 	private Scanner input;
 	private ArrayList<Item> itemList;
 	private List<Item> playerInventory;
@@ -31,8 +38,24 @@ public class BattleLogic {
 	 * @param player
 	 * @param monster
 	 */
-	public void initiateBattle(Player player, Monster monster) {
-		
+	
+	public void music(){
+		AudioStream backgroundMusic;
+		AudioData musicData;
+		AudioPlayer musicPlayer = AudioPlayer.player;
+		ContinuousAudioDataStream loop = null;
+		try{
+			backgroundMusic = new AudioStream(new FileInputStream("src/sound/battleMOCK.wav"));
+			musicData = backgroundMusic.getData();loop = new ContinuousAudioDataStream(musicData);
+			musicPlayer.start(loop);
+		} 
+		catch(IOException error){ 
+			System.out.println(error);
+		}
+	}
+	
+	public void initiateBattle(Player player, Monster monster){
+		music();
 		playerInventory = player.getInventory();
 		battleRun = true;
 		
@@ -44,7 +67,6 @@ public class BattleLogic {
 		System.out.println("---------------------------------------------");
 		
 		while (battleRun) {
-
 			System.out.println("\tYour HP: [" + player.getHp() + "/" + player.getMaxhp() + "]");
 			System.out.println("\t" + monster.getName() + "'s HP [" + monster.getHp() + "/" + monster.getMaxhp() + "]");
 			System.out.println("\n\tWhat would you like to do next?");

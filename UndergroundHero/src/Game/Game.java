@@ -1,11 +1,18 @@
 package Game;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 //import org.apache.commons.lang3.text.WordUtils;
 import java.util.concurrent.TimeUnit;
 
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 import Character.Monster;
 import Character.Player;
 import Generator.ItemGenerator;
@@ -45,6 +52,21 @@ public class Game {
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
+	public void music(){
+		AudioStream backgroundMusic;
+		AudioData musicData;
+		AudioPlayer musicPlayer = AudioPlayer.player;
+		ContinuousAudioDataStream loop = null;
+		try{
+			backgroundMusic = new AudioStream(new FileInputStream("src/sound/traverse.wav"));
+			musicData = backgroundMusic.getData();loop = new ContinuousAudioDataStream(musicData);
+			musicPlayer.start(loop);
+		} 
+		catch(IOException error){ 
+			System.out.println(error);
+		}
+	}
+	
 	private void createNewGame() {
 		gameRun = true;
 		player = new Player(1000, 1000, 100, 30, 20);
@@ -60,6 +82,7 @@ public class Game {
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
+		music();
 	}
 	
 	public void menuScreen() {
