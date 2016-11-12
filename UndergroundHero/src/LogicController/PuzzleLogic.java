@@ -129,7 +129,10 @@ public class PuzzleLogic implements Serializable{
 			}
 		}	
 		
-//		return puzzleSolved;
+	}
+	
+	public boolean getPuzzleSolved() {
+		return puzzleSolved;
 	}
 	
 	/**

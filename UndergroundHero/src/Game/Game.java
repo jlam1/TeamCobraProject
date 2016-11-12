@@ -205,9 +205,14 @@ public class Game {
 					gameRun = false;
 				}			
 				
-				//check monster dead and set monster dead
+				//check monster dead and set monster dead if boss
 				if(battleLogic.getWhoseDead() == 1) {
-					monster.setDead(true);
+					if(monster.isBoss()) {
+						monster.setDead(true);
+					}
+					else {
+						//do nothing, common monsters should not be set to dead at all times.
+					}
 				}
 				
 				checkRoomMonsterLocks(monster);
@@ -216,9 +221,13 @@ public class Game {
 			
 			if(puzzle != null && !factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved()) {
 				puzzleLogic.initiatePuzzle(currentRoom, player);
-				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
+				if(puzzleLogic.getPuzzleSolved()) {
+					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
+				}
+				if(puzzleLogic.getPuzzleSolved()) {
+					puzzle.setSolved(true);
+				}
 			}
-			
 		}
 	}
 	
@@ -383,7 +392,6 @@ public class Game {
 			switch(monster.getId()) {
 			
 				case 0: factoryList.get(10).setLocked(false);
-						monster.setDead(true);
 						System.out.println("Room: [" + factoryList.get(10).getName() + "] is now unlocked!");
 					break;
 				case 1: factoryList.get(19).setLocked(false);
@@ -415,7 +423,7 @@ public class Game {
 						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(29).getName() + " is now unlocked!");
+						System.out.println("Room: [" + factoryList.get(29).getName() + "] is now unlocked!");
 					break;
 				case 7: factoryList.get(34).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");

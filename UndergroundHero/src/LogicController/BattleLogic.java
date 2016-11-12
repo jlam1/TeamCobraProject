@@ -46,7 +46,8 @@ public class BattleLogic {
 		ContinuousAudioDataStream loop = null;
 		try{
 			backgroundMusic = new AudioStream(new FileInputStream("src/sound/battleMOCK.wav"));
-			musicData = backgroundMusic.getData();loop = new ContinuousAudioDataStream(musicData);
+			musicData = backgroundMusic.getData();
+			loop = new ContinuousAudioDataStream(musicData);
 			musicPlayer.start(loop);
 		} 
 		catch(IOException error){ 
@@ -55,7 +56,7 @@ public class BattleLogic {
 	}
 	
 	public void initiateBattle(Player player, Monster monster){
-		music();
+//		music();
 		playerInventory = player.getInventory();
 		battleRun = true;
 		
