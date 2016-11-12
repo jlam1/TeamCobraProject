@@ -19,7 +19,7 @@ import Room.RoomFactory;
  * This class is responsible for parsing user's inputs and creating new game.
  *
  */
-public class Game {
+public class GameBackup {
 	
 	private List<Room> factoryList;
 	private List<Item> itemList;
@@ -34,7 +34,7 @@ public class Game {
 	 * @return 
 	 * @method Load all assets to game object
 	 */
-	public Game ()
+	public GameBackup ()
 	{
 		input = new Scanner(System.in);
 		factoryList = new RoomFactory().getRoomFactoryList();
@@ -452,12 +452,20 @@ public class Game {
 		System.out.println("Welcome to Underground Hero");
 		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
 	}
-
-	/**
-	 * @method Prints a delayed string
-	 * @param string
-	 * @param delay
-	 */
+	
+//	public void print(String string, long delay) {
+//		try {
+//		    for (char ch : string.toCharArray()) {
+//		        System.out.print(ch);
+//		        TimeUnit.MILLISECONDS.sleep(delay);
+//		    }
+//		}
+//		catch(InterruptedException e) {
+//			System.out.println("InterruptedException: print()");
+//		}
+//	
+//	}
+	
 	public void print(String string, long delay) {
 		try {
 			boolean run = true;
@@ -475,7 +483,6 @@ public class Game {
 		}
 	
 	}
-	
 	
 //	private String wrapText(String longDescription){
 //		String shortDesc = WordUtils.wrap(longDescription, 50);

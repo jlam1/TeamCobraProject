@@ -23,7 +23,7 @@ public class PuzzleGenerator {
 
 		puzzleList = new ArrayList<Puzzle>();
 
-		Puzzle puzzle = new Puzzle(0, "A Blood Type", 0, null, "AB", "What is your blood type?");
+		Puzzle puzzle = new Puzzle(0, "A Blood Type", 0, itemList.get(5), "AB", "What is your blood type?");
 
 		puzzleList.add(puzzle);
 
@@ -51,11 +51,11 @@ public class PuzzleGenerator {
 				"A computer terminal stands in your way, it looks like I need to insert some kind of [COMPUTER CHIP] for it activate.");
 		puzzleList.add(puzzle);
 
-		puzzle = new Puzzle(7, "Riddle 1", 0, null, "BRAIN",
+		puzzle = new Puzzle(7, "Riddle 1", 0, itemList.get(4), "BRAIN",
 				"I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?");
 		puzzleList.add(puzzle);
 
-		puzzle = new Puzzle(8, "Riddle 2", 0, null, "TOMMORROW",
+		puzzle = new Puzzle(8, "Riddle 2", 0, itemList.get(5), "TOMMORROW",
 				"What is always on its way here, but never arrives?");
 
 		puzzleList.add(puzzle);
@@ -76,7 +76,7 @@ public class PuzzleGenerator {
 	 * @param name
 	 * @return KeyItem
 	 */
-	public Item key(String name) {
+	private Item key(String name) {
 		Item item;
 		Item keyItem = null;
 		for (int i = 0; i < itemList.size(); i++) {

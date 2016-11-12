@@ -1,7 +1,7 @@
 package LogicController;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -20,12 +20,11 @@ public class PuzzleLogic implements Serializable{
 	private static final long serialVersionUID = -3089189101952541374L;
 	private boolean puzzleLoop, riddleLoop, puzzleSolved, puzzleRun;
 	private Puzzle puzzle;
-	private ArrayList<Item> playerInventory;
 	private Scanner input;
 	private String userInput;
 	
-	public PuzzleLogic(){
-		input = new Scanner(System.in);
+	public PuzzleLogic(Scanner in){
+		input = in;
 	}
 	
 	/**
@@ -39,10 +38,10 @@ public class PuzzleLogic implements Serializable{
 	 * @return true when puzzle solved, else return false
 	 * @throws InterruptedException 
 	 */
-	public boolean initiatePuzzle(Room currentRoom, Player player) {
+	public void initiatePuzzle(Room currentRoom, Player player) {
 		
 		puzzle = currentRoom.getRoomPuzzle();
-		playerInventory = player.getInventory();
+		List<Item> playerInventory = player.getInventory();
 
 		puzzleSolved = false;
 		puzzleRun = true;
@@ -80,10 +79,10 @@ public class PuzzleLogic implements Serializable{
 							System.out.println("-------------------------------------------------");
 							System.out.println(puzzleDesc);
 							System.out.println("-------------------------------------------------");
-		
+							
 							//check puzzle type PuzzleKey
-							if(puzzle.getType() == 1) {
-								runKeyPuzzle(puzzleKeyItem);
+							if(puzzle.getType() == 1)
+								runKeyPuzzle(puzzleKeyItem, player);
 								//check if puzzle is solved
 								if(puzzleSolved == true) {
 									//check if puzzle has reward item
@@ -92,10 +91,9 @@ public class PuzzleLogic implements Serializable{
 										player.pickUp(puzzle.getItemReward());
 									}
 								}
-							}
 							
 							//check puzzle type PuzzleRiddle
-							if(puzzle.getType() == 0) {
+							if(puzzle.getType() == 0)
 								runRiddlePuzzle(userInput, riddleAnswer);
 								//check if puzzle is solved
 								if(puzzleSolved == true) {
@@ -107,29 +105,18 @@ public class PuzzleLogic implements Serializable{
 								}
 							}
 							
-							else {
-								
-							}
-							
-						}
-							
 						//user command 2
-						else if(userInput.equalsIgnoreCase("LEAVE")) {
+						if(userInput.equalsIgnoreCase("LEAVE")) {
 							System.out.println("Left puzzle. Returning to room...\n");
 							puzzleLoop = false;
 							puzzleRun = false;
 						}
 						
-						else if(userInput.equalsIgnoreCase("HELP")) {
+						if(userInput.equalsIgnoreCase("HELP")) {
 							System.out.println("-------------------------------------------------");
 							System.out.println("Commands are: [VIEW PUZZLE] and [LEAVE].\n");
 							System.out.println("-------------------------------------------------");
 						}
-						
-						else {
-							
-						}
-						
 					}
 				}
 				
@@ -138,41 +125,37 @@ public class PuzzleLogic implements Serializable{
 					System.out.println("You decided not to attempt the puzzle at this time.\n");
 					puzzleRun = false;
 				}
-				
-				else {
-//					System.out.println("ELSE: Invalid input. Try again.");
-				}
 
 			}
 		}	
 		
-		return puzzleSolved;
+//		return puzzleSolved;
 	}
 	
 	/**
 	 * @method Checks for player's inventory for compatible key item with PuzzleKey key item.
 	 * @param puzzleKeyItem
 	 */
-	private void runKeyPuzzle(Item puzzleKeyItem) {
-			
-			//if player has puzzle key in inventory, the key puzzle is solved and exits loop
-			if(playerInventory.contains(puzzleKeyItem)) {
-				puzzle.setSolved(true);
-				System.out.println(puzzle.getName() + " has been solved!");
-				puzzleRun = false;
-				puzzleSolved = true;
-				puzzleLoop = false;
-			}
-			
-			//if player does not have puzzle key in inventory, puzzle is not solved and exits loop
-			else {
-				System.out.println("-------------------------------------------------");
-				System.out.println("You do not have the key item: " + puzzleKeyItem.getName() + " to solve this puzzle.");
-				System.out.println("You are returning back room...");
-				System.out.println("-------------------------------------------------");
-				puzzleLoop = false;
-				puzzleRun = false;
-			}
+	private void runKeyPuzzle(Item puzzleKeyItem, Player player) {
+		
+		//if player has puzzle key in inventory, the key puzzle is solved and exits loop
+		if(player.checkInventoryKeyItem(puzzleKeyItem)) {
+			puzzle.setSolved(true);
+			System.out.println(puzzle.getName() + " has been solved!");
+			puzzleRun = false;
+			puzzleLoop = false;
+			puzzleSolved = true;
+		}
+		
+		//if player does not have puzzle key in inventory, puzzle is not solved and exits loop
+		else {
+			System.out.println("-------------------------------------------------");
+			System.out.println("You do not have the key item: " + puzzleKeyItem.getName() + " to solve this puzzle.");
+			System.out.println("You are returning back room...");
+			System.out.println("-------------------------------------------------");
+			puzzleLoop = false;
+			puzzleRun = false;
+		}
 	}
 	
 	/**

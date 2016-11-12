@@ -147,7 +147,7 @@ public class RoomFactory implements Serializable {
 				roomFactoryList.add(room);
 			}
 			//room 3-9 add jump the chasm puzzle
-			else if(roomID == 27){
+			else if(roomID == 26){
 				room.setRoomPuzzle(puzzleList.get(5));
 				roomFactoryList.add(room);
 			}

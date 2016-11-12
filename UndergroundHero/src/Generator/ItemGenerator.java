@@ -20,7 +20,7 @@ public class ItemGenerator {
 		
 		itemList = new ArrayList<Item>();
 		
-		Item item = new Item		(0, "Starter Clothes", 			"ARMOR", 1, "Default Armor. It's normal and worned.");
+		Item item = new Item	(0, "Starter Clothes", 			"ARMOR", 1, "Default Armor. It's normal and worned.");
 		itemList.add(item);
 		
 		item = new Item			(1, "Chain Mail",				"ARMOR", 3, "A lightweight piece of armor that is particularly good at stopping stabbing attacks.");

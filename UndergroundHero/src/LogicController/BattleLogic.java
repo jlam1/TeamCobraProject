@@ -2,6 +2,7 @@ package LogicController;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import Character.*;
@@ -16,11 +17,12 @@ public class BattleLogic {
 	
 	private Scanner input;
 	private ArrayList<Item> itemList;
-	private ArrayList<Item> playerInventory;
+	private List<Item> playerInventory;
 	private boolean battleRun;
+	private int whoseDead;
 	
-	public BattleLogic() {
-		input = new Scanner(System.in);
+	public BattleLogic(Scanner in) {
+		input = in;
 		itemList = new ItemGenerator().getItemList();
 	}
 
@@ -33,6 +35,9 @@ public class BattleLogic {
 		
 		playerInventory = player.getInventory();
 		battleRun = true;
+		
+		//set whoseDead to -1; if player is dead set whoseDead to 0 and monster to 1 and return value to Game class.
+		whoseDead = -1;
 		
 		System.out.println("---------------------------------------------\n");
 		System.out.println("\t# " + monster.getName().toUpperCase() + " has appeared! #\n");
@@ -93,9 +98,18 @@ public class BattleLogic {
 			
 		}
 		
-		if(player.isDead())
+		if(player.isDead()) {
 			System.out.println("Returning to menu screen...");
-		
+			whoseDead = 0;
+		}
+		if(monster.isDead()) {
+			whoseDead = 1;
+		}
+			
+	}
+	
+	public int getWhoseDead() {
+		return this.whoseDead;
 	}
 	
 	/**

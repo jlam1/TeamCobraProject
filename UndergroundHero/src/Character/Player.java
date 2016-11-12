@@ -2,6 +2,8 @@ package Character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import Item.Item;
 
 /**
@@ -15,7 +17,7 @@ import Item.Item;
 public class Player extends Character implements Serializable {
 
 	private static final long serialVersionUID = 8154838844933306541L;
-	private ArrayList<Item> inventory;
+	private List<Item> inventory;
 	private ArrayList<Item> equipment;
 
 	/**
@@ -39,8 +41,28 @@ public class Player extends Character implements Serializable {
 		equipment = new ArrayList<Item>();
 	}
 
-	public ArrayList<Item> getInventory() {
+	public List<Item> getInventory() {
 		return inventory;
+	}
+	
+	/**
+	 * @method Player checks if keyItem is in inventory
+	 * @param keyItem
+	 * @return boolean
+	 */
+	public boolean checkInventoryKeyItem(Item keyItem) {
+		boolean itemIsThere = false;
+		for(Item i : inventory) {
+			if(i.getId() == keyItem.getId()) {
+				itemIsThere = true;
+				break;
+			}
+			else {
+				itemIsThere = false;
+			}
+		}
+		
+		return itemIsThere;
 	}
 
 	/**
