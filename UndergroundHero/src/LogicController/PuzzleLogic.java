@@ -41,10 +41,14 @@ public class PuzzleLogic implements Serializable{
 	public void initiatePuzzle(Room currentRoom, Player player) {
 		
 		puzzle = currentRoom.getRoomPuzzle();
-		List<Item> playerInventory = player.getInventory();
+		
+		String puzzleDesc = puzzle.getDescription();
+		Item puzzleKeyItem = puzzle.getKeyItem();
+		String riddleAnswer = puzzle.getRiddleAnswer();
 
 		puzzleSolved = false;
 		puzzleRun = true;
+		puzzleLoop = true;
 		
 		//check if puzzle is null AND if puzzle is NOT solved
 		if(puzzle != null && puzzle.isSolved() == false) {
@@ -59,19 +63,9 @@ public class PuzzleLogic implements Serializable{
 				//check user's choice (Y/N)
 				if(userInput.equalsIgnoreCase("Y")) {
 					System.out.println("Initiating puzzle");
-//					print("...\n", 300);
-					String puzzleDesc = puzzle.getDescription();
-					Item puzzleKeyItem = puzzle.getKeyItem();
-					String riddleAnswer = puzzle.getRiddleAnswer();
-					
-					puzzleLoop = true;
 					
 					while(puzzleLoop) {
-						System.out.println("-------------------------------------------------");
-						System.out.println("The puzzle commands are:");
-						System.out.println("[VIEW] to view the puzzle description\n[LEAVE] to leave puzzle and return to room");
-						System.out.println("-------------------------------------------------");
-						System.out.print(">>");
+						viewCommands();
 						userInput = input.nextLine();
 						
 						//user command 1
@@ -107,7 +101,7 @@ public class PuzzleLogic implements Serializable{
 							
 						//user command 2
 						if(userInput.equalsIgnoreCase("LEAVE")) {
-							System.out.println("Left puzzle. Returning to room...\n");
+							System.out.print("Leaving puzzle");
 							puzzleLoop = false;
 							puzzleRun = false;
 						}
@@ -122,7 +116,7 @@ public class PuzzleLogic implements Serializable{
 				
 				//user inputs N, returns to room
 				if(userInput.equalsIgnoreCase("N")) {
-					System.out.println("You decided not to attempt the puzzle at this time.\n");
+					System.out.print("Leaving puzzle");
 					puzzleRun = false;
 				}
 
@@ -154,7 +148,7 @@ public class PuzzleLogic implements Serializable{
 		else {
 			System.out.println("-------------------------------------------------");
 			System.out.println("You do not have the key item: " + puzzleKeyItem.getName() + " to solve this puzzle.");
-			System.out.println("You are returning back room...");
+			System.out.println("You are returning back room");
 			System.out.println("-------------------------------------------------");
 			puzzleLoop = false;
 			puzzleRun = false;
@@ -221,6 +215,14 @@ public class PuzzleLogic implements Serializable{
 			}
 		}
 
+	}
+	
+	private void viewCommands() {
+		System.out.println("-------------------------------------------------");
+		System.out.println("The puzzle commands are:");
+		System.out.println("[VIEW] to view the puzzle description\n[LEAVE] to leave puzzle and return to room");
+		System.out.println("-------------------------------------------------");
+		System.out.print(">>");
 	}
 
 //	public void print(String string, long delay) {

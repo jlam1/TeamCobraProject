@@ -183,7 +183,7 @@ public class Game {
 			Puzzle puzzle = nextRoom.getRoomPuzzle();
 			
 			//check if roomMonster exists and if not dead
-			if(monster != null && !monster.isDead()) {
+			if(monster != null && !factoryList.get(nextRoom.getId()).getRoomMonster().isDead()) {
 				
 				//if boss, spawnrate is 100%
 				if(monster.isBoss()) {
@@ -208,7 +208,7 @@ public class Game {
 				//check monster dead and set monster dead if boss
 				if(battleLogic.getWhoseDead() == 1) {
 					if(monster.isBoss()) {
-						monster.setDead(true);
+						factoryList.get(nextRoom.getId()).getRoomMonster().setDead(true);
 					}
 					else {
 						//do nothing, common monsters should not be set to dead at all times.
@@ -225,7 +225,7 @@ public class Game {
 					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
 				}
 				if(puzzleLogic.getPuzzleSolved()) {
-					puzzle.setSolved(true);
+					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 				}
 			}
 		}
@@ -360,12 +360,14 @@ public class Game {
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();
-			System.out.println("Load Sucessful");
+			System.out.print("LOADING ");
+			print(".....\n", 300);
+			System.out.println("Loading successful.");
 			System.out.println();
-			System.out.println(currentRoom.getName() + "\n" + currentRoom.getDescription());
+			look();
 
 		} catch (Exception e) {
-			System.out.println("error loading");
+			System.out.println("Error loading");
 			e.printStackTrace();
 		}
 	}
@@ -489,23 +491,19 @@ public class Game {
 	 * @param string
 	 * @param delay
 	 */
-	public void print(String string, long delay) {
-		try {
-			boolean run = true;
-			while(run) {
-				System.out.print(string);
-				TimeUnit.MILLISECONDS.sleep(delay);
-				for(int i = 0; i < string.length(); i++) {
-					System.out.print("\b");
-				}
-			}
-		    
-		}
-		catch(InterruptedException e) {
-			System.out.println("InterruptedException: print()");
-		}
 	
+	public void print(String string, long delay) {
+	try {
+	    for (char ch : string.toCharArray()) {
+	        System.out.print(ch);
+	        TimeUnit.MILLISECONDS.sleep(delay);
+	    }
 	}
+	catch(InterruptedException e) {
+		System.out.println("InterruptedException: print()");
+	}
+
+}
 	
 	
 //	private String wrapText(String longDescription){

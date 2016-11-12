@@ -160,7 +160,7 @@ public class SaveLoadTester {
 
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
-		puzzleLogic = new PuzzleLogic();
+		puzzleLogic = new PuzzleLogic(input);
 
 		// add default items to player
 		player.startingItem(itemList.get(10));
