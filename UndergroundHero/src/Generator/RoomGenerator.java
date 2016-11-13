@@ -88,16 +88,16 @@ public class RoomGenerator {
 		room = new Room(17, "2-8", "An adrenaline shot on the ground. A key on a pedestal being protected by a force field. A panel in front of the force field with three buttons on it: one red, one blue, one green.", "NORTH", false);
 		roomList.add(room);
 		
-		room = new Room(18, "2-9", "An empty room with the Hula Hooper.", "WEST, EAST", false);
+		room = new Room(18, "2-9", "An empty room with the Hula Hooper.", "WEST, EAST", true);
 		roomList.add(room);
 		
-		room = new Room(19, "3-1", "A hidden shortcut through a crawl space below leading to room 3-10, accessible only once the player has completed the Security Bypass puzzle. A square room with steel plating covering all surfaces. The only objects here are the doors leading to the East and West (and the hidden crawl space).", "SOUTH, WEST, EAST", true);
+		room = new Room(19, "3-1", "A square room with steel plating covering all surfaces. The only objects here are the doors leading to the West and East.", "WEST, EAST", true);
 		roomList.add(room);
 		
 		room = new Room(20, "3-2", "This room is also covered in steel plating. One of the overhead lights flicker at a frequency that doesn't actually diminish the amount of light in the room, it just causes an annoyance. The only objects are the doors to the East, South, and West.", "SOUTH, WEST, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(21, "3-3", "A rectangular room filled with monitors and cabling; a rack of computers sits at the end. The lighting is dimmer than normal and as a slight blueish hue. The electronics put out a lot of heat, so while this room is lined with steel plating like the rooms before it, it has a large exposed ventilation system in the ceiling. There is a case made of ballistic glass on the far wall which contains the Prototype Laser Pistol.", "NORTH, SOUTH", false);
+		room = new Room(21, "3-3", "A rectangular room filled with monitors and cabling; a rack of computers sits at the end. The lighting is dimmer than normal and as a slight blueish hue. The electronics put out a lot of heat, so while this room is lined with steel plating like the rooms before it, it has a large exposed ventilation system to the [SOUTH] of the ceiling. There is a case made of ballistic glass on the far wall which contains the Prototype Laser Pistol.", "NORTH", false);
 		roomList.add(room);
 		
 		room = new Room(22, "3-4", "A slightly rectangular room with a fork at the eastern end. The room's ceiling grows higher and wider as the room approaches the fork, and the rooms construction transitions from steel plating to exposed cave wall reinforced in places by rebar and I-beams. During this transition the lighting changes from overhead to standing work lights. Toward the fork side of the room, stalactites have begun to form.", "NORTH, SOUTH, WEST", false);
@@ -115,10 +115,10 @@ public class RoomGenerator {
 		room = new Room(26, "3-8", "A rectangular room with a fork at the western end. The room's ceiling lowers as the room moves away from the fork. The room has exposed cave wall reinforced in places by rebar and I-beams. The room is lit from the ground by upward firing lights angled toward the wall. There is a ventilation duct in the lower part of the ceiling partially obscured by small-medium sized stalactites. There is no door separating this room from room 3-9, it simply continues into the next.", "NORTH, SOUTH, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(27, "3-9", "A massive rectangular room with a wide chasm offset to the eastern side of it. Due to the room's sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor. Apart from the lighting and the door at the eastern end leading to room 3-10, this room is void of any man made objects. Stalactites of various sizes line the ceiling, and stalagmites the floor. There is a stronger outcropping of rock above the chasm that the grappling hook can attach to. Though barely visible, there are steel spikes at the bottom of the chasm.", "SOUTH, WEST, EAST", false);
+		room = new Room(27, "3-9", "A massive rectangular room with a wide chasm offset to the eastern side of it. Due to the room's sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor. Apart from the lighting and the door at the eastern end leading to room 3-10, this room is void of any man made objects. Stalactites of various sizes line the ceiling, and stalagmites the floor. There is a stronger outcropping of rock above the chasm that the grappling hook can attach to. Though barely visible, there are steel spikes at the bottom of the chasm.", "WEST, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(28, "3-10", "A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room; in front of the door stands the Giant Robotic Sentry This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting. A hidden crawl space is revealed and the blast door unlocked once the player has completed the Security Bypass puzzle.", "SOUTH, WEST, EAST", true);
+		room = new Room(28, "3-10", "A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room; in front of the door stands the Giant Robotic Sentry This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting.", "WEST, EAST", true);
 		roomList.add(room);
 		
 		room = new Room(29, "4-1", "A large octagon room with one exit to the east. The room is colored in a dark blue light with statues of lions adorned at the corner of each of the eight corners of the room. The floor a slick black concrete with a but dead in the center is a sloppily trail of green arrows leading to the door.", "WEST, EAST", true);
