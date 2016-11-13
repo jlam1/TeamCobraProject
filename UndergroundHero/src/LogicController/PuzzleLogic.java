@@ -29,7 +29,18 @@ public class PuzzleLogic implements Serializable{
 		input = in;
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
 	}
-	
+	public void puzzleMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/puzzle.wav");
+		musicLogic.BGMLoop();
+	}
+	public void transverseMusic() 
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic.BGMLoop();
+	}
 	/**
 	 * @method This method will check if puzzle exists in the current room.
 	 * If empty, return null. If not the method wil prompt the player on console to initiate puzzle and 
@@ -66,9 +77,7 @@ public class PuzzleLogic implements Serializable{
 				//check user's choice (Y/N)
 				if(userInput.equalsIgnoreCase("Y")) {
 					System.out.println("Initiating puzzle");
-					musicLogic.BGMStop();
-					musicLogic = new MusicLogic("src/sound/puzzle.wav");
-					musicLogic.BGMLoop();
+					puzzleMusic();
 					while(puzzleLoop) {
 						viewCommands();
 						userInput = input.nextLine();
@@ -109,9 +118,7 @@ public class PuzzleLogic implements Serializable{
 							System.out.print("Leaving puzzle");
 							puzzleLoop = false;
 							puzzleRun = false;
-							musicLogic.BGMStop();
-							musicLogic = new MusicLogic("src/sound/traverse.wav");
-							musicLogic.BGMLoop();
+							transverseMusic();
 						}
 						
 						if(userInput.equalsIgnoreCase("HELP")) {
@@ -126,9 +133,7 @@ public class PuzzleLogic implements Serializable{
 				if(userInput.equalsIgnoreCase("N")) {
 					System.out.print("Leaving puzzle");
 					puzzleRun = false;
-					//musicLogic.BGMStop();
-					//musicLogic = new MusicLogic("src/sound/traverse.wav");
-					//musicLogic.BGMLoop();
+					
 				}
 
 			}
@@ -163,9 +168,7 @@ public class PuzzleLogic implements Serializable{
 			System.out.println("-------------------------------------------------");
 			puzzleLoop = false;
 			puzzleRun = false;
-			musicLogic.BGMStop();
-			musicLogic = new MusicLogic("src/sound/traverse.wav");
-			musicLogic.BGMLoop();
+			transverseMusic();
 		}
 	}
 	
@@ -188,9 +191,7 @@ public class PuzzleLogic implements Serializable{
 				puzzleRun = false;
 				riddleLoop = false;
 				puzzleLoop = false;
-				musicLogic.BGMStop();
-				musicLogic = new MusicLogic("src/sound/traverse.wav");
-				musicLogic.BGMLoop();
+				transverseMusic();
 			}
 			
 			//if user answers riddle correctly, riddle is solved and exits loop
@@ -204,9 +205,7 @@ public class PuzzleLogic implements Serializable{
 				riddleLoop = false;
 				puzzleLoop = false;
 				puzzleRun = false;
-				musicLogic.BGMStop();
-				musicLogic = new MusicLogic("src/sound/traverse.wav");
-				musicLogic.BGMLoop();
+				transverseMusic();
 			}
 			
 			//if riddle answer is incorrect
@@ -221,9 +220,7 @@ public class PuzzleLogic implements Serializable{
 					riddleLoop = false;
 					puzzleLoop = false;
 					puzzleRun = false;
-					musicLogic.BGMStop();
-					musicLogic = new MusicLogic("src/sound/traverse.wav");
-					musicLogic.BGMLoop();
+					transverseMusic();
 				}
 				else if(userInput.equalsIgnoreCase("Y")) {
 					//do nothing

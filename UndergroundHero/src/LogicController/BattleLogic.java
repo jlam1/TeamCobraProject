@@ -27,10 +27,13 @@ public class BattleLogic {
 	private List<Item> playerInventory;
 	private boolean battleRun;
 	private int whoseDead;
+	private MusicLogic musicLogic;
 	
 	public BattleLogic(Scanner in) {
 		input = in;
 		itemList = new ItemGenerator().getItemList();
+		musicLogic = new MusicLogic("src/sound/battleMOCK.wav");
+
 	}
 
 	/**
@@ -39,24 +42,21 @@ public class BattleLogic {
 	 * @param monster
 	 */
 	
-	public void music(){
-		AudioStream backgroundMusic;
-		AudioData musicData;
-		AudioPlayer musicPlayer = AudioPlayer.player;
-		ContinuousAudioDataStream loop = null;
-		try{
-			backgroundMusic = new AudioStream(new FileInputStream("src/sound/battleMOCK.wav"));
-			musicData = backgroundMusic.getData();
-			loop = new ContinuousAudioDataStream(musicData);
-			musicPlayer.start(loop);
-		} 
-		catch(IOException error){ 
-			System.out.println(error);
-		}
+	public void battleMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/battleMOCK.wav");
+		musicLogic.BGMLoop();
+	}
+	public void transverseMusic() 
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic.BGMLoop();
 	}
 	
 	public void initiateBattle(Player player, Monster monster){
-		music();
+		battleMusic();
 		playerInventory = player.getInventory();
 		battleRun = true;
 		
@@ -116,9 +116,11 @@ public class BattleLogic {
 		if(player.isDead()) {
 			System.out.println("Returning to menu screen...");
 			whoseDead = 0;
+			musicLogic.BGMStop();
 		}
 		if(monster.isDead()) {
 			whoseDead = 1;
+			transverseMusic();
 		}
 			
 	}
@@ -278,12 +280,15 @@ public class BattleLogic {
 		if(player.getSpd() > monster.getSpd()) {
 			System.out.println("You escaped from battle!");
 			battleRun = false;
+			transverseMusic();
 		}
 		
 		else if(player.getSpd() == monster.getSpd()) {
 			double fleeChance = (Math.random()*100);
 			if(fleeChance >= 50.0) {
 				System.out.println("You successfully fled barely!");
+				battleRun = false;
+				transverseMusic();
 			}
 			else {
 				System.out.println("You couldn run away!");
