@@ -32,7 +32,7 @@ public class BattleLogic {
 	public BattleLogic(Scanner in) {
 		input = in;
 		itemList = new ItemGenerator().getItemList();
-		musicLogic = new MusicLogic("src/sound/battleMOCK.wav");
+		musicLogic = new MusicLogic("src/sound/battle.wav");
 
 	}
 
@@ -45,7 +45,7 @@ public class BattleLogic {
 	public void battleMusic()
 	{
 		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/battleMOCK.wav");
+		musicLogic = new MusicLogic("src/sound/battle.wav");
 		musicLogic.BGMLoop();
 	}
 	public void transverseMusic() 
@@ -291,7 +291,7 @@ public class BattleLogic {
 				transverseMusic();
 			}
 			else {
-				System.out.println("You couldn run away!");
+				System.out.println("You couldn't run away!");
 			}
 		}
 		else {
