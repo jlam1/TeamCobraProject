@@ -63,7 +63,7 @@ public class PuzzleLogic implements Serializable{
 		puzzleSolved = false;
 		puzzleRun = true;
 		puzzleLoop = true;
-		
+		 
 		//check if puzzle is null AND if puzzle is NOT solved
 		if(puzzle != null && puzzle.isSolved() == false) {
 			
