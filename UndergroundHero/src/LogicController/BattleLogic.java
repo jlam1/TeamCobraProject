@@ -54,7 +54,7 @@ public class BattleLogic {
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
 		musicLogic.BGMLoop();
 	}
-	 
+	
 	public void initiateBattle(Player player, Monster monster){
 		battleMusic();
 		playerInventory = player.getInventory();

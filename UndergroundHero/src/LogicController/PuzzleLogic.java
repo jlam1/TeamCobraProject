@@ -115,7 +115,7 @@ public class PuzzleLogic implements Serializable{
 							
 						//user command 2
 						if(userInput.equalsIgnoreCase("LEAVE")) {
-							System.out.print("Leaving puzzle");
+							System.out.println("Leaving puzzle");
 							puzzleLoop = false;
 							puzzleRun = false;
 							transverseMusic();
@@ -131,7 +131,7 @@ public class PuzzleLogic implements Serializable{
 				
 				//user inputs N, returns to room
 				if(userInput.equalsIgnoreCase("N")) {
-					System.out.print("Leaving puzzle");
+					System.out.println("Leaving puzzle");
 					puzzleRun = false;
 					
 				}
