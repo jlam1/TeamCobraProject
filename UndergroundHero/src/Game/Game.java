@@ -437,7 +437,7 @@ public class Game {
 		if(puzzle.isSolved() == true) {
 			
 			switch(puzzle.getId()) {
-				case 3: factoryList.get(14).setLocked(false); 
+				case 3: factoryList.get(14).setLocked(false);
 						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
 					break;
 				case 4: factoryList.get(18).setLocked(false); 
