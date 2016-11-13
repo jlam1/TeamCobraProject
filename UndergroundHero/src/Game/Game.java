@@ -1,6 +1,7 @@
 package Game;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.InputMismatchException;
@@ -19,6 +20,7 @@ import Generator.ItemGenerator;
 import Item.Item;
 import LogicController.BattleLogic;
 import LogicController.PuzzleLogic;
+import LogicController.MusicLogic;
 import Puzzle.Puzzle;
 import Room.Room;
 import Room.RoomFactory;
@@ -27,6 +29,8 @@ import Room.RoomFactory;
  *
  */
 public class Game {
+	//AudioStream roomMusic;
+	//AudioPlayer musicPlayer = AudioPlayer.player;
 	
 	private List<Room> factoryList;
 	private List<Item> itemList;
@@ -34,6 +38,7 @@ public class Game {
 	private Player player;
 	private PuzzleLogic puzzleLogic;
 	private BattleLogic battleLogic;
+	private MusicLogic musicLogic;
 	private Scanner input;
 	private int bagIndex;
 	private boolean gameRun;
@@ -48,24 +53,11 @@ public class Game {
 		itemList = new ItemGenerator().getItemList();
 		puzzleLogic = new PuzzleLogic(input);
 		battleLogic = new BattleLogic(input);
+		musicLogic = new MusicLogic("src/sound/traverse.wav");
 	}
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
-	public void music(){
-		AudioStream backgroundMusic;
-		AudioData musicData;
-		AudioPlayer musicPlayer = AudioPlayer.player;
-		ContinuousAudioDataStream loop = null;
-		try{
-			backgroundMusic = new AudioStream(new FileInputStream("src/sound/traverse.wav"));
-			musicData = backgroundMusic.getData();loop = new ContinuousAudioDataStream(musicData);
-			musicPlayer.start(loop);
-		} 
-		catch(IOException error){ 
-			System.out.println(error);
-		}
-	}
 	
 	private void createNewGame() {
 		gameRun = true;
@@ -82,7 +74,6 @@ public class Game {
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
-		music();
 	}
 	
 	public void menuScreen() {
@@ -106,7 +97,7 @@ public class Game {
 				if(userInput.equals("1")) {
 					System.out.println("Starting a new game...");
 					start = false;
-					
+					musicLogic.BGMLoop();
 					createNewGame();
 					play();
 				}
@@ -115,11 +106,13 @@ public class Game {
 					gameRun = true;
 					start = false;
 					load();
+					musicLogic.BGMLoop();
 					play();
 				}
 				if(userInput.equals("3")) {
 					System.out.println("Exiting game...");
 					start = false;
+					musicLogic.BGMStop();
 					System.exit(0);
 				}
 				else {
@@ -346,7 +339,6 @@ public class Game {
 		data.setFactoryList(factoryList);
 		try {
 			ResourceManager.saveGame(data, "UndergroundHero.dat");
-
 			System.out.println("Save Sucessful");
 		} catch (Exception e) {
 			System.out.println("error saving");
@@ -367,6 +359,7 @@ public class Game {
 			System.out.println("Loading successful.");
 			System.out.println();
 			look();
+			
 
 		} catch (Exception e) {
 			System.out.println("Error loading");
