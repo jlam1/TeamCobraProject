@@ -106,7 +106,7 @@ public class PuzzleLogic implements Serializable{
 							
 						//user command 2
 						if(userInput.equalsIgnoreCase("LEAVE")) {
-							System.out.print("Leaving puzzle");
+							System.out.println("Leaving puzzle");
 							puzzleLoop = false;
 							puzzleRun = false;
 							musicLogic.BGMStop();
@@ -124,7 +124,7 @@ public class PuzzleLogic implements Serializable{
 				
 				//user inputs N, returns to room
 				if(userInput.equalsIgnoreCase("N")) {
-					System.out.print("Leaving puzzle");
+					System.out.println("Leaving puzzle");
 					puzzleRun = false;
 					//musicLogic.BGMStop();
 					//musicLogic = new MusicLogic("src/sound/traverse.wav");

@@ -182,16 +182,6 @@ public class Game {
 				if(monster.isBoss()) {
 					battleLogic.initiateBattle(player, monster);
 				}
-				
-				//if common monster, spawn rate is 30%
-				else {
-					double chance = (Math.random()*100);
-					final double SPAWN_RATE = 30.0;
-					
-					if(chance < SPAWN_RATE) {
-						battleLogic.initiateBattle(player, monster);
-					}
-				}
 			
 				//check player dead
 				if(battleLogic.getWhoseDead() == 0) {
@@ -211,6 +201,27 @@ public class Game {
 				checkRoomMonsterLocks(monster);
 				
 			}
+			
+			if(monster != null) {
+				//
+				monster.setHp(monster.getMaxhp());
+				
+				//if common monster, set spawn rate
+				if(!monster.isBoss()) {
+					double chance = (Math.random()*100);
+					final double SPAWN_RATE = 25.0;
+					
+					if(chance < SPAWN_RATE) {
+						battleLogic.initiateBattle(player, monster);
+					}
+				}
+				
+				//check player dead
+				if(battleLogic.getWhoseDead() == 0) {
+					gameRun = false;
+				}	
+			}
+			
 			
 			if(puzzle != null && !factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved()) {
 				puzzleLogic.initiatePuzzle(currentRoom, player);
