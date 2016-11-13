@@ -43,7 +43,7 @@ public class RoomGenerator {
 		room = new Room(2, "1-2", "An office supply storage room with two big printers to the left as soon as one enters the room. Along the north wall, there are some shelves with paper, and some cabinets which are locked. Some computer equipment is there like routers and modems along with some important reminders and a contact list.", "WEST, EAST", false);
 		roomList.add(room);
 		 
-		room = new Room(3, "1-3", "A meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it. There is a red couch, with a man sleeping on it, he is very slender with tattoos everywhere, wearing a white shirt, black pants and some boots. He looks at the you upon entering and says \"Howdy\" in a very calmed way, creepy...", "WEST, EAST", false);
+		room = new Room(3, "1-3", "A meeting room which has a white board on the corner and several chairs and two couches. There is a window on the north wall which has the blinds down. The board has some target numbers written on it.", "WEST, EAST", false);
 		roomList.add(room);
 		
 		room = new Room(4, "1-4", "A room with several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.", "SOUTH, WEST", false);
@@ -58,7 +58,7 @@ public class RoomGenerator {
 		room = new Room(7, "1-7", "A room consisting of a steel bed, it has a body on top of it. It is inside a body bag, it's very cold in this room, doesn't smell like anything. The body could be just a dummy. Same as the previous to this one, everything is white, the lights are dimmed, and somewhat flickery. There are some sharp tools on a tray.", "WEST, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(8, "1-8", "There's a man sitting there on a chair. Wearing a purple shirt and holding a cane. He is smoking something which filled up the room with smoke.", "WEST, EAST", false);
+		room = new Room(8, "1-8", "The air filled the room with smoke and a large bed resides in the center of the room. The room feels ominous and there is a strong odor in the room.", "WEST, EAST", false);
 		roomList.add(room);
 		
 		room = new Room(9, "1-9", "A secret room! There is a lock to the door once inside it and it works as a safe place in case it is needed. The room has a purple light bulb which makes the room appear very purple.", "WEST", false);
