@@ -132,7 +132,7 @@ public class RoomFactory implements Serializable {
 				roomFactoryList.add(room);
 			}
 			//room 2-2 add laser puzzle
-			else if(roomID == 11){
+			else if(roomID == 14){
 				room.setRoomPuzzle(puzzleList.get(3));
 				roomFactoryList.add(room);
 			}
@@ -147,7 +147,7 @@ public class RoomFactory implements Serializable {
 				roomFactoryList.add(room);
 			}
 			//room 3-9 add jump the chasm puzzle
-			else if(roomID == 27){
+			else if(roomID == 28){
 				room.setRoomPuzzle(puzzleList.get(5));
 				roomFactoryList.add(room);
 			}
@@ -233,13 +233,13 @@ public class RoomFactory implements Serializable {
 		// connect floor 3, 10 rooms
 		searchRoom(19).setExits(null, searchRoom(20), searchRoom(28), searchRoom(18)); // 3-1
 		searchRoom(20).setExits(null, searchRoom(22), searchRoom(21), searchRoom(19)); // 3-2
-		searchRoom(21).setExits(searchRoom(20), null, searchRoom(27), null); // 3-3
+		searchRoom(21).setExits(searchRoom(20), searchRoom(26), null, null); // 3-3
 		searchRoom(22).setExits(searchRoom(23), null, searchRoom(24), searchRoom(20)); // 3-4
 		searchRoom(23).setExits(null, searchRoom(26), searchRoom(25), searchRoom(22)); // 3-5
 		searchRoom(24).setExits(searchRoom(25), searchRoom(26), null, searchRoom(22)); // 3-6
 		searchRoom(25).setExits(searchRoom(23), null, searchRoom(24), null); // 3-7
-		searchRoom(26).setExits(searchRoom(23), searchRoom(27), searchRoom(24), null); // 3-8
-		searchRoom(27).setExits(null, searchRoom(28), searchRoom(21), searchRoom(26)); // 3-9
+		searchRoom(26).setExits(searchRoom(23), searchRoom(27), searchRoom(24), searchRoom(21)); // 3-8
+		searchRoom(27).setExits(null, searchRoom(28), null, searchRoom(26)); // 3-9
 		searchRoom(28).setExits(null, searchRoom(29), searchRoom(19), searchRoom(27)); // 3-10
 
 		// connect floor 4, 13 rooms

@@ -49,7 +49,7 @@ public class RoomGenerator {
 		room = new Room(4, "1-4", "A room with several shelves with neatly stacked clothes on it, alongside the shelves, there is a counter with a sink and a coffee maker. A cabinet above the coffee maker.", "SOUTH, WEST", false);
 		roomList.add(room);
 		
-		room = new Room(5, "1-5", "A room containing a desk which looks fancy and it is located on the south east corner of the room. It is made from dark brown wood and it has a library next to it extending all the way to the north wall and covering the entire north wall. The shelves go from the ceiling to the ground and are filled with books of all kinds, also the shelves have decorations on them, like some wooden figures that resemble African heritage, also an hourglass which by the way has been turned upside down with the time ticking. There is a [MONA LISA] painting on the wall.", "WEST, NORTH", false);
+		room = new Room(5, "1-5", "A room containing a desk which looks fancy and it is located on the south east corner of the room. It is made from dark brown wood and it has a library next to it extending all the way to the north wall and covering the entire north wall. The shelves go from the ceiling to the ground and are filled with books of all kinds, also the shelves have decorations on them, like some wooden figures that resemble African heritage, also an hourglass which by the way has been turned upside down with the time ticking. There is a [MONA LISA] painting on the east wall.", "WEST, NORTH", false);
 		roomList.add(room);
 		
 		room = new Room(6, "1-6", "A room with a closet and a clean shower room, the floor is white, the light is white, everything is white, except there is bloody hand prints everywhere on the northwestern corner of the room, there's a thick trail of blood going into the room westward. Keep in mind the doors are thick and not much sound gets through to the other side.", "WEST, EAST", false);
@@ -67,7 +67,7 @@ public class RoomGenerator {
 		room = new Room(10, "2-1", "A small and narrow corridor that links the two exits together.", "WEST, EAST", true);
 		roomList.add(room);
 		
-		room = new Room(11, "2-2", "A standard room with four exits. An [ADRENALINE SHOT] on the ground.", "NORTH, SOUTH, WEST, EAST", false);
+		room = new Room(11, "2-2", "A standard room with four exits.", "NORTH, SOUTH, WEST, EAST", false);
 		roomList.add(room);
 		
 		room = new Room(12, "2-3", "Four statues in order on the north wall from left to right: Duck, Giraffe, Elephant, and Cow. A pedestal in the center of the room holding a pair of speed boots that are protected by an energy force field.", "SOUTH",false);
@@ -82,10 +82,10 @@ public class RoomGenerator {
 		room = new Room(15, "2-6", "A room with four exits. The door to the east is locked tight.", "NORTH, SOUTH, WEST ,EAST", false);
 		roomList.add(room);
 		
-		room = new Room(16, "2-7", "Chain mail on the ground. A monitor on a desk that displays the following: The numbers 255, 0, 255 in magenta. The numbers 0, 255, 255 in cyan. The numbers 255, 255, 0 in yellow. The numbers 2, 1, 3 in white", "SOUTH", false);
+		room = new Room(16, "2-7", "A monitor on a desk that displays the following: The numbers 255, 0, 255 in magenta. The numbers 0, 255, 255 in cyan. The numbers 255, 255, 0 in yellow. The numbers 2, 1, 3 in white", "SOUTH", false);
 		roomList.add(room);
 		
-		room = new Room(17, "2-8", "An adrenaline shot on the ground. A key on a pedestal being protected by a force field. A panel in front of the force field with three buttons on it: one red, one blue, one green.", "NORTH", false);
+		room = new Room(17, "2-8", "A key on a pedestal being protected by a force field. A panel in front of the force field with three buttons on it: one red, one blue, one green.", "NORTH", false);
 		roomList.add(room);
 		
 		room = new Room(18, "2-9", "An empty room with the Hula Hooper.", "WEST, EAST", true);
@@ -97,7 +97,7 @@ public class RoomGenerator {
 		room = new Room(20, "3-2", "This room is also covered in steel plating. One of the overhead lights flicker at a frequency that doesn't actually diminish the amount of light in the room, it just causes an annoyance. The only objects are the doors to the East, South, and West.", "SOUTH, WEST, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(21, "3-3", "A rectangular room filled with monitors and cabling; a rack of computers sits at the end. The lighting is dimmer than normal and as a slight blueish hue. The electronics put out a lot of heat, so while this room is lined with steel plating like the rooms before it, it has a large exposed ventilation system to the [SOUTH] of the ceiling. There is a case made of ballistic glass on the far wall which contains the Prototype Laser Pistol.", "NORTH", false);
+		room = new Room(21, "3-3", "A rectangular room filled with monitors and cabling; a rack of computers sits at the end. The lighting is dimmer than normal and as a slight blueish hue. The electronics put out a lot of heat, so while this room is lined with steel plating like the rooms before it, it has a large exposed ventilation system to the [EAST] of the ceiling. There is a case made of ballistic glass on the far wall which contains the Prototype Laser Pistol.", "NORTH", false);
 		roomList.add(room);
 		
 		room = new Room(22, "3-4", "A slightly rectangular room with a fork at the eastern end. The room's ceiling grows higher and wider as the room approaches the fork, and the rooms construction transitions from steel plating to exposed cave wall reinforced in places by rebar and I-beams. During this transition the lighting changes from overhead to standing work lights. Toward the fork side of the room, stalactites have begun to form.", "NORTH, SOUTH, WEST", false);
@@ -160,41 +160,6 @@ public class RoomGenerator {
 		room = new Room(41, "4-13", "The last room is a decrepit movie theater. There are no seats and the floor boards are all but destroyed. In the center of the the room is a curtain lavishly colored in the orange and red colors often seen at carnivals. Between the screens is a blank projector screen and there sitting in the center is the evil clown Joe Ker laughing maniacally.", "WEST, EAST", true);
 		roomList.add(room);
 
-		
-		
-		
-		
-		/*int count = 0;
-
-		try{
-			
-			in = new Scanner(new BufferedReader(new FileReader("res/Room_Data.txt")));
-			
-			while (in.hasNext() && in != null) {
-				String roomNumber = in.nextLine();
-				String roomDescription = in.nextLine();
-				String roomExits = in.nextLine();
-				String locked = in.nextLine();
-				
-				boolean roomLocked;
-				if(locked.equalsIgnoreCase("true")){
-					roomLocked = true;
-				}else{
-					roomLocked = false;
-				}
-				
-				int id = count;
-				Room newRoom = new Room(id, roomNumber, roomDescription, roomExits, roomLocked);
-				roomList.add(newRoom);
-				
-				count++;
-			}
-		}catch (IOException e){
-			System.out.println("Unable to read file."); 
-		}
-		finally {
-			in.close();
-		}*/
 	}
 	
 }

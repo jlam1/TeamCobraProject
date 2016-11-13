@@ -127,7 +127,7 @@ public class Player extends Character implements Serializable {
 	 * @return Void
 	 */
 	public void pickUp(Item item) {
-		System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
+		//System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
 	}
 
