@@ -115,6 +115,7 @@ public class Game {
 					gameRun = true;
 					start = false;
 					load();
+					music();
 					play();
 				}
 				if(userInput.equals("3")) {
@@ -365,6 +366,7 @@ public class Game {
 			System.out.println("Loading successful.");
 			System.out.println();
 			look();
+			
 
 		} catch (Exception e) {
 			System.out.println("Error loading");

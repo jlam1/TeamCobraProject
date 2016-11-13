@@ -231,10 +231,10 @@ public class RoomFactory implements Serializable {
 		searchRoom(18).setExits(null, searchRoom(19), null, searchRoom(15)); // 2-9
 
 		// connect floor 3, 10 rooms
-		searchRoom(19).setExits(null, searchRoom(20), searchRoom(27), searchRoom(18)); // 3-1
+		searchRoom(19).setExits(null, searchRoom(20), searchRoom(28), searchRoom(18)); // 3-1
 		searchRoom(20).setExits(null, searchRoom(22), searchRoom(21), searchRoom(19)); // 3-2
 		searchRoom(21).setExits(searchRoom(20), null, searchRoom(27), null); // 3-3
-		searchRoom(22).setExits(searchRoom(23), null, searchRoom(24), null); // 3-4
+		searchRoom(22).setExits(searchRoom(23), null, searchRoom(24), searchRoom(20)); // 3-4
 		searchRoom(23).setExits(null, searchRoom(26), searchRoom(25), searchRoom(22)); // 3-5
 		searchRoom(24).setExits(searchRoom(25), searchRoom(26), null, searchRoom(22)); // 3-6
 		searchRoom(25).setExits(searchRoom(23), null, searchRoom(24), null); // 3-7
