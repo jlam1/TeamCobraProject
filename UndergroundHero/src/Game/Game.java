@@ -74,7 +74,6 @@ public class Game {
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
-		musicLogic.BGMLoop();
 	}
 	
 	public void menuScreen() {
@@ -98,7 +97,7 @@ public class Game {
 				if(userInput.equals("1")) {
 					System.out.println("Starting a new game...");
 					start = false;
-					
+					musicLogic.BGMLoop();
 					createNewGame();
 					play();
 				}
@@ -107,11 +106,13 @@ public class Game {
 					gameRun = true;
 					start = false;
 					load();
+					musicLogic.BGMLoop();
 					play();
 				}
 				if(userInput.equals("3")) {
 					System.out.println("Exiting game...");
 					start = false;
+					musicLogic.BGMStop();
 					System.exit(0);
 				}
 				else {
@@ -356,6 +357,7 @@ public class Game {
 			System.out.println("Loading successful.");
 			System.out.println();
 			look();
+			
 
 		} catch (Exception e) {
 			System.out.println("Error loading");
