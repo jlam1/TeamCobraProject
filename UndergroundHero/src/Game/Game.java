@@ -207,11 +207,11 @@ public class Game {
 				
 				//check monster dead and set monster dead if boss
 				if(battleLogic.getWhoseDead() == 1) {
-					if(monster.isBoss()) {
+					if(monster.isBoss())
 						factoryList.get(nextRoom.getId()).getRoomMonster().setDead(true);
-					}
-					else {
-						//do nothing, common monsters should not be set to dead at all times.
+					
+					if(monster.getId() == 5) {
+						displayEnding();
 					}
 				}
 				
@@ -221,9 +221,11 @@ public class Game {
 			
 			if(puzzle != null && !factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved()) {
 				puzzleLogic.initiatePuzzle(currentRoom, player);
+				
 				if(puzzleLogic.getPuzzleSolved()) {
 					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
 				}
+				
 				if(puzzleLogic.getPuzzleSolved()) {
 					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 				}
@@ -484,6 +486,12 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Welcome to Underground Hero");
 		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
+	}
+	
+	private void displayEnding() {
+		System.out.println("-------------------------------------------------------");
+		System.out.println("You have beaten the game!");
+		System.out.println("-------------------------------------------------------");
 	}
 
 	/**
