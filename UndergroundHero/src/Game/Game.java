@@ -72,7 +72,7 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("[" + currentRoom.getName() + "]");
 		System.out.println(currentRoom.getDescription());
-		System.out.println("[" + currentRoom.getExits() + "]");
+		//System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
 	}
 	
@@ -153,15 +153,31 @@ public class Game {
 	 */
 	private void roomLogic(String direction) {
 		Room nextRoom = currentRoom.getNextRoom(direction);
+		lockedRoom = nextRoom;
 		
 		if(nextRoom == null){
 			System.out.println("Theres no exit that way, try another direction.");
 		}
 		
-		else if(factoryList.get(nextRoom.getId()).isLocked() == true){
-			lockedRoom = nextRoom;
+		else if(factoryList.get(nextRoom.getId()).isLocked())
+		{
+			//Initiate puzzle when approaching a lock room
+			if (lockedRoom.getRoomPuzzle() != null) 
+			{
+				puzzleLogic.initiatePuzzle(lockedRoom, player);
+				if (puzzleLogic.getPuzzleSolved()) {
+					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
+				}
+				if (puzzleLogic.getPuzzleSolved()) {
+					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
+					currentRoom = lockedRoom;
+				}
+			}
+			else
+			{
 			System.out.println("[" + nextRoom.getName() + "] door is locked.");
 			System.out.println("Try a different route.");
+			}
 		}
 		
 		else{
@@ -169,7 +185,7 @@ public class Game {
 			System.out.println("-------------------------------------------------------");
 			System.out.println("[" + currentRoom.getName() + "]");
 			System.out.println(currentRoom.getDescription());
-			System.out.println("[" + currentRoom.getExits() + "]");
+			//System.out.println("[" + currentRoom.getExits() + "]");
 			System.out.println("-------------------------------------------------------");
 			
 			Monster monster = nextRoom.getRoomMonster();
@@ -255,6 +271,9 @@ public class Game {
 			case "USE": useItem();
 				break;
 				
+			case "PICK": pick();
+				break;
+				
 			case "HELP": viewHelp();
 				break;
 				
@@ -270,15 +289,6 @@ public class Game {
 			case "LOAD": load();
 				break;
 			
-				//testing purposes
-			case "UNLOCK":
-					System.out.println("Locked: " + lockedRoom.isLocked());
-					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
-					lockedRoom.setLocked(false);
-					System.out.println("Locked: " + lockedRoom.isLocked());
-					System.out.println("listLock: " + factoryList.get(lockedRoom.getId()).isLocked());
-				break;
-				
 			default:
 				break;
 
@@ -310,7 +320,21 @@ public class Game {
 		System.out.println("[" + currentRoom.getName() + "]");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
+		if(factoryList.get(currentRoom.getId()).getRoomItem() != null)
+		{
+			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " on the ground.");
+			
+		}
 		System.out.println("-------------------------------------------------------");
+	}
+	private void pick()
+	{
+		if(factoryList.get(currentRoom.getId()).getRoomItem() != null)
+		{
+			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
+			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
+			factoryList.get(currentRoom.getId()).setRoomItem(null);
+		}
 	}
 	
 	/**
