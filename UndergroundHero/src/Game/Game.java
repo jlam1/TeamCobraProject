@@ -416,6 +416,9 @@ public class Game {
 				case 3: factoryList.get(14).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
 					break;
+				case 4: factoryList.get(18).setLocked(false); 
+						System.out.println("Room: [" + factoryList.get(18).getName() + "] is now unlocked!");
+					break;
 				case 5: factoryList.get(28).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
 					break;

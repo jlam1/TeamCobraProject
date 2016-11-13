@@ -118,7 +118,7 @@ public class RoomGenerator {
 		room = new Room(27, "3-9", "A massive rectangular room with a wide chasm offset to the eastern side of it. Due to the room's sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor. Apart from the lighting and the door at the eastern end leading to room 3-10, this room is void of any man made objects. Stalactites of various sizes line the ceiling, and stalagmites the floor. There is a stronger outcropping of rock above the chasm that the grappling hook can attach to. Though barely visible, there are steel spikes at the bottom of the chasm.", "WEST, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(28, "3-10", "A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room; in front of the door stands the Giant Robotic Sentry This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting.", "WEST, EAST", true);
+		room = new Room(28, "3-10", "A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room; in front of the door stands the Giant Robotic Sentry This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting.", "WEST, EAST, SOUTH", true);
 		roomList.add(room);
 		
 		room = new Room(29, "4-1", "A large octagon room with one exit to the east. The room is colored in a dark blue light with statues of lions adorned at the corner of each of the eight corners of the room. The floor a slick black concrete with a but dead in the center is a sloppily trail of green arrows leading to the door.", "WEST, EAST", true);

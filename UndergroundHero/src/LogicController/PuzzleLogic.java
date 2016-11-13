@@ -220,6 +220,7 @@ public class PuzzleLogic implements Serializable{
 					System.out.println("Leaving puzzle...\n");
 					riddleLoop = false;
 					puzzleLoop = false;
+					puzzleRun = false;
 					musicLogic.BGMStop();
 					musicLogic = new MusicLogic("src/sound/traverse.wav");
 					musicLogic.BGMLoop();
