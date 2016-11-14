@@ -192,6 +192,7 @@ public class Game {
 					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 					currentRoom = lockedRoom;
 					iniMonster();
+					checkFled();
 
 				}
 			} else {
@@ -207,6 +208,7 @@ public class Game {
 			System.out.println(currentRoom.getDescription());
 			System.out.println("-------------------------------------------------------");
 			iniMonster();
+			checkFled();
 			iniPuzzle();
 		}
 	}
@@ -260,11 +262,6 @@ public class Game {
 			}
 		}
 		
-		//check if player fled
-		if(battleLogic.playerFled()) {
-			
-		}
-		
 	}
 
 	public void iniPuzzle() {
@@ -279,6 +276,29 @@ public class Game {
 			if (puzzleLogic.getPuzzleSolved()) {
 				factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 			}
+		}
+	}
+	
+	private void checkFled() {
+		if(battleLogic.playerFled()) {
+			
+//			roomLogic("EAST");
+//			
+//			if(currentRoom.getNextRoom("NORTH") != null) {
+//				roomLogic("NORTH");
+//			}
+//			else if(currentRoom.getNextRoom("EAST") != null) {
+//				roomLogic("EAST");
+//			}
+//			else if(currentRoom.getNextRoom("SOUTH") != null) {
+//				roomLogic("SOUTH");
+//			}
+//			else if(currentRoom.getNextRoom("WEST") != null) {
+//				roomLogic("WEST");
+//			}
+//			else {
+//				//do nothing
+//			}
 		}
 	}
 
