@@ -175,8 +175,12 @@ public class Game {
 		
 		else if(factoryList.get(nextRoom.getId()).isLocked())
 		{
+			if(factoryList.get(currentRoom.getId()).getId() == 19)
+			{
+				System.out.println("Theres no exit that way, try another direction.");
+			}
 			//Initiate puzzle when approaching a lock room
-			if (lockedRoom.getRoomPuzzle() != null) 
+			else if (lockedRoom.getRoomPuzzle() != null) 
 			{
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
 				if (puzzleLogic.getPuzzleSolved()) {
