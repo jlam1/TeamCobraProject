@@ -72,6 +72,7 @@ public class BattleLogic {
 		
 		System.out.println("---------------------------------------------\n");
 		System.out.println("\t# " + monster.getName().toUpperCase() + " has appeared! #\n");
+		System.out.println(monster.getDescription());
 		System.out.println("---------------------------------------------");
 		
 		while (battleRun) {
