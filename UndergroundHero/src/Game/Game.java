@@ -259,6 +259,12 @@ public class Game {
 				gameRun = false;
 			}
 		}
+		
+		//check if player fled
+		if(battleLogic.playerFled()) {
+			
+		}
+		
 	}
 
 	public void iniPuzzle() {

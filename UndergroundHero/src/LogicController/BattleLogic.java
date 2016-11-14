@@ -25,7 +25,7 @@ public class BattleLogic {
 	private Scanner input;
 	private ArrayList<Item> itemList;
 	private List<Item> playerInventory;
-	private boolean battleRun;
+	private boolean battleRun, fled;
 	private int whoseDead;
 	private MusicLogic musicLogic;
 	
@@ -59,6 +59,7 @@ public class BattleLogic {
 		battleMusic();
 		playerInventory = player.getInventory();
 		battleRun = true;
+		fled = false;
 		
 		//set whoseDead to -1; if player is dead set whoseDead to 0 and monster to 1 and return value to Game class.
 		whoseDead = -1;
@@ -281,6 +282,7 @@ public class BattleLogic {
 		if(player.getSpd() > monster.getSpd()) {
 			System.out.println("You escaped from battle!");
 			battleRun = false;
+			fled = true;
 			transverseMusic();
 		}
 		
@@ -289,14 +291,22 @@ public class BattleLogic {
 			if(fleeChance >= 50.0) {
 				System.out.println("You successfully fled barely!");
 				battleRun = false;
+				fled = true;
 				transverseMusic();
 			}
 			else {
+				fled = false;
 				System.out.println("You couldn't run away!");
 			}
 		}
 		else {
+			fled = false;
 			System.out.println("You couldn't run away!");
 		}
 	}
+
+	public boolean playerFled() {
+		return fled;
+	}
+	
 }
