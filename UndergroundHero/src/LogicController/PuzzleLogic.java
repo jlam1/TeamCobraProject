@@ -144,7 +144,7 @@ public class PuzzleLogic implements Serializable {
 			}
 
 		}
-
+ 
 	public boolean getPuzzleSolved() {
 		return puzzleSolved;
 	}
