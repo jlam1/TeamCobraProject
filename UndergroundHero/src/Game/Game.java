@@ -462,16 +462,16 @@ public class Game {
 			
 			switch(puzzle.getId()) {
 				case 3: factoryList.get(14).setLocked(false);
-						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
+						System.out.println("I equipped and used [" + factoryList.get(14).getRoomPuzzle().getKeyItem().getName().toUpperCase() + "] to pass through these lasers!");
 					break;
 				case 4: factoryList.get(18).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(18).getName() + "] is now unlocked!");
 					break;
 				case 5: factoryList.get(28).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
+						System.out.println("I equipped and used [" + factoryList.get(28).getRoomPuzzle().getKeyItem().getName().toUpperCase() + "] to swing across the chasm!");
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(29).getName() + "] is now unlocked!");
+						System.out.println("I used [" + factoryList.get(29).getRoomPuzzle().getKeyItem().getName().toUpperCase() + "] to access the computer terminal to unlock room [" + factoryList.get(29).getName() + "]");
 					break;
 				case 7: factoryList.get(34).setLocked(false); 
 						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
