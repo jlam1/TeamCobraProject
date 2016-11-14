@@ -576,6 +576,48 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("You have beaten the game!");
 		System.out.println("-------------------------------------------------------");
+		try {
+			System.out.println("");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("==================== CREDITS ====================");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|------------- TEAM COBRA PROJECT --------------|");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|.................. John  Lam ..................|");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|................... King Lo ...................|");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|................ Kyle  Cousins ................|");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|............ William 'Matt' Smith .............|");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("============ THANK YOU FOR PLAYING! =============");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("|                                               |");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("==================== (C)2016 ====================");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		gameRun = false;
 	}
 
