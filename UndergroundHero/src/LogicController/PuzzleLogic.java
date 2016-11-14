@@ -44,6 +44,7 @@ public class PuzzleLogic implements Serializable {
 		musicLogic = new MusicLogic("src/sound/solvetune.wav");
 		musicLogic.BGMPlay();
 	}
+	 
 	public void transverseMusic() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
