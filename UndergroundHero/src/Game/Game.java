@@ -582,7 +582,16 @@ public class Game {
 	 */
 	private void displayIntro() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Welcome to Underground Hero");
+		System.out.println("O       o             o                                                    o       o      O                    \n" +
+						   "o       O            O                                                    O        O      o                    \n" +
+						   "O       o            o                                                    o        o      O                    \n" +
+						   "o       o            o                                                    o        OoOooOOo                    \n" +
+						   "o       O 'OoOo. .oOoO  .oOo. `OoOo. .oOoO `OoOo. .oOo. O   o  'OoOo. .oOoO        o      O .oOo. `OoOo. .oOo. \n" +
+						   "O       O  o   O o   O  OooO'  o     o   O  o     O   o o   O   o   O o   O        O      o OooO'  o     O   o \n" +
+						   "`o     Oo  O   o O   o  O      O     O   o  O     o   O O   o   O   o O   o        o      o O      O     o   O \n" +
+						   "`OoooO'O  o   O `OoO'o `OoO'  o     `OoOo  o     `OoO' `OoO'o  o   O `OoO'o       o      O `OoO'  o     `OoO'  \n" +
+						   "                                         O                                                                     \n" +
+						   "                                      OoO'                                                                     \n");
 		System.out.println(
 				"The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
 		System.out.println(
