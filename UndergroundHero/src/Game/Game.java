@@ -569,16 +569,16 @@ public class Game {
 	private void displayIntro() {
 		System.out.println("-------------------------------------------------------");
 		System.out.println(
-				"O       o             o                                                    o       o      O                    \n"
-						+ "o       O            O                                                    O        O      o                    \n"
-						+ "O       o            o                                                    o        o      O                    \n"
-						+ "o       o            o                                                    o        OoOooOOo                    \n"
-						+ "o       O 'OoOo. .oOoO  .oOo. `OoOo. .oOoO `OoOo. .oOo. O   o  'OoOo. .oOoO        o      O .oOo. `OoOo. .oOo. \n"
-						+ "O       O  o   O o   O  OooO'  o     o   O  o     O   o o   O   o   O o   O        O      o OooO'  o     O   o \n"
-						+ "`o     Oo  O   o O   o  O      O     O   o  O     o   O O   o   O   o O   o        o      o O      O     o   O \n"
-						+ "`OoooO'O  o   O `OoO'o `OoO'  o     `OoOo  o     `OoO' `OoO'o  o   O `OoO'o       o      O `OoO'  o     `OoO'  \n"
-						+ "                                         O                                                                     \n"
-						+ "                                      OoO'                                                                     \n");
+						  "O       o             o                                                      o       o      O                     \n"
+						+ "o       O            O                                                      O        O      o                     \n"
+						+ "O       o            o                                                      o        o      O                     \n"
+						+ "o       o            o                                                      o        OoOooOOo                     \n"
+						+ "o       O 'OoOo. .oOoO  .oOo. `OoOo. .oOoO `OoOo. .oOo.  O   o  'OoOo.  .oOoO        o      O  .oOo. `OoOo. .oOo. \n"
+						+ "O       O  o   O o   O  OooO'  o     o   O  o     O   o  o   O   o   O  o   O        O      o  OooO'  o     O   o \n"
+						+ "`o     O`  O   o O   o  O      O     O   o  O     o   O  O   o   O   o  O   o        o      o  O      O     o   O \n"
+						+ " `OoooO`   o   O `OoO`  `OoO'  o     `OoOo  o     `OoO'  `OoO'o  o   O  `OoO'o       o      O  `OoO'  o     `OoO' \n"
+						+ "                                         O                                                                        \n"
+						+ "                                      OoO'                                                                        \n");
 		System.out.println("You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
 				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
 				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
