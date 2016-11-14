@@ -38,7 +38,12 @@ public class PuzzleLogic implements Serializable {
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
 		musicLogic.BGMLoop();
 	}
-
+	public void solveMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/solvetune.wav");
+		musicLogic.BGMPlay();
+	}
 	public void transverseMusic() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
@@ -229,6 +234,13 @@ public class PuzzleLogic implements Serializable {
 				System.out.println("-------------------------------------------------");
 				System.out.println("Your answer [" + userInput.toUpperCase() + "] is correct!");
 				System.out.println("-------------------------------------------------");
+				solveMusic();
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				puzzleSolved = true;
 				riddleLoop = false;
 				puzzleLoop = false;
