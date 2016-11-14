@@ -1,6 +1,7 @@
 package Character;
 
 import java.io.Serializable;
+import java.util.List;
 
 import Item.Item;
 
@@ -8,7 +9,7 @@ import Item.Item;
  * 
  * This class is responsible for monster attributes and behaviors.
  * 
- * @author John
+ * @author John, Matt
  */
 public class Monster extends Character implements Serializable {
 
@@ -16,32 +17,8 @@ public class Monster extends Character implements Serializable {
 	private boolean isBoss;
 	private Item loot;
 	private String description;
+	private List<Skill> skillList;
 
-	/**
-	 * The following is the constructor method for Monster type Character
-	 * objects.
-	 * 
-	 * @param id
-	 *            Specific to Monster.
-	 * @param name
-	 *            Specific to Monster.
-	 * @param isBoss
-	 *            Specific to Monster.
-	 * @param loot
-	 *            Specific to Monster.
-	 * @param description
-	 *            Specific to Monster.
-	 * @param hp
-	 *            From parent.
-	 * @param maxHP
-	 *            From parent.
-	 * @param atk
-	 *            From parent.
-	 * @param def
-	 *            From parent.
-	 * @param spd
-	 *            From parent.
-	 */
 	public Monster(int id, String name, int maxhp, int hp, int atk, int def, int spd, boolean isBoss, Item loot,
 			String description) {
 		super(maxhp, hp, atk, spd, def);
@@ -50,6 +27,18 @@ public class Monster extends Character implements Serializable {
 		this.description = description;
 		this.isBoss = isBoss;
 		this.loot = loot;
+	}
+	
+	public void addSkill(Skill skill) {
+		this.skillList.add(skill);
+	}
+	
+	public List<Skill> getSkillList() {
+		return skillList;
+	}
+	
+	public void setSkillList(List<Skill> skillList) {
+		this.skillList = skillList;
 	}
 
 	public String getDescription() {

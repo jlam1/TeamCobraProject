@@ -1,14 +1,13 @@
 package Game;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 
-import Character.Monster;
 import Character.Player;
-import Item.Item;
 import LogicController.PuzzleLogic;
-import Puzzle.Puzzle;
 import Room.Room;
 
 /**
@@ -20,7 +19,7 @@ import Room.Room;
  */
 
 
-public class saveLoadData implements Serializable
+public class ResourceData implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
@@ -85,7 +84,40 @@ public class saveLoadData implements Serializable
 	{
 		this.factoryList = factoryList;
 	}
-	//will add more once game comes near completion
+
+	/**
+	 * Method: saveGame()
+	 * 
+	 * This method will save the game. It will throw an exception when overwriting a existing save 
+	 * file and create a new file if the file does not exist.
+	 * 
+	 * @throws Exception
+	 */
+	public static void saveGame(Serializable data, String fileName) throws Exception
+	{
+		try(ObjectOutputStream output = new ObjectOutputStream(Files.newOutputStream(Paths.get(fileName))))
+		{
+			output.writeObject(data);
+		}
+		
+	}
+	
+	/**
+	 * Method: loadGame()
+	 * 
+	 * This method will load the file. It will throw an exception when the file does 
+	 * not exist and creates a new game. it will throw an exception when the file cannot be loaded.
+	 * 
+	 * @return game
+	 * @throws Exception
+	 */
+	public static Object loadGame(String fileName) throws Exception
+	{
+		try(ObjectInputStream input = new ObjectInputStream(Files.newInputStream(Paths.get(fileName))))
+		{
+			return input.readObject();
+		}
+	}
 	
 }
 	

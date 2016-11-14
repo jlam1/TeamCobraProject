@@ -86,7 +86,6 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("[" + currentRoom.getName() + "]");
 		System.out.println(currentRoom.getDescription());
-		// System.out.println("[" + currentRoom.getExits() + "]");
 		System.out.println("-------------------------------------------------------");
 	}
 
@@ -418,13 +417,13 @@ public class Game {
 
 	private void save() {
 		// use the class saveLoadData to save values in to binary file
-		saveLoadData data = new saveLoadData();
+		ResourceData data = new ResourceData();
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
 		try {
-			ResourceManager.saveGame(data, "UndergroundHero.dat");
+			ResourceData.saveGame(data, "UndergroundHero.dat");
 			System.out.println("Save Sucessful");
 		} catch (Exception e) {
 			System.out.println("error saving");
@@ -436,7 +435,7 @@ public class Game {
 	private void load() {
 		// use the class saveLoadData to load values in the binary file
 		try {
-			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
+			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero.dat");
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();

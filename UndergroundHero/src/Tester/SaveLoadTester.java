@@ -6,8 +6,7 @@ import java.util.Scanner;
 //import org.apache.commons.lang3.text.WordUtils;
 
 import Character.Player;
-import Game.ResourceManager;
-import Game.saveLoadData;
+import Game.ResourceData;
 import Generator.ItemGenerator;
 import Item.Item;
 import LogicController.PuzzleLogic;
@@ -28,14 +27,14 @@ public class SaveLoadTester {
 
 	static void save() {
 		// use the class saveLoadData to save values in to binary file
-		saveLoadData data = new saveLoadData();
+		ResourceData data = new ResourceData();
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
 		
 		try {
-			ResourceManager.saveGame(data, "UndergroundHero.dat");
+			ResourceData.saveGame(data, "UndergroundHero.dat");
 
 			System.out.println("Save Sucessful");
 		} catch (Exception e) {
@@ -48,7 +47,7 @@ public class SaveLoadTester {
 	static void load() {
 		// use the class saveLoadData to load values in the binary file
 		try {
-			saveLoadData data = (saveLoadData) ResourceManager.loadGame("UndergroundHero.dat");
+			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero.dat");
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();

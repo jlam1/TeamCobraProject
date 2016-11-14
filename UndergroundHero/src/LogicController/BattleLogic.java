@@ -5,14 +5,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import java.applet.*; // For audio
-
-import sun.audio.*;
-
-import java.io.*;
-
-import javax.sound.sampled.*;
-import javax.swing.*;
 
 import Character.*;
 import Item.*;
@@ -42,43 +34,7 @@ public class BattleLogic {
 	 * @param player
 	 * @param monster
 	 */
-	
-	private void battleMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/battle.wav");
-		musicLogic.BGMLoop();
-	}
-	private void bossMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/boss.wav");
-		musicLogic.BGMLoop();
-	}
-	private void transverseMusic() 
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/traverse.wav");
-		musicLogic.BGMLoop();
-	}
-	private void victoryMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/victorytune.wav");
-		musicLogic.BGMPlay();
-	}
-	private void deathMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/death.wav");
-		musicLogic.BGMPlay();
-	}
-	private void encounterMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/encounter.wav");
-		musicLogic.BGMPlay();
-	}
+
 	public void initiateBattle(Player player, Monster monster){
 		playerInventory = player.getInventory();
 		battleRun = true;
@@ -382,6 +338,49 @@ public class BattleLogic {
 			monster.attack(player);
 			delay();
 		}
+	}
+	
+	
+	private void battleMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/battle.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void bossMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/boss.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void transverseMusic() 
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void victoryMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/victorytune.wav");
+		musicLogic.BGMPlay();
+	}
+	
+	private void deathMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/death.wav");
+		musicLogic.BGMPlay();
+	}
+	
+	private void encounterMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/encounter.wav");
+		musicLogic.BGMPlay();
 	}
 	
 	private void delay() {
