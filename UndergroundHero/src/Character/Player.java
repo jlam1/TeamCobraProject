@@ -184,14 +184,13 @@ public class Player extends Character implements Serializable {
 		try {
 
 			if (this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")) {
-				/*for(Item w: this.equipment)
-				{
-					if(w.getType().equalsIgnoreCase("WEAPON"))
-					{
-						this.equipment.remove(w);
-						//this.inventory.add(w);
+				if(this.equipment != null) {
+					for(Item i : this.equipment) {
+						if(i.getType().equalsIgnoreCase("WEAPON")) {
+							this.equipment.remove(i);
+						}
 					}
-				}*/
+				}
 				Item weapon = (Item) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(weapon);
@@ -202,6 +201,13 @@ public class Player extends Character implements Serializable {
 			}
 
 			if (this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")) {
+				if(this.equipment != null) {
+					for(Item i : this.equipment) {
+						if(i.getType().equalsIgnoreCase("ARMOR")) {
+							this.equipment.remove(i);
+						}
+					}
+				}
 				Item armor = (Item) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(armor);
@@ -211,13 +217,8 @@ public class Player extends Character implements Serializable {
 				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
 			}
 
-			else {
-				/*System.out.println("[" + this.inventory.get(index).getName() + "] is not an EQUIPPABLE item.\n");
-				System.out.println("Try again.");*/
-			}
-
 		} catch (IndexOutOfBoundsException e) {
-			//System.out.println("Equipment does not exist in inventory, try again.\n");
+			
 		}
 	}
 

@@ -286,8 +286,10 @@ public class Game {
 	 */
 	private void parseCommand(String command) {
 
-		if (validCommandInput(command))
-			roomLogic(command);
+		if (validCommandInput(command)) {
+			String navInput = command.toUpperCase();
+			roomLogic(navInput);
+		}
 
 		switch (command.toUpperCase()) {
 
@@ -382,6 +384,16 @@ public class Game {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
+		}
+		else {
+			if(player.checkInventoryKeyItem(itemList.get(6))) {
+				System.out.println("You open the case with the ballistic diamond cutter.");
+				System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
+				player.pickUp(itemList.get(3));
+			}
+			else {
+				System.out.println("You do not have ballistic diamond cutter to cut this case.");
+			}
 		}
 	}
 

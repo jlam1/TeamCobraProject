@@ -123,13 +123,13 @@ public class Room implements Properties, Comparable<Room>, Serializable {
 	 */
 	public void setExits(Room north, Room east, Room south, Room west) {
 		if (north != null)
-			exitMap.put("north", north);
+			exitMap.put("NORTH", north);
 		if (east != null)
-			exitMap.put("east", east);
+			exitMap.put("EAST", east);
 		if (south != null)
-			exitMap.put("south", south);
+			exitMap.put("SOUTH", south);
 		if (west != null)
-			exitMap.put("west", west);
+			exitMap.put("WEST", west);
 	}
 
 	/**
