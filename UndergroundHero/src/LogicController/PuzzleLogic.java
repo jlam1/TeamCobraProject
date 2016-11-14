@@ -166,7 +166,7 @@ public class PuzzleLogic implements Serializable {
 			puzzleSolved = true;
 			transverseMusic();
 		}
-
+ 
 		// if player does not have puzzle key in inventory, puzzle is not solved
 		// and exits loop
 		else {
