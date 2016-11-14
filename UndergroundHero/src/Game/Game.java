@@ -46,6 +46,19 @@ public class Game {
 	 * @return 
 	 * @method Load all assets to game object
 	 */
+	
+	public void roomMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	public void menuMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/menu.wav");
+		musicLogic.BGMLoop();
+	}
+	
 	public Game ()
 	{
 		input = new Scanner(System.in);
@@ -83,6 +96,7 @@ public class Game {
 		boolean start = true;
 		while(start)
 		{
+		menuMusic();
 		System.out.println("");
 		System.out.println("------------------------# MENU #-----------------------");
 		System.out.println("                   1. Start New Game                   ");
@@ -97,7 +111,7 @@ public class Game {
 				if(userInput.equals("1")) {
 					System.out.println("Starting a new game...");
 					start = false;
-					musicLogic.BGMLoop();
+					roomMusic();
 					createNewGame();
 					play();
 				}
@@ -106,7 +120,7 @@ public class Game {
 					gameRun = true;
 					start = false;
 					load();
-					musicLogic.BGMLoop();
+					roomMusic();
 					play();
 				}
 				if(userInput.equals("3")) {
@@ -516,6 +530,7 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Welcome to Underground Hero");
 		System.out.println("The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
+		System.out.println("Notice: This game has sound! Please unmute your speakers/headphones for the best experience!");
 	}
 	
 	private void displayEnding() {
