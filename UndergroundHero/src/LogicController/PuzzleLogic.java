@@ -71,19 +71,12 @@ public class PuzzleLogic implements Serializable {
 
 		// check if puzzle is null AND if puzzle is NOT solved
 		if (puzzle != null && puzzle.isSolved() == false) {
-			// check puzzle type PuzzleKey
+			
 			if (puzzle.getType() == 1) {
 				runKeyPuzzle(puzzleKeyItem, player);
-				// check if puzzle is solved
-				if (puzzleSolved == true) {
-					// check if puzzle has reward item
-					if (puzzle.getItemReward() != null) {
-						System.out.println("You gained the item [" + puzzle.getItemReward().getName().toUpperCase() + "]!");
-						player.pickUp(puzzle.getItemReward());
-					}
 				}
-				transverseMusic();
-			} else {
+			else
+			{
 				System.out.println("There is a puzzle in this room...");
 				System.out.println("Do you want to initiate puzzle? (Y/N)");
 
@@ -96,6 +89,7 @@ public class PuzzleLogic implements Serializable {
 						System.out.println("Initiating puzzle");
 						puzzleMusic();
 						while (puzzleLoop) {
+							
 							viewCommands();
 							userInput = input.nextLine();
 
@@ -108,12 +102,15 @@ public class PuzzleLogic implements Serializable {
 								// check puzzle type PuzzleRiddle
 								if (puzzle.getType() == 0)
 									runRiddlePuzzle(userInput, riddleAnswer);
+								// check puzzle type PuzzleKey
+								
 								// check if puzzle is solved
 								if (puzzleSolved == true) {
+									
 									// check if puzzle has reward item
 									if (puzzle.getItemReward() != null) {
 										System.out.println("You gained the item ["
-												+ puzzle.getItemReward().getName().toUpperCase() + "]!");
+												+ puzzle.getItemReward().getName().toUpperCase() + "]");
 										player.pickUp(puzzle.getItemReward());
 									}
 								}
@@ -144,9 +141,9 @@ public class PuzzleLogic implements Serializable {
 
 				}
 			}
+			}
 
 		}
-	}
 
 	public boolean getPuzzleSolved() {
 		return puzzleSolved;
@@ -163,12 +160,12 @@ public class PuzzleLogic implements Serializable {
 		// exits loop
 		if (player.checkInventoryKeyItem(puzzleKeyItem)) {
 			puzzle.setSolved(true);
-//			System.out.println(puzzle.getName() + " has been solved!");
-			puzzleRun = false;
-			puzzleLoop = false;
+//			puzzleRun = false;
+//			puzzleLoop = false;
 			puzzleSolved = true;
+			transverseMusic();
 		}
-
+ 
 		// if player does not have puzzle key in inventory, puzzle is not solved
 		// and exits loop
 		else {
