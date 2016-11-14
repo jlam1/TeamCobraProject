@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -490,22 +491,63 @@ public class Game {
 			
 			switch(puzzle.getId()) {
 				case 3: factoryList.get(14).setLocked(false);
-						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
+						System.out.println("You have avoided all the bullets and lasers and reached at the end of the room.");
+						System.out.println("You spotted a red button and pushed.");
+						try {
+							System.out.println("");
+							TimeUnit.SECONDS.sleep(1);
+							System.out.println("COUNT DOWN COMMENCING!");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("10");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("9");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("8");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("7");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("6");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("5");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("4");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("3");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("2");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("1");
+							TimeUnit.MILLISECONDS.sleep(500);
+							System.out.println("0");
+							TimeUnit.SECONDS.sleep(1);
+							System.out.println("DEFENCE SYSTEM SHUTTING DOWN!");
+							TimeUnit.SECONDS.sleep(1);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					break;
 				case 4: factoryList.get(18).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(18).getName() + "] is now unlocked!");
+						checkSequence();
 					break;
 				case 5: factoryList.get(28).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
+						System.out.println("You sucessfully swinged across the room.");
+				try {
+					TimeUnit.SECONDS.sleep(1);
+					System.out.println("As you landed, you encounter a giant robot");
+				} catch (InterruptedException e) 
+				{
+				}
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(29).getName() + "] is now unlocked!");
+						System.out.println("You went to the computer and input the chip");
+						checkSequence();
 					break;
 				case 7: factoryList.get(34).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
+						checkSequence();
 					break;
 				case 8: factoryList.get(41).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
+						checkSequence();
 					break;
 				default:
 					break;
@@ -633,8 +675,7 @@ public class Game {
 	 * @param string
 	 * @param delay
 	 */
-
-	public void print(String string, long delay) {
+	private void print(String string, long delay) {
 		try {
 			for (char ch : string.toCharArray()) {
 				System.out.print(ch);
@@ -645,7 +686,14 @@ public class Game {
 		}
 
 	}
-
+	private void checkSequence()
+	{
+		System.out.print("CHECKING INPUT");
+		for(int i = 0; i < 3; i++)
+		print("...", 300);
+		System.out.println();
+		System.out.println("INPUT IS CORRECT");
+	}
 	// private String wrapText(String longDescription){
 	// String shortDesc = WordUtils.wrap(longDescription, 50);
 	// return shortDesc;

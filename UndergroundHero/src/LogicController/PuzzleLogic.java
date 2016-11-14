@@ -33,19 +33,19 @@ public class PuzzleLogic implements Serializable {
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
 	}
 
-	public void puzzleMusic() {
+	private void puzzleMusic() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
 		musicLogic.BGMLoop();
 	}
-	public void solveMusic()
+	private void solveMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/solvetune.wav");
 		musicLogic.BGMPlay();
 	}
 	 
-	public void transverseMusic() {
+	private void transverseMusic() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
 		musicLogic.BGMLoop();
@@ -232,9 +232,6 @@ public class PuzzleLogic implements Serializable {
 			// if user answers riddle correctly, riddle is solved and exits loop
 			else if (riddleAnswer.equalsIgnoreCase(userInput)) {
 				puzzle.setSolved(true);
-				System.out.println("-------------------------------------------------");
-				System.out.println("Your answer [" + userInput.toUpperCase() + "] is correct!");
-				System.out.println("-------------------------------------------------");
 				solveMusic();
 				try {
 					TimeUnit.SECONDS.sleep(2);
@@ -285,7 +282,25 @@ public class PuzzleLogic implements Serializable {
 		System.out.println("-------------------------------------------------");
 		System.out.print(">>");
 	}
+	private void print(String string, long delay) {
+		try {
+			for (char ch : string.toCharArray()) {
+				System.out.print(ch);
+				TimeUnit.MILLISECONDS.sleep(delay);
+			}
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException: print()");
+		}
 
+	}
+	private void checkSequence()
+	{
+		System.out.print("CHECKING INPUT");
+		for(int i = 0; i < 3; i++)
+		print("...", 300);
+		System.out.println();
+		System.out.println("INPUT IS INCORRECT");
+	}
 	// public void print(String string, long delay) {
 	// try {
 	// for (char ch : string.toCharArray()) {
