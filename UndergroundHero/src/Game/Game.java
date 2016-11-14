@@ -289,8 +289,10 @@ public class Game {
 	 */
 	private void parseCommand(String command) {
 
-		if (validCommandInput(command))
-			roomLogic(command);
+		if (validCommandInput(command)) {
+			String navInput = command.toUpperCase();
+			roomLogic(navInput);
+		}
 
 		switch (command.toUpperCase()) {
 
@@ -384,6 +386,16 @@ public class Game {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
+		}
+		else {
+			if(player.checkInventoryKeyItem(itemList.get(6))) {
+				System.out.println("You open the case with the ballistic diamond cutter.");
+				System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
+				player.pickUp(itemList.get(3));
+			}
+			else {
+				System.out.println("You do not have ballistic diamond cutter to cut this case.");
+			}
 		}
 	}
 
@@ -615,9 +627,12 @@ public class Game {
 						   "                                         O                                                                     \n" +
 						   "                                      OoO'                                                                     \n");
 		System.out.println(
-				"The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
-		System.out.println(
-				"Notice: This game has sound! Please unmute your speakers/headphones for the best experience!");
+				"You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
+				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
+				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
+				+ "\n\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
+				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!");
+	
 	}
 
 	private void displayEnding() {
