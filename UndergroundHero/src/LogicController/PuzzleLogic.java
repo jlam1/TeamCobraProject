@@ -169,6 +169,27 @@ public class PuzzleLogic implements Serializable {
 		// if player does not have puzzle key in inventory, puzzle is not solved
 		// and exits loop
 		else {
+			if(puzzle.getId() == 3)
+			{
+				System.out.println("As the door open, you notice the hallway is too long. \nYou gently ripped a piece of you clothing and toss it into the room. \n Guns and laser came out of the wall and shot continueously until the cloth is no more visible.");
+				System.out.println("You took a step back and thought \"I need to look for another way. Unless, if I can move fast enough I can probably avoid guns and lasers.\" ");
+			}
+			else if(puzzle.getId() == 6)
+			{
+				System.out.println("You spotted a computer termial by the southern wall.");
+				System.out.println("You played with the computer and it prompt to input an access chip.");
+				System.out.println("But appearently you dont have the access chip and lefted the computer alone");
+			}
+			else if(puzzle.getId() == 5)
+			{
+				System.out.println("You approached the door but stopped before the chasm.");
+				System.out.println("You looked down and see nothing but the abyss calling out to you");
+				System.out.println("You gauged the jumping distance and prepared to jump.");
+				System.out.println("You ran but right before reaching the edge, you stopped.");
+				System.out.println("You said \"Nope, I won't make it.\"");
+			}
+			else
+			{
 			System.out.println("-------------------------------------------------");
 			System.out.println("Unable to traverse that room.");
 			System.out.println("I will need [" + puzzleKeyItem.getName().toUpperCase() + "] if I want to go any further.");
@@ -176,6 +197,7 @@ public class PuzzleLogic implements Serializable {
 			puzzleLoop = false;
 			puzzleRun = false;
 			transverseMusic();
+			}
 		}
 	}
 
