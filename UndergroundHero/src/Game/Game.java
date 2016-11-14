@@ -567,9 +567,12 @@ public class Game {
 						   "                                         O                                                                     \n" +
 						   "                                      OoO'                                                                     \n");
 		System.out.println(
-				"The game is about a person without any superpowers but is a clever and good fighter. He has infiltrated a super villain lair to stop an apocalypse from happening. There is a total of 4 floors and 42 rooms, traverse through all floors and beat the final boss to win the game!");
-		System.out.println(
-				"Notice: This game has sound! Please unmute your speakers/headphones for the best experience!");
+				"You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
+				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
+				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
+				+ "\n\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
+				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!");
+	
 	}
 
 	private void displayEnding() {
