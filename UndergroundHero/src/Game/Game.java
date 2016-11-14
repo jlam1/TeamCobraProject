@@ -78,8 +78,9 @@ public class Game {
 		player.setName("HERO");
 		player.startingItem(itemList.get(0));
 		player.startingItem(itemList.get(2));
-		player.startingItem(itemList.get(10));
 		player.startingItem(itemList.get(4));
+		player.equip(0);
+		player.equip(0);
 		currentRoom = factoryList.get(1);
 
 		System.out.println("-------------------------------------------------------");
@@ -196,7 +197,6 @@ public class Game {
 					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 					currentRoom = lockedRoom;
 					iniMonster();
-					checkFled();
 
 				}
 			} else {
@@ -212,7 +212,6 @@ public class Game {
 			System.out.println(currentRoom.getDescription());
 			System.out.println("-------------------------------------------------------");
 			iniMonster();
-			checkFled();
 			iniPuzzle();
 		}
 	}
@@ -280,29 +279,6 @@ public class Game {
 			if (puzzleLogic.getPuzzleSolved()) {
 				factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 			}
-		}
-	}
-	
-	private void checkFled() {
-		if(battleLogic.playerFled()) {
-			
-//			roomLogic("EAST");
-//			
-//			if(currentRoom.getNextRoom("NORTH") != null) {
-//				roomLogic("NORTH");
-//			}
-//			else if(currentRoom.getNextRoom("EAST") != null) {
-//				roomLogic("EAST");
-//			}
-//			else if(currentRoom.getNextRoom("SOUTH") != null) {
-//				roomLogic("SOUTH");
-//			}
-//			else if(currentRoom.getNextRoom("WEST") != null) {
-//				roomLogic("WEST");
-//			}
-//			else {
-//				//do nothing
-//			}
 		}
 	}
 
@@ -631,10 +607,10 @@ public class Game {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("The following commands are not case sensitive.\n");
 		System.out.println("NAVIGATION:	[NORTH], [EAST], [SOUTH], [WEST]");
-		System.out.println("ROOM:		[LOOK]");
+		System.out.println("ROOM:		[LOOK], [PICK]");
 		System.out.println("INVENTORY:	[BAG], [EQUIP], [INFO], [USE]");
 		System.out.println("PUZZLE:		[VIEW], [LEAVE]");
-		System.out.println("BATTLE:		[1. ATTACK], [2. DEFEND], [3. FLEE], [4. USE ITEM]");
+		System.out.println("BATTLE:		[1. ATTACK], [2. USE ITEM], [3. DEFEND], [4. FLEE], [5. VIEW INVENTORY]");
 		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
 		System.out.println("To exit the game, type [QUIT]");
 		System.out.println("For \"In-Game\" help only, type [HELP]");
@@ -739,6 +715,7 @@ public class Game {
 		System.out.println();
 		System.out.println("INPUT IS CORRECT");
 	}
+	
 	// private String wrapText(String longDescription){
 	// String shortDesc = WordUtils.wrap(longDescription, 50);
 	// return shortDesc;

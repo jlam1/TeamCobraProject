@@ -223,19 +223,6 @@ public class Player extends Character implements Serializable {
 	}
 
 	/**
-	 * The following method calculates the damage taken from a monster attack.
-	 * 
-	 * @param monster
-	 */
-	public void defend(Monster monster) {
-		System.out.println("[" + this.getName().toUpperCase() + "] defends!");
-		int damageDealt = Math.abs(this.def - monster.getAtk());
-		this.setHp(this.getHp() - damageDealt);
-		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + this.getName().toUpperCase()
-				+ "] for " + damageDealt + " damage!");
-	}
-
-	/**
 	 * The following method overrides the toString method for Object to create a
 	 * custom Player toString().
 	 */

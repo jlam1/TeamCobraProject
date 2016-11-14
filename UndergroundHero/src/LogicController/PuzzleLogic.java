@@ -92,48 +92,29 @@ public class PuzzleLogic implements Serializable {
 
 					// check user's choice (Y/N)
 					if (userInput.equalsIgnoreCase("Y")) {
-						System.out.println("Initiating puzzle");
+						System.out.println("Initiating puzzle...");
+						delay();
 						puzzleMusic();
+						
 						while (puzzleLoop) {
+							System.out.println("-------------------------------------------------");
+							System.out.println(puzzleDesc);
+							System.out.println("-------------------------------------------------");
+
+							// check puzzle type PuzzleRiddle
+							if (puzzle.getType() == 0)
+								runRiddlePuzzle(userInput, riddleAnswer);
+							// check puzzle type PuzzleKey
 							
-							viewCommands();
-							userInput = input.nextLine();
-
-							// user command 1
-							if (userInput.equalsIgnoreCase("VIEW")) {
-								System.out.println("-------------------------------------------------");
-								System.out.println(puzzleDesc);
-								System.out.println("-------------------------------------------------");
-
-								// check puzzle type PuzzleRiddle
-								if (puzzle.getType() == 0)
-									runRiddlePuzzle(userInput, riddleAnswer);
-								// check puzzle type PuzzleKey
+							// check if puzzle is solved
+							if (puzzleSolved == true) {
 								
-								// check if puzzle is solved
-								if (puzzleSolved == true) {
-									
-									// check if puzzle has reward item
-									if (puzzle.getItemReward() != null) {
-										System.out.println("You gained the item ["
-												+ puzzle.getItemReward().getName().toUpperCase() + "]");
-										player.pickUp(puzzle.getItemReward());
-									}
+								// check if puzzle has reward item
+								if (puzzle.getItemReward() != null) {
+									System.out.println("You gained the item ["
+											+ puzzle.getItemReward().getName().toUpperCase() + "]");
+									player.pickUp(puzzle.getItemReward());
 								}
-							}
-
-							// user command 2
-							if (userInput.equalsIgnoreCase("LEAVE")) {
-								System.out.println("Leaving puzzle");
-								puzzleLoop = false;
-								puzzleRun = false;
-								transverseMusic();
-							}
-
-							if (userInput.equalsIgnoreCase("HELP")) {
-								System.out.println("-------------------------------------------------");
-								System.out.println("Commands are: [VIEW PUZZLE] and [LEAVE].\n");
-								System.out.println("-------------------------------------------------");
 							}
 						}
 					}
@@ -166,8 +147,6 @@ public class PuzzleLogic implements Serializable {
 		// exits loop
 		if (player.checkInventoryKeyItem(puzzleKeyItem)) {
 			puzzle.setSolved(true);
-//			puzzleRun = false;
-//			puzzleLoop = false;
 			puzzleSolved = true;
 			transverseMusic();
 		}
@@ -236,7 +215,6 @@ public class PuzzleLogic implements Serializable {
 				try {
 					TimeUnit.SECONDS.sleep(2);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				puzzleSolved = true;
@@ -249,25 +227,31 @@ public class PuzzleLogic implements Serializable {
 			// if riddle answer is incorrect
 			else if (!riddleAnswer.equalsIgnoreCase(userInput)) {
 				System.out.println("Your answer [" + userInput.toUpperCase() + "] is wrong.");
-				System.out.println("Try again? (Y/N)");
-				System.out.print(">>");
-				userInput = input.nextLine();
-
-				if (userInput.equalsIgnoreCase("N")) {
-					System.out.println("Leaving puzzle...\n");
-					riddleLoop = false;
-					puzzleLoop = false;
-					puzzleRun = false;
-					transverseMusic();
-				} 
-//				else if (userInput.equalsIgnoreCase("Y")) {
-//					// do nothing
-//				} 
-//				else {
-//					System.out.println("Invalid command.\n");
-//				}
+				boolean promptAgain = true;
+				while(promptAgain) {
+					System.out.println("Try again? (Y/N)");
+					System.out.print(">>");
+					userInput = input.nextLine();
+	
+					if (userInput.equalsIgnoreCase("N")) {
+						System.out.println("Leaving puzzle...\n");
+						promptAgain = false;
+						riddleLoop = false;
+						puzzleLoop = false;
+						puzzleRun = false;
+						transverseMusic();
+						break;
+					}
+					if(userInput.equalsIgnoreCase("Y")) {
+						promptAgain = false;
+					}
+					else {
+						System.out.println("Wrong input command.");
+					}
+				}
+				
 			}
-			// invalid command from user
+			
 			else {
 				System.out.println("Invalid command. Try again.\n");
 			}
@@ -275,13 +259,6 @@ public class PuzzleLogic implements Serializable {
 
 	}
 
-	private void viewCommands() {
-		System.out.println("-------------------------------------------------");
-		System.out.println("The puzzle commands are:");
-		System.out.println("[VIEW] to view the puzzle description\n[LEAVE] to leave puzzle and return to room\n[HELP] to view commands again");
-		System.out.println("-------------------------------------------------");
-		System.out.print(">>");
-	}
 	private void print(String string, long delay) {
 		try {
 			for (char ch : string.toCharArray()) {
@@ -293,6 +270,7 @@ public class PuzzleLogic implements Serializable {
 		}
 
 	}
+	
 	private void checkSequence()
 	{
 		System.out.print("CHECKING INPUT");
@@ -301,6 +279,16 @@ public class PuzzleLogic implements Serializable {
 		System.out.println();
 		System.out.println("INPUT IS INCORRECT");
 	}
+	
+	private void delay() {
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
 	// public void print(String string, long delay) {
 	// try {
 	// for (char ch : string.toCharArray()) {

@@ -43,37 +43,37 @@ public class BattleLogic {
 	 * @param monster
 	 */
 	
-	public void battleMusic()
+	private void battleMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/battle.wav");
 		musicLogic.BGMLoop();
 	}
-	public void bossMusic()
+	private void bossMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/boss.wav");
 		musicLogic.BGMLoop();
 	}
-	public void transverseMusic() 
+	private void transverseMusic() 
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
 		musicLogic.BGMLoop();
 	}
-	public void victoryMusic()
+	private void victoryMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/victorytune.wav");
 		musicLogic.BGMPlay();
 	}
-	public void deathMusic()
+	private void deathMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/death.wav");
 		musicLogic.BGMPlay();
 	}
-	public void encounterMusic()
+	private void encounterMusic()
 	{
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/encounter.wav");
@@ -87,15 +87,15 @@ public class BattleLogic {
 		//set whoseDead to -1; if player is dead set whoseDead to 0 and monster to 1 and return value to Game class.
 		whoseDead = -1;
 		
+		delay();
+		encounterMusic();
 		System.out.println("---------------------------------------------\n");
 		System.out.println("\t# " + monster.getName().toUpperCase() + " has appeared! #\n");
-		System.out.println(monster.getDescription());
 		System.out.println("---------------------------------------------");
-		encounterMusic();
+		
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(monster.isBoss()) {
@@ -175,15 +175,20 @@ public class BattleLogic {
 		//if player has more speed
 		if(player.getSpd() > monster.getSpd()) {
 			System.out.println("---------------------------------------------");
+			delay();
 			System.out.println("[" + player.getName() + "] goes first!");
+			delay();
 			player.attack(monster);
+			delay();
 			checkDead(player, monster);
 			
-			if(monster.isDead() == false) {
+			if(!monster.isDead()) {
 				monster.attack(player);
 				checkDead(player, monster);
 			}
+
 			System.out.println("---------------------------------------------");
+			delay();
 		}
 		//if both player and monster have same speed
 		else if(player.getSpd() == monster.getSpd()) {
@@ -191,42 +196,54 @@ public class BattleLogic {
 			//chance goes to player first
 			if(chance > 50) {
 				System.out.println("---------------------------------------------");
-				System.out.println("[" + player.getName() + "] goes first!");
+				delay();
+				System.out.println("[" + player.getName().toUpperCase() + "] goes first!");
+				delay();
 				player.attack(monster);
+				delay();
 				checkDead(player, monster);
 				
-				if(monster.isDead() == false) {
+				if(!monster.isDead()) {
 					monster.attack(player);
 					checkDead(player, monster);
 				}
 				System.out.println("---------------------------------------------");
+				delay();
 			}
 			//chance goes to monster first
 			else {
 				System.out.println("---------------------------------------------");
-				System.out.println("[" + monster.getName() + "] goes first!");
+				delay();
+				System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
+				delay();
 				monster.attack(player);
+				delay();
 				checkDead(player, monster);
 				
-				if(monster.isDead() == false) {
+				if(!monster.isDead()) {
 					player.attack(monster);
 					checkDead(player, monster);
 				}
 				System.out.println("---------------------------------------------");
+				delay();
 			}
 		}
 		//if monster has more speed
 		else{
 			System.out.println("---------------------------------------------");
-			System.out.println("[" + monster.getName() + "] goes first!");
+			delay();
+			System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
+			delay();
 			monster.attack(player);
+			delay();
 			checkDead(player, monster);
 			
-			if(monster.isDead() == false) {
+			if(!monster.isDead()) {
 				player.attack(monster);
 				checkDead(player, monster);
 			}
 			System.out.println("---------------------------------------------");
+			delay();
 		}
 	}
 	
@@ -242,7 +259,6 @@ public class BattleLogic {
 			try {
 				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			player.setDead(true);
@@ -258,7 +274,6 @@ public class BattleLogic {
 			try {
 				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			dropLoot(player, monster);
@@ -266,12 +281,16 @@ public class BattleLogic {
 	}
 	
 	private void defend(Player player, Monster monster) {
+		System.out.println("---------------------------------------------");
+		delay();
 		System.out.println("[" + player.getName().toUpperCase() + "] defends!");
 		int damageDealt = Math.abs(player.getDef() - monster.getAtk());
 		player.setHp(player.getHp() - damageDealt);
+		delay();
 		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + player.getName().toUpperCase() + "] for " + damageDealt + " damage!");
-		
+		System.out.println("---------------------------------------------");
 		checkDead(player, monster);
+		delay();
 	}
 	
 	/**
@@ -305,6 +324,7 @@ public class BattleLogic {
 	private void useHealingItem(Player player) {
 		if(!playerInventory.isEmpty()) {
 			try {
+				delay();
 				int bagIndex;
 				player.openInventory();
 				System.out.println("Which healing item do you want to use?");
@@ -329,6 +349,7 @@ public class BattleLogic {
 	 */
 	private void tryToFlee(Player player, Monster monster) {
 		if(player.getSpd() > monster.getSpd()) {
+			delay();
 			System.out.println("You escaped from battle!");
 			battleRun = false;
 			fled = true;
@@ -338,6 +359,7 @@ public class BattleLogic {
 		else if(player.getSpd() == monster.getSpd()) {
 			double fleeChance = (Math.random()*100);
 			if(fleeChance >= 50.0) {
+				delay();
 				System.out.println("You successfully fled barely!");
 				battleRun = false;
 				fled = true;
@@ -345,12 +367,28 @@ public class BattleLogic {
 			}
 			else {
 				fled = false;
+				delay();
 				System.out.println("You couldn't run away!");
+				delay();
+				monster.attack(player);
+				delay();
 			}
 		}
 		else {
 			fled = false;
+			delay();
 			System.out.println("You couldn't run away!");
+			delay();
+			monster.attack(player);
+			delay();
+		}
+	}
+	
+	private void delay() {
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
