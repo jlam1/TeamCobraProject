@@ -10,16 +10,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-//import sun.audio.AudioData;
-//import sun.audio.AudioPlayer;
-//import sun.audio.AudioStream;
-//import sun.audio.ContinuousAudioDataStream;
-
 public class MusicLogic {
-	//public AudioPlayer musicPlayer = AudioPlayer.player;
-	//public static AudioStream music;
-	//public ContinuousAudioDataStream loop = null;
-
 	public static Clip clip;
     public MusicLogic(String fileName) {
         // specify the sound to play
@@ -56,29 +47,15 @@ public class MusicLogic {
 
     // play, stop, loop the sound clip
     }
+    
 	public void BGMPlay(){
 		clip.setFramePosition(0);;
 		clip.start();
-		//AudioData musicData;
-		//ContinuousAudioDataStream loop = null;
-		//try{
-			//music = new AudioStream(new FileInputStream("src/sound/traverse.wav"));
-			//musicData = music.getData();
-			//loop = new ContinuousAudioDataStream(musicData);
-			//musicPlayer.start(loop);
-		//} 
-		//catch(IOException error){ 
-			//System.out.println(error);
-		//}
 	}
 	public void BGMLoop(){
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	public void BGMStop(){
-		//if (music != null){
-			//AudioPlayer.player.stop(music);
-			//music = null;
-		//}
 		clip.stop();
 		clip.close();
 	}

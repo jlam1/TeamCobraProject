@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.applet.*; // For audio
 
 import sun.audio.*;
@@ -53,6 +54,12 @@ public class BattleLogic {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/traverse.wav");
 		musicLogic.BGMLoop();
+	}
+	public void victoryMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/victorytune.wav");
+		musicLogic.BGMPlay();
 	}
 	
 	public void initiateBattle(Player player, Monster monster){
@@ -212,6 +219,13 @@ public class BattleLogic {
 			battleRun = false;
 			System.out.println("---------------------------------------------");
 			System.out.println(" # " + monster.getName().toUpperCase() + " was defeated! #");
+			victoryMusic();
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			dropLoot(player, monster);
 		}
 	}

@@ -55,7 +55,7 @@ public class PuzzleGenerator {
 				"I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?");
 		puzzleList.add(puzzle);
 
-		puzzle = new Puzzle(8, "Riddle 2", 0, itemList.get(5), "TOMORROW",
+		puzzle = new Puzzle(8, "Riddle 2", 0, itemList.get(5), "TOMMORROW",
 				"What is always on its way here, but never arrives?");
 
 		puzzleList.add(puzzle);
