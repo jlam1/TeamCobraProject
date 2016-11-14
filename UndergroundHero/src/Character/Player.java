@@ -159,8 +159,9 @@ public class Player extends Character implements Serializable {
 					this.setHp(this.getMaxhp());
 					System.out.println("You are fully healed, and your max hp is increased by 5!");
 				}
-				this.inventory.remove(index);
 				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
+				this.inventory.remove(index);
+
 			} else {
 				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
 			}
