@@ -1,26 +1,18 @@
 package Game;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 //import org.apache.commons.lang3.text.WordUtils;
 import java.util.concurrent.TimeUnit;
 
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
 import Character.Monster;
 import Character.Player;
 import Generator.ItemGenerator;
 import Item.Item;
 import LogicController.BattleLogic;
-import LogicController.PuzzleLogic;
 import LogicController.MusicLogic;
+import LogicController.PuzzleLogic;
 import Puzzle.Puzzle;
 import Room.Room;
 import Room.RoomFactory;
@@ -66,7 +58,7 @@ public class Game {
 		musicLogic = new MusicLogic("src/sound/ending.wav");
 		musicLogic.BGMPlay();
 	}
-	
+
 	public Game() {
 		input = new Scanner(System.in);
 		factoryList = new RoomFactory().getRoomFactoryList();
@@ -99,8 +91,8 @@ public class Game {
 
 	public void menuScreen() {
 		displayIntro();
-		viewCommands();
-		viewHelp();
+		// viewCommands();
+		// viewHelp();
 		boolean start = true;
 		while (start) {
 			menuMusic();
@@ -108,7 +100,8 @@ public class Game {
 			System.out.println("------------------------# MENU #-----------------------");
 			System.out.println("                   1. Start New Game                   ");
 			System.out.println("                   2. Load Saved Game                  ");
-			System.out.println("                   3. Exit Game                        ");
+			System.out.println("                   3. Gameplay Guide                   ");
+			System.out.println("                   4. Exit Game                        ");
 			System.out.println("-------------------------------------------------------");
 			System.out.println("");
 			System.out.print(">>");
@@ -117,12 +110,13 @@ public class Game {
 			try {
 				if (userInput.equals("1")) {
 					System.out.println("Starting a new game...");
+					viewCommands();
 					start = false;
 					roomMusic();
 					createNewGame();
 					play();
 				}
-				if (userInput.equals("2")) {
+				else if (userInput.equals("2")) {
 					System.out.println("Loading a saved state...");
 					gameRun = true;
 					start = false;
@@ -130,7 +124,11 @@ public class Game {
 					roomMusic();
 					play();
 				}
-				if (userInput.equals("3")) {
+				else if (userInput.equalsIgnoreCase("3")) {
+					viewHelp();
+					viewCommands();
+				}
+				else if (userInput.equals("4")) {
 					System.out.println("Exiting game...");
 					start = false;
 					musicLogic.BGMStop();
@@ -192,7 +190,7 @@ public class Game {
 					System.out.println("[" + nextRoom.getName() + "]");
 					System.out.println(nextRoom.getDescription());
 					System.out.println("-------------------------------------------------------");
-					
+
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
 					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
@@ -323,6 +321,7 @@ public class Game {
 
 		case "HELP":
 			viewHelp();
+			viewCommands();
 			break;
 
 		case "VIEW COMMANDS":
@@ -431,6 +430,7 @@ public class Game {
 			print(".....\n", 300);
 			System.out.println("Loading successful.");
 			System.out.println();
+			viewCommands();
 			look();
 
 		} catch (Exception e) {
@@ -485,30 +485,36 @@ public class Game {
 	 * @param puzzle
 	 */
 	private void checkRoomPuzzleLocks(Puzzle puzzle) {
-		
-		if(puzzle.isSolved() == true) {
-			
-			switch(puzzle.getId()) {
-				case 3: factoryList.get(14).setLocked(false);
-						System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
-					break;
-				case 4: factoryList.get(18).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(18).getName() + "] is now unlocked!");
-					break;
-				case 5: factoryList.get(28).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
-					break;
-				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(29).getName() + "] is now unlocked!");
-					break;
-				case 7: factoryList.get(34).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
-					break;
-				case 8: factoryList.get(41).setLocked(false); 
-						System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
-					break;
-				default:
-					break;
+
+		if (puzzle.isSolved() == true) {
+
+			switch (puzzle.getId()) {
+			case 3:
+				factoryList.get(14).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(14).getName() + "] is now unlocked!");
+				break;
+			case 4:
+				factoryList.get(18).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(18).getName() + "] is now unlocked!");
+				break;
+			case 5:
+				factoryList.get(28).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(28).getName() + "] is now unlocked!");
+				break;
+			case 6:
+				factoryList.get(29).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(29).getName() + "] is now unlocked!");
+				break;
+			case 7:
+				factoryList.get(34).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(34).getName() + "] is now unlocked!");
+				break;
+			case 8:
+				factoryList.get(41).setLocked(false);
+				System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -521,22 +527,22 @@ public class Game {
 		System.out.println("-------------------------------------------------------\n");
 		System.out.println("******************[NAGIVATION]******************");
 		System.out.println(
-				"To navigate, the inputs allowed are north, east, west, and south. Not all rooms will have exits.");
+				"The inputs allowed for navigation are North, South, East, and West. Not all rooms will have four exits.");
 		System.out.println("The player is allowed to revisit past rooms.\n");
 		System.out.println("******************[ROOM]******************");
 		System.out.println(
-				"While inside a room the player is allow to view the room number, descriptions, and existing exits by the look command.");
-		System.out.println("Rooms can contain a either a puzzle or monster will prompt the player of its existence.\n");
+				"While inside a room the player can view the room number, room description, and existing exits by using the \"look\" command.");
+		System.out.println("Rooms can contain either a puzzle or monster, and the game will prompt the player of their existence.\n");
 		System.out.println("******************[PUZZLE]******************");
 		System.out.println(
-				"While in a puzzle, the player can view the puzzle or leave. Once viewed the puzzle will display the description and prompt the user to solve it.\n");
+				"While in a puzzle, the player can view the puzzle or leave. Once viewed, the puzzle will display the description and prompt the user to solve it.\n");
 		System.out.println("******************[INVENTORY]******************");
 		System.out.println(
-				"The player, while not in battle or a puzzle, is allowed to view their status, equipments, inventory, and able to use items.\n");
+				"The player, while not in battle or a puzzle, is allowed to view their status, equipments, inventory, and are able to use items.\n");
 		System.out.println("******************[BATTLE]******************");
 		System.out.println(
-				"During a battle, the player can attack, defend, use item, and run with the following commands [1], [2], [3], [4].\n");
-		System.out.println("To view the following commands, type [VIEW COMMANDS]\n");
+				"During a battle, the player can \"attack\", \"use item\", \"defend\", \"run\", and \"view inventory\" using the following commands [1], [2], [3], [4], & [5] respectively.\n");
+		System.out.println("\n\nTo view commands In-Game, type [VIEW COMMANDS]\n");
 		System.out.println("-------------------------------------------------------");
 	}
 
@@ -553,7 +559,7 @@ public class Game {
 		System.out.println("BATTLE:		[1. ATTACK], [2. DEFEND], [3. FLEE], [4. USE ITEM]");
 		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
 		System.out.println("To exit the game, type [QUIT]");
-		System.out.println("Type [HELP] for more information.");
+		System.out.println("For \"In-Game\" help only, type [HELP]");
 		System.out.println("-------------------------------------------------------");
 	}
 
@@ -562,23 +568,23 @@ public class Game {
 	 */
 	private void displayIntro() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println("O       o             o                                                    o       o      O                    \n" +
-						   "o       O            O                                                    O        O      o                    \n" +
-						   "O       o            o                                                    o        o      O                    \n" +
-						   "o       o            o                                                    o        OoOooOOo                    \n" +
-						   "o       O 'OoOo. .oOoO  .oOo. `OoOo. .oOoO `OoOo. .oOo. O   o  'OoOo. .oOoO        o      O .oOo. `OoOo. .oOo. \n" +
-						   "O       O  o   O o   O  OooO'  o     o   O  o     O   o o   O   o   O o   O        O      o OooO'  o     O   o \n" +
-						   "`o     Oo  O   o O   o  O      O     O   o  O     o   O O   o   O   o O   o        o      o O      O     o   O \n" +
-						   "`OoooO'O  o   O `OoO'o `OoO'  o     `OoOo  o     `OoO' `OoO'o  o   O `OoO'o       o      O `OoO'  o     `OoO'  \n" +
-						   "                                         O                                                                     \n" +
-						   "                                      OoO'                                                                     \n");
 		System.out.println(
-				"You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
+				"O       o             o                                                    o       o      O                    \n"
+						+ "o       O            O                                                    O        O      o                    \n"
+						+ "O       o            o                                                    o        o      O                    \n"
+						+ "o       o            o                                                    o        OoOooOOo                    \n"
+						+ "o       O 'OoOo. .oOoO  .oOo. `OoOo. .oOoO `OoOo. .oOo. O   o  'OoOo. .oOoO        o      O .oOo. `OoOo. .oOo. \n"
+						+ "O       O  o   O o   O  OooO'  o     o   O  o     O   o o   O   o   O o   O        O      o OooO'  o     O   o \n"
+						+ "`o     Oo  O   o O   o  O      O     O   o  O     o   O O   o   O   o O   o        o      o O      O     o   O \n"
+						+ "`OoooO'O  o   O `OoO'o `OoO'  o     `OoOo  o     `OoO' `OoO'o  o   O `OoO'o       o      O `OoO'  o     `OoO'  \n"
+						+ "                                         O                                                                     \n"
+						+ "                                      OoO'                                                                     \n");
+		System.out.println("You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
 				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
 				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
 				+ "\n\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
 				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!");
-	
+
 	}
 
 	private void displayEnding() {
