@@ -40,11 +40,11 @@ public class PuzzleGenerator {
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(4, "The Colored Buttons", 0, null, "213",
-				"In room 2-7 is a monitor with several groups of numbers, each group a different color. The final group of numbers is “2, 1, 3” in black. In room 2-8 are three buttons, red, green, and blue.");
+				"A terminal that prompts the user for numbers and displays the following: [GREEN] = 1, [BLUE] = 2, and [RED] = 3. The ordering of the color seems important in [Room 2-8].");
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(5, "Jump The Chasm", 1, null, key("Grappling Hook"),
-				"There appears to be a strange outcropping of rock in the ceiling. If only you could attach some rope to it you could swing across.");
+				"There appears to be a strange outcropping of rock in the ceiling. If only you could attach some type of rope to it so you could swing across.");
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(6, "Security Bypass", 1, null, key("Computer Chip"),
