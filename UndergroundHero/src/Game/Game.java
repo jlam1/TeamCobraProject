@@ -61,6 +61,12 @@ public class Game {
 		musicLogic.BGMLoop();
 	}
 
+	public void endingMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/ending.wav");
+		musicLogic.BGMPlay();
+	}
+	
 	public Game() {
 		input = new Scanner(System.in);
 		factoryList = new RoomFactory().getRoomFactoryList();
@@ -573,6 +579,7 @@ public class Game {
 	}
 
 	private void displayEnding() {
+		endingMusic();
 		System.out.println("-------------------------------------------------------");
 		System.out.println("You have beaten the game!");
 		System.out.println("-------------------------------------------------------");

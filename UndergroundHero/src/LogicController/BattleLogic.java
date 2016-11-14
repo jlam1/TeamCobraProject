@@ -61,7 +61,12 @@ public class BattleLogic {
 		musicLogic = new MusicLogic("src/sound/victorytune.wav");
 		musicLogic.BGMPlay();
 	}
-	
+	public void deathMusic()
+	{
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/death.wav");
+		musicLogic.BGMPlay();
+	}
 	public void initiateBattle(Player player, Monster monster){
 		battleMusic();
 		playerInventory = player.getInventory();
@@ -209,6 +214,13 @@ public class BattleLogic {
 	private void checkDead(Player player, Monster monster) {
 		if(player.getHp() <= 0) {
 			System.out.println("You died, Game Over!");
+			deathMusic();
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			player.setDead(true);
 			battleRun = false;
 		}
