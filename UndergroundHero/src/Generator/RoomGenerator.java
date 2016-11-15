@@ -88,7 +88,7 @@ public class RoomGenerator {
 		room = new Room(17, "2-8", "A room containing a walls with a different color. There is a total of three walls, going clockwise the colors are: [BLUE], [GREEN], and [RED].", "NORTH", false);
 		roomList.add(room);
 		
-		room = new Room(18, "2-9", "A room containing alot of hula hoops and a table with dices.", "WEST, EAST", true);
+		room = new Room(18, "2-9", "A room containing alot of hula hoops and a table with dice.", "WEST, EAST", true);
 		roomList.add(room);
 		
 		room = new Room(19, "3-1", "A square room with steel plating covering all surfaces. The only objects here are the doors leading to two exits.", "WEST, EAST", true);
@@ -136,7 +136,7 @@ public class RoomGenerator {
 		room = new Room(33, "4-5", "The room is a large box with a majestic door to the south. The room is a majestic as the door with the sides being decorated with intricately designed patterns.", "WEST, SOUTH", false);
 		roomList.add(room);
 		
-		room = new Room(34, "4-6", "The room continues to follow its majestically made pattern but it begins to look more sadistics. The paintings on the wall all despite it ornate frames hold pictures of clowns who are either screaming, crying, or looking sinisterly angry.", "NORTH, SOUTH, WEST", true);
+		room = new Room(34, "4-6", "The room continues to follow its majestically made pattern but it begins to look more sadistic. The paintings on the wall all despite it ornate frames hold pictures of clowns who are either screaming, crying, or looking sinisterly angry.", "NORTH, SOUTH, WEST", true);
 		roomList.add(room);
 		
 		room = new Room(35, "4-7", "A room containing all the costumes generally worn during the circus performance. There is a newspaper on the desk. The paper titled The 'Clown Times' headline is on the rising price of clown college.", "WEST, EAST", false);

@@ -22,9 +22,6 @@ import Room.RoomFactory;
  *
  */
 public class Game {
-	// AudioStream roomMusic;
-	// AudioPlayer musicPlayer = AudioPlayer.player;
-
 	private List<Room> factoryList;
 	private List<Item> itemList;
 	private Room nextRoom, currentRoom, lockedRoom;
@@ -636,7 +633,11 @@ public class Game {
 				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
 				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
 				+ "\n\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
-				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!");
+				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!"
+				+ "\nWe recommend resizing your command line window size to 128x64."
+				+ "\n - For Windows users: Right-click the title bar and click 'Properties'"
+				+ "\n - Click the 'Layout' tab and adjust 'Window Size'"
+				+ "\n - You'll have to restart the game for the changes to take place");
 
 	}
 
@@ -683,6 +684,7 @@ public class Game {
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("==================== (C)2016 ====================");
+			TimeUnit.SECONDS.sleep(21);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
