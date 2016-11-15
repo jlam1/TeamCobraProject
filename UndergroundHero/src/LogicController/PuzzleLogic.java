@@ -163,7 +163,7 @@ public class PuzzleLogic implements Serializable {
 			{
 				System.out.println("You spotted a computer termial by the southern wall.");
 				System.out.println("You played with the computer and it prompt to input an access chip.");
-				System.out.println("But appearently you dont have the access chip and lefted the computer alone");
+				System.out.println("But appearently you dont have the access chip and left the computer alone");
 			}
 			else if(puzzle.getId() == 5)
 			{
@@ -171,7 +171,9 @@ public class PuzzleLogic implements Serializable {
 				System.out.println("You looked down and see nothing but the abyss calling out to you");
 				System.out.println("You gauged the jumping distance and prepared to jump.");
 				System.out.println("You ran but right before reaching the edge, you stopped.");
-				System.out.println("You said \"Nope, I won't make it.\"");
+				System.out.println("You said, \"Nope, I won't make it.\"");
+				System.out.println("You looked around the area and found a stronger outcropping of rock above the chasm with steel pikes sticking out.");
+				System.out.println("You looked at the steel pikes, \"I might need something at will allow me to swing to the other side.\"");
 			}
 			else
 			{
@@ -211,6 +213,7 @@ public class PuzzleLogic implements Serializable {
 			// if user answers riddle correctly, riddle is solved and exits loop
 			else if (riddleAnswer.equalsIgnoreCase(userInput)) {
 				puzzle.setSolved(true);
+				checkSequenceCorrect();
 				solveMusic();
 				try {
 					TimeUnit.SECONDS.sleep(2);
@@ -229,6 +232,7 @@ public class PuzzleLogic implements Serializable {
 				System.out.println("Your answer [" + userInput.toUpperCase() + "] is wrong.");
 				boolean promptAgain = true;
 				while(promptAgain) {
+					checkSequenceIncorrect();
 					System.out.println("Try again? (Y/N)");
 					System.out.print(">>");
 					userInput = input.nextLine();
@@ -271,7 +275,15 @@ public class PuzzleLogic implements Serializable {
 
 	}
 	
-	private void checkSequence()
+	private void checkSequenceCorrect()
+	{
+		System.out.print("CHECKING INPUT");
+		for(int i = 0; i < 3; i++)
+		print("...", 300);
+		System.out.println();
+		System.out.println("INPUT IS CORRECT");
+	}
+	private void checkSequenceIncorrect()
 	{
 		System.out.print("CHECKING INPUT");
 		for(int i = 0; i < 3; i++)

@@ -76,8 +76,8 @@ public class Game {
 		player.startingItem(itemList.get(0));
 		player.startingItem(itemList.get(2));
 		player.startingItem(itemList.get(4));
-		player.equip(0);
-		player.equip(0);
+		player.startingEquip(0);
+		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
 
 		System.out.println("-------------------------------------------------------");
@@ -177,7 +177,7 @@ public class Game {
 		else if (factoryList.get(nextRoom.getId()).isLocked()) {
 			if (factoryList.get(currentRoom.getId()).getId() == 19) {
 				System.out.println("Theres no exit that way, try another direction.");
-			}
+			}			
 			// Initiate puzzle when approaching a lock room
 			else if (lockedRoom.getRoomPuzzle() != null) {
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
@@ -196,8 +196,8 @@ public class Game {
 
 				}
 			} else {
-				System.out.println("[" + nextRoom.getName() + "] door is locked.");
-				System.out.println("Try a different route.");
+				System.out.println("\"The door is locked.\"");
+				System.out.println("\"I need to find a way to unlock the door.\"");
 			}
 		}
 
@@ -327,7 +327,11 @@ public class Game {
 		case "VIEW COMMANDS":
 			viewCommands();
 			break;
-
+			
+		case "DESC":
+			commandDescription();
+			break;
+			
 		case "QUIT":
 			gameRun = false;
 			break;
@@ -357,8 +361,9 @@ public class Game {
 			bagIndex = input.nextInt();
 			player.useItem(bagIndex);
 			input.nextLine();
-		} catch (InputMismatchException e) {
-
+		} catch (InputMismatchException e) 
+		{
+			System.out.println("You have put the bag away.");
 		}
 	}
 
@@ -370,15 +375,18 @@ public class Game {
 		System.out.println("[" + currentRoom.getName() + "]");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) {
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() != 21) {
 			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " on the ground.");
-
+		}
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() == 21) {
+			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
 		}
 		System.out.println("-------------------------------------------------------");
 	}
 
 	private void pick() {
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) {
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) 
+		{
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
@@ -386,7 +394,7 @@ public class Game {
 		else {
 			if(player.checkInventoryKeyItem(itemList.get(6))) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
-				System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
+				System.out.println("You have picked " + itemList.get(3) + ".");
 				player.pickUp(itemList.get(3));
 			}
 			else {
@@ -407,8 +415,9 @@ public class Game {
 			bagIndex = input.nextInt();
 			player.equip(bagIndex);
 			input.nextLine();
-		} catch (InputMismatchException e) {
-
+		} catch (InputMismatchException e) 
+		{
+			System.out.println("You have exited the equip menu.");
 		}
 	}
 
@@ -473,7 +482,7 @@ public class Game {
 
 			case 0:
 				factoryList.get(10).setLocked(false);
-				System.out.println("Room: [" + factoryList.get(10).getName() + "] is now unlocked!");
+				System.out.println("As the Pogo falls, the door to the east became visible.");
 				break;
 			case 1:
 				factoryList.get(19).setLocked(false);
@@ -538,7 +547,6 @@ public class Game {
 						}
 					break;
 				case 4: factoryList.get(18).setLocked(false); 
-						checkSequence();
 						System.out.println("You hear the sound of a door unlocking.");
 					break;
 				case 5: factoryList.get(28).setLocked(false); 
@@ -552,15 +560,12 @@ public class Game {
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
 						System.out.println("You went to the computer and input the chip");
-						checkSequence();
 						System.out.println("You hear the sound of a door unlocking.");
 					break;
 				case 7: factoryList.get(34).setLocked(false); 
-						checkSequence();
 						System.out.println("You hear the sound of a door unlocking.");
 					break;
 				case 8: factoryList.get(41).setLocked(false); 
-						checkSequence();
 						System.out.println("You hear the sound of a door unlocking.");
 					break;
 				default:
@@ -604,15 +609,51 @@ public class Game {
 		System.out.println("The following commands are not case sensitive.\n");
 		System.out.println("NAVIGATION:	[NORTH], [EAST], [SOUTH], [WEST]");
 		System.out.println("ROOM:		[LOOK], [PICK]");
-		System.out.println("INVENTORY:	[BAG], [EQUIP], [INFO], [USE]");
-		System.out.println("PUZZLE:		[VIEW], [LEAVE]");
+		System.out.println("INVENTORY:	[BAG], [EQUIP], [INFO], [USE], [VIEW]");
 		System.out.println("BATTLE:		[1. ATTACK], [2. USE ITEM], [3. DEFEND], [4. FLEE], [5. VIEW INVENTORY]");
 		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
+		System.out.println("To get a description of the commands type [DESC]");
 		System.out.println("To exit the game, type [QUIT]");
 		System.out.println("For \"In-Game\" help only, type [HELP]");
 		System.out.println("-------------------------------------------------------");
 	}
 
+	private void commandDescription()
+	{
+		System.out.println("------------------[NAVIGATION]-------------------------");
+		System.out.println("These commands can be use only during navigation phase.");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("[NORTH] move to the room to the north.");
+		System.out.println("[EAST]  move to the room to the east.");
+		System.out.println("[SOUTH] move to the room to the south.");
+		System.out.println("[WEST]  move to the room to the west.");
+		System.out.println("---------------------------------------");
+		System.out.println("[LOOK]  display the room description, exits, "
+				         + "and item existing in the room but it will not "
+				         + "show any hidden exits.");
+		System.out.println("[PICK]  pick up the item in the room");
+		System.out.println("-------------------------------------------------");
+		System.out.println("[BAG]    display the items in the inventory");
+		System.out.println("[EQUIP]  equip any equipable the items in the inventory");
+		System.out.println("[INFO]   display the player current status");
+		System.out.println("[USE]    use any consumeable items in the inventory");
+		System.out.println("[VIEW]   look at the player current equipment");
+		System.out.println("---------------------------------------------------");
+		System.out.println("[SAVE]   save the current game.");
+		System.out.println("[LOAD]   load the latest save file game.");
+		System.out.println("---------------------------------------------------");
+		System.out.println();
+		System.out.println("----------------------[BATTLE]--------------------------");
+		System.out.println("These commands can only be used during the battle phase.");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("[1. ATTACK]           attack the present enemy");
+		System.out.println("[2. USE ITEM]         use any consumeable items");
+		System.out.println("[3. DEFEND]           defend from enemy attacks");
+		System.out.println("[4. FLEE]             run from battle");
+		System.out.println("[5. VIEW INVENTORY]   look at the player current items");
+		System.out.println("--------------------------------------------------------");
+		System.out.println();
+	}
 	/**
 	 * @method Displays game intro
 	 */
@@ -708,14 +749,14 @@ public class Game {
 		}
 
 	}
-	private void checkSequence()
+	/*private void checkSequence()
 	{
 		System.out.print("CHECKING INPUT");
 		for(int i = 0; i < 3; i++)
 		print("...", 300);
 		System.out.println();
 		System.out.println("INPUT IS CORRECT");
-	}
+	}*/
 	
 	// private String wrapText(String longDescription){
 	// String shortDesc = WordUtils.wrap(longDescription, 50);
