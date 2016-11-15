@@ -224,6 +224,50 @@ public class Player extends Character implements Serializable {
 	}
 
 	/**
+	 * When a new game starts the player will start with these equip items
+	 * 
+	 * @exception IndexOutOfBoundsException
+	 *                caught whenever Item<Weapon> or Item<Armor> is called
+	 *                outside of List<Item> inventory's size index.
+	 * @param index
+	 */
+	
+	public void startingEquip(int index) {
+		try {
+
+			if (this.inventory.get(index).getType().equalsIgnoreCase("WEAPON")) {
+				if(this.equipment != null) {
+					for(Item i : this.equipment) {
+						if(i.getType().equalsIgnoreCase("WEAPON")) {
+							this.equipment.remove(i);
+						}
+					}
+				}
+				Item weapon = (Item) this.inventory.get(index);
+				this.inventory.remove(index);
+				this.equipment.add(weapon);
+				this.setAtk(this.getAtk() + weapon.getWeaponAtk());
+			}
+
+			if (this.inventory.get(index).getType().equalsIgnoreCase("ARMOR")) {
+				if(this.equipment != null) {
+					for(Item i : this.equipment) {
+						if(i.getType().equalsIgnoreCase("ARMOR")) {
+							this.equipment.remove(i);
+						}
+					}
+				}
+				Item armor = (Item) this.inventory.get(index);
+				this.inventory.remove(index);
+				this.equipment.add(armor);
+				this.setDef(this.getDef() + armor.getArmorDef());
+			}
+
+		} catch (IndexOutOfBoundsException e) {
+			
+		}
+	}
+	/**
 	 * The following method overrides the toString method for Object to create a
 	 * custom Player toString().
 	 */
