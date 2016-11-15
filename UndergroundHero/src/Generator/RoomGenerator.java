@@ -115,7 +115,7 @@ public class RoomGenerator {
 		room = new Room(26, "3-8", "A rectangular room with a fork at the western end. The room's ceiling lowers as the room moves away from the fork. The room has exposed cave wall reinforced in places by rebar and I-beams. The room is lit from the ground by upward firing lights angled toward the wall. There is a ventilation duct in the lower part of the ceiling partially obscured by small-medium sized stalactites.", "NORTH, SOUTH, EAST", false);
 		roomList.add(room);
 		
-		room = new Room(27, "3-9", "A massive rectangular room with a wide chasm offset to the eastern side of it. Due to the room's sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor. There is a stronger outcropping of rock above the chasm. Though barely visible, there are steel spikes at the bottom of the chasm.", "WEST, EAST", false);
+		room = new Room(27, "3-9", "A massive rectangular room. Due to the room's sheer size, the lighting isn't quite adequate and so the room is a good bit darker than the other rooms on this floor.", "WEST, EAST", false);
 		roomList.add(room);
 		
 		room = new Room(28, "3-10", "A small square room with high ceilings and a large, locked steel blast door on the eastern wall of the room. This room is well lit with both the floor lighting as described in rooms previous, and overhead lighting.", "WEST, EAST, SOUTH", true);
