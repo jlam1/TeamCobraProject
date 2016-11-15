@@ -76,7 +76,7 @@ public class RoomGenerator {
 		room = new Room(13, "2-4", "Four statues on the South wall from left to right: Cow, Giraffe, Duck, and Elephant. Behind each statue is a number behind each: Duck has 1, Giraffe has 2, Elephant has 3, and Cow has 4. The ordering of each statue seems important.", "NORTH", false);
 		roomList.add(room);
 		
-		room = new Room(14, "2-5", "A long hallway that shoots lasers at anyone who tries to pass it, but appreaently it has been disabled.", "WEST, EAST", true);
+		room = new Room(14, "2-5", "A long hallway that shoots lasers at anyone who tries to pass it, but apparently it has been disabled.", "WEST, EAST", true);
 		roomList.add(room);
 		
 		room = new Room(15, "2-6", "A room containing a variety of furnitures, there are four exits from this room.", "NORTH, SOUTH, WEST ,EAST", false);
