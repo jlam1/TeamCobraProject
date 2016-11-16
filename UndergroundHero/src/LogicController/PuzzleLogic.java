@@ -27,6 +27,7 @@ public class PuzzleLogic implements Serializable {
 	private Scanner input;
 	private String userInput;
 	private MusicLogic musicLogic;
+	private Room currentRoom;
 
 	public PuzzleLogic(Scanner in) {
 		input = in;
@@ -44,12 +45,45 @@ public class PuzzleLogic implements Serializable {
 		musicLogic = new MusicLogic("src/sound/solvetune.wav");
 		musicLogic.BGMPlay();
 	}
-	 
-	private void transverseMusic() {
+	
+	public void floor1Music() {
 		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();
 	}
+	
+	/*public void floor2Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor2.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	public void floor3Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor3.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	public void floor4Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor4.wav");
+		musicLogic.BGMLoop();
+	}
+
+	public void floorMusicChecker(){
+		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
+			floor1Music();
+		}
+		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
+			floor2Music();
+		}
+		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
+			floor3Music();
+		}
+		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
+			floor4Music();
+		}
+	}*/
 
 	/**
 	 * @method This method will check if puzzle exists in the current room. If
@@ -148,7 +182,7 @@ public class PuzzleLogic implements Serializable {
 		if (player.checkInventoryKeyItem(puzzleKeyItem)) {
 			puzzle.setSolved(true);
 			puzzleSolved = true;
-			transverseMusic();
+			floor1Music();
 		}
  
 		// if player does not have puzzle key in inventory, puzzle is not solved
@@ -183,7 +217,7 @@ public class PuzzleLogic implements Serializable {
 			System.out.println("-------------------------------------------------");
 			puzzleLoop = false;
 			puzzleRun = false;
-			transverseMusic();
+			floor1Music();
 			}
 		}
 	}
@@ -204,10 +238,10 @@ public class PuzzleLogic implements Serializable {
 			// user will exit riddle puzzle and puzzle loops
 			if (userInput.equalsIgnoreCase("LEAVE")) {
 				System.out.println("Leaving puzzle...\n");
+				floor1Music();
 				puzzleRun = false;
 				riddleLoop = false;
 				puzzleLoop = false;
-				transverseMusic();
 			}
 
 			// if user answers riddle correctly, riddle is solved and exits loop
@@ -224,7 +258,7 @@ public class PuzzleLogic implements Serializable {
 				riddleLoop = false;
 				puzzleLoop = false;
 				puzzleRun = false;
-				transverseMusic();
+				floor1Music();
 			}
 
 			// if riddle answer is incorrect
@@ -243,7 +277,7 @@ public class PuzzleLogic implements Serializable {
 						riddleLoop = false;
 						puzzleLoop = false;
 						puzzleRun = false;
-						transverseMusic();
+						floor1Music();
 						break;
 					}
 					if(userInput.equalsIgnoreCase("Y")) {

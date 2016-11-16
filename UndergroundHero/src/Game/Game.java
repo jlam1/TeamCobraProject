@@ -39,11 +39,29 @@ public class Game {
 	 * @method Load all assets to game object
 	 */
 
-	public void roomMusic() {
+	public void floor1Music() {
 		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();
 	}
+	
+	/*public void floor2Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor2.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	public void floor3Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor3.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	public void floor4Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor4.wav");
+		musicLogic.BGMLoop();
+	}*/
 
 	public void menuMusic() {
 		musicLogic.BGMStop();
@@ -56,6 +74,21 @@ public class Game {
 		musicLogic = new MusicLogic("src/sound/ending.wav");
 		musicLogic.BGMPlay();
 	}
+	
+	/*public void floorMusicChecker(){
+		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
+			floor1Music();
+		}
+		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
+			floor2Music();
+		}
+		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
+			floor3Music();
+		}
+		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
+			floor4Music();
+		}
+	}*/
 
 	public Game() {
 		input = new Scanner(System.in);
@@ -63,7 +96,7 @@ public class Game {
 		itemList = new ItemGenerator().getItemList();
 		puzzleLogic = new PuzzleLogic(input);
 		battleLogic = new BattleLogic(input);
-		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic = new MusicLogic("src/sound/menu.wav");
 	}
 
 	/**
@@ -110,8 +143,8 @@ public class Game {
 					System.out.println("Starting a new game...");
 					viewCommands();
 					start = false;
-					roomMusic();
 					createNewGame();
+					floor1Music();
 					play();
 				}
 				else if (userInput.equals("2")) {
@@ -120,7 +153,7 @@ public class Game {
 					gameRun = true;
 					start = false;
 					load();
-					roomMusic();
+					floor1Music();
 					play();
 				}
 				else if (userInput.equalsIgnoreCase("3")) {
