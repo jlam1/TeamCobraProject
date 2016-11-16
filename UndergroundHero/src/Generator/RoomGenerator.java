@@ -34,7 +34,7 @@ public class RoomGenerator {
 	private void generateRoom(){
 		roomList = new ArrayList<Room>();
 		
-		Room room = new Room(0, "1-0", "You left the underground lair and ultimately lead to the destruction of all"
+		Room room = new Room(0, "1-0", "You decided to leave the underground lair, which ultimately leads to the destruction of all"
 				+ "\n humanity!"
 				+ "\n(Secret Bad Ending)", "EAST", false);
 		roomList.add(room);
