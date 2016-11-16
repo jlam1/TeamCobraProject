@@ -1,5 +1,6 @@
 package Game;
 
+import java.nio.file.NoSuchFileException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -114,7 +115,8 @@ public class Game {
 					play();
 				}
 				else if (userInput.equals("2")) {
-					System.out.println("Loading a saved state...");
+					System.out.print("Loading a saved state");
+					print(".....\n", 300);
 					gameRun = true;
 					start = false;
 					load();
@@ -438,11 +440,14 @@ public class Game {
 
 	}
 
-	private void load() {
+	private void load() throws ClassCastException, NullPointerException {
 		// use the class saveLoadData to load values in the binary file
 		try {
+			
 			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero.dat");
+			if(data != null){
 			currentRoom = factoryList.get(data.getRoomArrayNumber());
+			
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();
 			System.out.print("LOADING ");
@@ -451,9 +456,25 @@ public class Game {
 			System.out.println();
 			viewCommands();
 			look();
+			}
+			else
+			{
+				System.out.println("There is currently no file to load. \nA new game will be created.");
+				print("       ", 500);
+				System.out.println();
+				System.out.print("Please Wait");
+				print("       ", 500);
+				System.out.println();
+				System.out.println("New game created.");
+				print("       ", 500);
+				System.out.println();
+				
+				createNewGame();
+			}
 
 		} catch (Exception e) {
-			System.out.println("Error loading");
+			System.out.println("Error loading, A new game will be created.");
+			createNewGame();
 			e.printStackTrace();
 		}
 	}
