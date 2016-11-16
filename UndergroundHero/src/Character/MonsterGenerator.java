@@ -1,9 +1,9 @@
-package Generator;
+package Character;
 
 import java.util.ArrayList;
 
-import Character.Monster;
 import Item.Item;
+import Item.ItemGenerator;
 
 /**
  * This class is responsible for generating Monster objects

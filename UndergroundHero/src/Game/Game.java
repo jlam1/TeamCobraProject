@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import Character.Monster;
 import Character.Player;
-import Generator.ItemGenerator;
 import Item.Item;
+import Item.ItemGenerator;
 import LogicController.BattleLogic;
 import LogicController.MusicLogic;
 import LogicController.PuzzleLogic;
@@ -20,7 +20,7 @@ import Room.RoomFactory;
 
 /**
  * This class is responsible for parsing user's inputs and creating new game.
- *
+ * @author John, King, Kyle, Matt
  */
 public class Game {
 	private List<Room> factoryList;
@@ -74,9 +74,9 @@ public class Game {
 		gameRun = true;
 		player = new Player(100, 100, 1, 3, 2);
 		player.setName("HERO");
-		player.startingItem(itemList.get(0));
-		player.startingItem(itemList.get(2));
-		player.startingItem(itemList.get(4));
+		player.pickUp(itemList.get(0));
+		player.pickUp(itemList.get(2));
+		player.pickUp(itemList.get(4));
 		player.startingEquip(0);
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
@@ -747,8 +747,10 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("==================== (C)2016 ====================");
 			TimeUnit.SECONDS.sleep(21);
+			
+			System.exit(0);		//exits application
+			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		gameRun = false;

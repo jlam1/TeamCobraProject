@@ -6,10 +6,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import Generator.*;
 import Character.Monster;
+import Character.MonsterGenerator;
 import Item.Item;
+import Item.ItemGenerator;
 import Puzzle.Puzzle;
+import Puzzle.PuzzleGenerator;
 
 /**
  * 

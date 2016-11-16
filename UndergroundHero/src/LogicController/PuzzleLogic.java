@@ -1,5 +1,8 @@
 package LogicController;
-
+/**
+ * This class is reponsible for dealing with player's behaviors pertaining to puzzles.
+ * @author John, King, Kyle
+ */
 import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;

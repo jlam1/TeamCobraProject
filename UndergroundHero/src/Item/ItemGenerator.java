@@ -1,9 +1,6 @@
-package Generator;
+package Item;
 
 import java.util.ArrayList;
-
-import Item.Consumables;
-import Item.Item;
 /**
  * This class is responsible for generating Item objects
  * @author John

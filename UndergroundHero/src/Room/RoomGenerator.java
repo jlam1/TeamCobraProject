@@ -1,23 +1,16 @@
-package Generator;
+package Room;
 
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Scanner;
-
-import Room.Room;
-//import Room.RoomBasic;
 
 /**
  * This class is responsible for generating Room objects
- * @author John
+ * @author King
  *
  */
+
 public class RoomGenerator {
 	
 	private ArrayList<Room> roomList;
-	//private Scanner in;
 	
 	/**
 	 * 

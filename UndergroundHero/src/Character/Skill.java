@@ -1,6 +1,10 @@
 package Character;
 
-
+/**
+ * Class is responsible for skill objects that both monster and player will use.
+ * @author John
+ *
+ */
 public class Skill {
 	
 	private String name, description;

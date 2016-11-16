@@ -1,9 +1,9 @@
-package Generator;
+package Puzzle;
 
 import java.util.ArrayList;
 
 import Item.Item;
-import Puzzle.*;
+import Item.ItemGenerator;
 
 /**
  * This class is reponsible for generating Puzzle objects

@@ -2,7 +2,7 @@ package Puzzle;
 
 import java.io.Serializable;
 
-import Character.Properties;
+import Game.Properties;
 import Item.*;
 
 /**

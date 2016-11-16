@@ -11,7 +11,7 @@ import Item.Item;
  * This class is responsible for player attributes and behaviors including
  * battle status and inventory usage.
  * 
- * @author John, Matt
+ * @author John, Matt, King
  *
  */
 public class Player extends Character implements Serializable {
@@ -20,21 +20,6 @@ public class Player extends Character implements Serializable {
 	private List<Item> inventory;
 	private ArrayList<Item> equipment;
 
-	/**
-	 * The following is the constructor method for Player type Character
-	 * objects.
-	 * 
-	 * @param maxhp
-	 *            From parent.
-	 * @param hp
-	 *            From parent.
-	 * @param atk
-	 *            From parent.
-	 * @param spd
-	 *            From parent.
-	 * @param def
-	 *            From parent.
-	 */
 	public Player(int maxhp, int hp, int atk, int spd, int def) {
 		super(maxhp, hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
@@ -76,10 +61,10 @@ public class Player extends Character implements Serializable {
 			int bagID = 0;
 
 			System.out.println("----------------------------------");
-			System.out.println("[[[ INVENTORY BAG ]]]");
+			System.out.println("\t[[[ INVENTORY BAG ]]]\n");
 
 			for (Item i : this.inventory) {
-				System.out.println(bagID + ". [" + i.getName().toUpperCase() + "]");
+				System.out.println(bagID + ". " + formatPrintInventory(i));
 				bagID++;
 			}
 
@@ -104,7 +89,7 @@ public class Player extends Character implements Serializable {
 			System.out.println("[[[ EQUIPMENT ]]]");
 
 			for (Item i : this.equipment) {
-				System.out.println(bagID + ". " + i.getName());
+				System.out.println(bagID + ". " + formatPrintInventory(i));
 				bagID++;
 			}
 
@@ -113,10 +98,6 @@ public class Player extends Character implements Serializable {
 		} else {
 			System.out.println("Your equipment is empty.");
 		}
-	}
-
-	public void startingItem(Item item) {
-		this.inventory.add(item);
 	}
 
 	/**
@@ -267,10 +248,11 @@ public class Player extends Character implements Serializable {
 			
 		}
 	}
-	/**
-	 * The following method overrides the toString method for Object to create a
-	 * custom Player toString().
-	 */
+	
+	private String formatPrintInventory(Item item) {
+		return String.format("%-20s%-20s", item.getName(), item.getDescription());
+	}
+	
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t ["

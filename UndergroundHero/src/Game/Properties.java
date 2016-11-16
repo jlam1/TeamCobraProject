@@ -1,8 +1,7 @@
-package Character;
+package Game;
 
 /**
  * This interface enforces a few getter methods for things with properties.
- * 
  *
  */
 public interface Properties {
