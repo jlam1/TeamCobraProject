@@ -1,8 +1,10 @@
 package Game;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -111,11 +113,27 @@ public class ResourceData implements Serializable
 	 * @return game
 	 * @throws Exception
 	 */
-	public static Object loadGame(String fileName) throws Exception
+	public static Object loadGame(String fileName)
 	{
 		try(ObjectInputStream input = new ObjectInputStream(Files.newInputStream(Paths.get(fileName))))
 		{
 			return input.readObject();
+		}
+		catch(NoSuchFileException e)
+		{
+			return null;
+		}
+		catch(ClassCastException e)
+		{
+			return null;
+		} 
+		catch (IOException e1) {
+			return null;
+			
+		} catch (ClassNotFoundException e) 
+		{
+			return null;
+
 		}
 	}
 	
