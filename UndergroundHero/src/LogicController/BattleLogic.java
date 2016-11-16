@@ -111,7 +111,7 @@ public class BattleLogic {
 		}
 		if(monster.isDead()) {
 			whoseDead = 1;
-			transverseMusic();
+			floor1Music();
 		}
 			
 	}
@@ -306,7 +306,7 @@ public class BattleLogic {
 			System.out.println("You escaped from battle!");
 			battleRun = false;
 			fled = true;
-			transverseMusic();
+			floor1Music();
 		}
 		
 		else if(player.getSpd() == monster.getSpd()) {
@@ -316,7 +316,7 @@ public class BattleLogic {
 				System.out.println("You successfully fled barely!");
 				battleRun = false;
 				fled = true;
-				transverseMusic();
+				floor1Music();
 			}
 			else {
 				fled = false;
@@ -352,10 +352,10 @@ public class BattleLogic {
 		musicLogic.BGMLoop();
 	}
 	
-	private void transverseMusic() 
+	private void floor1Music() 
 	{
 		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/traverse.wav");
+		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();
 	}
 	
