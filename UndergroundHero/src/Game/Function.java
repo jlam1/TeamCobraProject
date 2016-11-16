@@ -1,9 +1,12 @@
 package Game;
 
 import java.util.concurrent.TimeUnit;
+import java.io.Serializable;
 
-public class Function {
+public class Function implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	public void printBox(String... strings) {
 	    int maxBoxWidth = getMaxLength(strings);
 	    String line = "+" + fill('-', maxBoxWidth + 2) + "+";

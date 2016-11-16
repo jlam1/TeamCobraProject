@@ -2,10 +2,12 @@ package Main;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import Character.Monster;
 import Character.MonsterGenerator;
 import Character.Player;
+import Game.Function;
 import Item.Item;
 import Item.ItemGenerator;
 import LogicController.BattleLogic;
@@ -27,7 +29,7 @@ public class BattleTest {
 		List<Monster> monsters = new MonsterGenerator().getMonsterList();
 		BattleLogic logic = new BattleLogic(in);
 		
-		Monster monster = monsters.get(5);
+		Monster monster = monsters.get(6);
 		
 		Player player = new Player(50, 50, 1, 3, 2);
 		player.setName("HERO");

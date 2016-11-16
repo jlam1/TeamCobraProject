@@ -53,7 +53,7 @@ public class RoomGenerator {
 		roomList.add(room);
 		
 		room = new Room(4, "1-4", "You come to a room with several shelves with neatly stacked clothes on them, along the"
-				+ "\n shelves, there is a counter with a sink and a coffee maker."
+				+ "\nshelves, there is a counter with a sink and a coffee maker."
 				+ "\nA cabinet is above the coffee maker.", "SOUTH, WEST", false);
 		roomList.add(room);
 		

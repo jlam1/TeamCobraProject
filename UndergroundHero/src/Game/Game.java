@@ -107,7 +107,7 @@ public class Game {
 
 	private void createNewGame() {
 		gameRun = true;
-		player = new Player(100, 100, 1, 3, 2);
+		player = new Player(100, 100, 3, 3, 2);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));
@@ -116,8 +116,8 @@ public class Game {
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
 
-		f.printBox("ROOM [" + currentRoom.getName() + "]");
-		System.out.println(currentRoom.getDescription() + "\n\n");
+		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+		System.out.println(currentRoom.getDescription() + "\n");
 	}
 
 	public void menuScreen() {
@@ -134,21 +134,22 @@ public class Game {
 			System.out.println("|                 [4] Exit Game                           |");
 			f.printBox("#######################################################");
 			System.out.println("");
-			System.out.print(">>");
+			System.out.print(">> ");
 			String userInput = input.nextLine();
 
 			try {
 				if (userInput.equals("1")) {
-					System.out.println("Starting a new game...");
-					commandDescription();
+					System.out.print("<< CREATING NEW GAME ");
+					f.print("....", 300);
+					System.out.println("\n\n");
+					f.printBox("############## Type 'HELP' for COMMANDS ##############");
+					System.out.println("\n");
 					start = false;
 					createNewGame();
 					floor1Music();
 					play();
 				}
 				else if (userInput.equals("2")) {
-					System.out.print("Loading a saved state");
-					f.print("...\n", 300);
 					gameRun = true;
 					start = false;
 					load();
@@ -187,6 +188,7 @@ public class Game {
 				System.out.print(">>");
 				userInput = input.nextLine();
 				parseCommand(userInput);
+				System.out.println();
 			}
 
 			menuScreen();
@@ -206,6 +208,8 @@ public class Game {
 
 		if (nextRoom == null) {
 			System.out.println("Theres no exit that way, try another direction.");
+			f.delay(500);
+			look();
 		}
 
 		else if (factoryList.get(nextRoom.getId()).isLocked()) {
@@ -217,8 +221,8 @@ public class Game {
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
 				if (puzzleLogic.getPuzzleSolved()) {
 					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
-					f.printBox("ROOM [" + currentRoom.getName() + "]");
-					System.out.println(currentRoom.getDescription() + "\n\n");
+					f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+					System.out.println(currentRoom.getDescription() + "\n");
 
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
@@ -230,13 +234,15 @@ public class Game {
 			} else {
 				System.out.println("\"The door is locked.\"");
 				System.out.println("\"I need to find a way to unlock the door.\"");
+				f.delay(500);
+				look();
 			}
 		}
 
 		else {
 			currentRoom = nextRoom;
-			f.printBox("ROOM [" + currentRoom.getName() + "]");
-			System.out.println(currentRoom.getDescription() + "\n\n");
+			f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+			System.out.println(currentRoom.getDescription() + "\n");
 			iniMonster();
 			iniPuzzle();
 		}
@@ -291,6 +297,8 @@ public class Game {
 			}
 		}
 		
+		look();
+		
 	}
 
 	public void iniPuzzle() {
@@ -306,6 +314,8 @@ public class Game {
 				factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 			}
 		}
+		
+		look();
 	}
 
 	/**
@@ -326,26 +336,27 @@ public class Game {
 			break;
 
 		case "BAG":
-			f.delay(500);
+			f.delay(300);
 			player.openInventory();
 			break;
 
 		case "VIEW":
-			f.delay(500);
+			f.delay(300);
 			player.viewEquipment();
 			break;
 
 		case "EQUIP":
-			f.delay(500);
+			f.delay(300);
 			equip();
 			break;
 
 		case "INFO":
-			f.delay(500);
+			f.delay(300);
 			System.out.println(player.toString());
 			break;
 
 		case "USE":
+			f.delay(300);
 			useItem();
 			break;
 
@@ -354,7 +365,7 @@ public class Game {
 			break;
 
 		case "HELP":
-			f.delay(500);
+			f.delay(300);
 			commandDescription();
 			break;
 			
@@ -383,7 +394,7 @@ public class Game {
 		try {
 			player.openInventory();
 			System.out.println("Which item do you want to use? (Choose a number)");
-			System.out.print(">>");
+			System.out.print(">> ");
 			bagIndex = input.nextInt();
 			player.useItem(bagIndex);
 			input.nextLine();
@@ -397,7 +408,8 @@ public class Game {
 	 * @method Displays current room's name, description, and exits.
 	 */
 	private void look() {
-		f.printBox("ROOM [" + currentRoom.getName() + "]");
+		System.out.println();
+		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() != 21) {
@@ -405,9 +417,7 @@ public class Game {
 		}
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() == 21) {
 			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
-		}
-		System.out.println("\n\n");
-		
+		}	
 	}
 
 	private void pick() {
@@ -456,9 +466,9 @@ public class Game {
 		data.setFactoryList(factoryList);
 		try {
 			ResourceData.saveGame(data, "UndergroundHero.dat");
-			System.out.println("Save Sucessful");
+			System.out.println("<< SAVE SUCCESSFUL");
 		} catch (Exception e) {
-			System.out.println("error saving");
+			System.out.println("<< ERROR SAVING");
 			e.printStackTrace();
 		}
 
@@ -474,12 +484,12 @@ public class Game {
 			
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();
-			System.out.print("LOADING ");
-			f.print(".....\n", 300);
-			System.out.println("Loading successful.");
+			System.out.print("<< LOADING ");
+			f.print("....\n", 300);
+			System.out.println("Loading successful");
 			System.out.println();
-			commandDescription();
 			look();
+			System.out.println();
 			}
 			else
 			{
@@ -618,44 +628,40 @@ public class Game {
 		}
 	}
 
+	/**
+	 * @method displays list of commands and behavior description
+	 */
 	private void commandDescription()
 	{
-		f.printBox("##################### COMMANDS #####################");
-		System.out.println();
-		System.out.println("----------------------[NAVIGATION]----------------------");
-		System.out.println("These commands can be use only during navigation phase.");
+		System.out.println("\n");
+		f.printBox("################### [NAVIGATION] ###################");
+		System.out.println("[NORTH]\tMove North.");
+		System.out.println("[EAST]\tMove East.");
+		System.out.println("[SOUTH]\tMove South.");
+		System.out.println("[WEST]\tMove West.");
 		System.out.println("--------------------------------------------------------");
-		System.out.println("[NORTH]\tMove to the room to the north.");
-		System.out.println("[EAST]\tMove to the room to the east.");
-		System.out.println("[SOUTH]\tMove to the room to the south.");
-		System.out.println("[WEST]\tMove to the room to the west.");
-		System.out.println("--------------------------------------------------------");
-		System.out.println("[LOOK]\tDisplay the room description, exits, "
+		System.out.println("[LOOK]\tDisplay room description, exits, "
 				         + "\n\tand item existing in the room but it will not "
 				         + "\n\tshow any hidden exits.");
 		System.out.println("[PICK]\tPick up the item in the room");
 		System.out.println("--------------------------------------------------------");
-		System.out.println("[BAG]\tDisplay the items in the inventory");
-		System.out.println("[EQUIP]\tEquip any equipable the items in the inventory");
+		System.out.println("[BAG]\tDisplay items in inventory");
+		System.out.println("[EQUIP]\tEquip a weapon or armor");
 		System.out.println("[INFO]\tDisplay the player current status");
-		System.out.println("[USE]\tUse any consumeable items in the inventory");
-		System.out.println("[VIEW]\tLook at the player current equipment");
+		System.out.println("[USE]\tUse an item");
+		System.out.println("[VIEW]\tView current equipment");
 		System.out.println("--------------------------------------------------------");
-		System.out.println("[SAVE]\tSave the current game.");
-		System.out.println("[LOAD]\tLoad the latest save file game.");
-		System.out.println("--------------------------------------------------------");
+		System.out.println("[SAVE]\tSave game.");
+		System.out.println("[LOAD]\tLoad the latest save file.");
+		System.out.println("[HELP]\tView commands");
 		System.out.println();
-		System.out.println("----------------------[BATTLE]--------------------------");
-		System.out.println("These commands can only be used during the battle phase.");
-		System.out.println("--------------------------------------------------------");
-		System.out.println("[1. ATTACK]           Attack the present enemy");
-		System.out.println("[2. USE ITEM]         Use any consumeable items");
-		System.out.println("[3. DEFEND]           Defend from enemy attacks");
+		f.printBox("##################### [BATTLE] #####################");
+		System.out.println("[1. ATTACK]           Attack enemy");
+		System.out.println("[2. USE ITEM]         Use item");
+		System.out.println("[3. DEFEND]           Defend from enemy attack");
 		System.out.println("[4. FLEE]             Run from battle");
-		System.out.println("[5. VIEW INVENTORY]   Look at the player current items");
 		System.out.println("--------------------------------------------------------");
-		System.out.println();
-		f.delay(1000);
+		System.out.println("\n\n");
 	}
 	/**
 	 * @method Displays game intro
@@ -692,7 +698,7 @@ public class Game {
 		try {
 			System.out.println("");
 			TimeUnit.SECONDS.sleep(1);
-			f.printBox("=================== CREDITS ===================");
+			f.printBox("================== CREDITS ==================");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
@@ -726,7 +732,7 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("==================== (C)2016 ====================");
+			f.printBox("================== (C)2016 ==================");
 			TimeUnit.SECONDS.sleep(21);
 			
 			System.exit(0);		//exits application

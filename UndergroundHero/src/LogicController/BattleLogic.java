@@ -59,18 +59,26 @@ public class BattleLogic {
 			battleMusic();
 		}
 		while (battleRun) {
-			System.out.println("#########################################################");
+			System.out.println("########################################################\n");
+//			f.delay(100);
+			System.out.println("+------------------------------------------------------+");
+//			f.delay(100);
 			
-			f.printBox("     PLAYER: [" + player.getHp() + "/" + player.getMaxhp() + "]     |"
-					+ "     " + "MONSTER: [" + monster.getHp() + "/" + monster.getMaxhp() + "]     ");
+			System.out.println("|                        BATTLE                        |");
+			f.printBox("|--- PLAYER: [" + player.getHp() + "/" + player.getMaxhp() + "] ----|"
+					+ "---- " + "MONSTER: [" + monster.getHp() + "/" + monster.getMaxhp() + "] ---|");
 			
+//			f.delay(100);
 			System.out.println("");
-			f.printBox("COMMANDS");
-			System.out.println("1. [ATTACK]");
-			System.out.println("2. [USE ITEM]");
-			System.out.println("3. [DEFEND]");
-			System.out.println("4. [RUN]\n");
-			System.out.println("#########################################################\n");
+//			f.delay(100);
+			System.out.println("+------------------------------------------------------+");
+			System.out.println("|                    BATTLE COMMANDS                   |");
+			System.out.println("|       1. [ATTACK]                   3. [DEFEND]      |");
+			System.out.println("|       2. [USE ITEM]                 4. [RUN]         |");
+			System.out.println("+------------------------------------------------------+");
+			System.out.println();
+//			f.delay(100);
+			System.out.println("########################################################\n");
 
 			System.out.print(">>");
 			String userInput = input.nextLine();
@@ -124,7 +132,7 @@ public class BattleLogic {
 	private void battle(Player player, Monster monster) {
 		//if player has more speed
 		if(player.getSpd() > monster.getSpd()) {
-			System.out.println("---------------------------------------------");
+			System.out.println("+------------------------------------------------------+");
 			delay();
 			System.out.println("[" + player.getName() + "] goes first!");
 			delay();
@@ -137,7 +145,7 @@ public class BattleLogic {
 				checkDead(player, monster);
 			}
 
-			System.out.println("---------------------------------------------");
+			System.out.println("+------------------------------------------------------+");
 			delay();
 		}
 		//if both player and monster have same speed
@@ -145,9 +153,9 @@ public class BattleLogic {
 			double chance = (Math.random()*100);
 			//chance goes to player first
 			if(chance > 50) {
-				System.out.println("---------------------------------------------");
+				System.out.println("+------------------------------------------------------+");
 //				delay();
-				System.out.println("[" + player.getName().toUpperCase() + "] goes first!");
+				System.out.println("[" + player.getName() + "] goes first!");
 //				delay();
 				player.attack(monster);
 //				delay();
@@ -157,12 +165,12 @@ public class BattleLogic {
 					monster.attack(player);
 					checkDead(player, monster);
 				}
-				System.out.println("---------------------------------------------");
+				System.out.println("+------------------------------------------------------+");
 //				delay();
 			}
 			//chance goes to monster first
 			else {
-				System.out.println("---------------------------------------------");
+				System.out.println("+------------------------------------------------------+");
 //				delay();
 				System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
 //				delay();
@@ -174,13 +182,13 @@ public class BattleLogic {
 					player.attack(monster);
 					checkDead(player, monster);
 				}
-				System.out.println("---------------------------------------------");
+				System.out.println("+------------------------------------------------------+");
 //				delay();
 			}
 		}
 		//if monster has more speed
 		else{
-			System.out.println("---------------------------------------------");
+			System.out.println("+------------------------------------------------------+");
 //			delay();
 			System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
 //			delay();
@@ -192,7 +200,7 @@ public class BattleLogic {
 				player.attack(monster);
 				checkDead(player, monster);
 			}
-			System.out.println("---------------------------------------------");
+			System.out.println("+------------------------------------------------------+");
 //			delay();
 		}
 	}
@@ -217,7 +225,7 @@ public class BattleLogic {
 		if(monster.getHp() <= 0) {
 			monster.setDead(true);
 			battleRun = false;
-			System.out.println("---------------------------------------------");
+			System.out.println("+------------------------------------------------------+");
 			System.out.println(" # " + monster.getName().toUpperCase() + " was defeated! #");
 			victoryMusic();
 			try {
@@ -231,14 +239,14 @@ public class BattleLogic {
 	}
 	
 	private void defend(Player player, Monster monster) {
-		System.out.println("---------------------------------------------");
+		System.out.println("+------------------------------------------------------+");
 //		delay();
 		System.out.println("[" + player.getName().toUpperCase() + "] defends!");
 		int damageDealt = Math.abs(player.getDef() - monster.getAtk());
 		player.setHp(player.getHp() - damageDealt);
 //		delay();
 		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + player.getName().toUpperCase() + "] for " + damageDealt + " damage!");
-		System.out.println("---------------------------------------------");
+		System.out.println("+------------------------------------------------------+");
 		checkDead(player, monster);
 //		delay();
 	}
