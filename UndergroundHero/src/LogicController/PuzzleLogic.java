@@ -4,7 +4,6 @@ package LogicController;
  * @author John, King, Kyle
  */
 import java.io.Serializable;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -32,64 +31,12 @@ public class PuzzleLogic implements Serializable {
 	private String userInput;
 	private MusicLogic musicLogic;
 	private Function f = new Function();
-	private Room currentRoom;
 
 	public PuzzleLogic(Scanner in) {
 		input = in;
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
 	}
-
-	private void puzzleMusic() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/puzzle.wav");
-		musicLogic.BGMLoop();
-	}
-	private void solveMusic()
-	{
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/solvetune.wav");
-		musicLogic.BGMPlay();
-	}
 	
-	public void floor1Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor1.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	/*public void floor2Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor2.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	public void floor3Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor3.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	public void floor4Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor4.wav");
-		musicLogic.BGMLoop();
-	}
-
-	public void floorMusicChecker(){
-		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
-			floor1Music();
-		}
-		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
-			floor2Music();
-		}
-		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
-			floor3Music();
-		}
-		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
-			floor4Music();
-		}
-	}*/
-
 	/**
 	 * @method This method will check if puzzle exists in the current room. If
 	 *         empty, return null. If not the method wil prompt the player on
@@ -191,7 +138,7 @@ public class PuzzleLogic implements Serializable {
 		if (player.checkInventoryKeyItem(puzzleKeyItem)) {
 			puzzle.setSolved(true);
 			puzzleSolved = true;
-			floor1Music();
+//			floor1Music();
 		}
  
 		// if player does not have puzzle key in inventory, puzzle is not solved
@@ -226,7 +173,7 @@ public class PuzzleLogic implements Serializable {
 			System.out.println("-------------------------------------------------");
 			puzzleLoop = false;
 			puzzleRun = false;
-			floor1Music();
+//			floor1Music();
 			}
 		}
 	}
@@ -248,7 +195,7 @@ public class PuzzleLogic implements Serializable {
 			if (userInput.equalsIgnoreCase("LEAVE")) {
 				System.out.print("Leaving puzzle");
 				f.print("...\n", 300);
-				floor1Music();
+//				floor1Music();
 				puzzleRun = false;
 				riddleLoop = false;
 				puzzleLoop = false;
@@ -268,7 +215,7 @@ public class PuzzleLogic implements Serializable {
 				riddleLoop = false;
 				puzzleLoop = false;
 				puzzleRun = false;
-				floor1Music();
+//				floor1Music();
 			}
 
 			// if riddle answer is incorrect
@@ -288,7 +235,7 @@ public class PuzzleLogic implements Serializable {
 						riddleLoop = false;
 						puzzleLoop = false;
 						puzzleRun = false;
-						floor1Music();
+//						floor1Music();
 						break;
 					}
 					if(userInput.equalsIgnoreCase("Y")) {
@@ -296,6 +243,7 @@ public class PuzzleLogic implements Serializable {
 					}
 					else {
 						System.out.println("Wrong input command.");
+						break;
 					}
 				}
 				
@@ -307,34 +255,70 @@ public class PuzzleLogic implements Serializable {
 		}
 
 	}
+	
 
-	private void print(String string, long delay) {
-		try {
-			for (char ch : string.toCharArray()) {
-				System.out.print(ch);
-				TimeUnit.MILLISECONDS.sleep(delay);
-			}
-		} catch (InterruptedException e) {
-			System.out.println("InterruptedException: print()");
+	private void puzzleMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/puzzle.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void solveMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/solvetune.wav");
+		musicLogic.BGMPlay();
+	}
+	
+	public void floor1Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor1.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor2Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor2.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor3Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor3.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor4Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor4.wav");
+		musicLogic.BGMLoop();
+	}
+
+	public void checkFloorMusic(Room currentRoom){
+		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
+			floor1Music();
 		}
-
+		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
+			floor2Music();
+		}
+		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
+			floor3Music();
+		}
+		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
+			floor4Music();
+		}
 	}
 	
 	private void checkSequenceCorrect()
 	{
 		System.out.print("CHECKING INPUT");
-//		for(int i = 0; i < 3; i++)
-		print("......\n", 300);
-		System.out.print("INPUT IS CORRECT");
-		print("...\n", 300);
+		f.print("......\n", 300);
+		System.out.println("INPUT IS CORRECT");
 	}
 	private void checkSequenceIncorrect()
 	{
 		System.out.print("CHECKING INPUT");
-//		for(int i = 0; i < 3; i++)
-		print("...\n", 300);
-		System.out.print("INPUT IS INCORRECT");
-		print("...\n", 300);
+		f.print("...\n", 300);
+		System.out.println("INPUT IS INCORRECT");
 	}
 
 }

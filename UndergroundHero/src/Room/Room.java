@@ -28,7 +28,7 @@ public class Room implements Properties, Comparable<Room>, Serializable {
 	private Map<String, Room> exitMap;
 
 	/**
-	 * The following method is the constructor for basic Room objects.
+	 * The following constructor is for a Basic Type Room.
 	 * 
 	 * @param id
 	 * @param name
@@ -46,8 +46,7 @@ public class Room implements Properties, Comparable<Room>, Serializable {
 	}
 
 	/**
-	 * The following method is the specific constructor for Item type Room
-	 * objects.
+	 * The following constructor is for Item Type Room.
 	 * 
 	 * @param id
 	 * @param name
@@ -68,8 +67,7 @@ public class Room implements Properties, Comparable<Room>, Serializable {
 	}
 
 	/**
-	 * The following method is the specific constructor for Monster type
-	 * Room objects.
+	 * The following constructor is for Monster Type Room.
 	 * 
 	 * @param id
 	 * @param name
@@ -89,7 +87,7 @@ public class Room implements Properties, Comparable<Room>, Serializable {
 	}
 	
 	/**
-	 * The following method is the constructor for Puzzle type Room objects.
+	 * The following constructor is for Puzzle Type Room.
 	 * 
 	 * @param id
 	 * @param name

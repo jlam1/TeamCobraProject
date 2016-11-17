@@ -27,11 +27,10 @@ public class BattleTest {
 //		List<Room> rooms = new RoomFactory().getRoomFactoryList();
 		List<Item> itemList = new ItemGenerator().getItemList();
 		List<Monster> monsters = new MonsterGenerator().getMonsterList();
-		BattleLogic logic = new BattleLogic(in);
 		
-		Monster monster = monsters.get(6);
+		Monster monster = monsters.get(7);
 		
-		Player player = new Player(50, 50, 1, 3, 2);
+		Player player = new Player(20, 20, 2, 3, 2);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));
@@ -42,6 +41,7 @@ public class BattleTest {
 		player.startingEquip(0);
 		player.startingEquip(0);
 		
+		BattleLogic logic = new BattleLogic(in);
 		logic.initiateBattle(player, monster);
 		
 	}

@@ -1,6 +1,7 @@
 package Character;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import Item.Item;
@@ -27,6 +28,7 @@ public class Monster extends Character implements Serializable {
 		this.description = description;
 		this.isBoss = isBoss;
 		this.loot = loot;
+		skillList = new ArrayList<Skill>();
 	}
 	
 	public void addSkill(Skill skill) {

@@ -25,7 +25,7 @@ import Room.RoomFactory;
 public class Game {
 	private List<Room> factoryList;
 	private List<Item> itemList;
-	private Room nextRoom, currentRoom, lockedRoom;
+	private Room nextRoom, currentRoom, lockedRoom, returnRoom;
 	private Player player;
 	private PuzzleLogic puzzleLogic;
 	private BattleLogic battleLogic;
@@ -34,62 +34,6 @@ public class Game {
 	private Function f;
 	private int bagIndex;
 	private boolean gameRun;
-
-	/**
-	 * @return
-	 * @method Load all assets to game object
-	 */
-
-	public void floor1Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor1.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	/*public void floor2Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor2.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	public void floor3Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor3.wav");
-		musicLogic.BGMLoop();
-	}
-	
-	public void floor4Music() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/floor4.wav");
-		musicLogic.BGMLoop();
-	}*/
-
-	public void menuMusic() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/menu.wav");
-		musicLogic.BGMLoop();
-	}
-
-	public void endingMusic() {
-		musicLogic.BGMStop();
-		musicLogic = new MusicLogic("src/sound/ending.wav");
-		musicLogic.BGMPlay();
-	}
-	
-	/*public void floorMusicChecker(){
-		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
-			floor1Music();
-		}
-		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
-			floor2Music();
-		}
-		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
-			floor3Music();
-		}
-		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
-			floor4Music();
-		}
-	}*/
 
 	public Game() {
 		input = new Scanner(System.in);
@@ -116,7 +60,7 @@ public class Game {
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
 
-		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+		f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
 		System.out.println(currentRoom.getDescription() + "\n");
 	}
 
@@ -241,10 +185,12 @@ public class Game {
 
 		else {
 			currentRoom = nextRoom;
-			f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+			f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
 			System.out.println(currentRoom.getDescription() + "\n");
 			iniMonster();
+//			battleLogic.checkFloorMusic(currentRoom);
 			iniPuzzle();
+//			puzzleLogic.checkFloorMusic(currentRoom);
 		}
 	}
 
@@ -256,6 +202,7 @@ public class Game {
 			// if boss, spawnrate is 100%
 			if (monster.isBoss()) {
 				battleLogic.initiateBattle(player, monster);
+				battleLogic.checkFloorMusic(currentRoom);
 			}
 
 			// check player dead
@@ -288,6 +235,7 @@ public class Game {
 
 				if (chance < SPAWN_RATE) {
 					battleLogic.initiateBattle(player, monster);
+					battleLogic.checkFloorMusic(currentRoom);
 				}
 			}
 
@@ -297,14 +245,13 @@ public class Game {
 			}
 		}
 		
-		look();
-		
 	}
 
 	public void iniPuzzle() {
 		Puzzle puzzle = nextRoom.getRoomPuzzle();
 		if (puzzle != null && !factoryList.get(nextRoom.getId()).getRoomPuzzle().isSolved()) {
 			puzzleLogic.initiatePuzzle(currentRoom, player);
+			puzzleLogic.checkFloorMusic(currentRoom);
 
 			if (puzzleLogic.getPuzzleSolved()) {
 				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
@@ -315,7 +262,6 @@ public class Game {
 			}
 		}
 		
-		look();
 	}
 
 	/**
@@ -409,7 +355,7 @@ public class Game {
 	 */
 	private void look() {
 		System.out.println();
-		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+		f.printBox("######################### ROOM " + currentRoom.getName() + " ############################");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() != 21) {
@@ -742,15 +688,61 @@ public class Game {
 		}
 		gameRun = false;
 	}
+	
+	private void floor1Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor1.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor2Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor2.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor3Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor3.wav");
+		musicLogic.BGMLoop();
+	}
+	
+	private void floor4Music() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/floor4.wav");
+		musicLogic.BGMLoop();
+	}
 
-	/*private void checkSequence()
-	{
-		System.out.print("CHECKING INPUT");
-		for(int i = 0; i < 3; i++)
-		print("...", 300);
-		System.out.println();
-		System.out.println("INPUT IS CORRECT");
-	}*/
+	private void menuMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/menu.wav");
+		musicLogic.BGMLoop();
+	}
+
+	private void endingMusic() {
+		musicLogic.BGMStop();
+		musicLogic = new MusicLogic("src/sound/ending.wav");
+		musicLogic.BGMPlay();
+	}
+	
+	public void floorMusicChecker(Room currentRoom){
+		if (currentRoom.getId() == 1 || currentRoom.getId() == 9){
+			floor1Music();
+		}
+		else if (currentRoom.getId() == 10 || currentRoom.getId() == 18){
+			floor2Music();
+		}
+		else if (currentRoom.getId() == 19 || currentRoom.getId() == 28){
+			floor3Music();
+		}
+		else if (currentRoom.getId() == 29 || currentRoom.getId() == 41){
+			floor4Music();
+		}
+	}
+	
+	public Room getCurrentRoom() {
+		return this.returnRoom;
+	}
 	
 	// private String wrapText(String longDescription){
 	// String shortDesc = WordUtils.wrap(longDescription, 50);
