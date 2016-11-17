@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Game.Function;
 import Item.Item;
 
 /**
@@ -11,7 +12,7 @@ import Item.Item;
  * This class is responsible for player attributes and behaviors including
  * battle status and inventory usage.
  * 
- * @author John, Matt
+ * @author John, Matt, King
  *
  */
 public class Player extends Character implements Serializable {
@@ -19,22 +20,8 @@ public class Player extends Character implements Serializable {
 	private static final long serialVersionUID = 8154838844933306541L;
 	private List<Item> inventory;
 	private ArrayList<Item> equipment;
+	private Function f = new Function();
 
-	/**
-	 * The following is the constructor method for Player type Character
-	 * objects.
-	 * 
-	 * @param maxhp
-	 *            From parent.
-	 * @param hp
-	 *            From parent.
-	 * @param atk
-	 *            From parent.
-	 * @param spd
-	 *            From parent.
-	 * @param def
-	 *            From parent.
-	 */
 	public Player(int maxhp, int hp, int atk, int spd, int def) {
 		super(maxhp, hp, atk, spd, def);
 		inventory = new ArrayList<Item>();
@@ -75,16 +62,14 @@ public class Player extends Character implements Serializable {
 		if (!this.inventory.isEmpty()) {
 			int bagID = 0;
 
-			System.out.println("----------------------------------");
-			System.out.println("[[[ INVENTORY BAG ]]]");
+			f.printBox("# INVENTORY BAG #");
 
 			for (Item i : this.inventory) {
-				System.out.println(bagID + ". [" + i.getName().toUpperCase() + "]");
+				System.out.println("[" + bagID + "] " + formatPrintInventory(i));
 				bagID++;
 			}
 
-			System.out.println("----------------------------------");
-			System.out.println("\n");
+			System.out.println("\n\n");
 		} else {
 			System.out.println("Your inventory is empty.");
 		}
@@ -98,25 +83,17 @@ public class Player extends Character implements Serializable {
 	 */
 	public void viewEquipment() {
 		if (!this.equipment.isEmpty()) {
-			int bagID = 0;
-
-			System.out.println("----------------------------------");
-			System.out.println("[[[ EQUIPMENT ]]]");
+			
+			f.printBox("# EQUIPMENT #");
 
 			for (Item i : this.equipment) {
-				System.out.println(bagID + ". " + i.getName());
-				bagID++;
+				System.out.println(formatPrintInventory(i));
 			}
 
-			System.out.println("----------------------------------");
-			System.out.println("\n");
+			System.out.println("\n\n");
 		} else {
 			System.out.println("Your equipment is empty.");
 		}
-	}
-
-	public void startingItem(Item item) {
-		this.inventory.add(item);
 	}
 
 	/**
@@ -127,7 +104,6 @@ public class Player extends Character implements Serializable {
 	 * @return Void
 	 */
 	public void pickUp(Item item) {
-		//System.out.println("[" + item.getName().toUpperCase() + "]" + " has been added to your [INVENTORY].\n");
 		this.inventory.add(item);
 	}
 
@@ -145,6 +121,9 @@ public class Player extends Character implements Serializable {
 	public void useItem(int index) {
 		try {
 			if (this.inventory.get(index).getType().equalsIgnoreCase("CONSUMABLE")) {
+				
+				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
+				
 				if (this.inventory.get(index).getId() == 4) {
 					int healing = this.getHp() + 10;
 					if (healing > this.getMaxhp()) {
@@ -154,19 +133,20 @@ public class Player extends Character implements Serializable {
 					}
 					System.out.println("You healed for 10 HP!");
 				}
+				
 				if (this.inventory.get(index).getId() == 5) {
 					this.setMaxhp(this.maxhp + 5);
 					this.setHp(this.getMaxhp());
 					System.out.println("You are fully healed, and your max hp is increased by 5!");
 				}
-				System.out.println("You used [" + this.inventory.get(index).getName() + "]\n");
+
 				this.inventory.remove(index);
 
 			} else {
 				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
 			}
 		} catch (IndexOutOfBoundsException e) {
-
+			System.out.println("Invalid input.");
 		}
 	}
 
@@ -267,10 +247,11 @@ public class Player extends Character implements Serializable {
 			
 		}
 	}
-	/**
-	 * The following method overrides the toString method for Object to create a
-	 * custom Player toString().
-	 */
+	
+	private String formatPrintInventory(Item item) {
+		return String.format("%-30s%-20s", item.getName(), item.getDescription());
+	}
+	
 	@Override
 	public String toString() {
 		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t ["

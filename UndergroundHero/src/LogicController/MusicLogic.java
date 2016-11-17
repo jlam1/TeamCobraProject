@@ -1,5 +1,10 @@
 package LogicController;
 
+/**
+ * This class is responsible for music and soundfx behaviors.
+ * @author Kyle
+ */
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import Character.Monster;
 import Character.Player;
-import Generator.ItemGenerator;
 import Item.Item;
+import Item.ItemGenerator;
 import LogicController.BattleLogic;
 import LogicController.MusicLogic;
 import LogicController.PuzzleLogic;
@@ -19,7 +19,7 @@ import Room.RoomFactory;
 
 /**
  * This class is responsible for parsing user's inputs and creating new game.
- *
+ * @author John, King, Kyle, Matt
  */
 public class Game {
 	private List<Room> factoryList;
@@ -30,6 +30,7 @@ public class Game {
 	private BattleLogic battleLogic;
 	private MusicLogic musicLogic;
 	private Scanner input;
+	private Function f;
 	private int bagIndex;
 	private boolean gameRun;
 
@@ -93,6 +94,7 @@ public class Game {
 		input = new Scanner(System.in);
 		factoryList = new RoomFactory().getRoomFactoryList();
 		itemList = new ItemGenerator().getItemList();
+		f = new Function();
 		puzzleLogic = new PuzzleLogic(input);
 		battleLogic = new BattleLogic(input);
 		musicLogic = new MusicLogic("src/sound/menu.wav");
@@ -104,51 +106,49 @@ public class Game {
 
 	private void createNewGame() {
 		gameRun = true;
-		player = new Player(100, 100, 1, 3, 2);
+		player = new Player(100, 100, 3, 3, 2);
 		player.setName("HERO");
-		player.startingItem(itemList.get(0));
-		player.startingItem(itemList.get(2));
-		player.startingItem(itemList.get(4));
+		player.pickUp(itemList.get(0));
+		player.pickUp(itemList.get(2));
+		player.pickUp(itemList.get(4));
 		player.startingEquip(0);
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
 
-		System.out.println("-------------------------------------------------------");
-		System.out.println("[" + currentRoom.getName() + "]");
-		System.out.println(currentRoom.getDescription());
-		System.out.println("-------------------------------------------------------");
+		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+		System.out.println(currentRoom.getDescription() + "\n");
 	}
 
 	public void menuScreen() {
 		displayIntro();
-		// viewCommands();
-		// viewHelp();
+		
 		boolean start = true;
 		while (start) {
 			menuMusic();
 			System.out.println("");
-			System.out.println("------------------------# MENU #-----------------------");
-			System.out.println("                   1. Start New Game                   ");
-			System.out.println("                   2. Load Saved Game                  ");
-			System.out.println("                   3. Gameplay Guide                   ");
-			System.out.println("                   4. Exit Game                        ");
-			System.out.println("-------------------------------------------------------");
+			f.printBox("######################## MENU #########################");
+			System.out.println("|                 [1] New Game                            |");
+			System.out.println("|                 [2] Load Game                           |");
+			System.out.println("|                 [3] Gameplay Guide                      |");
+			System.out.println("|                 [4] Exit Game                           |");
+			f.printBox("#######################################################");
 			System.out.println("");
-			System.out.print(">>");
+			System.out.print(">> ");
 			String userInput = input.nextLine();
 
 			try {
 				if (userInput.equals("1")) {
-					System.out.println("Starting a new game...");
-					viewCommands();
+					System.out.print("<< CREATING NEW GAME ");
+					f.print("....", 300);
+					System.out.println("\n\n");
+					f.printBox("############## Type 'HELP' for COMMANDS ##############");
+					System.out.println("\n");
 					start = false;
 					createNewGame();
 					floor1Music();
 					play();
 				}
 				else if (userInput.equals("2")) {
-					System.out.print("Loading a saved state");
-					print(".....\n", 300);
 					gameRun = true;
 					start = false;
 					load();
@@ -156,8 +156,8 @@ public class Game {
 					play();
 				}
 				else if (userInput.equalsIgnoreCase("3")) {
-					viewHelp();
-					viewCommands();
+					f.delay(500);
+					commandDescription();
 				}
 				else if (userInput.equals("4")) {
 					System.out.println("Exiting game...");
@@ -187,6 +187,7 @@ public class Game {
 				System.out.print(">>");
 				userInput = input.nextLine();
 				parseCommand(userInput);
+				System.out.println();
 			}
 
 			menuScreen();
@@ -206,6 +207,8 @@ public class Game {
 
 		if (nextRoom == null) {
 			System.out.println("Theres no exit that way, try another direction.");
+			f.delay(500);
+			look();
 		}
 
 		else if (factoryList.get(nextRoom.getId()).isLocked()) {
@@ -217,10 +220,8 @@ public class Game {
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
 				if (puzzleLogic.getPuzzleSolved()) {
 					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
-					System.out.println("-------------------------------------------------------");
-					System.out.println("[" + nextRoom.getName() + "]");
-					System.out.println(nextRoom.getDescription());
-					System.out.println("-------------------------------------------------------");
+					f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+					System.out.println(currentRoom.getDescription() + "\n");
 
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
@@ -232,15 +233,15 @@ public class Game {
 			} else {
 				System.out.println("\"The door is locked.\"");
 				System.out.println("\"I need to find a way to unlock the door.\"");
+				f.delay(500);
+				look();
 			}
 		}
 
 		else {
 			currentRoom = nextRoom;
-			System.out.println("-------------------------------------------------------");
-			System.out.println("[" + currentRoom.getName() + "]");
-			System.out.println(currentRoom.getDescription());
-			System.out.println("-------------------------------------------------------");
+			f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+			System.out.println(currentRoom.getDescription() + "\n");
 			iniMonster();
 			iniPuzzle();
 		}
@@ -295,6 +296,8 @@ public class Game {
 			}
 		}
 		
+		look();
+		
 	}
 
 	public void iniPuzzle() {
@@ -310,6 +313,8 @@ public class Game {
 				factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 			}
 		}
+		
+		look();
 	}
 
 	/**
@@ -330,22 +335,27 @@ public class Game {
 			break;
 
 		case "BAG":
+			f.delay(300);
 			player.openInventory();
 			break;
 
 		case "VIEW":
+			f.delay(300);
 			player.viewEquipment();
 			break;
 
 		case "EQUIP":
+			f.delay(300);
 			equip();
 			break;
 
 		case "INFO":
+			f.delay(300);
 			System.out.println(player.toString());
 			break;
 
 		case "USE":
+			f.delay(300);
 			useItem();
 			break;
 
@@ -354,15 +364,7 @@ public class Game {
 			break;
 
 		case "HELP":
-			viewHelp();
-			viewCommands();
-			break;
-
-		case "VIEW COMMANDS":
-			viewCommands();
-			break;
-			
-		case "DESC":
+			f.delay(300);
 			commandDescription();
 			break;
 			
@@ -391,7 +393,7 @@ public class Game {
 		try {
 			player.openInventory();
 			System.out.println("Which item do you want to use? (Choose a number)");
-			System.out.print(">>");
+			System.out.print(">> ");
 			bagIndex = input.nextInt();
 			player.useItem(bagIndex);
 			input.nextLine();
@@ -405,8 +407,8 @@ public class Game {
 	 * @method Displays current room's name, description, and exits.
 	 */
 	private void look() {
-		System.out.println("-------------------------------------------------------");
-		System.out.println("[" + currentRoom.getName() + "]");
+		System.out.println();
+		f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() != 21) {
@@ -414,8 +416,7 @@ public class Game {
 		}
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() == 21) {
 			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
-		}
-		System.out.println("-------------------------------------------------------");
+		}	
 	}
 
 	private void pick() {
@@ -464,9 +465,9 @@ public class Game {
 		data.setFactoryList(factoryList);
 		try {
 			ResourceData.saveGame(data, "UndergroundHero.dat");
-			System.out.println("Save Sucessful");
+			System.out.println("<< SAVE SUCCESSFUL");
 		} catch (Exception e) {
-			System.out.println("error saving");
+			System.out.println("<< ERROR SAVING");
 			e.printStackTrace();
 		}
 
@@ -482,23 +483,23 @@ public class Game {
 			
 			player = data.getPlayer();
 			factoryList = data.getFactoryList();
-			System.out.print("LOADING ");
-			print(".....\n", 300);
-			System.out.println("Loading successful.");
+			System.out.print("<< LOADING ");
+			f.print("....\n", 300);
+			System.out.println("Loading successful");
 			System.out.println();
-			viewCommands();
 			look();
+			System.out.println();
 			}
 			else
 			{
 				System.out.println("There is currently no file to load. \nA new game will be created.");
-				print("       ", 500);
+				f.print("       ", 500);
 				System.out.println();
 				System.out.print("Please Wait");
-				print("       ", 500);
+				f.print("       ", 500);
 				System.out.println();
 				System.out.println("New game created.");
-				print("       ", 500);
+				f.print("       ", 500);
 				System.out.println();
 				
 				createNewGame();
@@ -558,7 +559,6 @@ public class Game {
 	 */
 	private void checkRoomPuzzleLocks(Puzzle puzzle) {
 
-		
 		if(puzzle.isSolved() == true) {
 			
 			switch(puzzle.getId()) {
@@ -618,90 +618,44 @@ public class Game {
 	}
 
 	/**
-	 * @method Displays further information about what the user will be
-	 *         interacting in the game.
+	 * @method displays list of commands and behavior description
 	 */
-	private void viewHelp() {
-		System.out.println("-------------------------------------------------------\n");
-		System.out.println("******************[NAGIVATION]******************");
-		System.out.println(
-				"The inputs allowed for navigation are North, South, East, and West. Not all rooms will have four exits.");
-		System.out.println("The player is allowed to revisit past rooms.\n");
-		System.out.println("******************[ROOM]******************");
-		System.out.println(
-				"While inside a room the player can view the room number, room description, and existing exits by using the \"look\" command.");
-		System.out.println("Rooms can contain either a puzzle or monster, and the game will prompt the player of their existence.\n");
-		System.out.println("******************[PUZZLE]******************");
-		System.out.println(
-				"While in a puzzle, the player can view the puzzle or leave. Once viewed, the puzzle will display the description and prompt the user to solve it.\n");
-		System.out.println("******************[INVENTORY]******************");
-		System.out.println(
-				"The player, while not in battle or a puzzle, is allowed to view their status, equipments, inventory, and are able to use items.\n");
-		System.out.println("******************[BATTLE]******************");
-		System.out.println(
-				"During a battle, the player can \"attack\", \"use item\", \"defend\", \"run\", and \"view inventory\" using the following commands [1], [2], [3], [4], & [5] respectively.\n");
-		System.out.println("\n\nTo view commands In-Game, type [VIEW COMMANDS]\n");
-		System.out.println("-------------------------------------------------------");
-	}
-
-	/**
-	 * @method Displays game commands
-	 */
-	private void viewCommands() {
-		System.out.println("-------------------------------------------------------");
-		System.out.println("The following commands are not case sensitive.\n");
-		System.out.println("NAVIGATION:	[NORTH], [EAST], [SOUTH], [WEST]");
-		System.out.println("ROOM:		[LOOK], [PICK]");
-		System.out.println("INVENTORY:	[BAG], [EQUIP], [INFO], [USE], [VIEW]");
-		System.out.println("BATTLE:		[1. ATTACK], [2. USE ITEM], [3. DEFEND], [4. FLEE], [5. VIEW INVENTORY]");
-		System.out.println("SAVE/LOAD:	[SAVE], [LOAD]\n");
-		System.out.println("To get a description of the commands type [DESC]");
-		System.out.println("To exit the game, type [QUIT]");
-		System.out.println("For \"In-Game\" help only, type [HELP]");
-		System.out.println("-------------------------------------------------------");
-	}
-
 	private void commandDescription()
 	{
-		System.out.println("------------------[NAVIGATION]-------------------------");
-		System.out.println("These commands can be use only during navigation phase.");
-		System.out.println("-------------------------------------------------------");
-		System.out.println("[NORTH] move to the room to the north.");
-		System.out.println("[EAST]  move to the room to the east.");
-		System.out.println("[SOUTH] move to the room to the south.");
-		System.out.println("[WEST]  move to the room to the west.");
-		System.out.println("---------------------------------------");
-		System.out.println("[LOOK]  display the room description, exits, "
-				         + "and item existing in the room but it will not "
-				         + "show any hidden exits.");
-		System.out.println("[PICK]  pick up the item in the room");
-		System.out.println("-------------------------------------------------");
-		System.out.println("[BAG]    display the items in the inventory");
-		System.out.println("[EQUIP]  equip any equipable the items in the inventory");
-		System.out.println("[INFO]   display the player current status");
-		System.out.println("[USE]    use any consumeable items in the inventory");
-		System.out.println("[VIEW]   look at the player current equipment");
-		System.out.println("---------------------------------------------------");
-		System.out.println("[SAVE]   save the current game.");
-		System.out.println("[LOAD]   load the latest save file game.");
-		System.out.println("---------------------------------------------------");
-		System.out.println();
-		System.out.println("----------------------[BATTLE]--------------------------");
-		System.out.println("These commands can only be used during the battle phase.");
+		System.out.println("\n");
+		f.printBox("################### [NAVIGATION] ###################");
+		System.out.println("[NORTH]\tMove North.");
+		System.out.println("[EAST]\tMove East.");
+		System.out.println("[SOUTH]\tMove South.");
+		System.out.println("[WEST]\tMove West.");
 		System.out.println("--------------------------------------------------------");
-		System.out.println("[1. ATTACK]           attack the present enemy");
-		System.out.println("[2. USE ITEM]         use any consumeable items");
-		System.out.println("[3. DEFEND]           defend from enemy attacks");
-		System.out.println("[4. FLEE]             run from battle");
-		System.out.println("[5. VIEW INVENTORY]   look at the player current items");
+		System.out.println("[LOOK]\tDisplay room description, exits, "
+				         + "\n\tand item existing in the room but it will not "
+				         + "\n\tshow any hidden exits.");
+		System.out.println("[PICK]\tPick up the item in the room");
 		System.out.println("--------------------------------------------------------");
+		System.out.println("[BAG]\tDisplay items in inventory");
+		System.out.println("[EQUIP]\tEquip a weapon or armor");
+		System.out.println("[INFO]\tDisplay the player current status");
+		System.out.println("[USE]\tUse an item");
+		System.out.println("[VIEW]\tView current equipment");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("[SAVE]\tSave game.");
+		System.out.println("[LOAD]\tLoad the latest save file.");
+		System.out.println("[HELP]\tView commands");
 		System.out.println();
+		f.printBox("##################### [BATTLE] #####################");
+		System.out.println("[1. ATTACK]           Attack enemy");
+		System.out.println("[2. USE ITEM]         Use item");
+		System.out.println("[3. DEFEND]           Defend from enemy attack");
+		System.out.println("[4. FLEE]             Run from battle");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("\n\n");
 	}
 	/**
 	 * @method Displays game intro
 	 */
 	private void displayIntro() {
-		System.out.println("-------------------------------------------------------");
 		System.out.println(
 						  "O       o             o                                                      o       o      O                     \n"
 						+ "o       O            O                                                      O        O      o                     \n"
@@ -713,11 +667,13 @@ public class Game {
 						+ " `OoooO`   o   O `OoO`  `OoO'  o     `OoOo  o     `OoO'  `OoO'o  o   O  `OoO'o       o      O  `OoO'  o     `OoO' \n"
 						+ "                                         O                                                                        \n"
 						+ "                                      OoO'                                                                        \n");
-		System.out.println("You have infiltrated the lair of the infamous super villain, \"Joe-Ker\"."
-				+ "\n\nYour only powers are your exceeding wit and skill in combat. "
-				+ "\n\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
-				+ "\n\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
-				+ "\n\n\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!"
+		System.out.println("");
+		f.printBox("######################## INTRO ########################");
+		System.out.println("You have infiltrated the lair of the infamous "
+				+ "\nsuper villain, \"Joe-Ker\". Your only powers are your exceeding wit and skill in combat. "
+				+ "\nThere are a total of 4 floors and 42 rooms filled with monsters and puzzles blocking your way. "
+				+ "\nTraverse through all floors and beat \"Joe-Ker\" to win the game and SAVE THE WORLD!! "
+				+ "\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!"
 				+ "\nWe recommend resizing your command line window size to 128x64."
 				+ "\n - For Windows users: Right-click the title bar and click 'Properties'"
 				+ "\n - Click the 'Layout' tab and adjust 'Window Size'"
@@ -727,13 +683,11 @@ public class Game {
 
 	private void displayEnding() {
 		endingMusic();
-		System.out.println("-------------------------------------------------------");
-		System.out.println("You have beaten the game!");
-		System.out.println("-------------------------------------------------------");
+		f.printBox("You have beaten the game!");
 		try {
 			System.out.println("");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("==================== CREDITS ====================");
+			f.printBox("================== CREDITS ==================");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
@@ -767,31 +721,17 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("==================== (C)2016 ====================");
+			f.printBox("================== (C)2016 ==================");
 			TimeUnit.SECONDS.sleep(21);
+			
+			System.exit(0);		//exits application
+			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		gameRun = false;
 	}
 
-	/**
-	 * @method Prints a delayed string
-	 * @param string
-	 * @param delay
-	 */
-	private void print(String string, long delay) {
-		try {
-			for (char ch : string.toCharArray()) {
-				System.out.print(ch);
-				TimeUnit.MILLISECONDS.sleep(delay);
-			}
-		} catch (InterruptedException e) {
-			System.out.println("InterruptedException: print()");
-		}
-
-	}
 	/*private void checkSequence()
 	{
 		System.out.print("CHECKING INPUT");

@@ -2,6 +2,8 @@ package Character;
 
 import java.io.Serializable;
 
+import Game.Properties;
+
 /**
  * 
  * This is an abstract super class for character entities which share common
@@ -16,15 +18,6 @@ public abstract class Character implements Properties, Serializable {
 	protected String name;
 	protected boolean dead;
 
-	/**
-	 * The following is the constructor for Character objects.
-	 * 
-	 * @param maxHp
-	 * @param hp
-	 * @param atk
-	 * @param spd
-	 * @param def
-	 */
 	public Character(int maxhp, int hp, int atk, int spd, int def) {
 		this.maxhp = maxhp;
 		this.hp = hp;

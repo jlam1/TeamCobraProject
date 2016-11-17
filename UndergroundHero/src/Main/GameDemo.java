@@ -1,4 +1,4 @@
-package Tester;
+package Main;
 
 import Game.Game;
 

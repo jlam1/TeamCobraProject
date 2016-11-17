@@ -1,11 +1,15 @@
 package LogicController;
-
+/**
+ * This class is reponsible for dealing with player's behaviors pertaining to puzzles.
+ * @author John, King, Kyle
+ */
 import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import Character.Player;
+import Game.Function;
 import Item.Item;
 import Puzzle.Puzzle;
 import Room.*;
@@ -27,6 +31,7 @@ public class PuzzleLogic implements Serializable {
 	private Scanner input;
 	private String userInput;
 	private MusicLogic musicLogic;
+	private Function f = new Function();
 	private Room currentRoom;
 
 	public PuzzleLogic(Scanner in) {
@@ -114,11 +119,11 @@ public class PuzzleLogic implements Serializable {
 			
 			if (puzzle.getType() == 1) {
 				runKeyPuzzle(puzzleKeyItem, player);
-				}
-			else
-			{
-				System.out.println("There is a puzzle in this room...");
-				System.out.println("Do you want to initiate puzzle? (Y/N)");
+			}
+			else {
+				System.out.println();
+				f.printBox("PUZZLE ENCOUNTER");
+				System.out.println("Do you want to initiate puzzle? (Y/N)\n");
 
 				while (puzzleRun) {
 					System.out.print(">>");
@@ -126,14 +131,16 @@ public class PuzzleLogic implements Serializable {
 
 					// check user's choice (Y/N)
 					if (userInput.equalsIgnoreCase("Y")) {
-						System.out.println("Initiating puzzle...");
-						delay();
+						System.out.print("\nInitiating puzzle");
+						f.print("...", 300);
+						System.out.println();
 						puzzleMusic();
 						
 						while (puzzleLoop) {
-							System.out.println("-------------------------------------------------");
+							System.out.println();
+							f.printBox("##### " + puzzle.getName().toUpperCase() + " #####");
 							System.out.println(puzzleDesc);
-							System.out.println("-------------------------------------------------");
+							System.out.println();
 
 							// check puzzle type PuzzleRiddle
 							if (puzzle.getType() == 0)
@@ -148,6 +155,9 @@ public class PuzzleLogic implements Serializable {
 									System.out.println("You gained the item ["
 											+ puzzle.getItemReward().getName().toUpperCase() + "]");
 									player.pickUp(puzzle.getItemReward());
+									f.delay(1000);
+									System.out.print("Exiting Puzzle");
+									f.print("...\n", 300);
 								}
 							}
 						}
@@ -155,16 +165,15 @@ public class PuzzleLogic implements Serializable {
 
 					// user inputs N, returns to room
 					if (userInput.equalsIgnoreCase("N")) {
-						System.out.println("Leaving puzzle");
+						System.out.print("\nLeaving");
+						f.print("...", 300);
 						puzzleRun = false;
 
 					}
-
 				}
 			}
-			}
-
 		}
+	}
  
 	public boolean getPuzzleSolved() {
 		return puzzleSolved;
@@ -237,7 +246,8 @@ public class PuzzleLogic implements Serializable {
 
 			// user will exit riddle puzzle and puzzle loops
 			if (userInput.equalsIgnoreCase("LEAVE")) {
-				System.out.println("Leaving puzzle...\n");
+				System.out.print("Leaving puzzle");
+				f.print("...\n", 300);
 				floor1Music();
 				puzzleRun = false;
 				riddleLoop = false;
@@ -263,16 +273,17 @@ public class PuzzleLogic implements Serializable {
 
 			// if riddle answer is incorrect
 			else if (!riddleAnswer.equalsIgnoreCase(userInput)) {
-				System.out.println("Your answer [" + userInput.toUpperCase() + "] is wrong.");
 				boolean promptAgain = true;
 				while(promptAgain) {
 					checkSequenceIncorrect();
 					System.out.println("Try again? (Y/N)");
+					f.delay(500);
 					System.out.print(">>");
 					userInput = input.nextLine();
 	
 					if (userInput.equalsIgnoreCase("N")) {
-						System.out.println("Leaving puzzle...\n");
+						System.out.print("Leaving puzzle");
+						f.print("...\n", 300);
 						promptAgain = false;
 						riddleLoop = false;
 						puzzleLoop = false;
@@ -312,45 +323,18 @@ public class PuzzleLogic implements Serializable {
 	private void checkSequenceCorrect()
 	{
 		System.out.print("CHECKING INPUT");
-		for(int i = 0; i < 3; i++)
-		print("...", 300);
-		System.out.println();
-		System.out.println("INPUT IS CORRECT");
+//		for(int i = 0; i < 3; i++)
+		print("......\n", 300);
+		System.out.print("INPUT IS CORRECT");
+		print("...\n", 300);
 	}
 	private void checkSequenceIncorrect()
 	{
 		System.out.print("CHECKING INPUT");
-		for(int i = 0; i < 3; i++)
-		print("...", 300);
-		System.out.println();
-		System.out.println("INPUT IS INCORRECT");
+//		for(int i = 0; i < 3; i++)
+		print("...\n", 300);
+		System.out.print("INPUT IS INCORRECT");
+		print("...\n", 300);
 	}
-	
-	private void delay() {
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	
-	// public void print(String string, long delay) {
-	// try {
-	// for (char ch : string.toCharArray()) {
-	// System.out.print(ch);
-	// TimeUnit.MILLISECONDS.sleep(delay);
-	// }
-	// }
-	// catch(InterruptedException e) {
-	// System.out.println("InterruptedException: print()");
-	// }
-	//
-	// }
-
-	// private String wrapText(String longDescription){
-	// String shortDesc = WordUtils.wrap(longDescription, 50);
-	// return shortDesc;
-	// }
 
 }

@@ -11,7 +11,11 @@ package Item;
  */
 public class Consumables extends Item {
 
-	public static int count;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int count;
 
 	/**
 	 * The following method is the constructor for ConsumableItem type Item

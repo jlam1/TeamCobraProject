@@ -2,7 +2,7 @@ package Item;
 
 import java.io.Serializable;
 
-import Character.Properties;
+import Game.Properties;
 
 /**
  * This is an abstract super class for Item objects which share common behaviors
