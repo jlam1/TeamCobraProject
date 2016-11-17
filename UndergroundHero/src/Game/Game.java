@@ -1,6 +1,5 @@
 package Game;
 
-import java.nio.file.NoSuchFileException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -570,16 +569,6 @@ public class Game {
 							System.out.println("");
 							TimeUnit.SECONDS.sleep(1);
 							System.out.println("COUNT DOWN COMMENCING!");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("10");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("9");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("8");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("7");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("6");
 							TimeUnit.MILLISECONDS.sleep(500);
 							System.out.println("5");
 							TimeUnit.MILLISECONDS.sleep(500);
