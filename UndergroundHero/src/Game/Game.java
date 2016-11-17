@@ -24,7 +24,7 @@ import Room.RoomFactory;
 public class Game {
 	private List<Room> factoryList;
 	private List<Item> itemList;
-	private Room nextRoom, currentRoom, lockedRoom, returnRoom;
+	private Room nextRoom, currentRoom, lockedRoom;
 	private Player player;
 	private PuzzleLogic puzzleLogic;
 	private BattleLogic battleLogic;
@@ -184,12 +184,11 @@ public class Game {
 
 		else {
 			currentRoom = nextRoom;
+			floorMusicChecker(currentRoom);
 			f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
 			System.out.println(currentRoom.getDescription() + "\n");
 			iniMonster();
-//			battleLogic.checkFloorMusic(currentRoom);
 			iniPuzzle();
-//			puzzleLogic.checkFloorMusic(currentRoom);
 		}
 	}
 
@@ -515,23 +514,14 @@ public class Game {
 							System.out.println("");
 							TimeUnit.SECONDS.sleep(1);
 							System.out.println("COUNT DOWN COMMENCING!");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("5");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("4");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("3");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("2");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("1");
-							TimeUnit.MILLISECONDS.sleep(500);
-							System.out.println("0");
+							for(int i = 5; i > 0; i--) {
+								TimeUnit.MILLISECONDS.sleep(500);
+								System.out.println(i);
+							}
 							TimeUnit.SECONDS.sleep(1);
 							System.out.println("DEFENCE SYSTEM SHUTTING DOWN!");
 							TimeUnit.SECONDS.sleep(1);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					break;
@@ -543,9 +533,7 @@ public class Game {
 				try {
 					TimeUnit.SECONDS.sleep(1);
 					System.out.println("As you landed, you encounter a giant robot");
-				} catch (InterruptedException e) 
-				{
-				}
+				} catch (InterruptedException e) {}
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
 						System.out.println("You went to the computer and input the chip");
@@ -715,7 +703,7 @@ public class Game {
 	}
 	
 	public void floorMusicChecker(Room currentRoom){
-		if (currentRoom.getId() == 1 || currentRoom.getId() == 9){
+		if (currentRoom.getId() == 1 || currentRoom.getId() == 8){
 			floor1Music();
 		}
 		else if (currentRoom.getId() == 10 || currentRoom.getId() == 18){
@@ -728,11 +716,7 @@ public class Game {
 			floor4Music();
 		}
 	}
-	
-	public Room getCurrentRoom() {
-		return this.returnRoom;
-	}
-	
+
 	// private String wrapText(String longDescription){
 	// String shortDesc = WordUtils.wrap(longDescription, 50);
 	// return shortDesc;
