@@ -122,7 +122,6 @@ public class Game {
 	 */
 	private void play() {
 		String userInput;
-
 		boolean menuScreen = true;
 
 		do {
@@ -219,11 +218,9 @@ public class Game {
 			}
 
 			checkRoomMonsterLocks(monster);
-
 		}
 
 		if (monster != null) {
-			//
 			monster.setHp(monster.getMaxhp());
 
 			// if common monster, set spawn rate

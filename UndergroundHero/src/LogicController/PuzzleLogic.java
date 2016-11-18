@@ -19,7 +19,7 @@ import LogicController.MusicLogic;
  * the player inside the current room contains a puzzle, if so check the puzzle
  * type and display information of puzzle to player.
  * 
- * @author John, King
+ * @author John, King, Kyle
  *
  */
 public class PuzzleLogic implements Serializable {
@@ -70,7 +70,7 @@ public class PuzzleLogic implements Serializable {
 			else {
 				System.out.println();
 				f.printBox("PUZZLE ENCOUNTER");
-				System.out.println("Do you want to initiate puzzle? (Y/N)\n");
+				f.printBox("Do you want to initiate puzzle? (Y/N)");
 
 				while (puzzleRun) {
 					System.out.print(">>");
@@ -92,7 +92,6 @@ public class PuzzleLogic implements Serializable {
 							// check puzzle type PuzzleRiddle
 							if (puzzle.getType() == 0)
 								runRiddlePuzzle(userInput, riddleAnswer);
-							// check puzzle type PuzzleKey
 							
 							// check if puzzle is solved
 							if (puzzleSolved == true) {
@@ -133,16 +132,12 @@ public class PuzzleLogic implements Serializable {
 	 */
 	private void runKeyPuzzle(Item puzzleKeyItem, Player player) {
 
-		// if player has puzzle key in inventory, the key puzzle is solved and
-		// exits loop
 		if (player.checkInventoryKeyItem(puzzleKeyItem)) {
 			puzzle.setSolved(true);
 			puzzleSolved = true;
 //			floor1Music();
 		}
- 
-		// if player does not have puzzle key in inventory, puzzle is not solved
-		// and exits loop
+		
 		else {
 			if(puzzle.getId() == 3)
 			{

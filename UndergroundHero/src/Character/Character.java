@@ -36,9 +36,13 @@ public abstract class Character implements Properties, Serializable {
 	 * @return Void
 	 */
 	public void attack(Character character) {
-		character.setHp(character.getHp() - this.getAtk());
-		System.out.println("[" + this.getName().toUpperCase() + "] strikes [" + character.getName().toUpperCase()
-				+ "] for " + this.getAtk() + " damage!");
+		int damageDealt = Math.abs(this.atk - character.def);
+		if(damageDealt < 0) {
+			damageDealt = 1;
+		}
+		character.setHp(character.hp - this.atk);
+		System.out.println("[" + this.getName().toUpperCase() + "] strikes [" + character.getName()
+				+ "] for " + damageDealt + " damage!");
 	}
 
 	public int getMaxhp() {

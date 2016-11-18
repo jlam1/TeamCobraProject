@@ -46,7 +46,7 @@ public class BattleLogic {
 		
 //		f.delay(300);
 		encounterMusic();
-		f.printBox("######### " + monster.getName().toUpperCase() + " HAS APPEARED! #########");
+		f.printBox("######### " + monster.getName() + " HAS APPEARED! #########");
 		f.print(monster.getDescription() + "\n\n", 10);
 		
 		try {
@@ -62,23 +62,22 @@ public class BattleLogic {
 		}
 		while (battleRun) {
 			System.out.println("########################################################");
-//			f.delay(100);
-			System.out.println("+------------------------------------------------------+");
-//			f.delay(100);
+			f.delay(100);
+
 			
-			f.printBox("                     |- BATTLE -|                   ");
-			f.printBox("|--- PLAYER: [" + player.getHp() + "/" + player.getMaxhp() + "] ----|"
-					+ "---- " + "MONSTER: [" + monster.getHp() + "/" + monster.getMaxhp() + "] ---|");
-			
-//			f.delay(100);
+			f.printBox("                    |- BATTLE -|                    ");
+			f.delay(100);
+			f.printBox("     PLAYER: [" + player.getHp() + "/" + player.getMaxhp() + "]     |"
+					+ "     " + "MONSTER: [" + monster.getHp() + "/" + monster.getMaxhp() + "]     ");
+			f.delay(100);
 			System.out.println("");
-//			f.delay(100);
 			System.out.println("+------------------------------------------------------+");
-			System.out.println("|                     |- COMMANDS -|                   |");
+			System.out.println("|                    |- COMMANDS -|                    |");
 			System.out.println("|       1. [ATTACK]                   3. [DEFEND]      |");
 			System.out.println("|       2. [USE ITEM]                 4. [RUN]         |");
 			System.out.println("+------------------------------------------------------+");
-//			f.delay(100);
+			
+			f.delay(100);
 			System.out.println("########################################################\n");
 
 			System.out.print(">>");
@@ -106,6 +105,11 @@ public class BattleLogic {
 					System.out.println();
 				}
 				
+				//testing battle with skills
+				if(userInput.equals("5")) {
+					startBattle(player, monster);
+				}
+				
 			}
 			
 			catch(InputMismatchException e) {
@@ -126,71 +130,97 @@ public class BattleLogic {
 			
 	}
 	
-	private void startBattle(Player player, Monster monster) {
+	private void startBattle(Player player, Monster monster) { 
+		System.out.println("player spd: " + player.getSpd());
+		System.out.println("monster spd: " + monster.getSpd());
+		
 		if(battlePriority(player, monster) == 0) {
 			System.out.println(player.getName() + " goes first!");
-			playerTurn(player);
+			playerTurn(player, monster);
 			checkDead(player, monster);
 			
 			if(!monster.isDead()) {
-				monsterTurn(monster);
+//				if(isCharging(skill)) {
+//					useChargeSkill(monster, skill);
+//				}
+//				if(!isCharging(skill)) {
+//					monsterTurn(player, monster);
+//				}
 				checkDead(player, monster);
 			}
 		}
 		
-		if(battlePriority(player, monster) == 1) {
+		else if(battlePriority(player, monster) == 1) {
 			System.out.println(monster.getName() + " goes first!");
-			monsterTurn(monster);
+			monsterTurn(player, monster);
 			checkDead(player, monster);
 			
 			if(!player.isDead()) {
-				playerTurn(player);
+				playerTurn(player, monster);
 				checkDead(player, monster);
 			}
 		}
 		
 		else {
-			System.out.println("ERROR: checkSpeed() -> returned -1");
+			System.out.println("battlePriority(): " + battlePriority(player, monster));
 		}
 		
 	}
 
-	private void playerTurn(Player player) {
-		
-	}
-	
-	
-	private void monsterTurn(Monster monster) {
-		Skill skill = getRandomSkill(monster);
-		monsterUseSkill(skill);
+	private boolean isCharging(Skill skill) {
+		return skill.isCharging();
 	}
 
-	private Skill getRandomSkill(Monster monster) {
+	private void playerTurn(Player player, Monster monster) {
+		player.attack(monster);
+	}
+	
+	
+	private void monsterTurn(Player player, Monster monster) {
+		Skill skill = getRandomSkill(monster);
+		monsterUseSkill(player, monster, skill);
+	}
+
+	private Skill getRandomSkill(Monster monster){
 		List<Skill> skillList = monster.getSkillList();
 		Skill monsterSkill = null;
-		double chance = (Math.random()*100);
-		for(Skill s : skillList) {
-			if(s.getChance() >= chance) {
-				monsterSkill = s;
+		
+		while(monsterSkill == null) {
+			double chance = (Math.random()*100);
+//			System.out.println("randomSkill chance: " + chance);
+			for(Skill s : skillList) {
+				if(s.getChance() >= chance) {
+					monsterSkill = s;
+					break;
+				}
 			}
 		}
 		
 		return monsterSkill;
 	}
 	
-	private void monsterUseSkill(Skill skill) {
+	private void monsterUseSkill(Player player, Monster monster, Skill skill) {
 		if(skill.getType().equalsIgnoreCase("NORMAL"))
-			useNormalSkill(skill);
+			useNormalSkill(player, monster, skill);
 		if(skill.getType().equalsIgnoreCase("CHARGE"))
-			useChargeSkill(skill);
+			useChargeSkill(monster, skill);
 	}
 	
-	private void useChargeSkill(Skill skill) {
-		
+	private void useChargeSkill(Monster monster, Skill skill) {
+		System.out.println("CHARGE SKILL TEST");
+		//if already charged then skip
+		//else if not charged, set isCharged to true
+		//use skill then set charge back to false
 	}
 
-	private void useNormalSkill(Skill skill) {
-		
+	private void useNormalSkill(Player player, Monster monster, Skill skill) {
+		System.out.print("[" + monster.getName() + "] uses [" + skill.getName() + "]");
+		f.print("...\n", 500);
+		System.out.println("and " + skill.getDescription());
+		double skillDmg = skill.getDmgRatio() * monster.getAtk();
+		int dmgDealt = (int)Math.abs(skillDmg - player.getDef());
+		System.out.println("[" + skill.getName() + "] deals for " + dmgDealt + " damage!");
+		player.setHp(player.getHp() - dmgDealt);
 	}
 	
 	/**
@@ -202,15 +232,20 @@ public class BattleLogic {
 	 */
 	private int battlePriority(Player player, Monster monster) {
 		int checkSpeed = -1;
-		if(player.getSpd() > monster.getSpd())
+		if(player.getSpd() > monster.getSpd()) {
 			checkSpeed = 0;
-		if(player.getSpd() < monster.getSpd())
+		}
+		if(player.getSpd() < monster.getSpd()) {
 			checkSpeed = 1;
+		}
 		if(player.getSpd() == monster.getSpd()) {
 			double chance = (Math.random()*100);
-			if(chance < 50.0)
+			if(chance < 50.0) {
 				checkSpeed = 0;
-			checkSpeed = 1;
+			}
+			if(chance > 50.0) {
+				checkSpeed = 1;
+			}
 		}
 		return checkSpeed;
 	}
@@ -263,7 +298,7 @@ public class BattleLogic {
 			else {
 				System.out.println("+------------------------------------------------------+");
 //				delay();
-				System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
+				System.out.println("[" + monster.getName() + "] goes first!");
 //				delay();
 				monster.attack(player);
 //				delay();
@@ -281,7 +316,7 @@ public class BattleLogic {
 		else{
 			System.out.println("+------------------------------------------------------+");
 //			delay();
-			System.out.println("[" + monster.getName().toUpperCase() + "] goes first!");
+			System.out.println("[" + monster.getName() + "] goes first!");
 //			delay();
 			monster.attack(player);
 //			delay();
@@ -318,7 +353,7 @@ public class BattleLogic {
 			monster.setDead(true);
 			battleRun = false;
 			System.out.println("+------------------------------------------------------+");
-			f.printBox(" # " + monster.getName().toUpperCase() + " was defeated! #");
+			f.printBox(" # " + monster.getName() + " was defeated! #");
 			victoryMusic();
 			try {
 				TimeUnit.SECONDS.sleep(2);
@@ -333,11 +368,11 @@ public class BattleLogic {
 	private void defend(Player player, Monster monster) {
 		System.out.println("+------------------------------------------------------+");
 //		delay();
-		System.out.println("[" + player.getName().toUpperCase() + "] defends!");
+		System.out.println("[" + player.getName() + "] defends!");
 		int damageDealt = Math.abs(player.getDef() - monster.getAtk());
 		player.setHp(player.getHp() - damageDealt);
 //		delay();
-		System.out.println("[" + monster.getName().toUpperCase() + "] strikes [" + player.getName().toUpperCase() + "] for " + damageDealt + " damage!");
+		System.out.println("[" + monster.getName() + "] strikes [" + player.getName() + "] for " + damageDealt + " damage!");
 		System.out.println("+------------------------------------------------------+");
 		checkDead(player, monster);
 //		delay();
@@ -356,13 +391,13 @@ public class BattleLogic {
 		}
 		
 		if(monster.isBoss()) {
-			System.out.println("[" + monster.getName().toUpperCase() + "] dropped [" + itemList.get(5).getName().toUpperCase() + "].");
+			System.out.println("[" + monster.getName() + "] dropped [" + itemList.get(5).getName().toUpperCase() + "].");
 			player.pickUp(itemList.get(5));
 		}
 		
 		double lootChance = (Math.random()*100);	
 		if (lootChance > 50.0) {
-			System.out.println("[" + monster.getName().toUpperCase() + "] dropped an [" + itemList.get(4).getName().toUpperCase() + "]");
+			System.out.println("[" + monster.getName() + "] dropped an [" + itemList.get(4).getName().toUpperCase() + "]");
 			player.pickUp(itemList.get(4));
 		}
 	}

@@ -28,9 +28,9 @@ public class BattleTest {
 		List<Item> itemList = new ItemGenerator().getItemList();
 		List<Monster> monsters = new MonsterGenerator().getMonsterList();
 		
-		Monster monster = monsters.get(7);
+		Monster monster = monsters.get(3);
 		
-		Player player = new Player(20, 20, 2, 3, 2);
+		Player player = new Player(100, 100, 1, 1, 3);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));

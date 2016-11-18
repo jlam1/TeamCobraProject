@@ -28,10 +28,6 @@ public class Player extends Character implements Serializable {
 		equipment = new ArrayList<Item>();
 	}
 
-	public List<Item> getInventory() {
-		return inventory;
-	}
-	
 	/**
 	 * @method Player checks if keyItem is in inventory
 	 * @param keyItem
@@ -40,7 +36,7 @@ public class Player extends Character implements Serializable {
 	public boolean checkInventoryKeyItem(Item keyItem) {
 		boolean itemIsThere = false;
 		for(Item i : inventory) {
-			if(i.getId() == keyItem.getId()) {
+			if(i.getType().equalsIgnoreCase("KEY")) {
 				itemIsThere = true;
 				break;
 			}
@@ -246,6 +242,10 @@ public class Player extends Character implements Serializable {
 		} catch (IndexOutOfBoundsException e) {
 			
 		}
+	}
+
+	public List<Item> getInventory() {
+		return inventory;
 	}
 	
 	private String formatPrintInventory(Item item) {
