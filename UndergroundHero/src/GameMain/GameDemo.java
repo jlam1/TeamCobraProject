@@ -1,5 +1,4 @@
-package Main;
-
+package GameMain;
 import Game.Game;
 
 public class GameDemo {
