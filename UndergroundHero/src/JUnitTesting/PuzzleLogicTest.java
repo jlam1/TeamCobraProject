@@ -1,4 +1,4 @@
-package LogicController;
+package JUnitTesting;
 
 import static org.junit.Assert.*;
 
