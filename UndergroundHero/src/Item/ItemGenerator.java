@@ -20,7 +20,7 @@ public class ItemGenerator {
 		Item item = new Item	(0, "Old Rags", 				"ARMOR", 1, "[+1 DEF] - It's normal and worned.");
 		itemList.add(item);
 		
-		item = new Item			(1, "Chain Mail",				"ARMOR", 3, "[+3 DEF] - A lightweight chain armor.");
+		item = new Item			(1, "Chain Mail",				"ARMOR", 5, "[+5 DEF] - A lightweight chain armor.");
 		itemList.add(item);
 		
 		item = new Item			(2, "Broken Stick",				"WEAPON", "[+1 ATK] - It's worned out and chipped.", 1);

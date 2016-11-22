@@ -142,7 +142,7 @@ public class Player extends Character implements Serializable {
 				System.out.println("[" + this.inventory.get(index).getName() + "] is not a CONSUMABLE item.\n");
 			}
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("Invalid input.");
+
 		}
 	}
 
@@ -188,14 +188,15 @@ public class Player extends Character implements Serializable {
 				Item armor = (Item) this.inventory.get(index);
 				this.inventory.remove(index);
 				this.equipment.add(armor);
-				this.setDef(this.getDef() + armor.getArmorDef());
+//				this.setDef(this.getDef() + armor.getArmorDef());
+				this.setDef(armor.getArmorDef());
 
 				System.out.println("You equipped [" + armor.getName() + "].");
 				System.out.println("Your defense has increased by [" + armor.getArmorDef() + "].\n");
 			}
 
 		} catch (IndexOutOfBoundsException e) {
-			
+
 		}
 	}
 

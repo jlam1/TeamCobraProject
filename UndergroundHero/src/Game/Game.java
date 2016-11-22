@@ -50,7 +50,7 @@ public class Game {
 
 	private void createNewGame() {
 		gameRun = true;
-		player = new Player(100, 100, 3, 3, 2);
+		player = new Player(15, 15, 3, 2, 2);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));
@@ -171,7 +171,6 @@ public class Game {
 					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 					currentRoom = lockedRoom;
 					iniMonster();
-
 				}
 			} else {
 				System.out.println("\"The door is locked.\"");
@@ -215,6 +214,8 @@ public class Game {
 				if (monster.getId() == 5) {
 					displayEnding();
 				}
+				
+				look();
 			}
 
 			checkRoomMonsterLocks(monster);
@@ -225,6 +226,7 @@ public class Game {
 
 			// if common monster, set spawn rate
 			if (!monster.isBoss()) {
+				monster.setDead(false);
 				double chance = (Math.random() * 100);
 				final double SPAWN_RATE = 25.0;
 
@@ -250,6 +252,7 @@ public class Game {
 
 			if (puzzleLogic.getPuzzleSolved()) {
 				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
+				look();
 			}
 
 			if (puzzleLogic.getPuzzleSolved()) {
@@ -630,7 +633,7 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("|.................. John  Lam ..................|");
+			System.out.println("|.................. John Lam ..................|");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
@@ -638,7 +641,7 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("|................ Kyle  Cousins ................|");
+			System.out.println("|................ Kyle Cousins ................|");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
