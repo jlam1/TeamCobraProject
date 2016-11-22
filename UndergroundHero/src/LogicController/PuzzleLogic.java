@@ -264,7 +264,7 @@ public class PuzzleLogic implements Serializable {
 		musicLogic.BGMPlay();
 	}
 	
-	public void floor1Music() {
+	private void floor1Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();
