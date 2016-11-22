@@ -2,17 +2,14 @@ package GameMain;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import Character.Monster;
 import Character.MonsterGenerator;
 import Character.Player;
-import Game.Function;
 import Item.Item;
 import Item.ItemGenerator;
 import LogicController.BattleLogic;
-import Room.Room;
-import Room.RoomFactory;
+
 /**
  * This class will test only the battle functionality.
  * The purpose is to test damage calculation, monster skills, and players interactions.

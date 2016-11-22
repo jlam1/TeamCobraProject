@@ -101,7 +101,7 @@ public class PuzzleLogic implements Serializable {
 									System.out.println("You gained the item ["
 											+ puzzle.getItemReward().getName().toUpperCase() + "]");
 									player.pickUp(puzzle.getItemReward());
-									f.delay(1000);
+									f.delay(500);
 									System.out.print("Exiting Puzzle");
 									f.print("...\n", 300);
 								}
@@ -251,7 +251,21 @@ public class PuzzleLogic implements Serializable {
 
 	}
 	
-
+	public void checkFloorMusic(Room currentRoom){
+		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
+			floor1Music();
+		}
+		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
+			floor2Music();
+		}
+		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
+			floor3Music();
+		}
+		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
+			floor4Music();
+		}
+	}
+	
 	private void puzzleMusic() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/puzzle.wav");
@@ -287,21 +301,6 @@ public class PuzzleLogic implements Serializable {
 		musicLogic = new MusicLogic("src/sound/floor4.wav");
 		musicLogic.BGMLoop();
 	}
-
-	public void checkFloorMusic(Room currentRoom){
-		if (currentRoom.getId() >= 1 && currentRoom.getId() <= 9){
-			floor1Music();
-		}
-		else if (currentRoom.getId() >= 10 && currentRoom.getId() <= 18){
-			floor2Music();
-		}
-		else if (currentRoom.getId() >= 19 && currentRoom.getId() <= 28){
-			floor3Music();
-		}
-		else if (currentRoom.getId() >= 29 && currentRoom.getId() <= 41){
-			floor4Music();
-		}
-	}
 	
 	private void checkSequenceCorrect()
 	{
@@ -309,6 +308,7 @@ public class PuzzleLogic implements Serializable {
 		f.print("......\n", 300);
 		System.out.println("INPUT IS CORRECT");
 	}
+	
 	private void checkSequenceIncorrect()
 	{
 		System.out.print("CHECKING INPUT");

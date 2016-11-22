@@ -11,27 +11,9 @@ package Item;
  */
 public class Consumables extends Item {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int count;
 
-	/**
-	 * The following method is the constructor for ConsumableItem type Item
-	 * objects.
-	 * 
-	 * @param id
-	 *            From parent.
-	 * @param name
-	 *            From parent.
-	 * @param type
-	 *            From parent.
-	 * @param description
-	 *            From parent.
-	 * @param count
-	 *            Specific to ConsumableItem.
-	 */
 	public Consumables(int id, String name, String type, int count, String description) {
 		super(id, name, type, description);
 		this.count = count;
