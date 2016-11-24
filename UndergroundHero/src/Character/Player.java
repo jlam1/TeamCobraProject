@@ -38,7 +38,6 @@ public class Player extends Character implements Serializable {
 		for(Item i : inventory) {
 			if(i.getType().equalsIgnoreCase("KEY")) {
 				itemIsThere = true;
-				break;
 			}
 			else {
 				itemIsThere = false;
