@@ -141,12 +141,12 @@ public class PuzzleLogic implements Serializable {
 		else {
 			if(puzzle.getId() == 3)
 			{
-				System.out.println("As the door open, you notice the hallway is too long. \nYou gently ripped a piece of you clothing and toss it into the room. \n Guns and laser came out of the wall and shot continueously until the cloth is no more visible.");
-				System.out.println("You took a step back and thought \"I need to look for another way. Unless, if I can move fast enough I can probably avoid guns and lasers.\" ");
+				System.out.println("As the door open, you notice the hallway is too long. \nYou gently ripped a piece of you clothing and toss it into the room. \nGuns and laser came out of the wall and shot continueously until \nthe cloth is no more.");
+				System.out.println("You took a step back and thought \"I need to look for another way. \nUnless, if I can move fast enough I can probably avoid guns and lasers.\" ");
 			}
 			else if(puzzle.getId() == 6)
 			{
-				System.out.println("You spotted a computer termial by the southern wall.");
+				System.out.println("There is a computer termial by the southern wall.");
 				System.out.println("You played with the computer and it prompt to input an access chip.");
 				System.out.println("But appearently you dont have the access chip and left the computer alone");
 			}
@@ -157,8 +157,8 @@ public class PuzzleLogic implements Serializable {
 				System.out.println("You gauged the jumping distance and prepared to jump.");
 				System.out.println("You ran but right before reaching the edge, you stopped.");
 				System.out.println("You said, \"Nope, I won't make it.\"");
-				System.out.println("You looked around the area and found a stronger outcropping of rock above the chasm with steel pikes sticking out.");
-				System.out.println("You looked at the steel pikes, \"I might need something at will allow me to swing to the other side.\"");
+				System.out.println("You looked around the area and found a stronger outcropping \nof rock above the chasm with steel pikes sticking out.");
+				System.out.println("You looked at the steel pikes, \"I might need something at \nwill allow me to swing to the other side.\"");
 			}
 			else
 			{
@@ -278,7 +278,7 @@ public class PuzzleLogic implements Serializable {
 		musicLogic.BGMPlay();
 	}
 	
-	public void floor1Music() {
+	private void floor1Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();

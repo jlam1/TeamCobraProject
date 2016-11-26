@@ -28,7 +28,7 @@ public class PuzzleGenerator {
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(1, "Painting", 0, key("Diamond Tipped Cutter"), "MONA LISA",
-				"The player feels like he/she is being watched, this room has many fancy objects all around it, but one stands out the most, a painting, the painting is looking straight at you, giving you a chill down your spine, the painting is very famous. The player thinks to himself what is the name of painting that is watching me?");
+				"You feel like you are being watched, \nthis room has many fancy objects all around it, \nbut one stands out the most is the painting staring at you, giving you a chill down your spine, the painting is very famous. You thought \"what is the name of painting that is watching me?\"");
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(2, "The Animal Statues", 0, key("Speed Boots"), "4213",
@@ -40,7 +40,7 @@ public class PuzzleGenerator {
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(4, "The Colored Buttons", 0, null, "213",
-				"A terminal that prompts the user for numbers and displays the following: [GREEN] = 1, [BLUE] = 2, and [RED] = 3. The ordering of the color seems important in [Room 2-8].");
+				"A terminal that prompts the user for numbers and displays the following: \n[GREEN] = 1, [BLUE] = 2, and [RED] = 3. \n\nThe ordering of the color seems important.");
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(5, "Jump The Chasm", 1, null, key("Grappling Hook"),
@@ -52,10 +52,10 @@ public class PuzzleGenerator {
 		puzzleList.add(puzzle);
 
 		puzzle = new Puzzle(7, "Riddle 1", 0, itemList.get(4), "BRAIN",
-				"I have billions of eyes, yet I live in darkness. I have millions of ears, yet only four lobes. I have no muscle, yet I rule two hemispheres. What am I?");
+				"I have billions of eyes, yet I live in darkness. \nI have millions of ears, yet only four lobes. \nI have no muscle, yet I rule two hemispheres. \nWhat am I?");
 		puzzleList.add(puzzle);
 
-		puzzle = new Puzzle(8, "Riddle 2", 0, itemList.get(5), "TOMMORROW",
+		puzzle = new Puzzle(8, "Riddle 2", 0, itemList.get(5), "TOMORROW",
 				"What is always on its way here, but never arrives?");
 
 		puzzleList.add(puzzle);

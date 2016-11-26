@@ -19,6 +19,7 @@ import Room.RoomFactory;
 
 /**
  * This class is responsible for parsing user's inputs and creating new game.
+ * 
  * @author John, King, Kyle, Matt
  */
 public class Game {
@@ -36,12 +37,16 @@ public class Game {
 
 	public Game() {
 		input = new Scanner(System.in);
-		factoryList = new RoomFactory().getRoomFactoryList();
-		itemList = new ItemGenerator().getItemList();
+		resetGame();
 		f = new Function();
 		puzzleLogic = new PuzzleLogic(input);
 		battleLogic = new BattleLogic(input);
 		musicLogic = new MusicLogic("src/sound/menu.wav");
+	}
+
+	private void resetGame() {
+		factoryList = new RoomFactory().getRoomFactoryList();
+		itemList = new ItemGenerator().getItemList();
 	}
 
 	/**
@@ -50,11 +55,13 @@ public class Game {
 
 	private void createNewGame() {
 		gameRun = true;
+		resetGame();
 		player = new Player(15, 15, 3, 2, 2);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));
 		player.pickUp(itemList.get(4));
+
 		player.startingEquip(0);
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
@@ -65,7 +72,7 @@ public class Game {
 
 	public void menuScreen() {
 		displayIntro();
-		
+
 		boolean start = true;
 		while (start) {
 			menuMusic();
@@ -91,19 +98,16 @@ public class Game {
 					createNewGame();
 					floor1Music();
 					play();
-				}
-				else if (userInput.equals("2")) {
+				} else if (userInput.equals("2")) {
 					gameRun = true;
 					start = false;
 					load();
 					floor1Music();
 					play();
-				}
-				else if (userInput.equalsIgnoreCase("3")) {
+				} else if (userInput.equalsIgnoreCase("3")) {
 					f.delay(500);
 					commandDescription();
-				}
-				else if (userInput.equals("4")) {
+				} else if (userInput.equals("4")) {
 					System.out.println("Exiting game...");
 					start = false;
 					musicLogic.BGMStop();
@@ -151,13 +155,26 @@ public class Game {
 		if (nextRoom == null) {
 			System.out.println("Theres no exit that way, try another direction.");
 			f.delay(500);
-			look();
+			// look();
+		} else if (nextRoom.getId() == 0) {
+			currentRoom = nextRoom;
+			floorMusicChecker(currentRoom);
+			f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
+			System.out.println(currentRoom.getDescription() + "\n");
+			try {
+				TimeUnit.SECONDS.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			gameRun = false;
+
 		}
 
 		else if (factoryList.get(nextRoom.getId()).isLocked()) {
 			if (factoryList.get(currentRoom.getId()).getId() == 19) {
 				System.out.println("Theres no exit that way, try another direction.");
-			}			
+			}
 			// Initiate puzzle when approaching a lock room
 			else if (lockedRoom.getRoomPuzzle() != null) {
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
@@ -168,15 +185,15 @@ public class Game {
 
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
-					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
-					currentRoom = lockedRoom;
+					factoryList.get(lockedRoom.getId()).getRoomPuzzle().setSolved(true);
+					currentRoom = nextRoom;
 					iniMonster();
 				}
 			} else {
 				System.out.println("\"The door is locked.\"");
 				System.out.println("\"I need to find a way to unlock the door.\"");
 				f.delay(500);
-				look();
+				// look();
 			}
 		}
 
@@ -214,11 +231,12 @@ public class Game {
 				if (monster.getId() == 5) {
 					displayEnding();
 				}
-				
-				look();
+
 			}
 
 			checkRoomMonsterLocks(monster);
+			// look();
+
 		}
 
 		if (monster != null) {
@@ -241,7 +259,7 @@ public class Game {
 				gameRun = false;
 			}
 		}
-		
+
 	}
 
 	public void iniPuzzle() {
@@ -252,14 +270,14 @@ public class Game {
 
 			if (puzzleLogic.getPuzzleSolved()) {
 				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
-				look();
+				// look();
 			}
 
 			if (puzzleLogic.getPuzzleSolved()) {
 				factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
 			}
 		}
-		
+
 	}
 
 	/**
@@ -312,7 +330,7 @@ public class Game {
 			f.delay(300);
 			commandDescription();
 			break;
-			
+
 		case "QUIT":
 			gameRun = false;
 			break;
@@ -342,8 +360,7 @@ public class Game {
 			bagIndex = input.nextInt();
 			player.useItem(bagIndex);
 			input.nextLine();
-		} catch (InputMismatchException e) 
-		{
+		} catch (InputMismatchException e) {
 			System.out.println("You have put the bag away.");
 		}
 	}
@@ -356,28 +373,29 @@ public class Game {
 		f.printBox("######################### ROOM " + currentRoom.getName() + " ############################");
 		System.out.println(currentRoom.getDescription());
 		System.out.println("[" + currentRoom.getExits() + "]");
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() != 21) {
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null
+				&& factoryList.get(currentRoom.getId()).getId() != 21) {
 			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " on the ground.");
 		}
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null && factoryList.get(currentRoom.getId()).getId() == 21) {
-			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
-		}	
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null
+				&& factoryList.get(currentRoom.getId()).getId() == 21) {
+			System.out
+					.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
+		}
 	}
 
 	private void pick() {
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) 
-		{
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
-		}
-		else {
-			if(player.checkInventoryKeyItem(itemList.get(6))) {
+		} else {
+			if (player.checkInventoryKeyItem(itemList.get(6))
+					&& factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
 				System.out.println("You have picked " + itemList.get(3) + ".");
 				player.pickUp(itemList.get(3));
-			}
-			else {
+			} else {
 				System.out.println("You do not have ballistic diamond cutter to cut this case.");
 			}
 		}
@@ -395,48 +413,123 @@ public class Game {
 			bagIndex = input.nextInt();
 			player.equip(bagIndex);
 			input.nextLine();
-		} catch (InputMismatchException e) 
-		{
+		} catch (InputMismatchException e) {
 			System.out.println("You have exited the equip menu.");
 		}
 	}
 
 	private void save() {
 		// use the class saveLoadData to save values in to binary file
+		System.out.println("Which slot would you like to save?");
+		System.out.println("Slot 1");
+		System.out.println("Slot 2");
+		System.out.println("Slot 3");
+		String save = input.nextLine();
+
+		if (save.equalsIgnoreCase("Slot 1") || save.equalsIgnoreCase("1") || save.equalsIgnoreCase("Slot1")) {
+			saveFile1();
+		}
+		else if (save.equalsIgnoreCase("Slot 2") || save.equalsIgnoreCase("2") || save.equalsIgnoreCase("Slot2"))
+		{
+			saveFile2();
+		}
+		else if (save.equalsIgnoreCase("Slot 3") || save.equalsIgnoreCase("3") || save.equalsIgnoreCase("Slot3"))
+		{
+			saveFile3();
+		}
+		else
+		{
+			System.out.println("Invalid Input. Exiting Save Menu.");
+		}
+
+	}
+	private void saveFile1()
+	{
 		ResourceData data = new ResourceData();
 		data.setRoomArrayNumber(currentRoom.getId());
 		System.out.println(currentRoom.getId());
 		data.setPlayer(player);
 		data.setFactoryList(factoryList);
 		try {
-			ResourceData.saveGame(data, "UndergroundHero.dat");
+			ResourceData.saveGame(data, "UndergroundHero1.dat");
 			System.out.println("<< SAVE SUCCESSFUL");
 		} catch (Exception e) {
 			System.out.println("<< ERROR SAVING");
 			e.printStackTrace();
 		}
-
 	}
-
-	private void load() throws ClassCastException, NullPointerException {
-		// use the class saveLoadData to load values in the binary file
+	private void saveFile2()
+	{
+		ResourceData data = new ResourceData();
+		data.setRoomArrayNumber(currentRoom.getId());
+		System.out.println(currentRoom.getId());
+		data.setPlayer(player);
+		data.setFactoryList(factoryList);
 		try {
-			
-			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero.dat");
-			if(data != null){
-			currentRoom = factoryList.get(data.getRoomArrayNumber());
-			
-			player = data.getPlayer();
-			factoryList = data.getFactoryList();
-			System.out.print("<< LOADING ");
-			f.print("....\n", 300);
-			System.out.println("Loading successful");
-			System.out.println();
-			look();
-			System.out.println();
-			}
-			else
-			{
+			ResourceData.saveGame(data, "UndergroundHero2.dat");
+			System.out.println("<< SAVE SUCCESSFUL");
+		} catch (Exception e) {
+			System.out.println("<< ERROR SAVING");
+			e.printStackTrace();
+		}
+	}	
+	private void saveFile3()
+	{
+		ResourceData data = new ResourceData();
+		data.setRoomArrayNumber(currentRoom.getId());
+		System.out.println(currentRoom.getId());
+		data.setPlayer(player);
+		data.setFactoryList(factoryList);
+		try {
+			ResourceData.saveGame(data, "UndergroundHero3.dat");
+			System.out.println("<< SAVE SUCCESSFUL");
+		} catch (Exception e) {
+			System.out.println("<< ERROR SAVING");
+			e.printStackTrace();
+		}
+	}
+	
+	private void load() throws ClassCastException, NullPointerException {
+		System.out.println("Which slot would you like to load?");
+		System.out.println("Slot 1");
+		System.out.println("Slot 2");
+		System.out.println("Slot 3");
+		String load = input.nextLine();
+
+		if (load.equalsIgnoreCase("Slot 1") || load.equalsIgnoreCase("1") || load.equalsIgnoreCase("Slot1")) {
+			loadFile1();
+		}
+		else if (load.equalsIgnoreCase("Slot 2") || load.equalsIgnoreCase("2") || load.equalsIgnoreCase("Slot2"))
+		{
+			loadFile2();
+		}
+		else if (load.equalsIgnoreCase("Slot 3") || load.equalsIgnoreCase("3") || load.equalsIgnoreCase("Slot3"))
+		{
+			loadFile3();
+		}
+		else
+		{
+			System.out.println("Invalid Input. Exiting Load Menu.");
+		}
+	}
+	private void loadFile1() throws ClassCastException, NullPointerException {
+		// use the class saveLoadData to load values in the binary file
+		
+		try {
+
+			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero1.dat");
+			if (data != null) {
+				currentRoom = factoryList.get(data.getRoomArrayNumber());
+
+				player = data.getPlayer();
+				factoryList = data.getFactoryList();
+				System.out.print("<< LOADING ");
+				f.print("....\n", 300);
+				System.out.println("Loading successful");
+				System.out.println();
+				look();
+				System.out.println();
+			} else {
 				System.out.println("There is currently no file to load. \nA new game will be created.");
 				f.print("       ", 500);
 				System.out.println();
@@ -446,7 +539,7 @@ public class Game {
 				System.out.println("New game created.");
 				f.print("       ", 500);
 				System.out.println();
-				
+
 				createNewGame();
 			}
 
@@ -456,7 +549,80 @@ public class Game {
 			e.printStackTrace();
 		}
 	}
+	private void loadFile2() throws ClassCastException, NullPointerException {
+		// use the class saveLoadData to load values in the binary file
+		
+		try {
 
+			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero2.dat");
+			if (data != null) {
+				currentRoom = factoryList.get(data.getRoomArrayNumber());
+
+				player = data.getPlayer();
+				factoryList = data.getFactoryList();
+				System.out.print("<< LOADING ");
+				f.print("....\n", 300);
+				System.out.println("Loading successful");
+				System.out.println();
+				look();
+				System.out.println();
+			} else {
+				System.out.println("There is currently no file to load. \nA new game will be created.");
+				f.print("       ", 500);
+				System.out.println();
+				System.out.print("Please Wait");
+				f.print("       ", 500);
+				System.out.println();
+				System.out.println("New game created.");
+				f.print("       ", 500);
+				System.out.println();
+
+				createNewGame();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error loading, A new game will be created.");
+			createNewGame();
+			e.printStackTrace();
+		}
+	}
+	private void loadFile3() throws ClassCastException, NullPointerException {
+		// use the class saveLoadData to load values in the binary file
+		
+		try {
+
+			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero3.dat");
+			if (data != null) {
+				currentRoom = factoryList.get(data.getRoomArrayNumber());
+
+				player = data.getPlayer();
+				factoryList = data.getFactoryList();
+				System.out.print("<< LOADING ");
+				f.print("....\n", 300);
+				System.out.println("Loading successful");
+				System.out.println();
+				look();
+				System.out.println();
+			} else {
+				System.out.println("There is currently no file to load. \nA new game will be created.");
+				f.print("       ", 500);
+				System.out.println();
+				System.out.print("Please Wait");
+				f.print("       ", 500);
+				System.out.println();
+				System.out.println("New game created.");
+				f.print("       ", 500);
+				System.out.println();
+
+				createNewGame();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error loading, A new game will be created.");
+			createNewGame();
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * @method checks for valid navigation command
 	 * @param input
@@ -481,14 +647,44 @@ public class Game {
 
 			case 0:
 				factoryList.get(10).setLocked(false);
-				System.out.println("As the Pogo falls, the door to the east became visible.");
+				System.out.println("The Puzzler vanished as he falls on to the ground exposing the door to the west.");
 				break;
 			case 1:
 				factoryList.get(19).setLocked(false);
-				System.out.println("Room: [" + factoryList.get(19).getName() + "] is now unlocked!");
+				System.out.println(
+						"You slammed the Pogo on the table and \ncaused a shockwave making the hula hoops tumbled on to the Pogo.");
+				System.out.println(
+						"The Pogo crawled out from the pile of hula hoops and screamed. As the Pogo is picking up his stick, \nyou charged at the Pogo and knock him flying to the east breaking the door.");
+				// factoryList.get(19).setDescription("A very messy room with a
+				// broken table, a broken door, and hula hoops everywhere.");
 				break;
 			case 4:
-				factoryList.get(41).setLocked(false);
+				factoryList.get(41).setLocked(false); // robot boss
+				try {
+					f.print("E...ER...ERR....OR....", 500);
+					f.print("E...ER...ERR....OR", 500);
+					System.out.println();
+					f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!", 500);
+					System.out.println();
+					f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED", 500);
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("10");
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("9");
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("8");
+					f.print("R....RES...TA..R....T...F..FA....AIL...", 500);
+					System.out.println();
+					f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D", 500);
+					f.print("E.ER..ERR...OR....", 500);
+					f.print("E..ER...ERR..OR", 500);
+					System.out.println();
+					f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!", 500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
 				break;
 			default:
@@ -504,49 +700,61 @@ public class Game {
 	 */
 	private void checkRoomPuzzleLocks(Puzzle puzzle) {
 
-		if(puzzle.isSolved() == true) {
-			
-			switch(puzzle.getId()) {
-				case 3: factoryList.get(14).setLocked(false);
-						System.out.println("You have avoided all the bullets and lasers and reached at the end of the room.");
-						System.out.println("You spotted a red button and pushed.");
-						try {
-							System.out.println("");
-							TimeUnit.SECONDS.sleep(1);
-							System.out.println("COUNT DOWN COMMENCING!");
-							for(int i = 5; i > 0; i--) {
-								TimeUnit.MILLISECONDS.sleep(500);
-								System.out.println(i);
-							}
-							TimeUnit.SECONDS.sleep(1);
-							System.out.println("DEFENCE SYSTEM SHUTTING DOWN!");
-							TimeUnit.SECONDS.sleep(1);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					break;
-				case 4: factoryList.get(18).setLocked(false); 
-						System.out.println("You hear the sound of a door unlocking.");
-					break;
-				case 5: factoryList.get(28).setLocked(false); 
-						System.out.println("You sucessfully swinged across the room.");
+		if (puzzle.isSolved() == true) {
+
+			switch (puzzle.getId()) {
+			case 3:
+				factoryList.get(14).setLocked(false);
+				System.out.println("You have avoided all the bullets and lasers and reached at the end of the room.");
+				System.out.println("You spotted a red button and pushed.");
+				try {
+					System.out.println("");
+					TimeUnit.SECONDS.sleep(1);
+					System.out.println("COUNT DOWN COMMENCING!");
+					for (int i = 5; i > 0; i--) {
+						TimeUnit.MILLISECONDS.sleep(500);
+						System.out.println(i);
+					}
+					TimeUnit.SECONDS.sleep(1);
+					System.out.println("DEFENCE SYSTEM SHUTTING DOWN!");
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				break;
+			case 4:
+				factoryList.get(18).setLocked(false);
+				System.out.println("You hear the sound of a door unlocking.");
+				break;
+			case 5:
+				factoryList.get(28).setLocked(false);
+				System.out.println("You sucessfully swinged across the room.");
 				try {
 					TimeUnit.SECONDS.sleep(1);
 					System.out.println("As you landed, you encounter a giant robot");
-				} catch (InterruptedException e) {}
-					break;
-				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("You went to the computer and input the chip");
-						System.out.println("You hear the sound of a door unlocking.");
-					break;
-				case 7: factoryList.get(34).setLocked(false); 
-						System.out.println("You hear the sound of a door unlocking.");
-					break;
-				case 8: factoryList.get(41).setLocked(false); 
-						System.out.println("You hear the sound of a door unlocking.");
-					break;
-				default:
-					break;
+				} catch (InterruptedException e) {
+				}
+				break;
+			case 6:
+				factoryList.get(29).setLocked(false);
+				System.out.println("You went to the computer and insert the chip");
+				System.out.print("PLEASE WAIT!");
+				for (int i = 0; i < 3; i++) {
+					f.print("VALIDATING....", 500);
+					System.out.println();
+				}
+				System.out.println("ACCESS GRANTED!");
+				break;
+			case 7:
+				factoryList.get(34).setLocked(false);
+				System.out.println("You hear the sound of a door unlocking.");
+				break;
+			case 8:
+				factoryList.get(41).setLocked(false);
+				System.out.println("You hear the sound of a door unlocking.");
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -554,8 +762,7 @@ public class Game {
 	/**
 	 * @method displays list of commands and behavior description
 	 */
-	private void commandDescription()
-	{
+	private void commandDescription() {
 		System.out.println("\n");
 		f.printBox("################### [NAVIGATION] ###################");
 		System.out.println("[NORTH]\tMove North.");
@@ -564,8 +771,7 @@ public class Game {
 		System.out.println("[WEST]\tMove West.");
 		System.out.println("--------------------------------------------------------");
 		System.out.println("[LOOK]\tDisplay room description, exits, "
-				         + "\n\tand item existing in the room but it will not "
-				         + "\n\tshow any hidden exits.");
+				+ "\n\tand item existing in the room but it will not " + "\n\tshow any hidden exits.");
 		System.out.println("[PICK]\tPick up the item in the room");
 		System.out.println("--------------------------------------------------------");
 		System.out.println("[BAG]\tDisplay items in inventory");
@@ -586,12 +792,13 @@ public class Game {
 		System.out.println("--------------------------------------------------------");
 		System.out.println("\n\n");
 	}
+
 	/**
 	 * @method Displays game intro
 	 */
 	private void displayIntro() {
 		System.out.println(
-						  "O       o             o                                                      o       o      O                     \n"
+				"O       o             o                                                      o       o      O                     \n"
 						+ "o       O            O                                                      O        O      o                     \n"
 						+ "O       o            o                                                      o        o      O                     \n"
 						+ "o       o            o                                                      o        OoOooOOo                     \n"
@@ -657,33 +864,63 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			f.printBox("================== (C)2016 ==================");
 			TimeUnit.SECONDS.sleep(21);
-			
-			System.exit(0);		//exits application
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		gameRun = false;
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("Would you like to play again?");
+		System.out.println("          [Yes/No/Main Menu]           ");
+
+		String userInput = input.nextLine();
+		if (userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes")) {
+			createNewGame();
+		} else if (userInput.equalsIgnoreCase("n") || userInput.equalsIgnoreCase("no")) {
+			System.out.println("Game Shutting down");
+			try {
+				System.out.println("5");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("4");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("3");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("2");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("1");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("0");
+
+			} catch (InterruptedException e) {
+				gameRun = false;
+				e.printStackTrace();
+			}
+			System.exit(0); // exits application
+
+		} else {
+			gameRun = false;
+		}
 	}
-	
+
 	private void floor1Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor1.wav");
 		musicLogic.BGMLoop();
 	}
-	
+
 	private void floor2Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor2.wav");
 		musicLogic.BGMLoop();
 	}
-	
+
 	private void floor3Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor3.wav");
 		musicLogic.BGMLoop();
 	}
-	
+
 	private void floor4Music() {
 		musicLogic.BGMStop();
 		musicLogic = new MusicLogic("src/sound/floor4.wav");
@@ -701,18 +938,15 @@ public class Game {
 		musicLogic = new MusicLogic("src/sound/ending.wav");
 		musicLogic.BGMPlay();
 	}
-	
-	public void floorMusicChecker(Room currentRoom){
-		if (currentRoom.getId() == 1 || currentRoom.getId() == 8){
+
+	public void floorMusicChecker(Room currentRoom) {
+		if (currentRoom.getId() == 1 || currentRoom.getId() == 8) {
 			floor1Music();
-		}
-		else if (currentRoom.getId() == 10 || currentRoom.getId() == 18){
+		} else if (currentRoom.getId() == 10 || currentRoom.getId() == 18) {
 			floor2Music();
-		}
-		else if (currentRoom.getId() == 19 || currentRoom.getId() == 28){
+		} else if (currentRoom.getId() == 19 || currentRoom.getId() == 28) {
 			floor3Music();
-		}
-		else if (currentRoom.getId() == 29 || currentRoom.getId() == 41){
+		} else if (currentRoom.getId() == 29 || currentRoom.getId() == 41) {
 			floor4Music();
 		}
 	}
