@@ -18,15 +18,30 @@ public class PlayerTest {
 	Player player = new Player(10, 10, 1, 2, 3);
 	
 	@Test
-	public void checkInventoryKeyItemPos() {
+	public void checkInventoryKeyItemPos1() {
 		player.pickUp(items.get(6));
 		assertTrue(player.checkInventoryKeyItem(items.get(6)));
 	}
 	
 	@Test
-	public void checkInventoryKeyItemNeg() {
+	public void checkInventoryKeyItemPos2() {
 		player.pickUp(items.get(3));
 		assertFalse(player.checkInventoryKeyItem(items.get(3)));
+	}
+	
+	@Test
+	public void checkInventoryKeyItemNeg1() {
+		assertFalse(player.checkInventoryKeyItem(null));
+	}
+	
+	@Test
+	public void checkInventoryKeyItemNeg2() {
+		try {
+			player.checkInventoryKeyItem(items.get(-1));
+		}
+		catch (IndexOutOfBoundsException e) {
+			System.out.println("Item does not exist, throws ArrayIndexOutOfBoundsException.");
+		}
 	}
 	
 	@Test
@@ -60,39 +75,46 @@ public class PlayerTest {
 		}
 		
 	}
-
-	@Test
-	public void useItemPos() {
-		player.pickUp(items.get(5));
-		player.pickUp(items.get(3));
-
-		player.useItem(0);
-		
-	}
 	
 	@Test
-	public void useItemNeg() {
-		player.pickUp(items.get(5));
-		player.pickUp(items.get(3));
-		
-		player.useItem(-1);		//throws IndexOutOfBoundsException
-
-	}
-	
-	@Test
-	public void equipPos() {
-		player.pickUp(items.get(0));
+	public void pickUpNeg3() {
+		player.pickUp(null);
 		player.pickUp(items.get(2));
-		
-		player.equip(0);
+		player.openInventory();
 	}
-	
-	@Test
-	public void equipNeg() {
-		player.pickUp(items.get(0));
-		player.pickUp(items.get(2));
-		
-		player.equip(-1);	//throws IndexOutOfBoundsException
-	}
+//
+//	@Test
+//	public void useItemPos() {
+//		player.pickUp(items.get(5));
+//		player.pickUp(items.get(3));
+//
+//		player.useItem(0);
+//		
+//	}
+//	
+//	@Test
+//	public void useItemNeg() {
+//		player.pickUp(items.get(5));
+//		player.pickUp(items.get(3));
+//		
+//		player.useItem(-1);		//throws IndexOutOfBoundsException
+//
+//	}
+//	
+//	@Test
+//	public void equipPos() {
+//		player.pickUp(items.get(0));
+//		player.pickUp(items.get(2));
+//		
+//		player.equip(0);
+//	}
+//	
+//	@Test
+//	public void equipNeg() {
+//		player.pickUp(items.get(0));
+//		player.pickUp(items.get(2));
+//		
+//		player.equip(-1);	//throws IndexOutOfBoundsException
+//	}
 	
 }

@@ -100,7 +100,12 @@ public class Player extends Character implements Serializable {
 	 * @return Void
 	 */
 	public void pickUp(Item item) {
-		this.inventory.add(item);
+		if(item != null) {
+			this.inventory.add(item);
+		}
+		else {
+			System.out.println("Invalid input.");
+		}
 	}
 
 	/**

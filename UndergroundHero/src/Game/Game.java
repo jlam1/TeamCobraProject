@@ -633,7 +633,7 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("|.................. John Lam ..................|");
+			System.out.println("|.................. John Lam ...................|");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
@@ -641,7 +641,7 @@ public class Game {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println("|................ Kyle Cousins ................|");
+			System.out.println("|................ Kyle Cousins .................|");
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println("|                                               |");
 			TimeUnit.SECONDS.sleep(1);
