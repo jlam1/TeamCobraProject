@@ -36,25 +36,31 @@ public class Game {
 
 	public Game() {
 		input = new Scanner(System.in);
-		factoryList = new RoomFactory().getRoomFactoryList();
-		itemList = new ItemGenerator().getItemList();
+		resetGame();
 		f = new Function();
 		puzzleLogic = new PuzzleLogic(input);
 		battleLogic = new BattleLogic(input);
 		musicLogic = new MusicLogic("src/sound/menu.wav");
 	}
 
+	private void resetGame()
+	{
+		factoryList = new RoomFactory().getRoomFactoryList();
+		itemList = new ItemGenerator().getItemList();
+	}
 	/**
 	 * @method Loads default room and player for new game state.
 	 */
 
 	private void createNewGame() {
 		gameRun = true;
-		player = new Player(15, 15, 3, 2, 2);
+		resetGame();
+		player = new Player(15, 15, 100, 2, 2);
 		player.setName("HERO");
 		player.pickUp(itemList.get(0));
 		player.pickUp(itemList.get(2));
 		player.pickUp(itemList.get(4));
+		
 		player.startingEquip(0);
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
@@ -147,11 +153,26 @@ public class Game {
 	private void roomLogic(String direction) {
 		nextRoom = currentRoom.getNextRoom(direction);
 		lockedRoom = nextRoom;
-
+		
 		if (nextRoom == null) {
 			System.out.println("Theres no exit that way, try another direction.");
 			f.delay(500);
-			look();
+			//look();
+		}
+		else if(nextRoom.getId() == 0)
+		{
+			currentRoom = nextRoom;
+			floorMusicChecker(currentRoom);
+			f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
+			System.out.println(currentRoom.getDescription() + "\n");
+			try {
+				TimeUnit.SECONDS.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			gameRun = false;
+			
 		}
 
 		else if (factoryList.get(nextRoom.getId()).isLocked()) {
@@ -168,15 +189,15 @@ public class Game {
 
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
-					factoryList.get(nextRoom.getId()).getRoomPuzzle().setSolved(true);
-					currentRoom = lockedRoom;
+					factoryList.get(lockedRoom.getId()).getRoomPuzzle().setSolved(true);
+					currentRoom = nextRoom;
 					iniMonster();
 				}
 			} else {
 				System.out.println("\"The door is locked.\"");
 				System.out.println("\"I need to find a way to unlock the door.\"");
 				f.delay(500);
-				look();
+				//look();
 			}
 		}
 
@@ -215,10 +236,11 @@ public class Game {
 					displayEnding();
 				}
 				
-				look();
 			}
 
 			checkRoomMonsterLocks(monster);
+			//look();
+
 		}
 
 		if (monster != null) {
@@ -252,7 +274,7 @@ public class Game {
 
 			if (puzzleLogic.getPuzzleSolved()) {
 				checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
-				look();
+				//look();
 			}
 
 			if (puzzleLogic.getPuzzleSolved()) {
@@ -372,7 +394,7 @@ public class Game {
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
 		}
 		else {
-			if(player.checkInventoryKeyItem(itemList.get(6))) {
+			if(player.checkInventoryKeyItem(itemList.get(6)) && factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
 				System.out.println("You have picked " + itemList.get(3) + ".");
 				player.pickUp(itemList.get(3));
@@ -481,14 +503,41 @@ public class Game {
 
 			case 0:
 				factoryList.get(10).setLocked(false);
-				System.out.println("As the Pogo falls, the door to the east became visible.");
+				System.out.println("The Puzzler vanished as he falls on to the ground exposing the door to the west.");
 				break;
 			case 1:
 				factoryList.get(19).setLocked(false);
-				System.out.println("Room: [" + factoryList.get(19).getName() + "] is now unlocked!");
+				System.out.println("You slammed the Pogo on the table and \ncaused a shockwave making the hula hoops tumbled on to the Pogo.");
+				System.out.println("The Pogo crawled out from the pile of hula hoops and screamed. As the Pogo is picking up his stick, \nyou charged at the Pogo and knock him flying to the east breaking the door.");
+				//factoryList.get(19).setDescription("A very messy room with a broken table, a broken door, and hula hoops everywhere.");
 				break;
 			case 4:
-				factoryList.get(41).setLocked(false);
+				factoryList.get(41).setLocked(false); // robot boss
+				try {
+					f.print("E...ER...ERR....OR....", 500);
+					f.print("E...ER...ERR....OR", 500);
+					System.out.println();
+					f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!" , 500);
+					System.out.println();
+					f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED" , 500);
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("10");
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("9");
+					TimeUnit.MILLISECONDS.sleep(500);
+					System.out.println("8");
+					f.print("R....RES...TA..R....T...F..FA....AIL..." , 500);
+					System.out.println();
+					f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D" , 500);
+					f.print("E.ER..ERR...OR....", 500);
+					f.print("E..ER...ERR..OR", 500);
+					System.out.println();
+					f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!" , 500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
 				break;
 			default:
@@ -536,8 +585,14 @@ public class Game {
 				} catch (InterruptedException e) {}
 					break;
 				case 6: factoryList.get(29).setLocked(false); 
-						System.out.println("You went to the computer and input the chip");
-						System.out.println("You hear the sound of a door unlocking.");
+						System.out.println("You went to the computer and insert the chip");
+						System.out.print("PLEASE WAIT!");
+						for(int i = 0; i < 3; i ++)
+						{
+						f.print("VALIDATING....", 500);
+						System.out.println();
+						}
+						System.out.println("ACCESS GRANTED!");
 					break;
 				case 7: factoryList.get(34).setLocked(false); 
 						System.out.println("You hear the sound of a door unlocking.");
@@ -658,12 +713,47 @@ public class Game {
 			f.printBox("================== (C)2016 ==================");
 			TimeUnit.SECONDS.sleep(21);
 			
-			System.exit(0);		//exits application
-			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		gameRun = false;
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("Would you like to play again?");
+		System.out.println("          [Yes/No/Main Menu]           ");
+		
+		String userInput = input.nextLine();
+		if(userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes"))
+		{
+			createNewGame();
+		}
+		else if(userInput.equalsIgnoreCase("n") || userInput.equalsIgnoreCase("no"))
+		{
+			System.out.println("Game Shutting down");
+			try {
+				System.out.println("5");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("4");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("3");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("2");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("1");
+				TimeUnit.SECONDS.sleep(1);
+				System.out.println("0");
+				
+			} catch (InterruptedException e) {
+				gameRun = false;
+				e.printStackTrace();
+			}
+			System.exit(0);				//exits application
+
+		}
+		else
+		{
+			gameRun = false;
+		}
 	}
 	
 	private void floor1Music() {

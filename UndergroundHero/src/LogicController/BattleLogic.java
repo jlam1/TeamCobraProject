@@ -390,7 +390,7 @@ public class BattleLogic {
 			player.pickUp(monster.getLoot());
 			player.pickUp(itemList.get(5));
 		}
-		
+	
 		if(monster.isBoss()) {
 			System.out.println("[" + monster.getName() + "] dropped [" + itemList.get(5).getName().toUpperCase() + "].");
 			player.pickUp(itemList.get(5));

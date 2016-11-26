@@ -36,8 +36,9 @@ public class Player extends Character implements Serializable {
 	public boolean checkInventoryKeyItem(Item keyItem) {
 		boolean itemIsThere = false;
 		for(Item i : inventory) {
-			if(i.getType().equalsIgnoreCase("KEY")) {
+			if(i.getId() == keyItem.getId()) {
 				itemIsThere = true;
+				break;
 			}
 			else {
 				itemIsThere = false;
