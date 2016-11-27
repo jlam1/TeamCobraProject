@@ -166,8 +166,8 @@ public class RoomGenerator {
 		
 		room = new Room(25, "3-7", "You are at a lake which is both deep underground and is deep itself. "
 				+ "\nThe water is incredibly clear and clean, and yet very deep in color as well. "
-				+ "\nIn what is more or less the center of the lake is an underwater plateau containing live"
-				+ "\npiranhas.", "NORTH, SOUTH", false);
+				+ "\nIn what is more or less the center of the lake is an underwater plateau containing other live"
+				+ "\fishes.", "NORTH, SOUTH", false);
 		roomList.add(room);
 		
 		room = new Room(26, "3-8", "Here is a rectangular room with a fork at the western end. "

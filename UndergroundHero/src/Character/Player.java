@@ -260,8 +260,11 @@ public class Player extends Character implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "PLAYER\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]\nDEF:\t [" + this.def + "]\nSPD:\t ["
-				+ this.spd + "]\nATK:\t [" + this.atk + "]\n";
+		return "PLAYER"
+				+ "\nHP:\t [" + this.getHp() + "/" + this.getMaxhp() + "]"
+				+ "\nATK:\t [" + this.atk + "]"
+				+ "\nDEF:\t [" + this.def + "]"
+				+ "\nSPD:\t [" + this.spd + "]";
 	}
 
 	@Override

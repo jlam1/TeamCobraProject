@@ -65,6 +65,7 @@ public class Game {
 		player.startingEquip(0);
 		player.startingEquip(0);
 		currentRoom = factoryList.get(1);
+		floorMusicChecker(currentRoom);
 
 		f.printBox("######################### ROOM " + currentRoom.getName() + " #############################");
 		System.out.println(currentRoom.getDescription() + "\n");
@@ -96,13 +97,13 @@ public class Game {
 					System.out.println("\n");
 					start = false;
 					createNewGame();
-					floor1Music();
+				//	floor1Music();
 					play();
 				} else if (userInput.equals("2")) {
 					gameRun = true;
 					start = false;
 					load();
-					floor1Music();
+				//	floor1Music();
 					play();
 				} else if (userInput.equalsIgnoreCase("3")) {
 					f.delay(500);
@@ -180,13 +181,12 @@ public class Game {
 				puzzleLogic.initiatePuzzle(lockedRoom, player);
 				if (puzzleLogic.getPuzzleSolved()) {
 					checkRoomPuzzleLocks(nextRoom.getRoomPuzzle());
-					f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
-					System.out.println(currentRoom.getDescription() + "\n");
-
 				}
 				if (puzzleLogic.getPuzzleSolved()) {
 					factoryList.get(lockedRoom.getId()).getRoomPuzzle().setSolved(true);
 					currentRoom = nextRoom;
+					f.printBox("#################### ROOM " + currentRoom.getName() + " ########################");
+					System.out.println(currentRoom.getDescription() + "\n");
 					iniMonster();
 				}
 			} else {
@@ -228,15 +228,81 @@ public class Game {
 				if (monster.isBoss())
 					factoryList.get(nextRoom.getId()).getRoomMonster().setDead(true);
 
-				if (monster.getId() == 5) {
-					displayEnding();
+				if (monster.getId() == 2)// giant bull shark
+				{
+					System.out.println("The shark swam very quickly bashing itself on to the walls."
+							+ "\nIt swan deep into the lake. As you waited, the lifeless body"
+							+ "\nsurfaced and you pulled the shark out of the water.");
 				}
-
+				if (monster.getId() == 3) // robo boss
+				{
+					try {
+						f.print("E...ER...ERR....OR....", 200);
+						f.print("E...ER...ERR....OR", 200);
+						System.out.println();
+						f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!", 200);
+						System.out.println();
+						f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED", 200);
+						System.out.println();
+						TimeUnit.MILLISECONDS.sleep(250);
+						System.out.println("10");
+						TimeUnit.MILLISECONDS.sleep(250);
+						System.out.println("9");
+						TimeUnit.MILLISECONDS.sleep(250);
+						System.out.println("8");
+						f.print("R....RES...TA..R....T...F..FA....AIL...", 200);
+						System.out.println();
+						f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D", 200);
+						f.print("E.ER..ERR...OR....", 200);
+						f.print("E..ER...ERR..OR", 200);
+						System.out.println();
+						f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!", 100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (monster.getId() == 5) // Joe Ker
+				{
+					try {
+						System.out.println("You sent him flying off of the stage as he pummeled ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("onto the ground. He lied there laughing,");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("\"HAHAHAHAAHAA! DID YOU THINK IT WOULD BE THAT EASY TO STOP ME?\"" );
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("He pulled out a device,\"With a push of a button ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("the world will burn.\" You quickly grabbed the Grappling hook");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("and shot towards his hand and pulled the device into you position,");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("\"Not on my watch, you won't destroy anything after I'm done with you.\" ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("Joe laughed, \"C'mon, give it back to me and let's see the world ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("burn together.\" \"No thank you.\" as you slowly walked ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("toward him, but the door opened behind and Quinn appeared with");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("a machine gun and blasted towards you. You ran for cover but ");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("as the shooting stops, Joe said,\"Until the next time we meet,");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("I will drown you with madness.\" As you jumped out of hiding,");
+						TimeUnit.SECONDS.sleep(3);
+						System.out.println("they are nowhere to be seen.");
+						TimeUnit.SECONDS.sleep(10);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}									
+					displayEnding();
+				} 
 			}
 
 			checkRoomMonsterLocks(monster);
 			// look();
-
 		}
 
 		if (monster != null) {
@@ -250,7 +316,7 @@ public class Game {
 
 				if (chance < SPAWN_RATE) {
 					battleLogic.initiateBattle(player, monster);
-					battleLogic.checkFloorMusic(currentRoom);
+					//battleLogic.checkFloorMusic(currentRoom);
 				}
 			}
 
@@ -379,13 +445,13 @@ public class Game {
 		}
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null
 				&& factoryList.get(currentRoom.getId()).getId() == 21) {
-			System.out
-					.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
+			System.out.println("You spotted " + currentRoom.getRoomItem().getName() + " inside of the ballistic glass.");
 		}
 	}
 
 	private void pick() {
-		if (factoryList.get(currentRoom.getId()).getRoomItem() != null) {
+		if (factoryList.get(currentRoom.getId()).getRoomItem() != null 
+				&& factoryList.get(currentRoom.getId()).getId() != 21) {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
@@ -489,7 +555,7 @@ public class Game {
 		}
 	}
 	
-	private void load() throws ClassCastException, NullPointerException {
+	private void load() {
 		System.out.println("Which slot would you like to load?");
 		System.out.println("Slot 1");
 		System.out.println("Slot 2");
@@ -520,7 +586,7 @@ public class Game {
 			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero1.dat");
 			if (data != null) {
 				currentRoom = factoryList.get(data.getRoomArrayNumber());
-
+				floorMusicChecker(currentRoom);
 				player = data.getPlayer();
 				factoryList = data.getFactoryList();
 				System.out.print("<< LOADING ");
@@ -557,7 +623,7 @@ public class Game {
 			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero2.dat");
 			if (data != null) {
 				currentRoom = factoryList.get(data.getRoomArrayNumber());
-
+				floorMusicChecker(currentRoom);
 				player = data.getPlayer();
 				factoryList = data.getFactoryList();
 				System.out.print("<< LOADING ");
@@ -594,7 +660,7 @@ public class Game {
 			ResourceData data = (ResourceData) ResourceData.loadGame("UndergroundHero3.dat");
 			if (data != null) {
 				currentRoom = factoryList.get(data.getRoomArrayNumber());
-
+				floorMusicChecker(currentRoom);
 				player = data.getPlayer();
 				factoryList = data.getFactoryList();
 				System.out.print("<< LOADING ");
@@ -605,13 +671,13 @@ public class Game {
 				System.out.println();
 			} else {
 				System.out.println("There is currently no file to load. \nA new game will be created.");
-				f.print("       ", 500);
+				f.print("       ", 300);
 				System.out.println();
 				System.out.print("Please Wait");
-				f.print("       ", 500);
+				f.print("       ", 300);
 				System.out.println();
 				System.out.println("New game created.");
-				f.print("       ", 500);
+				f.print("       ", 300);
 				System.out.println();
 
 				createNewGame();
@@ -651,41 +717,17 @@ public class Game {
 				break;
 			case 1:
 				factoryList.get(19).setLocked(false);
-				System.out.println(
-						"You slammed the Pogo on the table and \ncaused a shockwave making the hula hoops tumbled on to the Pogo.");
-				System.out.println(
-						"The Pogo crawled out from the pile of hula hoops and screamed. As the Pogo is picking up his stick, \nyou charged at the Pogo and knock him flying to the east breaking the door.");
-				// factoryList.get(19).setDescription("A very messy room with a
-				// broken table, a broken door, and hula hoops everywhere.");
+				System.out.println("You slammed the Pogo on the table and caused a shockwave making the hula hoops "
+								+ "\ntumbled on to the Pogo. The Pogo crawled out from the pile of hula hoops and "
+								+ "\nscreamed. As the Pogo is picking up his stick, you charged at the Pogo and "
+								+ "\nknock him flying to the east breaking the door.");
 				break;
 			case 4:
-				factoryList.get(41).setLocked(false); // robot boss
-				try {
-					f.print("E...ER...ERR....OR....", 500);
-					f.print("E...ER...ERR....OR", 500);
-					System.out.println();
-					f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!", 500);
-					System.out.println();
-					f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED", 500);
-					TimeUnit.MILLISECONDS.sleep(500);
-					System.out.println("10");
-					TimeUnit.MILLISECONDS.sleep(500);
-					System.out.println("9");
-					TimeUnit.MILLISECONDS.sleep(500);
-					System.out.println("8");
-					f.print("R....RES...TA..R....T...F..FA....AIL...", 500);
-					System.out.println();
-					f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D", 500);
-					f.print("E.ER..ERR...OR....", 500);
-					f.print("E..ER...ERR..OR", 500);
-					System.out.println();
-					f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!", 500);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				System.out.println("Room: [" + factoryList.get(41).getName() + "] is now unlocked!");
+				factoryList.get(41).setLocked(false); // Quinn Har
+				System.out.println("She jumped into the fire as You watched her laughing evilly, "
+						     + "\n\"You may have beaten me but you will never win against him."
+						       + "\nBURN! BURN! AND DESTROY THE WORLD MY LOVE...!\""
+						       + "\nThe fire fiercely blazed her as she vanished into the fire.");
 				break;
 			default:
 				break;
@@ -740,7 +782,7 @@ public class Game {
 				System.out.println("You went to the computer and insert the chip");
 				System.out.print("PLEASE WAIT!");
 				for (int i = 0; i < 3; i++) {
-					f.print("VALIDATING....", 500);
+					f.print("VALIDATING....", 250);
 					System.out.println();
 				}
 				System.out.println("ACCESS GRANTED!");
@@ -824,7 +866,7 @@ public class Game {
 
 	private void displayEnding() {
 		endingMusic();
-		f.printBox("You have beaten the game!");
+		f.printBox("CONGRATUATION HERO! \nYou have saved the world from being destroyed!");
 		try {
 			System.out.println("");
 			TimeUnit.SECONDS.sleep(1);

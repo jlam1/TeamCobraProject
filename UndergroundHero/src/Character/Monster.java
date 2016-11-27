@@ -69,7 +69,11 @@ public class Monster extends Character implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MONSTER\nHealth: [" + hp + "]\nAttack: [" + atk + "]\nSpeed: [" + spd + "]\nDefense: [" + def + "]";
+		return "MONSTER"
+				+ "\nHealth: [" + hp + "]"
+				+ "\nAttack: [" + atk + "]"
+				+ "\nDefense: [" + def + "]"
+				+ "\nSpeed: [" + spd + "]";
 	}
 
 }

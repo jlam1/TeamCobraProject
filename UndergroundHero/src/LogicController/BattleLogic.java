@@ -322,7 +322,7 @@ public class BattleLogic {
 			monster.attack(player);
 			f.delay(300);
 			checkDead(player, monster);
-			
+			 
 			if(!player.isDead()) {
 				player.attack(monster);
 				checkDead(player, monster);
@@ -454,6 +454,7 @@ public class BattleLogic {
 				System.out.println("You couldn't run away!");
 				f.delay(300);
 				monster.attack(player);
+				checkDead(player, monster);
 				f.delay(300);
 			}
 		}
@@ -462,6 +463,7 @@ public class BattleLogic {
 			System.out.println("You couldn't run away!");
 			f.delay(300);
 			monster.attack(player);
+			checkDead(player, monster);
 			f.delay(300);
 		}
 	}
