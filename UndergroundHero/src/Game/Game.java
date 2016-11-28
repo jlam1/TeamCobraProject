@@ -237,12 +237,12 @@ public class Game {
 				if (monster.getId() == 3) // robo boss
 				{
 					try {
-						f.print("E...ER...ERR....OR....", 200);
-						f.print("E...ER...ERR....OR", 200);
+						f.print("E...ER...ERR....OR....", 50);
+						f.print("E...ER...ERR....OR", 50);
 						System.out.println();
-						f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!", 200);
+						f.print("S...SYS..T...EM...MAL....F..U...NC..TION....ING!", 50);
 						System.out.println();
-						f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED", 200);
+						f.print("R...RE...STA.....R....TING.....SE....QU....QUEN...CE....IN...INIT..I..IATED", 50);
 						System.out.println();
 						TimeUnit.MILLISECONDS.sleep(250);
 						System.out.println("10");
@@ -250,13 +250,13 @@ public class Game {
 						System.out.println("9");
 						TimeUnit.MILLISECONDS.sleep(250);
 						System.out.println("8");
-						f.print("R....RES...TA..R....T...F..FA....AIL...", 200);
+						f.print("R....RES...TA..R....T...F..FA....AIL...", 50);
 						System.out.println();
-						f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D", 200);
-						f.print("E.ER..ERR...OR....", 200);
-						f.print("E..ER...ERR..OR", 200);
+						f.print("S...SE..ELF...FDEST...TRU.....UCT...I..NI...TI.A....TE...D", 50);
+						f.print("E.ER..ERR...OR....", 50);
+						f.print("E..ER...ERR..OR", 50);
 						System.out.println();
-						f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!", 100);
+						f.print("S...SYS..T...EM...SH...UU..T....IN...NG..... DOOWWWNNNN!", 50);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -266,31 +266,31 @@ public class Game {
 				{
 					try {
 						System.out.println("You sent him flying off of the stage as he pummeled ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("onto the ground. He lied there laughing,");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("\"HAHAHAHAAHAA! DID YOU THINK IT WOULD BE THAT EASY TO STOP ME?\"" );
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("He pulled out a device,\"With a push of a button ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("the world will burn.\" You quickly grabbed the Grappling hook");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("and shot towards his hand and pulled the device into you position,");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("\"Not on my watch, you won't destroy anything after I'm done with you.\" ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("Joe laughed, \"C'mon, give it back to me and let's see the world ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("burn together.\" \"No thank you.\" as you slowly walked ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("toward him, but the door opened behind and Quinn appeared with");
 						TimeUnit.SECONDS.sleep(3);
 						System.out.println("a machine gun and blasted towards you. You ran for cover but ");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("as the shooting stops, Joe said,\"Until the next time we meet,");
-						TimeUnit.SECONDS.sleep(3);
-						System.out.println("I will drown you with madness.\" As you jumped out of hiding,");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(2);
+						System.out.println("I will drown you with madness.\" As you jumped out,");
+						TimeUnit.SECONDS.sleep(2);
 						System.out.println("they are nowhere to be seen.");
 						TimeUnit.SECONDS.sleep(10);
 					} catch (InterruptedException e) {
@@ -459,8 +459,10 @@ public class Game {
 			if (player.checkInventoryKeyItem(itemList.get(6))
 					&& factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
-				System.out.println("You have picked " + itemList.get(3) + ".");
+				System.out.println("You have picked " + itemList.get(3).getName() + ".");
 				player.pickUp(itemList.get(3));
+				factoryList.get(currentRoom.getId()).setRoomItem(null);
+
 			} else {
 				System.out.println("You do not have ballistic diamond cutter to cut this case.");
 			}
@@ -782,7 +784,7 @@ public class Game {
 				System.out.println("You went to the computer and insert the chip");
 				System.out.print("PLEASE WAIT!");
 				for (int i = 0; i < 3; i++) {
-					f.print("VALIDATING....", 250);
+					f.print("VALIDATING....", 150);
 					System.out.println();
 				}
 				System.out.println("ACCESS GRANTED!");
