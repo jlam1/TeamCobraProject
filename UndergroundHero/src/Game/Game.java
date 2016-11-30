@@ -450,12 +450,17 @@ public class Game {
 	}
 
 	private void pick() {
+		
+		// if room has an item and isn't room 21, pick up item
 		if (factoryList.get(currentRoom.getId()).getRoomItem() != null 
 				&& factoryList.get(currentRoom.getId()).getId() != 21) {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
-		} else {
+		}
+		// else if room is 21 and item isn't already picked up
+		else if(factoryList.get(currentRoom.getId()).getRoomItem() != null &&
+				factoryList.get(currentRoom.getId()).getId() == 21) {
 			if (player.checkInventoryKeyItem(itemList.get(6))
 					&& factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
@@ -466,6 +471,11 @@ public class Game {
 			} else {
 				System.out.println("You do not have ballistic diamond cutter to cut this case.");
 			}
+		}
+		// otherwise nothing in the room
+		else
+		{
+			System.out.println("There is nothing in this room to pick up.");
 		}
 	}
 
