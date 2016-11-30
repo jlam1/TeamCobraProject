@@ -370,7 +370,7 @@ public class BattleLogic {
 		System.out.println("+------------------------------------------------------+");
 		f.delay(300);
 		System.out.println("[" + player.getName() + "] defends!");
-		int damageDealt = Math.abs(player.getDef() - monster.getAtk());
+		int damageDealt = Math.abs((2*player.getDef()) - monster.getAtk());
 		player.setHp(player.getHp() - damageDealt);
 		f.delay(300);
 		System.out.println("[" + monster.getName() + "] strikes [" + player.getName() + "] for " + damageDealt + " damage!");

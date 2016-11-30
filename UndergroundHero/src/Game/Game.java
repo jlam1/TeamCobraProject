@@ -102,7 +102,7 @@ public class Game {
 				} else if (userInput.equals("2")) {
 					gameRun = true;
 					start = false;
-					load();
+					loadFromMenu();
 				//	floor1Music();
 					play();
 				} else if (userInput.equalsIgnoreCase("3")) {
@@ -266,33 +266,33 @@ public class Game {
 				{
 					try {
 						System.out.println("You sent him flying off of the stage as he pummeled ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("onto the ground. He lied there laughing,");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("\"HAHAHAHAAHAA! DID YOU THINK IT WOULD BE THAT EASY TO STOP ME?\"" );
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("He pulled out a device,\"With a push of a button ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("the world will burn.\" You quickly grabbed the Grappling hook");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("and shot towards his hand and pulled the device into you position,");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("\"Not on my watch, you won't destroy anything after I'm done with you.\" ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("Joe laughed, \"C'mon, give it back to me and let's see the world ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("burn together.\" \"No thank you.\" as you slowly walked ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("toward him, but the door opened behind and Quinn appeared with");
-						TimeUnit.SECONDS.sleep(3);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("a machine gun and blasted towards you. You ran for cover but ");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("as the shooting stops, Joe said,\"Until the next time we meet,");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("I will drown you with madness.\" As you jumped out,");
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 						System.out.println("they are nowhere to be seen.");
-						TimeUnit.SECONDS.sleep(10);
+						TimeUnit.SECONDS.sleep(5);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -408,6 +408,13 @@ public class Game {
 		case "LOAD":
 			load();
 			break;
+		case "GOD":
+			player.setAtk(50);
+			break;
+			
+		case "DEAD":
+			player.setHp(0);
+			break;
 
 		default:
 			break;
@@ -455,7 +462,9 @@ public class Game {
 			System.out.println("You have picked " + currentRoom.getRoomItem().getName() + ".");
 			player.pickUp(itemList.get(currentRoom.getRoomItem().getId()));
 			factoryList.get(currentRoom.getId()).setRoomItem(null);
-		} else {
+		} 
+		else
+		{
 			if (player.checkInventoryKeyItem(itemList.get(6))
 					&& factoryList.get(currentRoom.getId()).getRoomItem() != null) {
 				System.out.println("You open the case with the ballistic diamond cutter.");
@@ -463,8 +472,13 @@ public class Game {
 				player.pickUp(itemList.get(3));
 				factoryList.get(currentRoom.getId()).setRoomItem(null);
 
-			} else {
+			} else if(!player.checkInventoryKeyItem(itemList.get(6)) 
+					&& factoryList.get(currentRoom.getId()).getRoomItem() != null) 
+			{
 				System.out.println("You do not have ballistic diamond cutter to cut this case.");
+			}
+			else{
+				System.out.println("There is nothing noticeable.");
 			}
 		}
 	}
@@ -556,7 +570,30 @@ public class Game {
 			e.printStackTrace();
 		}
 	}
-	
+	private void loadFromMenu() {
+		System.out.println("Which slot would you like to load?");
+		System.out.println("Slot 1");
+		System.out.println("Slot 2");
+		System.out.println("Slot 3");
+		String load = input.nextLine();
+
+		if (load.equalsIgnoreCase("Slot 1") || load.equalsIgnoreCase("1") || load.equalsIgnoreCase("Slot1")) {
+			loadFile1();
+		}
+		else if (load.equalsIgnoreCase("Slot 2") || load.equalsIgnoreCase("2") || load.equalsIgnoreCase("Slot2"))
+		{
+			loadFile2();
+		}
+		else if (load.equalsIgnoreCase("Slot 3") || load.equalsIgnoreCase("3") || load.equalsIgnoreCase("Slot3"))
+		{
+			loadFile3();
+		}
+		else
+		{
+			System.out.println("Invalid Input. Creating New Game.");
+			createNewGame();
+		}
+	}
 	private void load() {
 		System.out.println("Which slot would you like to load?");
 		System.out.println("Slot 1");
@@ -599,13 +636,13 @@ public class Game {
 				System.out.println();
 			} else {
 				System.out.println("There is currently no file to load. \nA new game will be created.");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.print("Please Wait");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.println("New game created.");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 
 				createNewGame();
@@ -636,13 +673,13 @@ public class Game {
 				System.out.println();
 			} else {
 				System.out.println("There is currently no file to load. \nA new game will be created.");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.print("Please Wait");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.println("New game created.");
-				f.print("       ", 500);
+				f.print("       ", 50);
 				System.out.println();
 
 				createNewGame();
@@ -673,13 +710,13 @@ public class Game {
 				System.out.println();
 			} else {
 				System.out.println("There is currently no file to load. \nA new game will be created.");
-				f.print("       ", 300);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.print("Please Wait");
-				f.print("       ", 300);
+				f.print("       ", 50);
 				System.out.println();
 				System.out.println("New game created.");
-				f.print("       ", 300);
+				f.print("       ", 50);
 				System.out.println();
 
 				createNewGame();
@@ -861,9 +898,9 @@ public class Game {
 				+ "\n\nNotice: This game has sound! Please unmute your speakers/headphones for the best experience!"
 				+ "\nWe recommend resizing your command line window size to 128x64."
 				+ "\n - For Windows users: Right-click the title bar and click 'Properties'"
-				+ "\n - Click the 'Layout' tab and adjust 'Window Size'"
-				+ "\n - You'll have to restart the game for the changes to take place");
-
+				+ "\n - Click the 'Layout' tab and adjust 'Window Size'");
+		System.out.println();
+		f.printBox("                   PLEASE SAVE OFTEN                   ");
 	}
 
 	private void displayEnding() {
@@ -873,41 +910,41 @@ public class Game {
 			System.out.println("");
 			TimeUnit.SECONDS.sleep(1);
 			f.printBox("================== CREDITS ==================");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|------------- TEAM COBRA PROJECT --------------|");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|.................. John Lam ...................|");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|................... King Lo ...................|");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|................ Kyle Cousins .................|");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|............ William 'Matt' Smith .............|");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("============ THANK YOU FOR PLAYING! =============");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			System.out.println("|                                               |");
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 			f.printBox("================== (C)2016 ==================");
-			TimeUnit.SECONDS.sleep(21);
+			TimeUnit.SECONDS.sleep(30);
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
