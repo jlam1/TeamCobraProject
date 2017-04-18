@@ -6,3 +6,6 @@ The game is about a person without any superpowers but is clever and a good figh
 
 2. Overview
 Underground Hero is a text based adventure game. The game will consist of at least 32+ rooms, 8+ puzzles, and 8+ monsters. The game action will be done by the player’s input command. The player will encounter monster and puzzles in order to progress the game. Once the player defeated the final boss, the game will end.
+
+### How to run game?
+Download, clone, fork repository and run through eclipse or intellij (run GameMain/GameDemo.java).
