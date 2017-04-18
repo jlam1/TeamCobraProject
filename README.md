@@ -9,3 +9,7 @@ Underground Hero is a text based adventure game. The game will consist of at lea
 
 ### How to run game?
 Download, clone, fork repository and run through eclipse or intellij (run GameMain/GameDemo.java).
+
+### Screenshots
+![ss1](https://github.com/jlam1/TeamCobraProject/tree/master/Documents/text_game_00.PNG)
+![ss2](https://github.com/jlam1/TeamCobraProject/tree/master/Documents/text_game_01.PNG)
